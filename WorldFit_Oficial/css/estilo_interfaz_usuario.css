@@ -1,0 +1,38 @@
+.opciones-dos {
+    padding-top: 120px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.opciones-dos img {
+    filter: brightness(80%);
+    max-height: 30em;
+    object-fit: cover;
+}
+
+.opciones-dos-dos {
+    padding-top: 20px;
+}
+
+.contenedor-opcion-dos {
+    border: none;
+    border-radius: 50px;
+}
+
+.texto-opcion-dos {
+    padding-top:40px ;
+}
+
+.contenedor-blur  {
+    border: 1px solid #000000;
+   
+}
+
+.opciones-dos-dos:hover {   
+
+}
+
+
