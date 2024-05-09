@@ -273,3 +273,9 @@ a {
     justify-content: center;
     text-align: center;
 }
+
+.videoe {   
+    width: auto;
+    height: 40em;
+    margin: 10px;
+}

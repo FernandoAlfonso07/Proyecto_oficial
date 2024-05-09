@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WORLDFIT | ADMINISTRADOR </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilos-administrador.css">
+</head>
+
+<body>
+
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="IMG_index/LOGO.png" alt="logo" width="55px">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link disabled nombre_admin" href="#" tabindex="-1"
+                                aria-disabled="true">ADMINISTRADOR - Nombre</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle enlace_mayor" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Mi perfil
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item enlace_secundario" href="#">Información</a></li>
+                                <li><a class="dropdown-item enlace_secundario" href="#">Editar</a></li>
+                                <li><a class="dropdown-item enlace_secundario" href="#">
+                                        <button class="btn btn-outline-danger boton_cerrar">Cerrar sesión</button>
+                                    </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle enlace_mayor" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Ejercicios
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item enlace_secundario" href="Ingresar_ejercico.html">Ingresar <b>ejercicio</b>
+                                        icono</a>
+                                </li>
+                                <li><a class="dropdown-item enlace_secundario" href="#">Editar <b>ejercicio</b>
+                                        icono</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle enlace_mayor" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gimnasios
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item enlace_secundario" href="#">Ingresar <b>gimnasio</b>
+                                        icono</a>
+                                </li>
+                                <li><a class="dropdown-item enlace_secundario" href="#">Editar <b>gimnasio</b> icono</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container contenedor_cuerpo">
+        <h1>Sección de Administrador</h1>
+        <p>Bienvenido/a al panel de administración. Aquí puedes modificar, añadir o eliminar elementos relacionados con
+            ejercicios, gimnasios y otra información relevante. Esta sección está reservada para personal autorizado.
+            Por favor, utiliza esta herramienta con responsabilidad.</p>
+
+        <h2>Ejercicios</h2>
+        <ul>
+            <li><strong>Añadir Ejercicio:</strong> Permite agregar nuevos ejercicios al sistema. Selecciona el tipo de
+                ejercicio, la descripción, y otros detalles relevantes.</li>
+            <li><strong>Modificar Ejercicio:</strong> Permite editar la información de un ejercicio existente, como su
+                descripción, tipo, o nivel de dificultad.</li>
+            <li><strong>Eliminar Ejercicio:</strong> Permite eliminar un ejercicio del sistema. Ten en cuenta que esta
+                acción es irreversible.</li>
+        </ul>
+
+        <h2>Gimnasios</h2>
+        <ul>
+            <li><strong>Añadir Gimnasio:</strong> Permite agregar nuevos gimnasios al sistema. Incluye información como
+                nombre, dirección, horario de atención, y servicios ofrecidos.</li>
+            <li><strong>Modificar Gimnasio:</strong> Permite editar la información de un gimnasio existente, como su
+                dirección, horario, o servicios.</li>
+            <li><strong>Eliminar Gimnasio:</strong> Permite eliminar un gimnasio del sistema. Esta acción eliminará
+                también todas las relaciones asociadas con el gimnasio, como horarios de clases o membresías.</li>
+        </ul>
+
+        <h2>Otras Funcionalidades</h2>
+        <ul>
+            <li><strong>Estadísticas:</strong> Visualiza estadísticas relevantes sobre el uso del software, como número
+                de usuarios registrados, clases programadas, o ingresos generados.</li>
+            <li><strong>Configuración:</strong> Permite ajustar la configuración del software, como idioma, unidades de
+                medida, o notificaciones.</li>
+        </ul>
+
+        <p>Recuerda guardar los cambios realizados y asegurarte de tener respaldos actualizados de la información antes
+            de realizar modificaciones importantes.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
