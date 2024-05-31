@@ -1,0 +1,87 @@
+.opciones-dos {
+    margin-top: 9em;
+}
+
+.boton {
+    margin: 0px 10px;
+    border: none;
+    letter-spacing: 2px;
+}
+
+.activo_admin {
+    font-size: 25px;
+}
+
+.enlace_mayor {
+    font-size: 20px;
+    color: white;
+    margin-right: 30px;
+    padding: 10px 15px;
+}
+
+.enlace_mayor:hover {
+    border: 1px solid #00A1FF;
+    border-radius: 50px;
+    color: #00A1FF;
+}
+
+.enlace_secundario {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: ease 0.5s;
+    color: white;
+}
+
+.enlace_secundario:hover {
+    transition: ease 0.5s;
+    border-radius: 10px;
+    background-color: #404040;
+}
+
+.dropdown-menu {
+    text-align: center;
+    background-color: #262626;
+    padding: 0px;
+    margin: 0px;
+    transition: ease 0.5s;
+    border-radius: 10px;
+}
+
+.boton_cerrar {
+    padding: 15px;
+
+}
+
+.nombre_admin {
+    padding: 10px;
+    color: rgb(154, 154, 154);
+    font-size: 20px;
+    margin-right: 120px;
+}
+
+.ingresar_multimedia {
+    height: 20em;
+    width: auto;
+    border: 1px solid #ddd;
+}
+
+
+.separado {
+    margin-right: 20px;
+    font-size: 15px;
+}
+
+
+.icono_usuario {
+    margin-right: 4px;
+    font-size: 15px;
+
+}
+
+.mis_calendarios {
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(255, 193, 7);
+    color: black;
+}
