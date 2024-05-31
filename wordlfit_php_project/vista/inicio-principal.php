@@ -37,7 +37,7 @@
                                 <a class="nav-link separado" href="#servicios_section">SERVICIOS</a>
                                 <a class="nav-link separado" href="inicio_sesion.html">INICIAR SESIÓN</a>
                                 <button type="button" class="btn btn-outline-primary separado_principal">
-                                    <a href="registrar.html">¡REGISTRATE YA!</a>
+                                    <a href="seccion-registro.php">¡REGISTRATE YA!</a>
                                 </button>
 
                             </div>

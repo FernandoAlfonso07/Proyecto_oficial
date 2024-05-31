@@ -79,9 +79,11 @@
 
 }
 
-.mis_calendarios {
-    justify-content: center;
-    text-align: center;
-    background-color: rgb(255, 193, 7);
+.misCalendariosBtn {    
+    background-color: gold;
     color: black;
+    border-radius: 40px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }

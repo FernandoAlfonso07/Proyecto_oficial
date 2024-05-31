@@ -28,30 +28,34 @@
                 <div class="form-container">
                     <h2 class="text-light texto_registro"> <span
                             class="text-primary"><strong>¡REGÍSTRATE!</strong></span></h2>
-                    <form>
+                    <form action="registrado.php">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nombres" required>
+                            <input type="text" class="form-control" placeholder="Nombres" name="nombreU" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Correo electronico" required>
+                            <input type="email" class="form-control" placeholder="Correo electronico" name="correoU"
+                                required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Contraseña" required>
+                            <input type="password" class="form-control" placeholder="Contraseña" name="contraseñaU"
+                                required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Peso Actual en kg" required>
+                            <input type="text" class="form-control" placeholder="Peso Actual en kg" name="pesoActualU"
+                                required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Altura Actual - ej. 170" required>
+                            <input type="text" class="form-control" placeholder="Altura Actual - ej. 170"
+                                name="alturaActualU" required>
                         </div>
                         <div class="form-group">
                             <label for="inputGroupSelect01" class="form-label">
                                 <h2>Género</h2>
                             </label>
-                            <select class="form-select custom-select" id="inputGroupSelect01" required>
+                            <select class="form-select custom-select" id="inputGroupSelect01" name="generoU" required>
                                 <option value="" disabled selected>Selecciona tu género</option>
                                 <option value="1">Masculino</option>
-                                <option value="2">Femenino</option>
+                                <option value="0">Femenino</option>
                             </select>
                         </div>
 

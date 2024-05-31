@@ -56,7 +56,7 @@
                                 class="fa-regular fa-eye icono_usuario"></i>
                             Ver Gimnasios</a>
                         </a>
-                        <a class="nav-link text-center separado " href="controlador.php?seccion=seccion2"> <i
+                        <a class="nav-link text-center separado misCalendariosBtn" href="controlador.php?seccion=seccion2"> <i
                                 class="fa-solid fa-calendar-days icono_usuario"></i>Mis calendarios</a>
                     </ul>
                 </div>
