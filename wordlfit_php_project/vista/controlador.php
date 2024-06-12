@@ -1,11 +1,11 @@
 <?php
 
-  $seccion = "seccion1"; //Sección por defecto.
+$seccion = "seccion1"; //Sección por defecto.
 
-  if( isset( $_GET[ 'seccion' ] ) ){
-    $seccion = $_GET[ 'seccion' ];
-  }
+if (isset($_GET['seccion'])) {
+  $seccion = $_GET['seccion'];
+}
 
-  //echo $seccion;
+//echo $seccion;
 
-  include( "plantilla.php" );
+include("plantilla.php");

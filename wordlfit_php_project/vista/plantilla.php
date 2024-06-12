@@ -1,12 +1,19 @@
+<?php
+
+include ("nombreSeccionH.php");
+
+?>
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WORLDFIT | INICIO </title>
+    <title><?php echo nombrar(0, $seccion); ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="icon" href="./IMG_index/logosinfondo.png">
 
     <link rel="stylesheet" href="css/estilos_ENCABEZADO_plantilla.css">
 
@@ -39,7 +46,8 @@
                                 <i class="fa-regular fa-user icono_usuario"></i> Mi perfil
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item enlace_secundario" href="#">Información</a></li>
+                                <li><a class="dropdown-item enlace_secundario"
+                                        href="controlador.php?seccion=MiPerfil">Información</a></li>
                                 <li><a class="dropdown-item enlace_secundario" href="#">Editar</a></li>
                                 <li><a class="dropdown-item enlace_secundario" href="#">
                                         <button class="btn btn-outline-danger boton_cerrar"><i
@@ -56,7 +64,7 @@
                                 class="fa-regular fa-eye icono_usuario"></i>
                             Ver Gimnasios</a>
                         </a>
-                        <a class="nav-link text-center separado misCalendariosBtn" href="controlador.php?seccion=seccion2"> <i
+                        <a class="nav-link text-center separado " href="controlador.php?seccion=misCalendarios"> <i
                                 class="fa-solid fa-calendar-days icono_usuario"></i>Mis calendarios</a>
                     </ul>
                 </div>

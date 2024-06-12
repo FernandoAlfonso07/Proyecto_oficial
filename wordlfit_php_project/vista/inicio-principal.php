@@ -7,6 +7,7 @@
     <title>WORLDFIT | HOME </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="./IMG_index/logosinfondo.png">
 </head>
 <link rel="stylesheet" href="css/style.css">
 
@@ -35,7 +36,7 @@
                                 <a class="nav-link separado" aria-current="page" href="#inicio" id="activo">INICIO</a>
                                 <a class="nav-link separado" href="#contactanos_section">CONTACTANOS</a>
                                 <a class="nav-link separado" href="#servicios_section">SERVICIOS</a>
-                                <a class="nav-link separado" href="inicio_sesion.html">INICIAR SESIÓN</a>
+                                <a class="nav-link separado" href="inicioSesion.php">INICIAR SESIÓN</a>
                                 <button type="button" class="btn btn-outline-primary separado_principal">
                                     <a href="seccion-registro.php">¡REGISTRATE YA!</a>
                                 </button>

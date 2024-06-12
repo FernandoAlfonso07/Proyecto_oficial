@@ -1,0 +1,116 @@
+/* estilos_inicio_sesion.css */
+
+/* General */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+a { 
+    text-decoration: none;
+}
+
+.container {
+    max-width: 700px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Bienvenidos Section */
+.contenedor_bienvenidos {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contenedor_bienvenidos h2 {
+    font-size: 2em;
+    color: #007bff;
+}
+
+.contenedor_bienvenidos p {
+    font-size: 1.2em;
+    color: #6c757d;
+}
+
+/* Formulario Section */
+.espacios_formulario {
+    margin-top: 40px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.input-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+}
+
+.contenedor_imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: none;
+}
+
+
+.boton_ir {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+}
+
+.boton_ir img {
+    margin-right: 5px;
+}
+
+
+
+.texto_extra {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.texto_extra a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.texto_extra a:hover {
+    text-decoration: underline;
+}
+
+.img-thumbnail { 
+    height: 11em;
+    width: 11em;   
+    border: none;
+}
+
+body{
+    background-color: #00A1FF;
+}

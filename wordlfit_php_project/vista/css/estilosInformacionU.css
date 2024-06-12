@@ -1,0 +1,32 @@
+.cuerpo {
+    margin-top: 120px;
+}
+
+.cuerpo label {
+    font-weight: bold;
+}
+
+.gris {
+    background-color: #ddd;
+    padding: 10px 10px;
+}
+
+.compartir {
+    border-radius: 50px;
+    padding: 10px 20x;
+    margin-top: 80px;
+}
+
+.icono {
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.imagen_perfil {
+    border-radius: 300px;
+    margin-top: 50px;
+}
+
+.subir {
+    margin-top: 50px;
+}

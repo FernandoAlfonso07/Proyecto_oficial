@@ -1,0 +1,73 @@
+.contenedor_total {
+    border: solid 1px #ddd;
+    margin-bottom: 5em;
+    transition: ease 0.5s;
+}
+
+a {
+    color: black;
+}
+
+.contenedor_total:hover {
+    transition: ease 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+}
+
+
+.oscurecer {
+    background-color: #ddd;
+}
+
+.oscurecer {
+    border: 1px solid;
+}
+
+.contenedor_secundario {
+    padding: 10px 20px;
+}
+
+.ejemploG {
+    object-fit: cover;
+    margin-top: 40px;
+}
+
+
+.delete {
+    transition: ease 0.5s;
+}
+
+.delete:hover {
+    color: red;
+    cursor: pointer;
+    transition: ease 0.5s;
+}
+
+.edit {
+    transition: ease 0.5s;
+}
+
+.edit:hover {
+    color: rgb(0, 89, 255);
+    cursor: pointer;
+    transition: ease 0.5s;
+}
+
+.conteo {
+    box-shadow: rgba(0, 161, 255, 0.4) -5px 5px,
+        rgba(0, 161, 255, 0.3) -10px 10px,
+        rgba(0, 161, 255, 0.2) -15px 15px,
+        rgba(0, 161, 255, 0.1) -20px 20px,
+        rgba(0, 161, 255, 0.05) -25px 25px;
+
+    transition: ease 0.5s;
+}
+
+.conteo:hover {
+    cursor: pointer;
+    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+    transition: ease 0.5s;
+}
+
+.iconoE {
+    margin-left: 40px;
+}
