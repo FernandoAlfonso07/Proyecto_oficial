@@ -17,13 +17,9 @@ echo $seccion_admin;
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="./IMG_index/logosinfondo.png">
     <link rel="stylesheet" href="css/estilos-plantillaAdmin.css">
-
-
-
 </head>
 
 <body>
-
 
     <header>
         <nav class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark">
