@@ -5,12 +5,12 @@ include ("connect.php");
 class DatosPerfilUser extends conexionBD
 {
 
-    public static function getPerfil($idPerfil)
+    public static function getPerfil($correoU)
     {
         $conexion = self::getConexion();
 
         $sql = "select t1.nombre, t1.apellido, t1.correo, t1.contraseña, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero ";
-        $sql .= "FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero WHERE id_usuario = $idPerfil";
+        $sql .= "FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero WHERE correo = '$correoU'";
 
         $resultado = $conexion->query($sql);
 
@@ -116,6 +116,8 @@ class DatosPerfilUser extends conexionBD
             $r .= '</div>';
             $r .= '</div>';
         }
+
+        return $r;
     }
 
 

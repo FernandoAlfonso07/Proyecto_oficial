@@ -6,10 +6,17 @@ include ("../model/datosPerfilUser.php");
 
 <?php
 
-$idPerfil = $_GET['idU'];
+if (!isset($_SESSION))
+    session_start();
 
-echo 'variable de ID:' . $idPerfil . '<br>';
+if (!isset($_SESSION["correo"])) {
+    echo 'error';
+} else {
+    $_SESSION['correo'];
+    $correoU = $_SESSION['correo'];
+    echo DatosPerfilUser::getPerfil($correoU);
 
-echo DatosPerfilUser::getPerfil($idPerfil);
+}
+
 
 ?>

@@ -1,6 +1,21 @@
 <?php
 
 include ("nombreSeccionH.php");
+/*
+include ("../model/usuario.php");
+
+
+if (!isset($_SESSION))
+    session_start();
+
+if (!isset($_SESSION["correo"])) {
+    echo 'error';
+} else {
+    $_SESSION['correo'];
+    $correoU = $_SESSION['correo'];
+    $nombreU = usuarios::getNombre($correoU);
+}
+*/
 
 ?>
 
@@ -13,7 +28,7 @@ include ("nombreSeccionH.php");
     <title><?php echo nombrar(0, $seccion); ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="icon" href="./IMG_index/logosinfondo.png">
+    <link rel="icon" href="./IMG_index/logosinfondo.png">
 
     <link rel="stylesheet" href="css/estilos_ENCABEZADO_plantilla.css">
 
@@ -38,7 +53,7 @@ include ("nombreSeccionH.php");
 
                         <li class="nav-item">
                             <a class="nav-link disabled nombre_admin" href="#" tabindex="-1" aria-disabled="true">¡Hola!
-                                Bienvenido de nuevo - Nombre</a>
+                                Bienvenido de nuevo - <b> <?//php echo $nombreU ?> </b></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle separado" href="#" id="navbarDropdownMenuLink"
@@ -47,9 +62,10 @@ include ("nombreSeccionH.php");
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item enlace_secundario"
-                                        href="controlador.php?seccion=MiPerfil&idU=3">Información</a></li>
+                                        href="controlador.php?seccion=MiPerfil">Información</a>
+                                </li>
                                 <li><a class="dropdown-item enlace_secundario" href="#">Editar</a></li>
-                                <li><a class="dropdown-item enlace_secundario" href="#">
+                                <li><a class="dropdown-item enlace_secundario" href="inicioSesion.php">
                                         <button class="btn btn-outline-danger boton_cerrar"><i
                                                 class="fa-solid fa-arrow-right-from-bracket icono_usuario"></i>Cerrar
                                             sesión</button>
