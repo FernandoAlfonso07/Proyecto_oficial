@@ -47,7 +47,7 @@ include ("nombreSeccionH.php");
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item enlace_secundario"
-                                        href="controlador.php?seccion=MiPerfil">Información</a></li>
+                                        href="controlador.php?seccion=MiPerfil&idU=3">Información</a></li>
                                 <li><a class="dropdown-item enlace_secundario" href="#">Editar</a></li>
                                 <li><a class="dropdown-item enlace_secundario" href="#">
                                         <button class="btn btn-outline-danger boton_cerrar"><i
