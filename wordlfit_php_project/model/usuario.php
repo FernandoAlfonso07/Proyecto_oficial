@@ -15,4 +15,9 @@ class usuarios extends conexionBD
         return $r;
     }
 
+
+    public static function registrar() {    
+        
+    }
+
 }

@@ -52,6 +52,8 @@ a {
     transition: ease 0.5s;
 }
 
+
+
 .conteo {
     box-shadow: rgba(0, 161, 255, 0.4) -5px 5px,
         rgba(0, 161, 255, 0.3) -10px 10px,
@@ -60,6 +62,7 @@ a {
         rgba(0, 161, 255, 0.05) -25px 25px;
 
     transition: ease 0.5s;
+    padding: 20px;
 }
 
 .conteo:hover {

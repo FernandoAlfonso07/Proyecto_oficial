@@ -72,7 +72,19 @@ echo $seccion_admin;
                                             class="fa-regular fa-pen-to-square icono"></i> Agregar ejercicio</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle enlace_principal" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Gestion <i class="fa-solid fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item enlace_secundario" href="controladorVadmin.php?seccionAd=tablita"><i
+                                            class="fa-solid fa-eye icono"></i>Historial de usuarios</a></li>
+                                <li><a class="dropdown-item enlace_secundario" href="#"><i
+                                            class="fa-regular fa-pen-to-square icono"></i>Agregar usuario</a></li>
 
+                            </ul>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle enlace_principal" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">

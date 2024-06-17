@@ -29,27 +29,37 @@
                 <div class="form-container">
                     <h2 class="text-light texto_registro"> <span
                             class="text-primary"><strong>¡REGÍSTRATE!</strong></span></h2>
-                    <form>
+                    <form action="" method="GET">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nombres" required>
+                            <input type="text" class="form-control" name="nombres" placeholder="Nombres" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Correo electronico" required>
+                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Contraseña" required>
+                            <input type="text" class="form-control" name="telefono" placeholder="Telefono" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Peso Actual en kg" required>
+                            <input type="email" class="form-control" name="correo" placeholder="Correo electronico"
+                                required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Altura Actual - ej. 170" required>
+                            <input type="password" class="form-control" name="contraseña" placeholder="Contraseña"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="pesoA" placeholder="Peso Actual en kg"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="alturaA" placeholder="Altura Actual - ej. 170"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="inputGroupSelect01" class="form-label">
                                 <h2>Género</h2>
                             </label>
-                            <select class="form-select custom-select" id="inputGroupSelect01" required>
+                            <select class="form-select custom-select" name="genero" id="inputGroupSelect01" required>
                                 <option value="" disabled selected>Selecciona tu género</option>
                                 <option value="1">Masculino</option>
                                 <option value="2">Femenino</option>
