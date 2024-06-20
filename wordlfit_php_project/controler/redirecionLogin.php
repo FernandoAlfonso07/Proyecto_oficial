@@ -15,7 +15,11 @@ $contraseña = $_GET['contraseña'];
 
 
 if (usuarios::iniciarSesion(0, $correo, $contraseña) >= 1) {
-    $_SESSION['correo'] = $correo;
+
+    $id_usuario = usuarios::buscarId($correo, $contraseña);
+
+    $_SESSION['correo'] = $id_usuario;
+
     header("location: ../vista/controlador.php?seccion=seccion1");
 } else {
     header("location: errores/errorRegister.php");

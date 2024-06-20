@@ -17,6 +17,7 @@ include ("../model/usuario.php");
         </div>
         <div class="col-md-6">
             <div class="row">
+
                 <div class="col-md-12">
                     <h1>
                         Mi Perfil
@@ -38,7 +39,9 @@ include ("../model/usuario.php");
                             } else {
                                 $_SESSION['correo'];
                                 $correoU = $_SESSION['correo'];
-                                echo usuarios::getPerfil(0, $correoU);
+                                $id_usuario = usuarios::buscarId($correoU);
+
+                                echo usuarios::getPerfil(0, $id_usuario);
 
                             }
                             ?>
@@ -61,7 +64,9 @@ include ("../model/usuario.php");
                             } else {
                                 $_SESSION['correo'];
                                 $correoU = $_SESSION['correo'];
-                                echo usuarios::getPerfil(1, $correoU);
+                                $id_usuario = usuarios::buscarId($correoU);
+
+                                echo usuarios::getPerfil(1, $id_usuario);
 
                             }
                             ?>
@@ -84,7 +89,9 @@ include ("../model/usuario.php");
                             } else {
                                 $_SESSION['correo'];
                                 $correoU = $_SESSION['correo'];
-                                echo usuarios::getPerfil(5, $correoU);
+                                $id_usuario = usuarios::buscarId($correoU);
+
+                                echo usuarios::getPerfil(5, $id_usuario);
 
                             }
                             ?> Cm
@@ -107,7 +114,9 @@ include ("../model/usuario.php");
                             } else {
                                 $_SESSION['correo'];
                                 $correoU = $_SESSION['correo'];
-                                echo usuarios::getPerfil(4, $correoU);
+                                $id_usuario = usuarios::buscarId($correoU);
+
+                                echo usuarios::getPerfil(4, $id_usuario);
 
                             }
                             ?>
@@ -131,7 +140,9 @@ include ("../model/usuario.php");
                             } else {
                                 $_SESSION['correo'];
                                 $correoU = $_SESSION['correo'];
-                                echo usuarios::getPerfil(8, $correoU);
+                                $id_usuario = usuarios::buscarId($correoU);
+
+                                echo usuarios::getPerfil(8, $id_usuario);
 
                             }
                             ?>
@@ -154,7 +165,9 @@ include ("../model/usuario.php");
                             } else {
                                 $_SESSION['correo'];
                                 $correoU = $_SESSION['correo'];
-                                echo usuarios::getPerfil(6, $correoU);
+                                $id_usuario = usuarios::buscarId($correoU);
+
+                                echo usuarios::getPerfil(6, $id_usuario);
 
                             }
                             ?> kg
@@ -184,7 +197,9 @@ include ("../model/usuario.php");
                             } else {
                                 $_SESSION['correo'];
                                 $correoU = $_SESSION['correo'];
-                                echo usuarios::getPerfil(2, $correoU);
+                                $id_usuario = usuarios::buscarId($correoU);
+
+                                echo usuarios::getPerfil(2, $id_usuario);
 
                             }
                             ?>
@@ -209,17 +224,24 @@ include ("../model/usuario.php");
                             } else {
                                 $_SESSION['correo'];
                                 $correoU = $_SESSION['correo'];
-                                echo usuarios::getPerfil(7, $correoU);
+                                $id_usuario = usuarios::buscarId($correoU);
+
+                                echo usuarios::getPerfil(7, $id_usuario);
 
                             }
                             ?>
                         </p>
                     </div>
                 </div>
-                <div class="col-md-12 text-center">';
+                <div class="col-md-12 text-center">
                     <button type="button" class="btn btn-warning compartir">Compartir
                         <i class="fa-solid fa-share-nodes icono"></i></button>
+                    <button type="button" class="btn btn-danger compartir">Eliminar Cuenta
+                        <i class="fa-solid fa-trash-can icono"></i></button>
+                    <button type="button" class="btn btn-primary compartir">Editar
+                        <i class="fa-solid fa-pencil icono"></i></i></button>
                 </div>
+
             </div>
         </div>
     </div>
