@@ -99,60 +99,63 @@ class usuarios extends conexionBD
     {
         $conexion = self::getConexion();
 
-        $sql = "select t1.nombre, t1.apellido, t1.correo, t1.contraseña, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero ";
+        $sql = "select t1.nombre, t1.apellido, t1.correo, t1.contraseña, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero, t1.imgPerfil ";
         $sql .= "FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero WHERE id_usuario = $idUsuario";
-
         $resultado = $conexion->query($sql);
-
+        $r = '';
         while ($fila = $resultado->fetch_array()) {
-            $r = '';
+
 
             switch ($opc) {
-                case 0:
+                case 0: // Muestra 
 
                     $r .= $fila[0];
 
                     break;
-                case 1:
+                case 1: // Muestra 
 
                     $r .= $fila[1];
 
                     break;
-                case 5:
+                case 5: // Muestra 
 
                     $r .= $fila[5];
 
                     break;
-                case 4:
+                case 4: // Muestra 
 
                     $r .= $fila[4];
 
                     break;
-                case 8:
+                case 8: // Muestra 
 
                     $r .= $fila[8];
 
                     break;
-                case 6:
+                case 6: // Muestra 
 
                     $r .= $fila[6];
 
                     break;
-                case 2:
+                case 2: // Muestra 
 
                     $r .= $fila[2];
 
                     break;
-                case 7:
+                case 7: // Muestra 
 
                     $r .= $fila[7];
+
+                    break;
+                case 9: // Muestra la ruta de la imagen de perfil.
+
+                    $r .= $fila[9];
 
                     break;
             }
 
 
         }
-
         return $r;
     }
 
@@ -172,24 +175,27 @@ class usuarios extends conexionBD
     }
 
 
-    public static function actualizarDatos($id, $nombres, $apellidos, $telefono, $pr, $pesoActual, $altura)
+    public static function actualizarDatos($id, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen)
     {
         $conexion = self::getConexion();
 
-        $sql = "update usuarios";
-        $sql .= "set nombre = '$nombres',";
-        $sql .= "apellido = '$apellidos',";
-        $sql .= "peso_actual = $pesoActual,";
-        $sql .= "altura_actual = $altura,";
-        $sql .= "telefono = $telefono,";
-        $sql .= "pr = $pr";
+        $sql = "update usuarios ";
+        $sql .= "set nombre = '$nombres', ";
+        $sql .= "imgPerfil = '$ruta_imagen', ";
+        $sql .= "apellido = '$apellidos', ";
+        $sql .= "peso_actual = $pesoActual, ";
+        $sql .= "altura_actual = $altura, ";
+        $sql .= "telefono = '$telefono', ";
+        $sql .= "correo = '$correo', ";
+        $sql .= "pr = $pr ";
         $sql .= "WHERE id_usuario = '$id' ";
-
+        echo $sql;
         $conexion->query($sql);
 
         $affected_rows = $conexion->affected_rows;
 
         $conexion->close();
+
 
     }
 

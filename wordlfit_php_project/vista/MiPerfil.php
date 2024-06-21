@@ -2,18 +2,26 @@
 include ("../model/usuario.php");
 ?>
 
-<link rel="stylesheet" href="css/estilosInformacionU.css">
+<link rel="stylesheet" href="css/estilosinformacionU.css">
 
 <div class="container cuerpo">
     <div class="row">
         <div class="col-md-6 text-center">
-            <img src="https://fotografias.lasexta.com/clipping/cmsimages02/2019/11/14/66C024AF-E20B-49A5-8BC3-A21DD22B96E6/default.jpg?crop=1300,731,x0,y0&width=1280&height=720&optimize=low"
-                class="img-fluid imagen_perfil" width="80%" alt="Imagen Perfil">
-            <div class="input-group mb-3 subir">
-                <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
-                    aria-label="Upload">
-                <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Guardar</button>
-            </div>
+            <img src="
+            <?php
+            if (!isset($_SESSION))
+                session_start();
+
+            if (!isset($_SESSION["correo"])) {
+                echo 'error';
+            } else {
+                $_SESSION['correo'];
+                $correoU = $_SESSION['correo'];
+                $id_usuario = usuarios::buscarId($correoU);
+
+                echo usuarios::getPerfil(9, $id_usuario);
+
+            } ?>" class="img-fluid imagen_perfil" width="80%" alt="Imagen Perfil">
         </div>
         <div class="col-md-6">
             <div class="row">
@@ -30,20 +38,7 @@ include ("../model/usuario.php");
                     <div class="col-md-12">
                         <p>
                             <?php
-
-                            if (!isset($_SESSION))
-                                session_start();
-
-                            if (!isset($_SESSION["correo"])) {
-                                echo 'error';
-                            } else {
-                                $_SESSION['correo'];
-                                $correoU = $_SESSION['correo'];
-                                $id_usuario = usuarios::buscarId($correoU);
-
-                                echo usuarios::getPerfil(0, $id_usuario);
-
-                            }
+                                echo usuarios::getPerfil(0, $_SESSION['id']);
                             ?>
                         </p>
                     </div>
@@ -56,19 +51,8 @@ include ("../model/usuario.php");
                         <p>
                             <?php
 
-                            if (!isset($_SESSION))
-                                session_start();
+                                echo usuarios::getPerfil(1, $_SESSION['id']);
 
-                            if (!isset($_SESSION["correo"])) {
-                                echo 'error';
-                            } else {
-                                $_SESSION['correo'];
-                                $correoU = $_SESSION['correo'];
-                                $id_usuario = usuarios::buscarId($correoU);
-
-                                echo usuarios::getPerfil(1, $id_usuario);
-
-                            }
                             ?>
                         </p>
                     </div>
@@ -114,7 +98,7 @@ include ("../model/usuario.php");
                             } else {
                                 $_SESSION['correo'];
                                 $correoU = $_SESSION['correo'];
-                                $id_usuario = usuarios::buscarId($correoU);
+                                $id_usuario = usuarios::buscarId($_SESSION['correo']);
 
                                 echo usuarios::getPerfil(4, $id_usuario);
 
@@ -238,8 +222,10 @@ include ("../model/usuario.php");
                         <i class="fa-solid fa-share-nodes icono"></i></button>
                     <button type="button" class="btn btn-danger compartir">Eliminar Cuenta
                         <i class="fa-solid fa-trash-can icono"></i></button>
-                    <button type="button" class="btn btn-primary compartir">Editar
-                        <i class="fa-solid fa-pencil icono"></i></i></button>
+                    <a href="controlador.php?seccion=updateDatas">
+                        <button type="button" class="btn btn-primary compartir">Editar
+                            <i class="fa-solid fa-pencil icono"></i></i></button>
+                    </a>
                 </div>
 
             </div>

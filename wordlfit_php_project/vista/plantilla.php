@@ -1,21 +1,9 @@
 <?php
 
 include ("nombreSeccionH.php");
-/*
-include ("../model/usuario.php");
 
+//include ("../model/usuario.php");
 
-if (!isset($_SESSION))
-    session_start();
-
-if (!isset($_SESSION["correo"])) {
-    echo 'error';
-} else {
-    $_SESSION['correo'];
-    $correoU = $_SESSION['correo'];
-    $nombreU = usuarios::getNombre($correoU);
-}
-*/
 
 ?>
 
@@ -53,7 +41,25 @@ if (!isset($_SESSION["correo"])) {
 
                         <li class="nav-item">
                             <a class="nav-link disabled nombre_admin" href="#" tabindex="-1" aria-disabled="true">¡Hola!
-                                Bienvenido de nuevo - <b> <?//php echo $nombreU ?> </b></a>
+                                Bienvenido de nuevo - <b>
+                                    <?php
+                                    /*
+                                        if (!isset($_SESSION))
+                                            session_start();
+
+                                        if (!isset($_SESSION["correo"])) {
+                                            echo 'error';
+                                        } else {
+                                            $_SESSION['correo'];
+                                            $correoU = $_SESSION['correo'];
+                                            $id_usuario = usuarios::buscarId($correoU);
+
+                                            echo usuarios::getPerfil(1, $id_usuario);
+
+                                        }
+                                    */
+                                    ?>
+                                </b></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle separado" href="#" id="navbarDropdownMenuLink"
@@ -64,7 +70,6 @@ if (!isset($_SESSION["correo"])) {
                                 <li><a class="dropdown-item enlace_secundario"
                                         href="controlador.php?seccion=MiPerfil">Información</a>
                                 </li>
-                                <li><a class="dropdown-item enlace_secundario" href="#">Editar</a></li>
                                 <li><a class="dropdown-item enlace_secundario" href="inicioSesion.php">
                                         <button class="btn btn-outline-danger boton_cerrar"><i
                                                 class="fa-solid fa-arrow-right-from-bracket icono_usuario"></i>Cerrar
