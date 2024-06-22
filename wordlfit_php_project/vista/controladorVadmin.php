@@ -1,5 +1,5 @@
 <?php
-
+// Identificador de secciones para los admins.
 $seccion_admin = "seccionAd1"; //Sección por defecto.
 
 if (isset($_GET['seccionAd'])) {
@@ -7,4 +7,4 @@ if (isset($_GET['seccionAd'])) {
 }
 
 
-include ("plantillaAdmin.php");
+include("plantillaAdmin.php");

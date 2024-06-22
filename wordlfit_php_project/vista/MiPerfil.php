@@ -1,5 +1,5 @@
 <?php
-include ("../model/usuario.php");
+include("../model/usuario.php");
 ?>
 
 <link rel="stylesheet" href="css/estilosinformacionU.css">
@@ -8,20 +8,7 @@ include ("../model/usuario.php");
     <div class="row">
         <div class="col-md-6 text-center">
             <img src="
-            <?php
-            if (!isset($_SESSION))
-                session_start();
-
-            if (!isset($_SESSION["correo"])) {
-                echo 'error';
-            } else {
-                $_SESSION['correo'];
-                $correoU = $_SESSION['correo'];
-                $id_usuario = usuarios::buscarId($correoU);
-
-                echo usuarios::getPerfil(9, $id_usuario);
-
-            } ?>" class="img-fluid imagen_perfil" width="80%" alt="Imagen Perfil">
+            <?php ?>" class="img-fluid imagen_perfil" width="80%" alt="Imagen Perfil">
         </div>
         <div class="col-md-6">
             <div class="row">
@@ -38,7 +25,7 @@ include ("../model/usuario.php");
                     <div class="col-md-12">
                         <p>
                             <?php
-                                echo usuarios::getPerfil(0, $_SESSION['id']);
+                            echo usuarios::getPerfil(0, $_SESSION['id']);
                             ?>
                         </p>
                     </div>
@@ -51,7 +38,7 @@ include ("../model/usuario.php");
                         <p>
                             <?php
 
-                                echo usuarios::getPerfil(1, $_SESSION['id']);
+                            echo usuarios::getPerfil(1, $_SESSION['id']);
 
                             ?>
                         </p>
@@ -64,20 +51,7 @@ include ("../model/usuario.php");
                     <div class="col-md-12">
                         <p>
                             <?php
-
-                            if (!isset($_SESSION))
-                                session_start();
-
-                            if (!isset($_SESSION["correo"])) {
-                                echo 'error';
-                            } else {
-                                $_SESSION['correo'];
-                                $correoU = $_SESSION['correo'];
-                                $id_usuario = usuarios::buscarId($correoU);
-
-                                echo usuarios::getPerfil(5, $id_usuario);
-
-                            }
+                            echo usuarios::getPerfil(5, $_SESSION['id']);
                             ?> Cm
                         </p>
                     </div>
@@ -89,20 +63,7 @@ include ("../model/usuario.php");
                     <div class="col-md-12">
                         <p>
                             <?php
-
-                            if (!isset($_SESSION))
-                                session_start();
-
-                            if (!isset($_SESSION["correo"])) {
-                                echo 'error';
-                            } else {
-                                $_SESSION['correo'];
-                                $correoU = $_SESSION['correo'];
-                                $id_usuario = usuarios::buscarId($_SESSION['correo']);
-
-                                echo usuarios::getPerfil(4, $id_usuario);
-
-                            }
+                            echo usuarios::getPerfil(4, $_SESSION['id']);
                             ?>
                             Kg
                         </p>
@@ -115,20 +76,7 @@ include ("../model/usuario.php");
                     <div class="col-md-12">
                         <p>
                             <?php
-
-                            if (!isset($_SESSION))
-                                session_start();
-
-                            if (!isset($_SESSION["correo"])) {
-                                echo 'error';
-                            } else {
-                                $_SESSION['correo'];
-                                $correoU = $_SESSION['correo'];
-                                $id_usuario = usuarios::buscarId($correoU);
-
-                                echo usuarios::getPerfil(8, $id_usuario);
-
-                            }
+                            echo usuarios::getPerfil(8, $_SESSION['id']);
                             ?>
                         </p>
                     </div>
@@ -141,20 +89,9 @@ include ("../model/usuario.php");
                         <p>
                             <?php
 
-                            if (!isset($_SESSION))
-                                session_start();
-
-                            if (!isset($_SESSION["correo"])) {
-                                echo 'error';
-                            } else {
-                                $_SESSION['correo'];
-                                $correoU = $_SESSION['correo'];
-                                $id_usuario = usuarios::buscarId($correoU);
-
-                                echo usuarios::getPerfil(6, $id_usuario);
-
-                            }
-                            ?> kg
+                            $prResultado = usuarios::getPerfil(6, $_SESSION['id']);
+                            echo ($prResultado == '') ? 'Actualiza tu primer Personal Record' : $prResultado . ' Kg';
+                            ?>
                         </p>
                     </div>
                 </div>
@@ -172,20 +109,7 @@ include ("../model/usuario.php");
                     <div class="col-md-12">
                         <p>
                             <?php
-
-                            if (!isset($_SESSION))
-                                session_start();
-
-                            if (!isset($_SESSION["correo"])) {
-                                echo 'error';
-                            } else {
-                                $_SESSION['correo'];
-                                $correoU = $_SESSION['correo'];
-                                $id_usuario = usuarios::buscarId($correoU);
-
-                                echo usuarios::getPerfil(2, $id_usuario);
-
-                            }
+                            echo usuarios::getPerfil(2, $_SESSION['id']);
                             ?>
                         </p>
                     </div>
@@ -199,20 +123,7 @@ include ("../model/usuario.php");
                     <div class="col-md-12">
                         <p>
                             <?php
-
-                            if (!isset($_SESSION))
-                                session_start();
-
-                            if (!isset($_SESSION["correo"])) {
-                                echo 'error';
-                            } else {
-                                $_SESSION['correo'];
-                                $correoU = $_SESSION['correo'];
-                                $id_usuario = usuarios::buscarId($correoU);
-
-                                echo usuarios::getPerfil(7, $id_usuario);
-
-                            }
+                            echo usuarios::getPerfil(7, $_SESSION['id']);
                             ?>
                         </p>
                     </div>

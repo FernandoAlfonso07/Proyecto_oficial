@@ -1,25 +1,26 @@
 <?php
 
 if (!isset($_SESSION)) session_start();
-if ( !isset($_SESSION['id'])){
+if (!isset($_SESSION['id'])) {
   header("location: ../redirecionesLogin.php");
-}else{
-  if($_SESSION['id'] == ""){
+} else {
+  if ($_SESSION['id'] == "") {
     header("location: ../redirecionesLogin.php");
   }
 }
+
+
+
+// Identificador de secciones.
 
 $seccion = "seccion1"; //Sección por defecto.
 
 if (isset($_GET['seccion'])) {
   $seccion = $_GET['seccion'];
-}
-
-
-else {  
+} else {
   header('location: inicioSesion.php');
 }
 
 
 
-include ("plantilla.php");
+include("plantilla.php");

@@ -1,5 +1,5 @@
 <?php
-include ("connect.php");
+include("connect.php");
 class usuarios extends conexionBD
 {
 
@@ -15,44 +15,45 @@ class usuarios extends conexionBD
         while ($fila = $resultado->fetch_array()) {
 
             switch ($opc) {
-                case 0:
+                case 0: // Trae el id_usuario
                     $salida = $fila[0];
                     break;
-                case 1:
+                case 1: // Trae el nombre
                     $salida = $fila[1];
                     break;
-                case 2:
+                case 2: // Trae el Apillidos
                     $salida = $fila[2];
                     break;
-                case 3:
+                case 3: // Trae el Correo
                     $salida = $fila[3];
                     break;
-                case 4:
+                case 4: // Trae el Contraseña
                     $salida = $fila[4];
                     break;
-                case 5:
+                case 5: // Trae el peso
                     $salida = $fila[5];
                     break;
-                case 6:
+                case 6: // Trae el alura
                     $salida = $fila[6];
                     break;
-                case 7:
+                case 7: // Trae el id_genero
                     $salida = $fila[7];
                     break;
-                case 8:
+                case 8: // Trae el telefono
                     $salida = $fila[8];
                     break;
-                case 9:
+                case 9: // Trae el Pr
                     $salida = $fila[9];
                     break;
-                case 10:
+                case 10: // Trae el Fecha registro
+                    $salida = $fila[10];
+                    break;
+                case 11: // Trae el Fecha Url_Imagen perfil
                     $salida = $fila[10];
                     break;
             }
-
         }
         return $salida;
-
     }
 
 
@@ -69,7 +70,6 @@ class usuarios extends conexionBD
             $salida += $fila[0];
         }
         return $salida;
-
     }
 
     public static function iniciarSesion($opc, $correo = null, $contraseña = null)
@@ -107,44 +107,50 @@ class usuarios extends conexionBD
 
 
             switch ($opc) {
-                case 0: // Muestra 
+                case 0: // Muestra NOMBRE
 
                     $r .= $fila[0];
+                    //$r = self::getInformacion(1, $idUsuario); Opción a implementar.
 
                     break;
-                case 1: // Muestra 
+                case 1: // Muestra APELLIDO
 
                     $r .= $fila[1];
 
                     break;
-                case 5: // Muestra 
-
-                    $r .= $fila[5];
-
-                    break;
-                case 4: // Muestra 
-
-                    $r .= $fila[4];
-
-                    break;
-                case 8: // Muestra 
-
-                    $r .= $fila[8];
-
-                    break;
-                case 6: // Muestra 
-
-                    $r .= $fila[6];
-
-                    break;
-                case 2: // Muestra 
+                case 2: // Muestra CORREO
 
                     $r .= $fila[2];
 
                     break;
-                case 7: // Muestra 
+                case 3: // Muestra CONTRASEÑA
+
+                    $r .= $fila[3];
+
+                    break;
+                case 4: // Muestra PESO
+
+                    $r .= $fila[4];
+
+                    break;
+                case 5: // Muestra ALTURA
+
+                    $r .= $fila[5];
+
+                    break;
+                case 6: // Muestra PR
+
+                    $r .= $fila[6];
+
+                    break;
+                case 7: // Muestra TELEFONO
 
                     $r .= $fila[7];
+
+                    break;
+                case 8: // Muestra GENERO
+
+                    $r .= $fila[8];
 
                     break;
                 case 9: // Muestra la ruta de la imagen de perfil.
@@ -153,8 +159,6 @@ class usuarios extends conexionBD
 
                     break;
             }
-
-
         }
         return $r;
     }
@@ -165,13 +169,12 @@ class usuarios extends conexionBD
         $conexion = self::getConexion();
 
         $sql = "insert into usuarios (nombre, apellido, telefono, correo, contraseña, peso_actual, altura_actual, id_genero, fecha_registro)";
-        $sql .= "values ('$nombres' ,'$apellidos', $telefono, '$correoElectronico', '$contraseña', $pesoActual ,$altura, $genero, now())";
+        $sql .= "values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$contraseña', $pesoActual ,$altura, $genero, now())";
         $resultado = $conexion->query($sql);
 
         $affected_rows = $conexion->affected_rows;
 
         $conexion->close();
-
     }
 
 
@@ -195,8 +198,5 @@ class usuarios extends conexionBD
         $affected_rows = $conexion->affected_rows;
 
         $conexion->close();
-
-
     }
-
 }
