@@ -7,8 +7,7 @@ class conexionBD
     public static $root = "root";
     public static $password = "";
     public static $nameBD = "worldfitsbd";
-
-    public static $connect;
+     public static $connect;
 
     public static function getConexion()
     {
