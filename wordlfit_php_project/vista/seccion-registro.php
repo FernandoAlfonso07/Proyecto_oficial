@@ -44,7 +44,7 @@
                                 required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="contraseña" placeholder="Contraseña"
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña"
                                 required>
                         </div>
                         <div class="form-group">
@@ -62,7 +62,7 @@
                             <select class="form-select custom-select" name="genero" id="inputGroupSelect01" required>
                                 <option value="" disabled selected>Selecciona tu género</option>
                                 <option value="1">Masculino</option>
-                                <option value="2">Femenino</option>
+                                <option value="0">Femenino</option>
                             </select>
                         </div>
 

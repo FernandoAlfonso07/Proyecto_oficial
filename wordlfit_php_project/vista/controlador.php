@@ -1,11 +1,13 @@
 <?php
 
-if (!isset($_SESSION)) session_start();
+if (!isset($_SESSION))  session_start();
+
+
 if (!isset($_SESSION['id'])) {
-  header("location: ../redirecionesLogin.php");
+  header("location: inicioSesion.php");
 } else {
   if ($_SESSION['id'] == "") {
-    header("location: ../redirecionesLogin.php");
+    header("location: inicioSesion.php");
   }
 }
 
@@ -23,4 +25,4 @@ if (isset($_GET['seccion'])) {
 
 
 
-include("plantilla.php");
+include ("plantilla.php");

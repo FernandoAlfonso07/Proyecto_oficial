@@ -1,5 +1,5 @@
 <?php
-include("connect.php");
+include ("connect.php");
 class usuarios extends conexionBD
 {
 
@@ -72,13 +72,14 @@ class usuarios extends conexionBD
         return $salida;
     }
 
-    public static function iniciarSesion($opc, $correo = null, $contraseña = null)
+    public static function iniciarSesion($opc, $correo = null, $password = null)
     {
 
         $conexion = conexionBD::getConexion();
 
-        $sql = "select t1.id_usuario, count(*) FROM usuarios t1 WHERE correo = '$correo' AND contraseña = '$contraseña'; ";
+        $sql = "select t1.id_usuario, count(*) FROM usuarios t1 WHERE correo = '$correo' AND password = '$password'; ";
 
+        echo $sql;
         $resultado = $conexion->query($sql);
 
         $r = 0;
@@ -99,7 +100,7 @@ class usuarios extends conexionBD
     {
         $conexion = self::getConexion();
 
-        $sql = "select t1.nombre, t1.apellido, t1.correo, t1.contraseña, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero, t1.imgPerfil ";
+        $sql = "select t1.nombre, t1.apellido, t1.correo, t1.password, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero, t1.imgPerfil ";
         $sql .= "FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero WHERE id_usuario = $idUsuario";
         $resultado = $conexion->query($sql);
         $r = '';
@@ -164,12 +165,13 @@ class usuarios extends conexionBD
     }
 
 
-    public static function registrar($nombres, $apellidos, $telefono, $correoElectronico, $contraseña, $pesoActual, $altura, $genero)
+    public static function registrar($nombres, $apellidos, $telefono, $correoElectronico, $password, $pesoActual, $altura, $genero)
     {
         $conexion = self::getConexion();
 
-        $sql = "insert into usuarios (nombre, apellido, telefono, correo, contraseña, peso_actual, altura_actual, id_genero, fecha_registro)";
-        $sql .= "values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$contraseña', $pesoActual ,$altura, $genero, now())";
+        $sql = "insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro)";
+        $sql .= " values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$password', $pesoActual ,$altura, $genero, now()); ";
+        echo $sql;
         $resultado = $conexion->query($sql);
 
         $affected_rows = $conexion->affected_rows;

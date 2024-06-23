@@ -46,7 +46,7 @@ if (isset($_GET['contraseña'])) {
                         </div>
                         <div class="col-md-12">
                             <div class="input-wrapper">
-                                <input type="Password" id="contraseña" name="contraseña" placeholder="Contraseña">
+                                <input type="Password" id="contraseña" name="password" placeholder="Contraseña">
                                 <img class="input-icon" src="images/password.png" alt="">
                             </div>
                         </div>

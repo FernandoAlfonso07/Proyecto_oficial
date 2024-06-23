@@ -43,21 +43,9 @@ include ("nombreSeccionH.php");
                             <a class="nav-link disabled nombre_admin" href="#" tabindex="-1" aria-disabled="true">¡Hola!
                                 Bienvenido de nuevo - <b>
                                     <?php
-                                    /*
-                                        if (!isset($_SESSION))
-                                            session_start();
 
-                                        if (!isset($_SESSION["correo"])) {
-                                            echo 'error';
-                                        } else {
-                                            $_SESSION['correo'];
-                                            $correoU = $_SESSION['correo'];
-                                            $id_usuario = usuarios::buscarId($correoU);
+                                    //echo usuarios::getInformacion(1);
 
-                                            echo usuarios::getPerfil(1, $id_usuario);
-
-                                        }
-                                    */
                                     ?>
                                 </b></a>
                         </li>

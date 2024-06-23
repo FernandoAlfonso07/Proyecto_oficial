@@ -1,8 +1,5 @@
 <?php
-echo $seccion_admin . '<br>';
 include("../../vista/nombreSeccionH.php");
-
-
 
 ?>
 
@@ -58,7 +55,7 @@ include("../../vista/nombreSeccionH.php");
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item enlace_secundario" href="controladorVadmin.php?seccionAd=verEjercicios"><i class="fa-solid fa-eye icono"></i> Ver Ejercicios</a></li>
-                                <li><a class="dropdown-item enlace_secundario" href="#"><i class="fa-regular fa-pen-to-square icono"></i> Agregar ejercicio</a></li>
+                                <li><a class="dropdown-item enlace_secundario" href="controladorVadmin.php?seccionAd=addEjercicios"><i class="fa-regular fa-pen-to-square icono"></i> Agregar ejercicio</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
