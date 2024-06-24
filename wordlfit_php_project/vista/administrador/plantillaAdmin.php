@@ -48,7 +48,7 @@ include ("../../vista/nombreSeccionH.php");
                                             class="fa-solid fa-cube icono"></i> Información</a></li>
                                 <li><a class="dropdown-item enlace_secundario" href="#"><i
                                             class="fa-solid fa-gear icono"></i>Editar</a></li>
-                                <li><a class="dropdown-item enlace_secundario" href="#">
+                                <li><a class="dropdown-item enlace_secundario" href="../../vista/inicioSesion.php">
                                         <button class="btn btn-outline-danger boton_cerrar"><i
                                                 class="fa-solid fa-arrow-right-from-bracket icono"></i>Cerrar
                                             sesión</button>

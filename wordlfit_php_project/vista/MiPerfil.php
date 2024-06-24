@@ -1,5 +1,5 @@
 <?php
-include("../model/usuario.php");
+include ("../model/usuario.php");
 ?>
 
 <link rel="stylesheet" href="css/estilosinformacionU.css">
@@ -131,8 +131,10 @@ include("../model/usuario.php");
                 <div class="col-md-12 text-center">
                     <button type="button" class="btn btn-warning compartir">Compartir
                         <i class="fa-solid fa-share-nodes icono"></i></button>
-                    <button type="button" class="btn btn-danger compartir">Eliminar Cuenta
-                        <i class="fa-solid fa-trash-can icono"></i></button>
+                    <a href="../controler/eliminarCuenta.php?iduser=<?php echo $_SESSION['id'] ?>">
+                        <button type="button" class="btn btn-danger compartir">Eliminar Cuenta
+                            <i class="fa-solid fa-trash-can icono"></i></button>
+                    </a>
                     <a href="controlador.php?seccion=updateDatas">
                         <button type="button" class="btn btn-primary compartir">Editar
                             <i class="fa-solid fa-pencil icono"></i></i></button>

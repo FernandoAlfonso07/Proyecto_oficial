@@ -58,11 +58,11 @@ class usuarios extends conexionBD
 
 
 
-    public static function buscarId($correo)
+    public static function buscarId($correo, $password)
     {
         $conexion = conexionBD::getConexion();
 
-        $sql = "select id_usuario from usuarios where correo = '$correo' ";
+        $sql = "select id_usuario from usuarios where correo = '$correo' and password = '$password' ";
 
         $resultado = $conexion->query($sql);
         $salida = 0;
@@ -77,7 +77,7 @@ class usuarios extends conexionBD
 
         $conexion = conexionBD::getConexion();
 
-        $sql = "SELECT COUNT(*), id_rol FROM usuarios WHERE correo = '$correo' AND password = '$password' ";
+        $sql = "select COUNT(*), id_rol FROM usuarios WHERE correo = '$correo' AND password = '$password' ";
 
         echo $sql;
         $resultado = $conexion->query($sql);
@@ -171,6 +171,21 @@ class usuarios extends conexionBD
         return $r;
     }
 
+    public static function eliminarCuenta($id)
+    {
+
+        $conexion = self::getConexion();
+
+        $sql = "delete from usuarios where id_usuario = $id ";
+
+
+        $conexion->query($sql);
+
+        $affected_rows = $conexion->affected_rows;
+
+        $conexion->close();
+
+    }
 
     public static function registrar($nombres, $apellidos, $telefono, $correoElectronico, $password, $pesoActual, $altura, $genero)
     {
@@ -201,7 +216,10 @@ class usuarios extends conexionBD
         $sql .= "correo = '$correo', ";
         $sql .= "pr = $pr ";
         $sql .= "WHERE id_usuario = '$id' ";
-        echo $sql;
+
+        echo 'Variable de session' . $id;
+        // echo $sql;
+
         $conexion->query($sql);
 
         $affected_rows = $conexion->affected_rows;

@@ -1,5 +1,5 @@
 <?php
-include("../model/usuario.php");
+include ("../model/usuario.php");
 ?>
 
 <link rel="stylesheet" href="css/actualizarDatos.css">
@@ -10,7 +10,8 @@ include("../model/usuario.php");
                 <!--<img src="https://fotografias.lasexta.com/clipping/cmsimages02/2019/11/14/66C024AF-E20B-49A5-8BC3-A21DD22B96E6/default.jpg?crop=1300,731,x0,y0&width=1280&height=720&optimize=low" 
                     class="img-fluid imagen_perfil" width="80%" alt="Imagen Perfil"> -->
                 <div class="input-group mb-3 subir">
-                    <input type="file" class="form-control" name="imagenPerfil" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    <input type="file" class="form-control" name="imagenPerfil" id="inputGroupFile04"
+                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                 </div>
             </div>
             <div class="col-md-6">
@@ -27,8 +28,8 @@ include("../model/usuario.php");
                         </div>
                         <div class="col-md-12">
                             <input type="text" name="nombre" value="<?php
-                                                                    echo usuarios::getPerfil(0, $_SESSION['id']);
-                                                                    ?>" class="form-control">
+                            echo usuarios::getPerfil(0, $_SESSION['id']);
+                            ?>" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -37,8 +38,8 @@ include("../model/usuario.php");
                         </div>
                         <div class="col-md-12">
                             <input type="text" name="apellido" value="<?php
-                                                                        echo usuarios::getPerfil(1, $_SESSION['id']);
-                                                                        ?>" class="form-control">
+                            echo usuarios::getPerfil(1, $_SESSION['id']);
+                            ?>" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -47,8 +48,8 @@ include("../model/usuario.php");
                         </div>
                         <div class="col-md-12">
                             <input type="text" name="altura" value="<?php
-                                                                    echo usuarios::getPerfil(5, $_SESSION['id']);
-                                                                    ?>" class="form-control">
+                            echo usuarios::getPerfil(5, $_SESSION['id']);
+                            ?>" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -57,8 +58,8 @@ include("../model/usuario.php");
                         </div>
                         <div class="col-md-12">
                             <input type="text" name="peso" value="<?php
-                                                                    echo usuarios::getPerfil(4, $_SESSION['id']);
-                                                                    ?>
+                            echo usuarios::getPerfil(4, $_SESSION['id']);
+                            ?>
                             " class="form-control">
                         </div>
                     </div>
@@ -82,8 +83,8 @@ include("../model/usuario.php");
                         </div>
                         <div class="col-md-12">
                             <input type="text" name="personaleRecord" value="<?php
-                                                                                echo usuarios::getPerfil(6, $_SESSION['id']);
-                                                                                ?>" class="form-control">
+                            echo usuarios::getPerfil(6, $_SESSION['id']);
+                            ?>" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -100,8 +101,8 @@ include("../model/usuario.php");
                         <div class="col-md-12">
                             <input type="text" name="correo" value="<?php
 
-                                                                    echo usuarios::getPerfil(2, $_SESSION['id']);
-                                                                    ?>
+                            echo usuarios::getPerfil(2, $_SESSION['id']);
+                            ?>
                             " class="form-control">
                         </div>
                     </div>
@@ -113,8 +114,8 @@ include("../model/usuario.php");
                         </div>
                         <div class="col-md-12">
                             <input type="text" name="telefono" value="<?php
-                                                                        echo usuarios::getPerfil(7, $_SESSION['id']);
-                                                                        ?>" class="form-control">
+                            echo usuarios::getPerfil(7, $_SESSION['id']);
+                            ?>" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-12 text-center">

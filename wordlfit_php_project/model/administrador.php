@@ -39,12 +39,30 @@ class Administrador extends conexionBD
             // $r .= "<td>" . $fila[9] . "</td>"; // Esto muestra el ID DE LA RUTINA
 
             $r .= "<td>" . $fila[10] . "</td>"; // Esto muestra el EJEMPLO GRAFICO
-            $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <i class='fa-solid fa-trash icono delete'></i>    <i class='fa-solid fa-pen-to-square icono edit'></i> 
+            $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <a href='../../controler/ejercicioEliminado.php?id_ejercicio=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <i class='fa-solid fa-pen-to-square icono edit'></i> 
              </td>";
             $r .= '</tr>';
         }
 
         return $r;
+    }
+
+
+    public static function borrarEjercicio($id_ejercicio)
+    {
+
+
+        $conexion = self::getConexion();
+
+        $sql = "delete from ejercicios where id_ejercicio = $id_ejercicio ";
+
+
+        $conexion->query($sql);
+
+        $affected_rows = $conexion->affected_rows;
+
+        $conexion->close();
+
     }
 
     public static function contadorTotal() // Metodo para un contar el total de ejercicios.

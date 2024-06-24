@@ -6,8 +6,15 @@ include ("../model/usuario.php");
 if (!isset($_SESSION))
     session_start();
 
-if (!isset($_SESSION["id"]))
-    $_SESSION['id'] = "";
+if (!isset($_SESSION['id'])) {
+    header("location: inicioSesion.php");
+
+} else {
+    if ($_SESSION['id'] == "") {
+        header("location: inicioSesion.php");
+    }
+}
+
 
 
 
@@ -26,6 +33,7 @@ $pesoActual = $_GET['peso'];
 $altura = $_GET['altura'];
 
 
+
 /*
 $directorioDestino = '../vista/imgPerfiles/';
 $nombreArchivo = '';
@@ -39,20 +47,23 @@ if (!empty($_FILES['imagenPerfil']['name'])) {
 }
 */
 
-$id_usuario = usuarios::buscarId($correo); //  Borrar de aqui para solucionar algo
 
-//$respuesta = usuarios::actualizarDatos($id_usuario, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen);
+$respuesta = usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen);
 
-if (usuarios::actualizarDatos($id_usuario, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen) > 0) {
+if ($respuesta > 0) {
+
     echo 'Error 1000';
+
 } else {
 
     $id_usuario = usuarios::buscarId($correo);
 
     $_SESSION['id'] = $id_usuario;
 
+
     header('Location: ../vista/controlador.php?seccion=MiPerfil');
     exit();
+
 }
 
 // PEDIR AYUDA PORQUE DEJO DE FUNCIONAR AL CAMBIAR EL CORREO.. :( 

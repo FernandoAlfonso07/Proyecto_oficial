@@ -100,3 +100,8 @@ body {
     color: #00A1FF;
     font-family: 'Arial', sans-serif;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
