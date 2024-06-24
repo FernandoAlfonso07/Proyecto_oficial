@@ -6,8 +6,8 @@ class conexionBD
     public static $localhost = "localhost";
     public static $root = "root";
     public static $password = "";
-    public static $nameBD = "pruebas";
-     public static $connect;
+    public static $nameBD = "worldfitsbd";
+    public static $connect;
 
     public static function getConexion()
     {

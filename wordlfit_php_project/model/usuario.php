@@ -89,13 +89,11 @@ class usuarios extends conexionBD
             switch ($opc) {
                 case 0:
                     $r = $fila[0];
-                    echo 'Se encontro '.$r.' ';
                     break;
 
                 case 1:
 
                     $r = $fila[1];
-                    echo 'Id_rol '.$r;
                     break;
             }
 
