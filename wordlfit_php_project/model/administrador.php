@@ -39,8 +39,8 @@ class Administrador extends conexionBD
             // $r .= "<td>" . $fila[9] . "</td>"; // Esto muestra el ID DE LA RUTINA
 
             $r .= "<td>" . $fila[10] . "</td>"; // Esto muestra el EJEMPLO GRAFICO
-            $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>         <i class='fa-solid fa-trash icono delete'></i>          <i class='fa-solid fa-pen-to-square icono edit'></i> 
-             </td>"; // Esto muestra el EJEMPLO GRAFICO
+            $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <i class='fa-solid fa-trash icono delete'></i>    <i class='fa-solid fa-pen-to-square icono edit'></i> 
+             </td>";
             $r .= '</tr>';
         }
 
@@ -69,10 +69,16 @@ class Administrador extends conexionBD
     public static function getUsuarios($opc)
     {
         $conexion = self::getConexion();
+
         if ($opc == 0) {
-            $sql = "select t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro from usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero";
+
+            $sql = "select";
+            $sql .= " t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol from usuarios t1";
+            $sql .= " JOIN genero t2 ON t1.id_genero = t2.id_genero ";
+            $sql .= " JOIN roles t3 ON t1.id_rol = t3.id_rol ";
+
         } elseif ($opc == 1) {
-            $sql = "select count(*) from usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero";
+            $sql = "select COUNT(*) FROM usuarios;";
         }
 
         $r = $conexion->query($sql);
@@ -89,6 +95,8 @@ class Administrador extends conexionBD
                 $rr .= '<td>' . $fila[4] . '</td>';
                 $rr .= '<td>' . $fila[5] . '</td>';
                 $rr .= '<td>' . $fila[6] . '</td>';
+                $rr .= '<td>' . $fila[7] . '</td>';
+                $rr .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <i class='fa-solid fa-trash icono delete'></i>    <i class='fa-solid fa-pen-to-square icono edit'></i> </td>";
                 $rr .= '</tr>';
             } elseif ($opc == 1) {
                 $rr .= $fila[0];

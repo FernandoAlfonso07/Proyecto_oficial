@@ -44,3 +44,41 @@ tr:nth-child(even) {
     background-color: #dddd;
     padding: 30px 20px;
 }
+
+.container.tabla {
+    margin-top: 20px;
+    border: 2px solid #00A1FF;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table thead th {
+    background-color: #00A1FF;
+    color: #fff;
+    text-align: center;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table tbody td {
+    text-align: center;
+}
+
+.caracteristica {
+    font-weight: bold;
+}
+
+
+.container.tabla {
+    background-image: url('https://example.com/animal-pattern.png');
+    background-size: cover;
+}
+
+.container.tabla h1 {
+    color: #00A1FF;
+    font-family: 'Arial', sans-serif;
+}

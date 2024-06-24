@@ -63,7 +63,7 @@ include("../../vista/nombreSeccionH.php");
                                 Gestion <i class="fa-solid fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item enlace_secundario" href="controladorVadmin.php?seccionAd=tablita"><i class="fa-solid fa-eye icono"></i>Historial de usuarios</a></li>
+                                <li><a class="dropdown-item enlace_secundario" href="controladorVadmin.php?seccionAd=verUsuarios"><i class="fa-solid fa-eye icono"></i>Historial de usuarios</a></li>
                                 <li><a class="dropdown-item enlace_secundario" href="#"><i class="fa-regular fa-pen-to-square icono"></i>Agregar usuario</a></li>
 
                             </ul>

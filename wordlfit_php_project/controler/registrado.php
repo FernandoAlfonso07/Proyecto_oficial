@@ -19,10 +19,10 @@ $password = $_GET['password'];
 
 // intento de encriptacion de contraseña. Si algo borrar esto jjj
 
-$hash = password_hash($password, PASSWORD_DEFAULT);
+/* $hash = password_hash($password, PASSWORD_DEFAULT);
 
 $encripata = $hash;
-
+*/
 
 
 // -------------------------------------------------------------
@@ -33,7 +33,7 @@ $altura = $_GET['alturaA'];
 $genero = $_GET['genero'];
 
 
-$resultado = usuarios::registrar($nombres, $apellidos, $telefono, $correoElectronico, $encripata /*$password*/ , $pesoActual, $altura, $genero);
+$resultado = usuarios::registrar($nombres, $apellidos, $telefono, $correoElectronico, $password, $pesoActual, $altura, $genero);
 
 if ($resultado > 0) {
     header('location: errores/errorRegister.php');
