@@ -72,12 +72,12 @@ class usuarios extends conexionBD
         return $salida;
     }
 
-    public static function iniciarSesion($opc, $correo = null, $password = null)
+    public static function iniciarSesion($opc, $correo, $password)
     {
 
         $conexion = conexionBD::getConexion();
 
-        $sql = "select t1.id_usuario, count(*) FROM usuarios t1 WHERE correo = '$correo' AND password = '$password'; ";
+        $sql = "SELECT COUNT(*), id_rol FROM usuarios WHERE correo = '$correo' AND password = '$password' ";
 
         echo $sql;
         $resultado = $conexion->query($sql);
@@ -85,11 +85,20 @@ class usuarios extends conexionBD
         $r = 0;
 
         while ($fila = $resultado->fetch_array()) {
-            if ($opc == 0) {
-                $r = $fila[1];
-            } elseif ($opc == 1) {
-                $r = $fila[0];
+
+            switch ($opc) {
+                case 0:
+                    $r = $fila[0];
+                    echo 'Se encontro '.$r.' ';
+                    break;
+
+                case 1:
+
+                    $r = $fila[1];
+                    echo 'Id_rol '.$r;
+                    break;
             }
+
         }
 
         return $r;
@@ -169,8 +178,8 @@ class usuarios extends conexionBD
     {
         $conexion = self::getConexion();
 
-        $sql = "insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro)";
-        $sql .= " values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$password', $pesoActual ,$altura, $genero, now()); ";
+        $sql = "insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol)";
+        $sql .= " values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$password', $pesoActual ,$altura, $genero, now(), 0) ";
         echo $sql;
         $resultado = $conexion->query($sql);
 

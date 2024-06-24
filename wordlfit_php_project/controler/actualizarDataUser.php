@@ -41,14 +41,14 @@ if (!empty($_FILES['imagenPerfil']['name'])) {
 
 $id_usuario = usuarios::buscarId($correo); //  Borrar de aqui para solucionar algo
 
-$respuesta = usuarios::actualizarDatos($id_usuario, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen);
+//$respuesta = usuarios::actualizarDatos($id_usuario, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen);
 
-if ($respuesta > 0) {
+if (usuarios::actualizarDatos($id_usuario, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen) > 0) {
     echo 'Error 1000';
 } else {
 
     $id_usuario = usuarios::buscarId($correo);
-   
+
     $_SESSION['id'] = $id_usuario;
 
     header('Location: ../vista/controlador.php?seccion=MiPerfil');

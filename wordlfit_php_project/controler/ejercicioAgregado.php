@@ -12,9 +12,9 @@ $tiempoDes = $_GET['t_descanso'];
 $direccion_media = $_GET['archivo'];
 
 
-$resultado = Administrador::agregarEjercicio($nombre, $instruc, $equiped, $rep, $series, $tiempoDes, $direccion_media);
+//$resultado = ;
 
-if ($resultado > 0) {
+if (Administrador::agregarEjercicio($nombre, $instruc, $equiped, $rep, $series, $tiempoDes, $direccion_media) > 0) {
     echo 'No fue posible el registro';
 } else {
 
