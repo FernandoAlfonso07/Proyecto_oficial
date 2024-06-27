@@ -1,4 +1,13 @@
 <?php
 
+include ('connect.php');
 
-echo "Buenas";
+
+class calendarioRutinario extends conexionBD {  
+
+
+    public static function mostrarCalendario () {   
+        
+    }
+
+}
