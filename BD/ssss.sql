@@ -232,3 +232,45 @@ select count(*) FROM ejercicios;
 
 select * from usuarios;
 */ 
+
+INSERT INTO ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) 
+values ('Curl con barra','De pie, sostén una barra con las manos a la anchura de los hombros, con las palmas hacia adelante.
+Mantén los codos pegados al cuerpo y levanta la barra hacia los hombros contrayendo los bíceps.
+Baja la barra de manera controlada hasta la posición inicial.'
+,'Barra y discos de pesas'
+,'12'
+,'4' 
+,'2'
+, now()
+,'');
+INSERT INTO  ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) 
+values ('Curl de martillo con mancuernas','De pie, sostén una mancuerna en cada mano con las palmas mirando hacia el cuerpo.
+Levanta las mancuernas hacia los hombros manteniendo las palmas en la misma posición (como si estuvieras martillando).
+Baja las mancuernas de manera controlada hasta la posición inicial.'
+,'Mancuernas'
+,'12'
+,'3' 
+,'1'
+, now()
+,'');
+
+INSERT INTO  ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) 
+values ('Curl concentrado','1. Siéntate en un banco con los pies firmemente plantados en el suelo.
+2. Sostén una mancuerna con una mano y apoya el codo del brazo que sostiene la mancuerna en el interior del muslo.
+3. Levanta la mancuerna hacia el hombro contrayendo el bíceps y luego bájala de manera controlada.'
+,'Mancuernas'
+,'8'
+,'4' 
+,'1'
+, now()
+,'');
+
+/* INGRESO DE DOS NUEVAS  */
+
+INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro) VALUES ('Fuerza y Masa para Bíceps',
+ 'Esta rutina se enfoca en ejercicios de fuerza para desarrollar masa muscular en los bíceps, combinando diferentes tipos de curls para trabajar el músculo desde distintos ángulos.'
+ ,'Aumentar la fuerza y la masa muscular de los bíceps.',now());
+ 
+ INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro) VALUES ('Definición y Tono de Bíceps',
+ ' Esta rutina está diseñada para definir y tonificar los bíceps, utilizando ejercicios que permitan un mayor control y contracción del músculo.'
+ ,'Definir y tonificar los bíceps.',now());
