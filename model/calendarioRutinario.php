@@ -3,11 +3,15 @@
 include ('connect.php');
 
 
-class calendarioRutinario extends conexionBD {  
+class calendarioRutinario extends conexionBD
+{
 
 
-    public static function mostrarCalendario () {   
-        
+    public static function mostrarCalendario()
+    {
+
+        $conexion = conexionBD::getConexion();
+
     }
 
 }
