@@ -1,13 +1,13 @@
-<link rel="stylesheet" href="../css/addGimnasio.css">
+<link rel="stylesheet" href="../css/addGimansio.css">
 
 <div class="container">
     <form action="../../controler/ejercicioAgregado.php" method="get">
         <div class="row">
 
-            <div class="col-md-12 text-center">
-                <img src="../IMG_index/addGimnasio.png" class="img-fluid" width="30%" alt="Foto">
+            <div class="col-md-6 text-center">
+                <img src="../IMG_index/addGimnasio.png" class="img-fluid" width="80%" alt="Foto">
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
 
                 <div class="row"> <!-- SEGUNDA COLUMNA PARA EL FORMULARIO -->
 
@@ -25,9 +25,9 @@
 
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected>Escoge la categoria</option>
-                                    <option value="1">Categoria 1</option>
-                                    <option value="2">Categoria 2</option>
-                                    <option value="3">Categoria 3</option>
+                                    <option class="opcion" value="1">Categoria 1</option>
+                                    <option class="opcion" value="2">Categoria 2</option>
+                                    <option class="opcion" value="3">Categoria 3</option>
                                 </select>
                             </div>
 
@@ -50,6 +50,16 @@
                                 <label class="form-label">Vision</label>
                                 <textarea class="form-control" placeholder="Escribe aqui la misión del gimnasio..."
                                     name="mision" id="floatingTextarea2" style="height: 100px"></textarea>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label">Agrega fotos del gimnasio</label>
+
+                                <div class="input-group">
+                                    <input type="file" name="fotos del gimnasio " class="form-control"
+                                        id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
+                                        aria-label="Upload">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -141,20 +151,16 @@
 
                         <h1 class="text-center">Servicios</h1>
 
-                        <label class="form-label">Agrega fotos del gimnasio</label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="form-label">Formas de pago</label>
+                                <input type="text" name="formas_de_pago" class="form-control">
+                            </div>
 
-                        <div class="input-group">
-                            <input type="file" name="fotos del gimnasio " class="form-control" id="inputGroupFile04"
-                                aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                        </div>
-                        <div class="col-md-12">
-                            <label class="form-label">Formas de pago</label>
-                            <input type="text" name="formas_de_pago" class="form-control">
-                        </div>
-
-                        <div class="col-md-12">
-                            <label class="form-label">Ofertas y promociones</label>
-                            <input type="text" name="ofertas_y_promociones" class="form-control">
+                            <div class="col-md-12">
+                                <label class="form-label">Ofertas y promociones</label>
+                                <input type="text" name="ofertas_y_promociones" class="form-control">
+                            </div>
                         </div>
                     </div>
 

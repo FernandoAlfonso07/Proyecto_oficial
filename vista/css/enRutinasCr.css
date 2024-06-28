@@ -1,3 +1,50 @@
-.cuerpo {   
+.cuerpo {
     margin-top: 100px;
+    padding: 30px;
+}
+
+.contenedorEnRutina {
+
+    border: 1px solid #00A1FF;
+    border-radius: 40px;
+}
+
+.colorear {
+    background-color: #00A1FF;
+    padding: 20px;
+}
+
+
+.numero {
+    color: yellow;
+}
+
+.imagenA {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.contenedor_informacion {
+    margin-bottom: 10px;
+}
+
+.nombreEjercicio {
+    background-color: #3233DB;
+    color: yellow;
+}
+
+.rep {
+    background-color: #3268DB;
+    color: white;
+}
+
+.dia {
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+
+}
+
+.dia_contenedor {
+    background-color: #6932DB;
 }
