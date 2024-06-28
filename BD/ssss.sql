@@ -274,3 +274,34 @@ INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro) VALUES
  INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro) VALUES ('Definición y Tono de Bíceps',
  ' Esta rutina está diseñada para definir y tonificar los bíceps, utilizando ejercicios que permitan un mayor control y contracción del músculo.'
  ,'Definir y tonificar los bíceps.',now());
+ 
+  /* SE ASOCIAN LOS EJERCICIOS A LAS RUTINAS */
+ 
+
+ 
+ INSERT INTO ejercicio_rutinas (id_rutina, id_ejercicio) VALUES (2, 9);
+
+/* SE ASOCIAN RUTINAS A LOS DIAS */
+
+INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES ( 4, 1);
+INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES ( 5,2);
+ 
+select t4.id_dia,
+t4.nombre AS dia,
+t3.id_rutina,
+t3.descripcion,
+t3.nombreRutina AS nombre_rutina,
+t3.fecha_registro,
+t3.objetivo,
+t2.nombre AS nombre_ejercicio,
+t2.tiempo_descanso AS Descanso_min
+FROM dias_semana t4
+JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
+JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
+JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
+JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '4';
+
+select * from ejercicios;
+select * from rutinas;
+select * from ejercicio_rutinas; 
+select * from relacion_dia_rutina;
