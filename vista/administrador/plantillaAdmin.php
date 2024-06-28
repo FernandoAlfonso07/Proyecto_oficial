@@ -107,7 +107,8 @@ include ("../../vista/nombreSeccionH.php");
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item enlace_secundario" href="#"><i
                                             class="fa-solid fa-eye icono"></i> Ver Gimnasios</a></li>
-                                <li><a class="dropdown-item enlace_secundario" href="#"><i
+                                <li><a class="dropdown-item enlace_secundario"
+                                        href="controladorVadmin.php?seccionAd=addGimnasio"><i
                                             class="fa-regular fa-pen-to-square icono"></i> Agregar Gimnasios</a></li>
 
                             </ul>
