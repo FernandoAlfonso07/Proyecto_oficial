@@ -233,6 +233,10 @@ select count(*) FROM ejercicios;
 select * from usuarios;
 */ 
 
+/* CREACION TABLA DE GIMNASIOS */
+
+
+
 INSERT INTO ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) 
 values ('Curl con barra','De pie, sostén una barra con las manos a la anchura de los hombros, con las palmas hacia adelante.
 Mantén los codos pegados al cuerpo y levanta la barra hacia los hombros contrayendo los bíceps.
@@ -279,14 +283,13 @@ INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro) VALUES
  
 
  
- INSERT INTO ejercicio_rutinas (id_rutina, id_ejercicio) VALUES (2, 9);
+ INSERT INTO ejercicio_rutinas (id_rutina, id_ejercicio) VALUES (2, 5);
 
 /* SE ASOCIAN RUTINAS A LOS DIAS */
 
-INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES ( 4, 1);
-INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES ( 5,2);
- 
-select t4.id_dia,
+INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES ( 6, 1);
+INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES ( 6,2);
+ /* t4.id_dia,
 t4.nombre AS dia,
 t3.id_rutina,
 t3.descripcion,
@@ -294,13 +297,33 @@ t3.nombreRutina AS nombre_rutina,
 t3.fecha_registro,
 t3.objetivo,
 t2.nombre AS nombre_ejercicio,
-t2.tiempo_descanso AS Descanso_min
+t2.tiempo_descanso AS Descanso_min */
+
+
+/*
+t1 = ejercicio_rutinas
+t2 = ejercicios
+t3 = rutinas
+t4 = dias_semana
+t5 = relacion_dia_rutina
+*/
+SELECT 
+t4.nombre,
+t2.direccion_media,
+t2.nombre,
+t2.Instrucctiones,
+t2.equipoNecesario,
+t2.seires,
+t2.repeticiones,
+t2.tiempo_descanso
 FROM dias_semana t4
 JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
 JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
 JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
 JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '4';
 
+select * from usuarios;
+select * from dias_semana;
 select * from ejercicios;
 select * from rutinas;
 select * from ejercicio_rutinas; 
