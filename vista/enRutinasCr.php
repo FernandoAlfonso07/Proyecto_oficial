@@ -57,6 +57,10 @@ $dia_semana = date('w');
             <div class="col-md-12  contenedor_informacion colorear redondear">
                 <h2>
                     Equipo necesario
+
+
+
+                    buenbas fnete
                 </h2>
                 <p>
                     <?php echo calendarioRutinario::mostrarCalendario(1, 4, $dia_semana, $p) ?>
