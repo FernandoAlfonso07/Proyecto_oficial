@@ -90,10 +90,3 @@ $dia_semana = date('w');
 </body>
 
 </html>
-
-
-
-
-
-
-Error

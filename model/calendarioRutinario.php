@@ -110,4 +110,24 @@ JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '$dia' ";
 
     }
 
+
+    public static function getDay($opc)
+    {
+
+        $conexion = conexionBD::getConexion();
+
+        $sql = "select * from dias_semana ";
+
+        $r = $conexion->query($sql);
+        $r = '';
+        while ($fila = $r->fetch_array()) {
+            if ($opc == 0) {
+                $r = $fila[0]; // Esto muestra el id del dia.
+            } else {
+                $r = $fila[1]; // Esto muestra el Nombre del dia.
+            }
+        }
+
+    }
+
 }

@@ -320,7 +320,16 @@ FROM dias_semana t4
 JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
 JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
 JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
-JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '4';
+JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '6';
+
+-- CONTEO DE EJERCICIO PARA LA PAGINACION
+
+select count(*)
+FROM dias_semana t4
+JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
+JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
+JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
+JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '6';
 
 select * from usuarios;
 select * from dias_semana;
@@ -328,3 +337,4 @@ select * from ejercicios;
 select * from rutinas;
 select * from ejercicio_rutinas; 
 select * from relacion_dia_rutina;
+-- ESTE ES EL SQL DEL PROYECTO PHP
