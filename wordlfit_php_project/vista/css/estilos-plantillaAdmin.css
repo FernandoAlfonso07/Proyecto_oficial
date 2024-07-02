@@ -1,0 +1,24 @@
+.enlace_secundario {
+    padding: 20px 10px;
+    transition: ease 0.5s;
+}
+
+.enlace_secundario:hover {
+    background-color: rgb(68, 68, 68);
+    color: white;
+    transition: ease 0.5s;
+
+}
+
+.enlace_principal {
+    margin-right: 30px;
+    font-size: 15px;
+}
+
+.icono {
+    padding-right: 5px;
+}
+
+.cuerpo {
+    margin-top: 120px;
+}

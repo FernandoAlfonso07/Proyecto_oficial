@@ -1,0 +1,12 @@
+.form-control {
+    border: 1px solid #00A1FF;
+}
+
+.form-select {
+    border: 1px solid #00A1FF;
+}
+
+.opcion {
+    background-color: #d3efff;
+    padding: 50px;
+}
