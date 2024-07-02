@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @param $opc 
+ * 
+ */
 function nombrar($opc, $seccion = null, $seccion_admin = null)
 {
 
