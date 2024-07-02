@@ -3,7 +3,24 @@ include ("connect.php");
 class usuarios extends conexionBD
 {
 
-
+    /**
+     * Obtiene información específica de un usuario desde la base de datos.
+     *
+     * @param int $opc Opción que determina qué información se desea obtener:
+     *                 0 - id_usuario
+     *                 1 - nombre
+     *                 2 - apellidos
+     *                 3 - correo
+     *                 4 - contraseña
+     *                 5 - peso
+     *                 6 - altura
+     *                 7 - id_genero
+     *                 8 - telefono
+     *                 9 - pr (¿quizás posición o algún otro campo?)
+     *                 10 - fecha_registro o fecha_url_imagen_perfil (según el caso)
+     * @param int $id_usuario ID del usuario del cual se desea obtener la información.
+     * @return mixed Retorna la información solicitada o vacío si no se encuentra.
+     */
     public static function getInformacion($opc, $id_usuario)
     {
         $conexion = conexionBD::getConexion();
@@ -218,7 +235,7 @@ class usuarios extends conexionBD
         $sql .= "WHERE id_usuario = '$id' ";
 
         echo 'Variable de session' . $id;
-        
+
         // echo $sql;
 
         $conexion->query($sql);
