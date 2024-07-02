@@ -10,7 +10,7 @@ class calendarioRutinario extends conexionBD
      * Este metodo tiene la funcionalidad principal del proyecto, debido a que muestra las rutinas que ofrece el sitema para el usuario.
      * 
      * @param $opc = sirve para escoger la opcion por donde vaya el flujo de codigo sql y su respuesta.
-     * 
+     * @param $opcMuestra = Con este parametro se escoge el resultado que se quiera mostrar.
      */
     public static function mostrarCalendario($opc, $opcMuestra = null, $dia = null, $p = null)
     {
