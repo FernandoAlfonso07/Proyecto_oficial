@@ -1,7 +1,11 @@
 <?php
 /**
- * @param $opc 
- * 
+ * Retorna el nombre descriptivo de una sección según las opciones proporcionadas.
+ *
+ * @param int $opc Opción que determina el contexto (0 para usuario normal, 1 para administrador).
+ * @param string|null $seccion Nombre de la sección para usuarios normales.
+ * @param string|null $seccion_admin Nombre de la sección para administradores.
+ * @return string Nombre descriptivo de la sección.
  */
 function nombrar($opc, $seccion = null, $seccion_admin = null)
 {
