@@ -6,6 +6,14 @@ include ('connect.php');
 class calendarioRutinario extends conexionBD
 {
 
+    /**
+     * Este metodo tiene la funcionalidad principal del proyecto, debido a que muestra las rutinas que ofrece el sitema para el usuario.
+     * 
+     * @param $opc = sirve para escoger la opcion por donde vaya el flujo de codigo sql y su respuesta.
+     * @param $opcMuestra = Con este parametro se escoge el resultado que se quiera mostrar.
+     * @param $dia = Con este parametro se trae el dia para que muestre las rutinas asociadas a ese dia.
+     * @param $p = Con este parametro se identifica la pagina en la que esta la cual da lugar al Limit del SQL
+     */
     public static function mostrarCalendario($opc, $opcMuestra = null, $dia = null, $p = null)
     {
 
@@ -95,20 +103,38 @@ JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '$dia' ";
 
             if ($p2 == $i) {
 
-                $r .= "<a href=\"index.php?a=1&p=$i\"> ";
-                $r .= "<button class=\"btn btn-primary btn-gradient botones activo\">$i</button> </a>";
+                $r .= '<a href="../vista/enRutinasCr.php?p=' . $i . '"> ';
+                $r .= '<button class="btn btn-primary btn-gradient botones activo">' . $i . '</button> </a>';
 
             } else {
 
-                $r .= "<a href=\"index.php?a=1&p=$i\"> ";
-                $r .= "<button class=\"btn bg-primary-subtle btn-gradient botones\">$i</button> </a>";
+                $r .= '<a href="../vista/enRutinasCr.php?p=' . $i . '"> ';
+                $r .= '<button class="btn bg-primary-subtle btn-gradient botones">' . $i . '</button> </a>';
 
             }
 
-
-
         }
         return $r;
+
+    }
+
+
+    public static function getDay($opc)
+    {
+
+        $conexion = conexionBD::getConexion();
+
+        $sql = "select * from dias_semana ";
+
+        $r = $conexion->query($sql);
+        $r = '';
+        while ($fila = $r->fetch_array()) {
+            if ($opc == 0) {
+                $r = $fila[0]; // Esto muestra el id del dia.
+            } else {
+                $r = $fila[1]; // Esto muestra el Nombre del dia.
+            }
+        }
 
     }
 
