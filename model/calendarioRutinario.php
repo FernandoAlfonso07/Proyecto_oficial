@@ -12,6 +12,7 @@ class calendarioRutinario extends conexionBD
      * @param $opc = sirve para escoger la opcion por donde vaya el flujo de codigo sql y su respuesta.
      * @param $opcMuestra = Con este parametro se escoge el resultado que se quiera mostrar.
      * @param $dia = Con este parametro se trae el dia para que muestre las rutinas asociadas a ese dia.
+     * @param $p = Con este parametro se identifica la pagina en la que esta la cual da lugar al Limit del SQL
      */
     public static function mostrarCalendario($opc, $opcMuestra = null, $dia = null, $p = null)
     {
