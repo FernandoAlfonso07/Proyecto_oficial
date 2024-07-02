@@ -144,22 +144,47 @@ class usuarios extends conexionBD
     }
 
 
+
+    /**
+     * Obtiene información específica del perfil de un usuario.
+     *
+     * Este método realiza una consulta a la base de datos para recuperar información
+     * detallada del perfil de un usuario según el parámetro opcional especificado.
+     *
+     * @param int $opc       Opción que indica qué información del perfil se desea obtener:
+     *                          - 0: Nombre
+     *                          - 1: Apellido
+     *                          - 2: Correo electrónico
+     *                          - 3: Contraseña (no recomendado devolver por razones de seguridad)
+     *                          - 4: Peso actual
+     *                          - 5: Altura actual
+     *                          - 6: PR (¿Presión arterial?)
+     *                          - 7: Teléfono
+     *                          - 8: Género
+     *                          - 9: Ruta de la imagen de perfil
+     * @param int $idUsuario ID del usuario para el cual se desea obtener el perfil.
+     * @return string         Devuelve la información solicitada del perfil del usuario como una cadena.
+     */
     public static function getPerfil($opc, $idUsuario)
     {
-        $conexion = self::getConexion();
+        $conexion = self::getConexion(); // Obtiene la conexión a la base de datos
+
+        // Construye la consulta SQL para obtener la información del perfil del usuario
 
         $sql = "select t1.nombre, t1.apellido, t1.correo, t1.password, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero, t1.imgPerfil ";
         $sql .= "FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero WHERE id_usuario = $idUsuario";
-        $resultado = $conexion->query($sql);
-        $r = '';
-        while ($fila = $resultado->fetch_array()) {
 
+        $resultado = $conexion->query($sql); // Ejecuta la consulta SQL
+
+        $r = ''; // Inicializa la variable $r para almacenar el resultado
+
+        // Procesa cada fila del resultado de la consulta
+        while ($fila = $resultado->fetch_array()) {
 
             switch ($opc) {
                 case 0: // Muestra NOMBRE
 
                     $r .= $fila[0];
-                    //$r = self::getInformacion(1, $idUsuario); Opción a implementar.
 
                     break;
                 case 1: // Muestra APELLIDO
@@ -209,7 +234,7 @@ class usuarios extends conexionBD
                     break;
             }
         }
-        return $r;
+        return $r;   // Devuelve la información del perfil del usuario como una cadena
     }
 
     public static function eliminarCuenta($id)
