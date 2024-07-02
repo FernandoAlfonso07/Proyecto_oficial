@@ -131,3 +131,5 @@ JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '$dia' ";
     }
 
 }
+
+// Esto es algo de prueba ------------------------
