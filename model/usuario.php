@@ -237,40 +237,78 @@ class usuarios extends conexionBD
         return $r;   // Devuelve la información del perfil del usuario como una cadena
     }
 
+
+    /**
+     * Elimina la cuenta de usuario de la base de datos.
+     *
+     * @param int $id ID del usuario cuya cuenta se desea eliminar.
+     * @return int Número de filas afectadas por la operación de eliminación.
+     */
+
     public static function eliminarCuenta($id)
     {
 
-        $conexion = self::getConexion();
+        $conexion = self::getConexion();  // Obtiene la conexión a la base de datos
 
+        // Consulta SQL para eliminar la cuenta del usuario con el ID proporcionado
         $sql = "delete from usuarios where id_usuario = $id ";
 
 
-        $conexion->query($sql);
+        $conexion->query($sql); // Ejecuta la consulta SQL para eliminar la cuenta
 
-        $affected_rows = $conexion->affected_rows;
+        $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de eliminación
 
-        $conexion->close();
+        $conexion->close(); // Cierra la conexión a la base de datos
 
     }
+
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     *
+     * @param string $nombres Nombres del usuario a registrar.
+     * @param string $apellidos Apellidos del usuario a registrar.
+     * @param string $telefono Número de teléfono del usuario a registrar.
+     * @param string $correoElectronico Correo electrónico del usuario a registrar.
+     * @param string $password Contraseña del usuario a registrar.
+     * @param float $pesoActual Peso actual del usuario a registrar.
+     * @param float $altura Altura actual del usuario a registrar.
+     * @param int $genero ID del género del usuario a registrar.
+     * @return int Número de filas afectadas por la operación de inserción.
+     */
 
     public static function registrar($nombres, $apellidos, $telefono, $correoElectronico, $password, $pesoActual, $altura, $genero)
     {
         $conexion = self::getConexion();
-
+        // Consulta SQL para insertar un nuevo usuario en la tabla 'usuarios'
         $sql = "insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol)";
         $sql .= " values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$password', $pesoActual ,$altura, $genero, now(), 0) ";
-        echo $sql;
-        $resultado = $conexion->query($sql);
 
-        $affected_rows = $conexion->affected_rows;
+        $conexion->query($sql); // Ejecuta la consulta SQL para insertar el nuevo usuario
 
-        $conexion->close();
+        $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de inserción
+
+        $conexion->close(); // Cierra la conexión a la base de datos
     }
 
-
+    /**
+     * Actualiza los datos de un usuario en la base de datos.
+     *
+     * @param int $id ID del usuario cuyos datos se van a actualizar.
+     * @param string $nombres Nuevos nombres del usuario.
+     * @param string $apellidos Nuevos apellidos del usuario.
+     * @param string $telefono Nuevo número de teléfono del usuario.
+     * @param string $correo Nuevo correo electrónico del usuario.
+     * @param string $pr Nuevo valor para el campo 'pr' del usuario.
+     * @param float $pesoActual Nuevo peso actual del usuario.
+     * @param float $altura Nueva altura actual del usuario.
+     * @param string $ruta_imagen Nueva ruta de la imagen de perfil del usuario.
+     * @return int Número de filas afectadas por la operación de actualización.
+     */
     public static function actualizarDatos($id, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen)
     {
-        $conexion = self::getConexion();
+        $conexion = self::getConexion();  // Obtiene la conexión a la base de datos
+
+        // Consulta SQL para actualizar los datos del usuario en la tabla 'usuarios'
 
         $sql = "update usuarios ";
         $sql .= "set nombre = '$nombres', ";
@@ -283,14 +321,10 @@ class usuarios extends conexionBD
         $sql .= "pr = $pr ";
         $sql .= "WHERE id_usuario = '$id' ";
 
-        echo 'Variable de session' . $id;
+        $conexion->query($sql); // Ejecuta la consulta SQL para actualizar los datos del usuario
 
-        // echo $sql;
+        $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de actualización
 
-        $conexion->query($sql);
-
-        $affected_rows = $conexion->affected_rows;
-
-        $conexion->close();
+        $conexion->close(); // Cierra la conexión a la base de datos
     }
 }
