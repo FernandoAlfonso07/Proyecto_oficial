@@ -23,12 +23,14 @@ class usuarios extends conexionBD
      */
     public static function getInformacion($opc, $id_usuario)
     {
-        $conexion = conexionBD::getConexion();
-
+        $conexion = conexionBD::getConexion(); // Obtiene la conexión a la base de datos    
+        // Consulta SQL para obtener información del usuario
         $sql = "select * from usuarios WHERE id_usuario = $id_usuario ";
 
-        $resultado = $conexion->query($sql);
-        $salida = '';
+        $resultado = $conexion->query($sql); // Ejecuta la consulta
+        $salida = ''; // Variable para almacenar la información obtenida
+
+        // Itera sobre los resultados obtenidos
         while ($fila = $resultado->fetch_array()) {
 
             switch ($opc) {
@@ -74,49 +76,71 @@ class usuarios extends conexionBD
     }
 
 
-
+    /**
+     * Busca el ID de un usuario en la base de datos basado en su correo y contraseña.
+     *
+     * @param string $correo Correo electrónico del usuario.
+     * @param string $password Contraseña del usuario.
+     * @return int Retorna el ID del usuario si se encuentra en la base de datos, o 0 si no se encuentra.
+     */
     public static function buscarId($correo, $password)
     {
-        $conexion = conexionBD::getConexion();
+        $conexion = conexionBD::getConexion(); // Obtiene la conexión a la base de datos
 
+        // Consulta SQL para buscar el ID del usuario basado en correo y contraseña
         $sql = "select id_usuario from usuarios where correo = '$correo' and password = '$password' ";
 
-        $resultado = $conexion->query($sql);
-        $salida = 0;
+        $resultado = $conexion->query($sql); // Ejecuta la consulta SQL
+        $salida = 0; // Variable para almacenar el ID del usuario encontrado, inicializada en 0
+
+        // Itera sobre los resultados obtenidos
         while ($fila = $resultado->fetch_array()) {
-            $salida += $fila[0];
+            $salida += $fila[0]; // Suma el valor del ID encontrado
         }
-        return $salida;
+        return $salida; // Retorna el ID del usuario encontrado o 0 si no se encuentra
     }
 
+    /**
+     * Inicia sesión de usuario y retorna información específica según la opción proporcionada.
+     *
+     * @param int $opc Opción que determina qué información se desea obtener:
+     *                 0 - Retorna el número de coincidencias encontradas para el correo y contraseña.
+     *                 1 - Retorna el ID del rol del usuario si se encuentra en la base de datos.
+     * @param string $correo Correo electrónico del usuario.
+     * @param string $password Contraseña del usuario.
+     * @return mixed Retorna el resultado según la opción (`$opc`) proporcionada:
+     *               - Para `$opc` 0: Retorna el número de coincidencias encontradas.
+     *               - Para `$opc` 1: Retorna el ID del rol del usuario.
+     */
     public static function iniciarSesion($opc, $correo, $password)
     {
 
-        $conexion = conexionBD::getConexion();
+        $conexion = conexionBD::getConexion(); // Obtiene la conexión a la base de datos
 
+        // Consulta SQL para contar coincidencias y obtener el ID del rol del usuario
         $sql = "select COUNT(*), id_rol FROM usuarios WHERE correo = '$correo' AND password = '$password' ";
 
-        echo $sql;
-        $resultado = $conexion->query($sql);
+        $resultado = $conexion->query($sql); // Ejecuta la consulta SQL
 
-        $r = 0;
+        $r = 0; // Variable para almacenar el resultado
 
+        // Itera sobre los resultados obtenidos
         while ($fila = $resultado->fetch_array()) {
 
             switch ($opc) {
                 case 0:
-                    $r = $fila[0];
+                    $r = $fila[0]; // Retorna el número de coincidencias encontradas
                     break;
 
                 case 1:
 
-                    $r = $fila[1];
+                    $r = $fila[1];  // Retorna el ID del rol del usuario
                     break;
             }
 
         }
 
-        return $r;
+        return $r; // Retorna el resultado según la opción `$opc` proporcionada
     }
 
 
