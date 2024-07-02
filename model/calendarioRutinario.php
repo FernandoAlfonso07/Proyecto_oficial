@@ -6,6 +6,12 @@ include ('connect.php');
 class calendarioRutinario extends conexionBD
 {
 
+    /**
+     * Este metodo tiene la funcionalidad principal del proyecto, debido a que muestra las rutinas que ofrece el sitema para el usuario.
+     * 
+     * @param $opc = sirve para escoger la opcion por donde vaya el flujo de codigo sql y su respuesta.
+     * 
+     */
     public static function mostrarCalendario($opc, $opcMuestra = null, $dia = null, $p = null)
     {
 
@@ -131,4 +137,3 @@ JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '$dia' ";
     }
 
 }
-
