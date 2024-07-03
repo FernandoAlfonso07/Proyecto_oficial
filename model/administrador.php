@@ -138,7 +138,22 @@ class Administrador extends conexionBD
 
         $affected_rows = $conexion->affected_rows;
 
-        $conexion->close();
+
+
+    }
+
+
+    public static function agregarRutina($nombreR, $descripcionR, $objetivo)
+    {
+        $conexion = self::getConexion();
+
+        $sql = "INSERT INTO rutinas (nombreRutina,descripcion,objetivo,fecha_registro ) VALUES ('$nombreR','$descripcionR','$objetivo', now())";
+
+        $conexion->query($sql);
+
+        $affected_rows = $conexion->affected_rows;
+
+        return $affected_rows;
 
     }
 }

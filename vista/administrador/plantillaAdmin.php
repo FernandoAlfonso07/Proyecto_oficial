@@ -93,7 +93,7 @@ include ("../../vista/nombreSeccionH.php");
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item enlace_secundario" href="#"><i
                                             class="fa-solid fa-eye icono"></i> Ver Rutinas</a></li>
-                                <li><a class="dropdown-item enlace_secundario" href="#"><i
+                                <li><a class="dropdown-item enlace_secundario" href="controladorVadmin.php?seccionAd=addRutina"><i
                                             class="fa-regular fa-pen-to-square icono"></i> Agregar Rutinas</a></li>
 
                             </ul>
