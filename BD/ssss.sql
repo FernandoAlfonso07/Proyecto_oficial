@@ -337,4 +337,3 @@ select * from ejercicios;
 select * from rutinas;
 select * from ejercicio_rutinas; 
 select * from relacion_dia_rutina;
--- ESTE ES EL SQL DEL PROYECTO PHP
