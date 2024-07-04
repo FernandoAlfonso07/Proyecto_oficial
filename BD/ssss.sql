@@ -354,10 +354,10 @@ join ejercicio_rutinas t2 on t1.id_ejercicio = t2.id_ejercicio
 join rutinas t3 on t2.id_rutina = t3.id_rutina
 where t3.id_rutina = 1;
 
-DELETE FROM ejercicios WHERE id_ejercicio = 2;
-DELETE FROM rutinas;
+-- DELETE FROM ejercicios WHERE id_ejercicio = 2;
+-- DELETE FROM rutinas;
 
-DELETE FROM ejercicio_rutinas WHERE id_relacion = 4;
+-- DELETE FROM ejercicio_rutinas WHERE id_relacion = 4;
 -- INSERT INTO ejercicio_rutinas (id_rutina, id_ejercicio) VALUES (,);
 
 
@@ -367,8 +367,6 @@ INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro)
 VALUES ('RUTINA V5', 'DESCRIPCION', 'OBJETIVO', NOW());
 
 SELECT count(*) FROM ejercicio_rutinas WHERE id_rutina = 1 AND id_ejercicio = 1; 
-
-SELECT LAST_INSERT_ID();
 
 SELECT * FROM rutinas WHERE id_rutina = 1;
 
