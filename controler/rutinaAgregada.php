@@ -18,6 +18,6 @@ if ($respuesta > 1) {
 } else {
 
     // Si la respuesta es 1 o menor, redirige al controlador del administrador en la sección especificada.
-    header('location: ../vista/administrador/controladorVadmin.php?seccionAd=seccionAd1');
+    header('location: ../vista/administrador/controladorVadmin.php?seccionAd=asociarEjerciciosRutinas');
     exit();
 }

@@ -299,6 +299,7 @@ t3.objetivo,
 t2.nombre AS nombre_ejercicio,
 t2.tiempo_descanso AS Descanso_min */
 
+INSERT INTO rutinas (nombreRutina,descripcion,objetivo,fecha_registro ) VALUES ('','','', now());
 
 /*
 t1 = ejercicio_rutinas
@@ -337,3 +338,33 @@ select * from ejercicios;
 select * from rutinas;
 select * from ejercicio_rutinas; 
 select * from relacion_dia_rutina;
+
+select count(*) from ejercicios;
+SELECT id_ejercicio, nombre FROM ejercicios;
+
+
+select t3.nombreRutina, (select t1.id_ejercicio, t1.nombre from ejercicios t1 join ejercicio_rutinas t2 on t1.id_ejercicio = t2.id_ejercicio where t3.id_rutina = 1) as ejerciciosAgregados from rutinas t3;
+
+/* Sql para ver los ejercicios agregados a esta rutina */
+
+
+select t2.id_relacion, t3.id_rutina, t3.nombreRutina, t1.id_ejercicio, t1.nombre
+from ejercicios t1 
+join ejercicio_rutinas t2 on t1.id_ejercicio = t2.id_ejercicio
+join rutinas t3 on t2.id_rutina = t3.id_rutina
+where t3.id_rutina = 1;
+
+DELETE FROM ejercicios WHERE id_ejercicio = 2;
+DELETE FROM rutinas WHERE id_rutina = 2;
+
+DELETE FROM ejercicio_rutinas WHERE id_relacion = 4;
+-- INSERT INTO ejercicio_rutinas (id_rutina, id_ejercicio) VALUES (,);
+
+
+SELECT count(*) FROM ejercicio_rutinas WHERE id_rutina = 1 AND id_ejercicio = 3;
+
+
+
+
+
+

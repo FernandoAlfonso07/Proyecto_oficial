@@ -93,7 +93,8 @@ include ("../../vista/nombreSeccionH.php");
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item enlace_secundario" href="#"><i
                                             class="fa-solid fa-eye icono"></i> Ver Rutinas</a></li>
-                                <li><a class="dropdown-item enlace_secundario" href="controladorVadmin.php?seccionAd=addRutina"><i
+                                <li><a class="dropdown-item enlace_secundario"
+                                        href="controladorVadmin.php?seccionAd=addRutina"><i
                                             class="fa-regular fa-pen-to-square icono"></i> Agregar Rutinas</a></li>
 
                             </ul>
@@ -119,8 +120,6 @@ include ("../../vista/nombreSeccionH.php");
         </nav>
     </header>
 
-
-
     <div class="cuerpo">
         <?php
 
@@ -128,8 +127,6 @@ include ("../../vista/nombreSeccionH.php");
 
         ?>
     </div>
-
-
 
     <script src="https://kit.fontawesome.com/296731592d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
