@@ -10,7 +10,7 @@ class Administrador extends conexionBD
     {
         $conexion = conexionBD::getConexion();
 
-        $sql = "select";
+        $sql = "SELECT";
         $sql .= " t1.id_ejercicio, t1.nombre, t1.Instrucctiones, t1.equipoNecesario, t1.seires, t1.repeticiones, t1.tiempo_descanso, t1.fecha_registro, t3.nombreRutina, t3.id_rutina, t1.direccion_media";
         $sql .= " FROM ejercicios t1";
         $sql .= " LEFT JOIN ejercicio_rutinas t2 ON t1.id_ejercicio = t2.id_ejercicio";
@@ -55,7 +55,7 @@ class Administrador extends conexionBD
 
         $conexion = conexionBD::getConexion();
 
-        $sql = "delete from ejercicios where id_ejercicio = $id_ejercicio ";
+        $sql = "DELETE FROM ejercicios WHERE id_ejercicio = $id_ejercicio ";
 
 
         $conexion->query($sql);
@@ -72,7 +72,7 @@ class Administrador extends conexionBD
     {
         $conexion = conexionBD::getConexion();
 
-        $sql = "select count(*) FROM ejercicios ";
+        $sql = "SELECT count(*) FROM ejercicios ";
 
         $r = 0;
 
@@ -93,8 +93,8 @@ class Administrador extends conexionBD
 
         if ($opc == 0) {
 
-            $sql = "select";
-            $sql .= " t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol from usuarios t1";
+            $sql = "SELECT";
+            $sql .= " t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol FROM usuarios t1";
             $sql .= " JOIN genero t2 ON t1.id_genero = t2.id_genero ";
             $sql .= " JOIN roles t3 ON t1.id_rol = t3.id_rol ";
 
@@ -134,7 +134,7 @@ class Administrador extends conexionBD
     {
         $conexion = conexionBD::getConexion();
 
-        $sql = "insert INTO ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) ";
+        $sql = "INSERT INTO ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) ";
         $sql .= "VALUES ('$nombre', '$instruc', '$equiped', '$rep', '$series', '$tiempoDes', now(), '$direccion_media')";
         echo $sql;
 

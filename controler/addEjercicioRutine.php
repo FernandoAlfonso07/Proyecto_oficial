@@ -22,7 +22,7 @@ $cont = Administrador::added_Exercises(0, $id_rutina, $id_ejercico);
  */
 if ($cont > 0) {
     echo 'Error 4101 YA SE AGREGO EL EJERCICIO';
-    echo '<a href="cicloEjercicios.php">Reintertar</a>';
+    echo '<a href=" ../vista/administrador/controladorVadmin.php?seccionAd=addRutina">Reintertar</a>';
 
 } else {
 
@@ -39,8 +39,8 @@ if ($cont > 0) {
          */
         echo 'Error 3019 No fue posible asociar el ejercicio';
     } else {
-        // Si la inserción fue exitosa, redirigir a la página cicloEjercicios.php
-        header('Location: cicloEjercicios.php');
+        // Si la inserción fue exitosa, redirigir a la página asociarEjerciciosRutinas.php
+        header('Location:  ../vista/administrador/controladorVadmin.php?seccionAd=addRutina');
         exit();
     }
 }
