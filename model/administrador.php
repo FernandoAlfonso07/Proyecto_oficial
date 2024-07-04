@@ -303,7 +303,7 @@ class Administrador extends conexionBD
             $r .= '<td>' . $fila[4] . '</td>'; // Nombre del ejercicio
             $r .= '<td>';
             // Enlace para eliminar la asociación del ejercicio con la rutina
-            $r .= '<a href="../controler/quitarEjercicio.php?idRelacion=' . $fila[0] . '" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"> ';
+            $r .= '<a href="../../controler/quitarEjercicio.php?idRelacion=' . $fila[0] . '" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"> ';
             $r .= '<i class="fa-solid fa-delete-left fs-5"></i>';
             $r .= '</a> ';
             $r .= '</td>';

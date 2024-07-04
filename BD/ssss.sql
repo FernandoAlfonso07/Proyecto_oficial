@@ -363,7 +363,7 @@ DELETE FROM ejercicio_rutinas WHERE id_relacion = 4;
 
 SELECT count(*) FROM ejercicio_rutinas WHERE id_rutina = 1 AND id_ejercicio = 3;
 
-
+SELECT id_rutina FROM rutinas WHERE = ;
 
 
 

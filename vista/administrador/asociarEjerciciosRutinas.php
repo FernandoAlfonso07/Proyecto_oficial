@@ -1,13 +1,13 @@
 <?php
 
-include ("administrador.php");
+include ("../../model/administrador.php");
 
 
 if (!isset($_SESSION))
     session_start();
 
 if (!isset($_SESSION['id_rutina'])) {
-    $_SESSION['id_rutina'] = 1;
+    $_SESSION['id_rutina'] = 7;
 } else {
     $_SESSION['id_rutina'];
 }
@@ -27,7 +27,7 @@ if (!isset($_SESSION['id_rutina'])) {
             </h1>
         </div>
         <div class="col-md-6">
-            <form action="addEjercicioRutine.php" method="get">
+            <form action="../../controler/addEjercicioRutine.php" method="get">
                 <label class="form-label">
                     Agregar ejercicios
                 </label>
@@ -50,7 +50,6 @@ if (!isset($_SESSION['id_rutina'])) {
                     class="fa-solid fa-circle-xmark ms-2 fs-5"></i> </button>
 
         </div>
-
 
         <div class="col-md-12">
             <h2>EJERCICIOS AGREGADOS</h2>
