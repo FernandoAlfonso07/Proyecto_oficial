@@ -224,7 +224,8 @@ class Administrador extends conexionBD
         // Variable para almacenar la consulta SQL
         if ($opc == 0) {
 
-            $sql = "SELECT count(*) FROM ejercicio_rutinas WHERE id_rutina = $id_rutina AND id_ejercicio = $id_ejercico";
+            $sql = "SELECT count(*) FROM ejercicio_rutinas WHERE id_rutina = $id_rutina AND id_ejercicio = $id_ejercico;";
+
 
         } elseif ($opc == 1) {
 
@@ -262,6 +263,27 @@ class Administrador extends conexionBD
         // Retornar el resultado de la operación
         return $r;
 
+    }
+
+
+    public static function getIdrutina()
+    {
+        // Conexión a la base de datos
+        $conexion = conexionBD::getConexion();
+
+        $sql = "SELECT LAST_INSERT_ID() ";
+
+        $resultado = $conexion->query($sql);
+        $r = 0;
+        while ($fila = $resultado->fetch_array()) {
+            $r = $fila[0];
+        }
+
+        // Cerrar la conexión a la base de datos
+        $conexion->close();
+
+        // Retornar el resultado de la operación
+        return $r;
     }
 
     /**

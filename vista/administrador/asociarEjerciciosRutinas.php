@@ -1,15 +1,19 @@
 <?php
 
-include ("../../model/administrador.php");
+include ("../../model/administrador.php"); // Se incluye el archivo con la clase de 'Administrador'
+
+include ("../../model/rutinas.php"); // Se incluye el archivo con la clase de 'routines'
 
 
 if (!isset($_SESSION))
     session_start();
 
 if (!isset($_SESSION['id_rutina'])) {
-    $_SESSION['id_rutina'] = 7;
-} else {
-    $_SESSION['id_rutina'];
+
+    $id_rutine = Administrador::getIdrutina();
+
+    $_SESSION['id_rutina'] = $id_rutine;
+
 }
 
 ?>
@@ -23,7 +27,7 @@ if (!isset($_SESSION['id_rutina'])) {
             </label>
 
             <h1>
-                Nombre de la Rutina
+                <?php echo routines::getInformation(1, $_SESSION['id_rutina']) ?>
             </h1>
         </div>
         <div class="col-md-6">

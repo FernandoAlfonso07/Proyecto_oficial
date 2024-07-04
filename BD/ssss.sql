@@ -363,7 +363,10 @@ DELETE FROM ejercicio_rutinas WHERE id_relacion = 4;
 
 SELECT count(*) FROM ejercicio_rutinas WHERE id_rutina = 1 AND id_ejercicio = 3;
 
-SELECT id_rutina FROM rutinas WHERE = ;
+INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro)
+VALUES ('nombre_de_la_rutina', 'descripcion', 'objetivo', NOW());
+
+SELECT LAST_INSERT_ID();
 
 
 
