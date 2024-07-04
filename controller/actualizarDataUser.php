@@ -7,11 +7,11 @@ if (!isset($_SESSION))
     session_start();
 
 if (!isset($_SESSION['id'])) {
-    header("location: ../vista/inicioSesion.php");
+    header("location: ../view/inicioSesion.php");
 
 } else {
     if ($_SESSION['id'] == "") {
-        header("location: ../vista/inicioSesion.php");
+        header("location: ../view/inicioSesion.php");
     }
 }
 
@@ -32,10 +32,12 @@ $pesoActual = $_GET['peso'];
 
 $altura = $_GET['altura'];
 
+$ruta_imagen = '';
+
 
 
 /*
-$directorioDestino = '../vista/imgPerfiles/';
+$directorioDestino = '../view/imgPerfiles/';
 $nombreArchivo = '';
 
 if (!empty($_FILES['imagenPerfil']['name'])) {
@@ -50,13 +52,13 @@ if (!empty($_FILES['imagenPerfil']['name'])) {
 
 $respuesta = usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen);
 
-if ($respuesta > 0) {
+if ($respuesta > 1) {
 
     echo 'Error 1000';
 
 } else {
 
-    header('Location: ../vista/controlador.php?seccion=MiPerfil');
+    header('Location: ../view/controlador.php?seccion=MiPerfil');
     exit();
 
 }

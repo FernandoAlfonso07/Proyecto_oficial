@@ -14,7 +14,10 @@ $r = EliminarDatos::borrarAmbos($id_tabla);
 echo 'variable r: ' . $r;
 
 if ($r < 1) {
-    header('location: ../vista/controladorVadmin.php?seccionAd=seccionAd2');
+    header('location: ../view/controladorVadmin.php?seccionAd=seccionAd2');
 } else {
-    header('location: ../vista/index.php');
+    header('location: ../view/index.php');
 }
+
+
+// No se ha usado NUNCA.

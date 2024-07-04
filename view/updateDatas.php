@@ -3,7 +3,7 @@ include ("../model/usuario.php");
 ?>
 
 <link rel="stylesheet" href="css/actualizarDatos.css">
-<form action="../controler/actualizarDataUser.php">
+<form action="../controller/actualizarDataUser.php">
     <div class="container cuerpo">
         <div class="row">
             <div class="col-md-6 text-center">

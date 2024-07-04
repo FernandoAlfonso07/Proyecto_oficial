@@ -40,7 +40,7 @@ class Administrador extends conexionBD
             // $r .= "<td>" . $fila[9] . "</td>"; // Esto muestra el ID DE LA RUTINA
 
             $r .= "<td>" . $fila[10] . "</td>"; // Esto muestra el EJEMPLO GRAFICO
-            $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <a href='../../controler/ejercicioEliminado.php?id_ejercicio=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <i class='fa-solid fa-pen-to-square icono edit'></i> 
+            $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <a href='../../controller/ejercicioEliminado.php?id_ejercicio=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <i class='fa-solid fa-pen-to-square icono edit'></i> 
              </td>";
             $r .= '</tr>';
         }
@@ -68,29 +68,56 @@ class Administrador extends conexionBD
 
     }
 
-    public static function contadorTotal() // Metodo para un contar el total de ejercicios.
+    /**
+     * Cuenta el número total de ejercicios registrados en la base de datos.
+     *
+     * @return int El número total de ejercicios.
+     */
+    public static function contadorTotal()
     {
+        // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
+        // Consulta SQL para contar el número total de ejercicios
         $sql = "SELECT count(*) FROM ejercicios ";
 
+
+        // Variable para almacenar el resultado inicializado a 0
         $r = 0;
 
+        // Ejecutar la consulta SQL
         $resulado = $conexion->query($sql);
+
+        // Procesar los resultados de la consulta
 
         while ($fila = $resulado->fetch_array()) {
 
-            $r = $fila[0];
+            $r = $fila[0]; // Almacenar el resultado de la consulta (número total de ejercicios)
 
         }
 
+        // Cerrar la conexión a la base de datos
+        $conexion->close();
+
+
+        // Retornar el número total de ejercicios
         return $r;
     }
 
+    /**
+     * Obtiene información de los usuarios según la opción especificada.
+     *
+     * @param int $opc Opción para determinar qué información de usuarios obtener:
+     *                 0 - Obtener detalles completos de usuarios (ID, nombre, apellido, correo, teléfono, género, fecha de registro, rol).
+     *                 1 - Contar el número total de usuarios registrados.
+     * @return string Una cadena HTML que contiene los datos de los usuarios o el número total de usuarios, según la opción especificada.
+     */
     public static function getUsuarios($opc)
     {
+        // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
+        // Ejecutar la consulta según la opción especificada
         if ($opc == 0) {
 
             $sql = "SELECT";
@@ -102,11 +129,16 @@ class Administrador extends conexionBD
             $sql = "select COUNT(*) FROM usuarios;";
         }
 
+        // Ejecutar la consulta SQL
         $r = $conexion->query($sql);
+
+        // Variable para almacenar el resultado final
         $rr = "";
 
+        // Procesar los resultados de la consulta
         while ($fila = $r->fetch_array()) {
-            // Version 3 para implementar
+
+            // Versión detallada para mostrar los datos de cada usuario en una tabla HTML
             if ($opc == 0) {
                 $rr .= '<tr>';
                 $rr .= '<th scope="row">' . $fila[0] . '</th>';
@@ -120,42 +152,81 @@ class Administrador extends conexionBD
                 $rr .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <i class='fa-solid fa-trash icono delete'></i>    <i class='fa-solid fa-pen-to-square icono edit'></i> </td>";
                 $rr .= '</tr>';
             } elseif ($opc == 1) {
+
+                // Para la opción 1, simplemente devolver el número total de usuarios
                 $rr .= $fila[0];
             }
-
-
         }
+
+        // Cerrar la conexión a la base de datos
+        $conexion->close();
+
+        // Retornar el resultado final (cadena HTML o número total de usuarios)
         return $rr;
     }
 
 
-
+    /**
+     * Agrega un nuevo ejercicio a la tabla 'ejercicios' en la base de datos.
+     *
+     * @param string $nombre El nombre del ejercicio a insertar.
+     * @param string $instruc Las instrucciones del ejercicio a insertar.
+     * @param string $equiped El equipo necesario para el ejercicio a insertar.
+     * @param int $rep El número de repeticiones del ejercicio a insertar.
+     * @param int $series El número de series del ejercicio a insertar.
+     * @param int $tiempoDes El tiempo de descanso del ejercicio a insertar.
+     * @param string $direccion_media La dirección multimedia del ejercicio a insertar.
+     * @return int El número de filas afectadas por la operación de inserción.
+     */
     public static function agregarEjercicio($nombre, $instruc, $equiped, $rep, $series, $tiempoDes, $direccion_media)
     {
+        // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
+        // Construir la consulta SQL para insertar el nuevo ejercicio
         $sql = "INSERT INTO ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) ";
         $sql .= "VALUES ('$nombre', '$instruc', '$equiped', '$rep', '$series', '$tiempoDes', now(), '$direccion_media')";
-        echo $sql;
 
+        // Ejecutar la consulta SQL
         $conexion->query($sql);
 
+        // Obtener el número de filas afectadas por la operación de inserción
         $affected_rows = $conexion->affected_rows;
 
+        // Cerrar la conexión a la base de datos
+        $conexion->close();
+
+        // Retornar el número de filas afectadas por la operación de inserción
         return $affected_rows;
 
     }
 
-
+    /**
+     * Agrega una nueva rutina a la tabla 'rutinas' en la base de datos.
+     *
+     * @param string $nombreR El nombre de la rutina a insertar.
+     * @param string $descripcionR La descripción de la rutina a insertar.
+     * @param string $objetivo El objetivo de la rutina a insertar.
+     * @return int El número de filas afectadas por la operación de inserción.
+     */
     public static function agregarRutina($nombreR, $descripcionR, $objetivo)
     {
+        // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
+
+        // Construir la consulta SQL para insertar la nueva rutina
         $sql = "INSERT INTO rutinas (nombreRutina,descripcion,objetivo,fecha_registro ) VALUES ('$nombreR','$descripcionR','$objetivo', now())";
 
+        // Ejecutar la consulta SQL
         $conexion->query($sql);
 
+        // Obtener el número de filas afectadas por la operación de inserción
         $affected_rows = $conexion->affected_rows;
 
+        // Cerrar la conexión a la base de datos
+        $conexion->close();
+
+        // Retornar el número de filas afectadas por la operación de inserción
         return $affected_rows;
 
     }
@@ -264,17 +335,26 @@ class Administrador extends conexionBD
 
     }
 
-
+    /**
+     * Obtiene el último ID de la rutina insertada en la tabla 'rutinas'.
+     *
+     * @return int El último ID de la rutina insertada, o 0 si no se encontraron resultados.
+     */
     public static function getIdrutina()
     {
         // Conexión a la base de datos
         $conexion = self::getConexion();
 
+        // Consulta SQL para obtener el último ID insertado en la tabla 'rutinas'
         $sql = "SELECT MAX(id_rutina) FROM rutinas ";
-
+        // Ejecutar la consulta SQL
         $resultado = $conexion->query($sql);
+
+        // Variable para almacenar el resultado
         $r = 0;
+
         while ($fila = $resultado->fetch_array()) {
+            // Obtener el resultado de la consulta
             $r = $fila[0];
         }
 
@@ -294,7 +374,7 @@ class Administrador extends conexionBD
      * y un enlace para eliminar la asociación.
      *
      * @param int $id_rutina ID de la rutina para la cual se quieren ver los ejercicios asociados.
-     * @return string        Una cadena de filas HTML (`<tr>`) para cada ejercicio asociado a la rutina.
+     * @return string       Una cadena de filas HTML (`<tr>`) para cada ejercicio asociado a la rutina.
      */
     public static function See_Added_Exercises($id_rutina)
     {
@@ -324,7 +404,7 @@ class Administrador extends conexionBD
             $r .= '<td>' . $fila[4] . '</td>'; // Nombre del ejercicio
             $r .= '<td>';
             // Enlace para eliminar la asociación del ejercicio con la rutina
-            $r .= '<a href="../../controler/quitarEjercicio.php?idRelacion=' . $fila[0] . '" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"> ';
+            $r .= '<a href="../../controller/quitarEjercicio.php?idRelacion=' . $fila[0] . '" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"> ';
             $r .= '<i class="fa-solid fa-delete-left fs-5"></i>';
             $r .= '</a> ';
             $r .= '</td>';

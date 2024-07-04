@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../css/addGimansio.css">
 
 <div class="container">
-    <form action="../../controler/ejercicioAgregado.php" method="get">
+    <form action="../../controller/ejercicioAgregado.php" method="get">
         <div class="row">
 
             <div class="col-md-6 text-center">

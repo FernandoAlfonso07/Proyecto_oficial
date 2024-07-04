@@ -14,10 +14,10 @@ $direccion_media = $_GET['archivo'];
 
 //$resultado = ;
 
-if (Administrador::agregarEjercicio($nombre, $instruc, $equiped, $rep, $series, $tiempoDes, $direccion_media) > 0) {
+if (Administrador::agregarEjercicio($nombre, $instruc, $equiped, $rep, $series, $tiempoDes, $direccion_media) > 1) {
     echo 'No fue posible el registro';
 } else {
 
-    header('location: ../vista/administrador/controladorVadmin.php?seccionAd=verEjercicios');
+    header('location: ../view/administrador/controladorVadmin.php?seccionAd=verEjercicios');
     exit();
 }

@@ -19,7 +19,7 @@ if (!isset($_SESSION['intento'])) {
     $_SESSION['intento']++;
 
     if ($_SESSION['intento'] > 3) {
-        header('location: ../controler/errores/error1001.php');
+        header('location: ../controller/errores/error1001.php');
     } else {
         //echo 'Variable de intento= ' . $_SESSION['intento'];
         '';
@@ -48,7 +48,7 @@ if (!isset($_SESSION['intento'])) {
 
 
     <div class="container contenedor_formulario">
-        <form action="../controler/redirecionLogin.php">
+        <form action="../controller/redirecionLogin.php">
             <div class="row">
                 <div class="col-md-12">
                     <div class="contenedor_bienvenidos">

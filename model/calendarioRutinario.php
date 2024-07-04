@@ -103,12 +103,12 @@ JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '$dia' ";
 
             if ($p2 == $i) {
 
-                $r .= '<a href="../vista/enRutinasCr.php?p=' . $i . '"> ';
+                $r .= '<a href="../view/enRutinasCr.php?p=' . $i . '"> ';
                 $r .= '<button class="btn btn-primary btn-gradient botones activo">' . $i . '</button> </a>';
 
             } else {
 
-                $r .= '<a href="../vista/enRutinasCr.php?p=' . $i . '"> ';
+                $r .= '<a href="../view/enRutinasCr.php?p=' . $i . '"> ';
                 $r .= '<button class="btn bg-primary-subtle btn-gradient botones">' . $i . '</button> </a>';
 
             }

@@ -26,7 +26,7 @@ $seccionRol = usuarios::iniciarSesion(1, $correo, $password);
 if ($resultado < 1) {
 
 
-    header('location: ../vista/inicioSesion.php');
+    header('location: ../view/inicioSesion.php');
 
     exit();
 
@@ -42,7 +42,7 @@ if ($resultado < 1) {
 
         $_SESSION['id'] = $id_usuario;
 
-        header("location: ../vista/controlador.php?seccion=seccion1");
+        header("location: ../view/controlador.php?seccion=seccion1");
 
         exit();
     } elseif ($seccionRol == 1) {
@@ -51,7 +51,7 @@ if ($resultado < 1) {
 
         $_SESSION['id'] = $id_usuario;
 
-        header("location: ../vista/administrador/controladorVadmin.php?seccionAd=seccionAd1");
+        header("location: ../view/administrador/controladorVadmin.php?seccionAd=seccionAd1");
 
         exit();
 

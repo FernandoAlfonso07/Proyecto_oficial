@@ -17,7 +17,7 @@
         DEMASIADOS INTENTOS
     </p>
 
-    <a href="../../vista/inicioSesion.php">Reintentar</a>
+    <a href="../../view/inicioSesion.php">Reintentar</a>
 </body>
 
 </html>

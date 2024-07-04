@@ -26,7 +26,7 @@ if ($resultado > 1) {
     if (isset($_SESSION['id']))
         session_destroy();
 
-    header('Location: ../vista/inicioSesion.php');
+    header('Location: ../view/inicioSesion.php');
     exit();
 
 }

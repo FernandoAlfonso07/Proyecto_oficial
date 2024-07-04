@@ -5,11 +5,11 @@ if (!isset($_SESSION))
     session_start();
 
 if (!isset($_SESSION['id'])) {
-    header("location: ../vista/inicioSesion.php");
+    header("location: ../view/inicioSesion.php");
 
 } else {
     if ($_SESSION['id'] == "") {
-        header("location: ../vista/inicioSesion.php");
+        header("location: ../view/inicioSesion.php");
     }
 }
 
@@ -54,7 +54,7 @@ if ($resultado > 1) {
         $_SESSION['id'] = $id_usuario;
 
         // Redirige al usuario a la sección principal
-        header('location: ../vista/controlador.php?seccion=seccion1');
+        header('location: ../view/controlador.php?seccion=seccion1');
         exit();
     } else {
         // Maneja el error si no se encuentra el ID del usuario

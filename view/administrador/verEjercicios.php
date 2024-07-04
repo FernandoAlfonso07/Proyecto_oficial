@@ -3,7 +3,7 @@
 include ("../../model/administrador.php");
 
 ?>
-<link rel="stylesheet" href="../../vista/css/ejerciciosMostrar.css">
+<link rel="stylesheet" href="../../view/css/ejerciciosMostrar.css">
 
 
 <div class="container">

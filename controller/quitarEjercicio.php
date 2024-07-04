@@ -12,5 +12,5 @@ $resultado = Administrador::quitarEjercicio($id_relacion);
 if ($resultado > 1) {
     echo 'Error 420';
 } else {
-    header('location: ../vista/administrador/controladorVadmin.php?seccionAd=asociarEjerciciosRutinas');
+    header('location: ../view/administrador/controladorVadmin.php?seccionAd=asociarEjerciciosRutinas');
 }

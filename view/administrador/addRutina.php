@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="../../controler/rutinaAgregada.php" method="get">
+    <form action="../../controller/rutinaAgregada.php" method="get">
         <div class="row">
 
             <div class="col-md-6">

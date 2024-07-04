@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="../../controler/ejercicioAgregado.php" method="get">
+    <form action="../../controller/ejercicioAgregado.php" method="get">
         <div class="row">
             <div class="col-md-6">
                 Agrega un ejemplo grafico * <br>

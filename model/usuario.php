@@ -245,7 +245,6 @@ class usuarios extends conexionBD
      * @param int $id ID del usuario cuya cuenta se desea eliminar.
      * @return int Número de filas afectadas por la operación de eliminación.
      */
-
     public static function eliminarCuenta($id)
     {
 
@@ -260,6 +259,9 @@ class usuarios extends conexionBD
         $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de eliminación
 
         $conexion->close(); // Cierra la conexión a la base de datos
+
+        // retorna el numero de filas afectada.
+        return $affected_rows;
 
     }
 

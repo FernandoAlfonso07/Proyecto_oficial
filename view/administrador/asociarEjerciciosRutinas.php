@@ -32,7 +32,7 @@ if (!isset($_SESSION['id_rutina'])) {
             </h1>
         </div>
         <div class="col-md-6">
-            <form action="../../controler/addEjercicioRutine.php" method="get">
+            <form action="../../controller/addEjercicioRutine.php" method="get">
                 <label class="form-label">
                     Agregar ejercicios
                 </label>
