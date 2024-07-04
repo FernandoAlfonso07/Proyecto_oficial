@@ -270,7 +270,7 @@ class Administrador extends conexionBD
         // Conexión a la base de datos
         $conexion = self::getConexion();
 
-        $sql = "SELECT LAST_INSERT_ID() ";
+        $sql = "SELECT MAX(id_rutina) FROM rutinas ";
 
         $resultado = $conexion->query($sql);
         $r = 0;

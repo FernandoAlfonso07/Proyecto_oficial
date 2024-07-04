@@ -17,7 +17,7 @@ class calendarioRutinario extends conexionBD
     public static function mostrarCalendario($opc, $opcMuestra = null, $dia = null, $p = null)
     {
 
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
         $sql = "select ";
 
@@ -122,7 +122,7 @@ JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '$dia' ";
     public static function getDay($opc)
     {
 
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
         $sql = "select * from dias_semana ";
 

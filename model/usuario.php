@@ -24,7 +24,7 @@ class usuarios extends conexionBD
      */
     public static function getInformacion($opc, $id_usuario)
     {
-        $conexion = conexionBD::getConexion(); // Obtiene la conexión a la base de datos    
+        $conexion = self::getConexion(); // Obtiene la conexión a la base de datos    
         // Consulta SQL para obtener información del usuario
         $sql = "select * from usuarios WHERE id_usuario = $id_usuario ";
 
@@ -86,7 +86,7 @@ class usuarios extends conexionBD
      */
     public static function buscarId($correo, $password)
     {
-        $conexion = conexionBD::getConexion(); // Obtiene la conexión a la base de datos
+        $conexion = self::getConexion(); // Obtiene la conexión a la base de datos
 
         // Consulta SQL para buscar el ID del usuario basado en correo y contraseña
         $sql = "select id_usuario from usuarios where correo = '$correo' and password = '$password' ";
@@ -116,7 +116,7 @@ class usuarios extends conexionBD
     public static function iniciarSesion($opc, $correo, $password)
     {
 
-        $conexion = conexionBD::getConexion(); // Obtiene la conexión a la base de datos
+        $conexion = self::getConexion(); // Obtiene la conexión a la base de datos
 
         // Consulta SQL para contar coincidencias y obtener el ID del rol del usuario
         $sql = "select COUNT(*), id_rol FROM usuarios WHERE correo = '$correo' AND password = '$password' ";
@@ -168,7 +168,7 @@ class usuarios extends conexionBD
      */
     public static function getPerfil($opc, $idUsuario)
     {
-        $conexion = self::getConexion(); // Obtiene la conexión a la base de datos
+        $conexion = self::getConexion();// Obtiene la conexión a la base de datos
 
         // Construye la consulta SQL para obtener la información del perfil del usuario
 
@@ -249,7 +249,7 @@ class usuarios extends conexionBD
     public static function eliminarCuenta($id)
     {
 
-        $conexion = self::getConexion();  // Obtiene la conexión a la base de datos
+        $conexion = self::getConexion(); // Obtiene la conexión a la base de datos
 
         // Consulta SQL para eliminar la cuenta del usuario con el ID proporcionado
         $sql = "delete from usuarios where id_usuario = $id ";
@@ -327,5 +327,8 @@ class usuarios extends conexionBD
         $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de actualización
 
         $conexion->close(); // Cierra la conexión a la base de datos
+
+        // Retorna el número de filas afectadas
+        return $affected_rows;
     }
 }

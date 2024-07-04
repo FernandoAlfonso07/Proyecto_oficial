@@ -4,7 +4,7 @@ include_once ("connect.php");
 
 
 
-class EliminarDatos
+class EliminarDatos extends conexionBD
 {
 
     public static $opc;
@@ -14,7 +14,7 @@ class EliminarDatos
     public static function eliminarDatos($opc, $id_tabla)
     {
 
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
 
         if ($opc == 1) {

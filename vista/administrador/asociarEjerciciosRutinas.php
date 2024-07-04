@@ -9,11 +9,7 @@ if (!isset($_SESSION))
     session_start();
 
 if (!isset($_SESSION['id_rutina'])) {
-
-    $id_rutine = Administrador::getIdrutina();
-
-    $_SESSION['id_rutina'] = $id_rutine;
-
+    $_SESSION['id_rutina'] = '';
 }
 
 ?>
@@ -27,7 +23,12 @@ if (!isset($_SESSION['id_rutina'])) {
             </label>
 
             <h1>
-                <?php echo routines::getInformation(1, $_SESSION['id_rutina']) ?>
+                <?php
+                $id_rutine = Administrador::getIdrutina();
+                $_SESSION['id_rutina'] = $id_rutine;
+                echo routines::getInformation(1, $_SESSION['id_rutina']);
+
+                ?>
             </h1>
         </div>
         <div class="col-md-6">
