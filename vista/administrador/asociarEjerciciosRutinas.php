@@ -1,8 +1,8 @@
 <?php
 
-include ("../../model/administrador.php"); // Se incluye el archivo con la clase de 'Administrador'
+include_once ("../../model/administrador.php");// Se incluye el archivo con la clase de 'Administrador'
 
-include ("../../model/rutinas.php"); // Se incluye el archivo con la clase de 'routines'
+include_once ("../../model/rutinas.php");// Se incluye el archivo con la clase de 'routines'
 
 
 if (!isset($_SESSION))

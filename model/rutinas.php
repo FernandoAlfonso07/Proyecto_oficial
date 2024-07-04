@@ -1,7 +1,6 @@
 <?php
+include_once ("connect.php");
 
-
-include ("connect.php");
 
 class routines extends conexionBD
 {
@@ -20,7 +19,8 @@ class routines extends conexionBD
     public static function getInformation($opc, $id_routine)
     {
         // Conexión a la base de datos
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
+
 
         // Consulta SQL para recuperar todas las columnas de la tabla 'rutinas' para un ID específico
         $sql = "SELECT * FROM rutinas WHERE id_rutina = $id_routine ";

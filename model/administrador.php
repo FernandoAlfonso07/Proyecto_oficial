@@ -1,6 +1,6 @@
 <?php
 
-include ("connect.php");
+include_once ("connect.php");
 
 class Administrador extends conexionBD
 {
@@ -8,7 +8,7 @@ class Administrador extends conexionBD
 
     public static function verEjercicios()
     {
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
         $sql = "SELECT";
         $sql .= " t1.id_ejercicio, t1.nombre, t1.Instrucctiones, t1.equipoNecesario, t1.seires, t1.repeticiones, t1.tiempo_descanso, t1.fecha_registro, t3.nombreRutina, t3.id_rutina, t1.direccion_media";
@@ -53,7 +53,7 @@ class Administrador extends conexionBD
     {
 
 
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
         $sql = "DELETE FROM ejercicios WHERE id_ejercicio = $id_ejercicio ";
 
@@ -70,7 +70,7 @@ class Administrador extends conexionBD
 
     public static function contadorTotal() // Metodo para un contar el total de ejercicios.
     {
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
         $sql = "SELECT count(*) FROM ejercicios ";
 
@@ -89,7 +89,7 @@ class Administrador extends conexionBD
 
     public static function getUsuarios($opc)
     {
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
         if ($opc == 0) {
 
@@ -132,7 +132,7 @@ class Administrador extends conexionBD
 
     public static function agregarEjercicio($nombre, $instruc, $equiped, $rep, $series, $tiempoDes, $direccion_media)
     {
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
         $sql = "INSERT INTO ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) ";
         $sql .= "VALUES ('$nombre', '$instruc', '$equiped', '$rep', '$series', '$tiempoDes', now(), '$direccion_media')";
@@ -149,8 +149,7 @@ class Administrador extends conexionBD
 
     public static function agregarRutina($nombreR, $descripcionR, $objetivo)
     {
-        $conexion = conexionBD::getConexion();
-
+        $conexion = self::getConexion();
         $sql = "INSERT INTO rutinas (nombreRutina,descripcion,objetivo,fecha_registro ) VALUES ('$nombreR','$descripcionR','$objetivo', now())";
 
         $conexion->query($sql);
@@ -173,7 +172,7 @@ class Administrador extends conexionBD
     public static function mostrarEjercicios()
     {
         // Conexión a la base de datos
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
         // Consulta SQL para obtener id_ejercicio y nombre de todos los ejercicios
         $sql = "SELECT id_ejercicio, nombre FROM ejercicios ";
@@ -219,7 +218,7 @@ class Administrador extends conexionBD
     public static function added_Exercises($opc, $id_rutina, $id_ejercico)
     {
         // Conexión a la base de datos
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
         // Variable para almacenar la consulta SQL
         if ($opc == 0) {
@@ -269,7 +268,7 @@ class Administrador extends conexionBD
     public static function getIdrutina()
     {
         // Conexión a la base de datos
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
         $sql = "SELECT LAST_INSERT_ID() ";
 
@@ -300,7 +299,7 @@ class Administrador extends conexionBD
     public static function See_Added_Exercises($id_rutina)
     {
         // Conexión a la base de datos
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
 
         // Construcción de la consulta SQL para obtener los ejercicios asociados a la rutina
@@ -351,7 +350,7 @@ class Administrador extends conexionBD
     public static function quitarEjercicio($id_relacion)
     {
         // Conexión a la base de datos
-        $conexion = conexionBD::getConexion();
+        $conexion = self::getConexion();
 
         // Consulta SQL para eliminar la relación entre el ejercicio y la rutina
         $sql = "DELETE FROM ejercicio_rutinas WHERE id_relacion = $id_relacion ";
