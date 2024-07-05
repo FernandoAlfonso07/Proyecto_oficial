@@ -9,7 +9,8 @@
         <div class="row">
 
             <div class="col-md-6 text-center">
-                <img src="https://media-public.canva.com/ENy18/MAFNeiENy18/1/tl.png" class="img-fluid" width="50%" alt="Foto">
+                <img src="https://media-public.canva.com/eFyVc/MAFUTdeFyVc/1/wm_s.png" class="img-fluid" width="70%"
+                    alt="Foto">
             </div>
             <div class="col-md-6">
 

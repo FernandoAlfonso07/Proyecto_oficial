@@ -2,8 +2,9 @@
     <form action="../../controller/rutinaAgregada.php" method="get">
         <div class="row">
 
-            <div class="col-md-6">
-                <img src="#" alt="Imagen de Add Rutina">
+            <div class="col-md-6 text-center">
+                <img src="https://media-public.canva.com/9wGcU/MAFOtN9wGcU/1/tl.png" width="70%"
+                    alt="Imagen de Add Rutina">
             </div>
             <div class="col-md-6">
                 <div class="row">
