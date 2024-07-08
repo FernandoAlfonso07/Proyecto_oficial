@@ -141,7 +141,7 @@ create table rutinas(
     
 	primary key(id_rutina),
     
-	foreign key(id_ejercicio) references ejercicios(id_ejercicio) 
+	foreign key(id_categoria) references categorias_rutinas(id_categoria) 
     ON DELETE CASCADE 
     ON UPDATE CASCADE
     
@@ -270,7 +270,7 @@ select * from usuarios;
 /* CREACION TABLA DE GIMNASIOS */
 
 
-
+/*
 INSERT INTO ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) 
 values ('Curl con barra','De pie, sostén una barra con las manos a la anchura de los hombros, con las palmas hacia adelante.
 Mantén los codos pegados al cuerpo y levanta la barra hacia los hombros contrayendo los bíceps.
@@ -304,7 +304,7 @@ values ('Curl concentrado','1. Siéntate en un banco con los pies firmemente pla
 ,'');
 
 /* INGRESO DE DOS NUEVAS  */
-
+/*
 INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro) VALUES ('Fuerza y Masa para Bíceps',
  'Esta rutina se enfoca en ejercicios de fuerza para desarrollar masa muscular en los bíceps, combinando diferentes tipos de curls para trabajar el músculo desde distintos ángulos.'
  ,'Aumentar la fuerza y la masa muscular de los bíceps.',now());
@@ -316,11 +316,11 @@ INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro) VALUES
   /* SE ASOCIAN LOS EJERCICIOS A LAS RUTINAS */
  
 
- 
+ /*
  INSERT INTO ejercicio_rutinas (id_rutina, id_ejercicio) VALUES (2, 5);
 
 /* SE ASOCIAN RUTINAS A LOS DIAS */
-
+/* 
 INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES ( 6, 1);
 INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES ( 6,2);
  /* t4.id_dia,
@@ -332,7 +332,7 @@ t3.fecha_registro,
 t3.objetivo,
 t2.nombre AS nombre_ejercicio,
 t2.tiempo_descanso AS Descanso_min */
-
+/*
 INSERT INTO rutinas (nombreRutina,descripcion,objetivo,fecha_registro ) VALUES ('','','', now());
 
 /*
@@ -341,7 +341,7 @@ t2 = ejercicios
 t3 = rutinas
 t4 = dias_semana
 t5 = relacion_dia_rutina
-*/
+
 SELECT 
 t4.nombre,
 t2.direccion_media,
@@ -356,9 +356,9 @@ JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
 JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
 JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
 JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '6';
-
+*/
 -- CONTEO DE EJERCICIO PARA LA PAGINACION
-
+/*
 select count(*)
 FROM dias_semana t4
 JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
@@ -394,7 +394,7 @@ select t3.nombreRutina, (select t1.id_ejercicio, t1.nombre from ejercicios t1 jo
 
 /* Sql para ver los ejercicios agregados a esta rutina */
 
-
+/*
 select t2.id_relacion, t3.id_rutina, t3.nombreRutina, t1.id_ejercicio, t1.nombre
 from ejercicios t1 
 join ejercicio_rutinas t2 on t1.id_ejercicio = t2.id_ejercicio
@@ -418,4 +418,9 @@ SELECT count(*) FROM ejercicio_rutinas WHERE id_rutina = 1 AND id_ejercicio = 1;
 SELECT * FROM rutinas WHERE id_rutina = 1;
 
 SELECT MAX(id_rutina) FROM rutinas;
+*/
+
+
+INSERT INTO calendario_rutinario (nombre_personalizado, descripcion, id_dia, id_rutina, fecha_registro) VALUES ('Calendario rutinario v1', 'Esta es una prueba de insert', 1, 1, now());
+
 
