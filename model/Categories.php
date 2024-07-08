@@ -1,6 +1,6 @@
 <?php
 
-include_once ('../../model/connect.php');
+include_once ("connect.php");
 
 class CycleCreateCalender extends conexionBD
 {
@@ -53,4 +53,3 @@ class CycleCreateCalender extends conexionBD
         return $r;
     }
 }
-
