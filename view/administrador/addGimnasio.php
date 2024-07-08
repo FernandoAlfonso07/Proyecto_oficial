@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col-md-6 text-center">
-                <img src="../IMG_index/addGimnasio.png" class="img-fluid" width="80%" alt="Foto">
+                <img src="../img/addGimnasio.png" class="img-fluid" width="80%" alt="Foto">
             </div>
             <div class="col-md-6">
 

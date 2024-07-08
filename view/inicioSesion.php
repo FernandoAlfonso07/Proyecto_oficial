@@ -19,7 +19,7 @@ if (!isset($_SESSION['intento'])) {
     $_SESSION['intento']++;
 
     if ($_SESSION['intento'] > 3) {
-        header('location: ../controller/errores/error1001.php');
+        header('location: ../controller/errors/error1001.php');
     } else {
         //echo 'Variable de intento= ' . $_SESSION['intento'];
         '';
@@ -41,7 +41,7 @@ if (!isset($_SESSION['intento'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilos_inicio_sesion.css">
-    <link rel="icon" href="./IMG_index/logosinfondo.png">
+    <link rel="icon" href="./img/logosinfondo.png">
 </head>
 
 <body>
@@ -78,7 +78,7 @@ if (!isset($_SESSION['intento'])) {
                 </div>
 
                 <div class="col-md-6 contenedor_imagen">
-                    <img src="IMG_index/LOGO.png" class="img-thumbnail" alt="logo" width="220em">
+                    <img src="img/LOGO.png" class="img-thumbnail" alt="logo" width="220em">
                 </div>
 
                 <div class="col-md-12">

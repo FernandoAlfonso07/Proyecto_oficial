@@ -43,7 +43,7 @@ $genero = $_GET['genero'];
 $resultado = usuarios::registrar($nombres, $apellidos, $telefono, $correoElectronico, $password, $pesoActual, $altura, $genero);
 
 if ($resultado > 1) {
-    header('location: errores/errorRegister.php');
+    header('location: errors/errorRegister.php');
 
 } else {
 
@@ -58,7 +58,7 @@ if ($resultado > 1) {
         exit();
     } else {
         // Maneja el error si no se encuentra el ID del usuario
-        header('location: errores/errorRegister.php');
+        header('location: errors/errorRegister.php');
         exit();
     }
 }

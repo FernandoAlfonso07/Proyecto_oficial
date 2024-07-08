@@ -20,7 +20,7 @@ $dia_semana = date('w');
     <title>En rutina | <?php echo calendarioRutinario::mostrarCalendario(1, 0, $dia_semana, $p) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="icon" href="./IMG_index/logosinfondo.png">
+    <link rel="icon" href="./img/logosinfondo.png">
 
     <link rel="stylesheet" href="css/enRutinasCr.css">
 
@@ -38,7 +38,7 @@ $dia_semana = date('w');
                 </h1>
             </div>
             <div class="col-md-12 text-center imagenA">
-                <img src="IMG_index/ <?php echo calendarioRutinario::mostrarCalendario(1, 1, $dia_semana, $p) ?> "
+                <img src="img/ <?php echo calendarioRutinario::mostrarCalendario(1, 1, $dia_semana, $p) ?> "
                     width="100%" alt="imagen ejercicios">
             </div>
             <div class="col-md-12 colorear text-center nombreEjercicio redondear">

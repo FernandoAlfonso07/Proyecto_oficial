@@ -7,7 +7,7 @@
     <title>Bootstrap demo</title>
     <script src="https://kit.fontawesome.com/296731592d.js" crossorigin="anonymous"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" href="./IMG_index/logosinfondo.png">
+    <link rel="icon" href="./img/logosinfondo.png">
     <link rel="stylesheet" href="css/estilos-registro.css">
 
 
@@ -18,7 +18,7 @@
     <div class="container-fluid h-100">
         <div class="row h-100">
             <div class="col-md-6 left-side d-flex flex-column justify-content-center align-items-center">
-                <img src="IMG_index/LOGO.png" class="img-fluid" width="160px" alt="">
+                <img src="img/LOGO.png" class="img-fluid" width="160px" alt="">
                 <h2>
                     <b>
                         WORLDFIT

@@ -90,6 +90,17 @@ ADD CONSTRAINT FK_usuario_genero
 foreign key (id_genero) references genero(id_genero);
 */
 
+-- CREACION DE LA TABLA DE CATEGORIAS
+
+CREATE TABLE categorias_rutinas (
+	
+    id_categoria int not null,
+    categoria varchar(100) not null,
+    
+    primary key (id_categoria)
+
+);
+
 
 -- ESTA ES LA TABLA DE EJERCICIOS
 create table ejercicios(
@@ -194,6 +205,21 @@ create table relacion_dia_rutina(
 
 );
 
+
+create table calendario_rutinario(
+
+	id_calendario int not null auto_increment,
+    nombre_personalizado varchar(100) not null,
+    descripcion varchar(200) not null,
+    id_dia int null,
+    id_rutina int null,
+    fecha_registro date not null,
+    
+    primary key(id_calendario),
+    foreign key (id_dia) REFERENCES dias_semana(id_dia) ON DELETE CASCADE ON UPDATE CASCADE,
+    foreign key (id_rutina) REFERENCES rutinas(id_rutina) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
 -- select * from relacion_dia_rutina;
 
 -- creacion de las llaves foraneas para el id de la tabla DIA SEMANAS
