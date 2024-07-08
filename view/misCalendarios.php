@@ -7,7 +7,7 @@
 <div class="container text-center crear_calendario_btn">
     <div class="row">
         <div class="col-md-12">
-            <a href="crear_calendario.html">
+            <a href="controlador.php?seccion=createCalender">
                 <i class="fa-regular fa-calendar-plus"></i>
             </a>
         </div>

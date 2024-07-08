@@ -6,9 +6,10 @@ include ("../model/administrador.php");
 $nombreR = $_GET['nombreRutina'];
 $descripcionR = $_GET['Descripcion'];
 $objetivo = $_GET['objetivo'];
+$category = $_GET['id_category'];
 
 // Llama al método agregarRutina de la clase Administrador para agregar una nueva rutina.
-$respuesta = Administrador::agregarRutina($nombreR, $descripcionR, $objetivo);
+$respuesta = Administrador::agregarRutina($category, $nombreR, $descripcionR, $objetivo);
 
 
 // Verifica la respuesta de la operación.

@@ -209,13 +209,13 @@ class Administrador extends conexionBD
      * @param string $objetivo El objetivo de la rutina a insertar.
      * @return int El número de filas afectadas por la operación de inserción.
      */
-    public static function agregarRutina($nombreR, $descripcionR, $objetivo)
+    public static function agregarRutina($category, $nombreR, $descripcionR, $objetivo)
     {
         // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
         // Construir la consulta SQL para insertar la nueva rutina
-        $sql = "INSERT INTO rutinas (nombreRutina,descripcion,objetivo,fecha_registro ) VALUES ('$nombreR','$descripcionR','$objetivo', now())";
+        $sql = "INSERT INTO rutinas (id_categoria, nombreRutina,descripcion,objetivo,fecha_registro ) VALUES ($category, '$nombreR','$descripcionR','$objetivo', now())";
 
         // Ejecutar la consulta SQL
         $conexion->query($sql);
@@ -447,4 +447,24 @@ class Administrador extends conexionBD
         return $affected_rows;
 
     }
+
+    public static function createCategory($nameCategory)
+    {
+        $conexion = self::getConexion();
+
+        $sql = "INSERT INTO categorias_rutinas (categoria) VALUES ('$nameCategory');";
+
+        $conexion->query($sql);
+
+        $affected_rows = $conexion->affected_rows;
+
+        // Cerrar la conexión a la base de datos
+        $conexion->close();
+
+        // Retornar el número de filas afectadas
+        return $affected_rows;
+
+
+    }
+
 }

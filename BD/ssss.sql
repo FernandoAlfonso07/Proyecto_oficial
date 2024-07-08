@@ -94,7 +94,7 @@ foreign key (id_genero) references genero(id_genero);
 
 CREATE TABLE categorias_rutinas (
 	
-    id_categoria int not null,
+    id_categoria int not null auto_increment,
     categoria varchar(100) not null,
     
     primary key (id_categoria)
@@ -137,9 +137,17 @@ create table rutinas(
     descripcion varchar(200) not null,
     objetivo varchar(100) not null,
 	fecha_registro datetime not null,
-	primary key(id_rutina)
+    id_categoria int null,
+    
+	primary key(id_rutina),
+    
+	foreign key(id_ejercicio) references ejercicios(id_ejercicio) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE
     
 );
+
+
 
 
 -- ESTA ES LA TABLA QUE RELACIONA RUTINAS Y EJERCICIOS
@@ -364,9 +372,22 @@ select * from ejercicios;
 select * from rutinas;
 select * from ejercicio_rutinas; 
 select * from relacion_dia_rutina;
+select * from categorias_rutinas;
+
+INSERT INTO categorias_rutinas (categoria) VALUES ('Espalda');
+INSERT INTO categorias_rutinas (categoria) VALUES ('Pierna');
+INSERT INTO categorias_rutinas (categoria) VALUES ('Pecho y hombro');
+INSERT INTO categorias_rutinas (categoria) VALUES ('Rutina de brazo v2');
+INSERT INTO categorias_rutinas (categoria) VALUES ('Rutian de pierna v1');
+INSERT INTO categorias_rutinas (categoria) VALUES ('Rutina de Pecho y hombro v1');
+
 
 select count(*) from ejercicios;
 SELECT id_ejercicio, nombre FROM ejercicios;
+
+SELECT nombre FROM dias_semana WHERE id_dia = "2";
+
+SELECT * FROM categorias_rutinas;
 
 
 select t3.nombreRutina, (select t1.id_ejercicio, t1.nombre from ejercicios t1 join ejercicio_rutinas t2 on t1.id_ejercicio = t2.id_ejercicio where t3.id_rutina = 1) as ejerciciosAgregados from rutinas t3;
