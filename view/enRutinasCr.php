@@ -9,6 +9,7 @@ if (isset($_GET['p'])) {
 
 $dia_semana = date('w');
 
+
 ?>
 
 <!doctype html>

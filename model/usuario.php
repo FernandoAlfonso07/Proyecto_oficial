@@ -333,4 +333,29 @@ class usuarios extends conexionBD
         // Retorna el número de filas afectadas
         return $affected_rows;
     }
+
+
+    public static function createCalenderR($id_usuario, $CustomName, $description, $id_day, $id_routine)
+    {
+
+        $conexion = self::getConexion();
+
+        $sql = "";
+
+        $conexion->query($sql); // Ejecuta la consulta SQL para actualizar los datos del usuario
+
+        $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de actualización
+
+        $conexion->close(); // Cierra la conexión a la base de datos
+
+        // Retorna el número de filas afectadas
+        return $affected_rows;
+    }
+
+
 }
+
+
+
+
+

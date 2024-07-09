@@ -1,11 +1,11 @@
-
+/* General Styles */
 body {
     background-color: white;
 }
 
 .opciones-dos {
     padding-top: 100px;
-}|
+}
 
 a {
     text-decoration: none;
@@ -16,6 +16,7 @@ a {
     filter: brightness(80%);
     max-height: 30em;
     object-fit: cover;
+    transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .opciones-dos-dos {
@@ -25,10 +26,24 @@ a {
 .contenedor-opcion-dos {
     border: none;
     border-radius: 50px;
+    display: flex;
+    text-align: center;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.contenedor-opcion-dos:hover {
+    transform: scale(1.05);
+    box-shadow: rgba(14, 30, 37, 0.24) 0px 4px 8px 0px, rgba(14, 30, 37, 0.64) 0px 4px 32px 0px;
 }
 
 .texto-opcion-dos {
     padding-top: 40px;
+    width: 25rem;
+    height: 20rem;
+    border: 2px solid #fafafa10;
+    margin: 0 auto;
+    transition: background 0.3s ease-in-out;
 }
 
 .texto-opcion-dos img {
@@ -36,21 +51,11 @@ a {
 }
 
 .texto-opcion-dos:hover img {
-    transition: ease 0.5s;
     transform: scale(1.90);
 }
 
-
-.contenedor-opcion-dos {
-    display: flex;
-    text-align: center;
-}
-
-.texto-opcion-dos {
-    width: 25rem;
-    height: 20rem;
-    border: 2px solid #fafafa10;
-    margin: 0 au;
+.texto-opcion-dos:hover {
+    background: rgba(0, 0, 0, 0.5); /* Fondo más oscuro */
 }
 
 @media (max-width: 768px) {
@@ -58,7 +63,7 @@ a {
         width: 20rem;
         height: 15rem;
         border: 2px solid #fafafa10;
-        margin: 0 au;
+        margin: 0 auto;
     }
 }
 
@@ -81,6 +86,10 @@ a {
     font-weight: bold;
 }
 
-.contenedor-opcion-dos {
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+.contenedor-opcion-dos:hover .opciones-dos img {
+    filter: brightness(50%);
+}
+
+.contenedor-opcion-dos:hover .efecto-cristal {
+    background: rgba(0, 0, 0, 0.5); /* Fondo más oscuro */
 }

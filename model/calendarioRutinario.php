@@ -25,26 +25,27 @@ class calendarioRutinario extends conexionBD
             $sql .= "count(*) ";
 
         } elseif ($opc == 1) {
-            $sql .= "t4.nombre,
-t2.direccion_media,
-t2.nombre,
-t2.Instrucctiones,
-t2.equipoNecesario,
-t2.seires,
-t2.repeticiones,
-t2.tiempo_descanso ";
+            $sql .= "t2.nombre,
+t5.direccion_media,
+t5.nombre,
+t5.Instrucctiones,
+t5.equipoNecesario,
+t5.seires,
+t5.repeticiones,
+t5.tiempo_descanso ";
         }
 
-        $sql .= "FROM dias_semana t4
-JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
-JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
-JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
-JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '$dia' ";
+        $sql .= "FROM calendario_rutinario t1 
+JOIN dias_semana t2 ON t1.id_dia = t2.id_dia
+JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina
+JOIN ejercicio_rutinas t4 ON t4.id_rutina = t3.id_rutina
+JOIN ejercicios t5 ON t4.id_ejercicio = t5.id_ejercicio
+WHERE t1.id_dia = '$dia' ";
 
         if ($opc == 0) {
             $sql .= "";
         } elseif ($opc == 1) {
-            $sql .= "limit $p ,1;";
+            $sql .= "LIMIT $p , 1;";
         }
 
         // echo $sql;
@@ -56,7 +57,7 @@ JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '$dia' ";
         while ($fila = $resultado->fetch_array()) {
 
             if ($opc == 0) {
-                $rr = $fila[0];
+                $rr = $fila[0]; // Muestra el conteo total de ejercicios en esa rutina.
 
             } elseif ($opc == 1) {
 
@@ -115,26 +116,6 @@ JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '$dia' ";
 
         }
         return $r;
-
-    }
-
-
-    public static function getDay($opc)
-    {
-
-        $conexion = self::getConexion();
-
-        $sql = "select * from dias_semana ";
-
-        $r = $conexion->query($sql);
-        $r = '';
-        while ($fila = $r->fetch_array()) {
-            if ($opc == 0) {
-                $r = $fila[0]; // Esto muestra el id del dia.
-            } else {
-                $r = $fila[1]; // Esto muestra el Nombre del dia.
-            }
-        }
 
     }
 

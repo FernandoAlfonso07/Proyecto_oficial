@@ -38,7 +38,7 @@ class CycleCreateCalender extends conexionBD
 
                 $r .= '<div class="row">';
                 $r .= '<div class="col-md-6">';
-                $r .= $fila[0];
+                $r .= '<b>' . $fila[0] . '</b>';
                 $r .= '</div>';
                 $r .= '<div class="col-md-6">';
                 $r .= '<select class="form-select my-2" aria-label="Default select example">';

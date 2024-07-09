@@ -217,15 +217,18 @@ create table relacion_dia_rutina(
 create table calendario_rutinario(
 
 	id_calendario int not null auto_increment,
+    id_usuario int null,
     nombre_personalizado varchar(100) not null,
     descripcion varchar(200) not null,
     id_dia int null,
     id_rutina int null,
-    fecha_registro date not null,
+    fecha_registro datetime not null,
     
     primary key(id_calendario),
     foreign key (id_dia) REFERENCES dias_semana(id_dia) ON DELETE CASCADE ON UPDATE CASCADE,
-    foreign key (id_rutina) REFERENCES rutinas(id_rutina) ON DELETE CASCADE ON UPDATE CASCADE
+    foreign key (id_rutina) REFERENCES rutinas(id_rutina) ON DELETE CASCADE ON UPDATE CASCADE,
+    
+     foreign key (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 -- select * from relacion_dia_rutina;
@@ -373,6 +376,7 @@ select * from rutinas;
 select * from ejercicio_rutinas; 
 select * from relacion_dia_rutina;
 select * from categorias_rutinas;
+select * from calendario_rutinario;
 
 INSERT INTO categorias_rutinas (categoria) VALUES ('Espalda');
 INSERT INTO categorias_rutinas (categoria) VALUES ('Pierna');
@@ -421,6 +425,70 @@ SELECT MAX(id_rutina) FROM rutinas;
 */
 
 
-INSERT INTO calendario_rutinario (nombre_personalizado, descripcion, id_dia, id_rutina, fecha_registro) VALUES ('Calendario rutinario v1', 'Esta es una prueba de insert', 1, 1, now());
+INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, id_dia, id_rutina, fecha_registro) VALUES (2, 'Calendario rutinario v1', 'Esta es una prueba de insert', 1, 1, now());
+
+SELECT t1.nombre_personalizado ,t2.nombre, t3.nombreRutina FROM calendario_rutinario t1 JOIN dias_semana t2 ON t1.id_dia = t2.id_dia
+JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina;
+
+select
+t2.direccion_media,
+t2.nombre,
+t2.Instrucctiones,
+t2.equipoNecesario,
+t2.seires,
+t2.repeticiones,
+t2.tiempo_descanso
+FROM dias_semana t4
+JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
+JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
+JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
+JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina 
+JOIN calendario_rutinario t6 ON;
 
 
+SELECT 
+t2.nombre,
+t5.direccion_media,
+t5.nombre,
+t5.Instrucctiones,
+t5.equipoNecesario,
+t5.seires,
+t5.repeticiones,
+t5.tiempo_descanso
+FROM calendario_rutinario t1 
+JOIN dias_semana t2 ON t1.id_dia = t2.id_dia
+JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina
+JOIN ejercicio_rutinas t4 ON t4.id_rutina = t3.id_rutina
+JOIN ejercicios t5 ON t4.id_ejercicio = t5.id_ejercicio
+WHERE t1.id_dia = 1 LIMIT 2 , 1;
+
+SELECT 
+COUNT(*)
+FROM calendario_rutinario t1 
+JOIN dias_semana t2 ON t1.id_dia = t2.id_dia
+JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina
+JOIN ejercicio_rutinas t4 ON t4.id_rutina = t3.id_rutina
+JOIN ejercicios t5 ON t4.id_ejercicio = t5.id_ejercicio
+WHERE t1.id_dia = 1;
+
+
+-- WHERE t4.id_dia = 2
+select * from relacion_dia_rutina;
+
+INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES (1, 2);
+
+select 
+t4.nombre,
+t2.direccion_media,
+t2.nombre,
+t2.Instrucctiones,
+t2.equipoNecesario,
+t2.seires,
+t2.repeticiones,
+t2.tiempo_descanso 
+FROM dias_semana t4
+JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
+JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
+JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
+JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '1'
+limit 2 ,1;

@@ -19,6 +19,8 @@ if (!isset($_SESSION['intento'])) {
     $_SESSION['intento']++;
 
     if ($_SESSION['intento'] > 3) {
+
+        session_destroy();
         header('location: ../controller/errors/error1001.php');
     } else {
         //echo 'Variable de intento= ' . $_SESSION['intento'];

@@ -1,4 +1,15 @@
 <?php
+
+if (!isset($_SESSION))
+    session_start();
+
+if (!isset($_SESSION['intento'])) {
+    $_SESSION['intento'] = 0;
+} else {
+
+    session_destroy();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
