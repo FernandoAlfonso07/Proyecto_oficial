@@ -48,15 +48,39 @@ class Administrador extends conexionBD
         return $r;
     }
 
-
-    public static function borrarEjercicio($id_ejercicio)
+    public static function delete_data($opc, $id_data) // ************************ 
     {
 
+        $table = '';
+
+        $identifier = '';
 
         $conexion = self::getConexion();
 
-        $sql = "DELETE FROM ejercicios WHERE id_ejercicio = $id_ejercicio ";
+        switch ($opc) {
+            case 0:
+                $table = 'rutinas';
 
+                $identifier = 'id_rutina';
+
+                break;
+            case 1:
+                $table = 'ejercicios';
+
+                $identifier = 'id_ejercicio';
+
+                break;
+            case 2:
+                $table = 'usuarios';
+
+                $identifier = 'id_usuario';
+
+                break;
+        }
+
+        $sql = "DELETE FROM $table WHERE $identifier = $id_data ";
+
+        echo 'script ' . $sql;
 
         $conexion->query($sql);
 
@@ -464,6 +488,46 @@ class Administrador extends conexionBD
         // Retornar el número de filas afectadas
         return $affected_rows;
 
+
+    }
+
+
+    public static function showRoutines($opc)
+    {
+
+
+        $conexion = self::getConexion();
+
+        $sql = "SELECT ";
+
+        if ($opc == 0) {
+            $sql .= "count(*) ";
+        } else {
+            $sql .= "t1.id_rutina, t1.nombreRutina, t1.objetivo , t1.fecha_registro, t2.categoria ";
+        }
+
+
+        $sql .= "FROM rutinas t1 JOIN categorias_rutinas t2 ON t1.id_categoria = t2.id_categoria ";
+        $result = $conexion->query($sql);
+        $r = '';
+        while ($fila = $result->fetch_array()) {
+
+            if ($opc == 0) {
+                $r = $fila[0];
+            } else {
+                $r .= '<tr>';
+                $r .= "<td>" . $fila[0] . "</td>"; // Esto muestra el IDX
+                $r .= "<td>" . $fila[1] . "</td>"; // Esto muestra el NOMBRE DE LA RUTINA
+                $r .= "<td>" . $fila[2] . "</td>"; // Esto muestra el OBJETIVO
+                $r .= "<td>" . $fila[3] . "</td>"; // Esto muestra el FECHA REGISTRO
+                $r .= "<td>" . $fila[4] . "</td>"; // Esto muestra el CATEGORIA ASOCIADA
+                $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <a href='../../controller/deleteRoutine.php?id_routine=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <i class='fa-solid fa-pen-to-square icono edit'></i>";
+                $r .= " </td>";
+                $r .= '</tr>';
+            }
+
+        }
+        return $r;
 
     }
 

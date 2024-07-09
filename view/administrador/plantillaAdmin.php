@@ -91,7 +91,8 @@ include ("../../view/nombreSeccionH.php");
                                 Rutinas <i class="fa-solid fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item enlace_secundario" href="#"><i
+                                <li><a class="dropdown-item enlace_secundario"
+                                        href="controladorVadmin.php?seccionAd=showRoutines"><i
                                             class="fa-solid fa-eye icono"></i> Ver Rutinas</a></li>
                                 <li><a class="dropdown-item enlace_secundario"
                                         href="controladorVadmin.php?seccionAd=addRutina"><i

@@ -55,7 +55,7 @@ create table usuarios(
 
 -- ingresar un usuario;
 
-SELECT * FROM usuarios;
+SELECT * FROM rutinas;
 
 
 -- UPDATE usuarios SET id_rol = 1 WHERE id_usuario = 3;
@@ -425,25 +425,10 @@ SELECT MAX(id_rutina) FROM rutinas;
 */
 
 
-INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, id_dia, id_rutina, fecha_registro) VALUES (2, 'Calendario rutinario v1', 'Esta es una prueba de insert', 1, 1, now());
+-- INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, id_dia, id_rutina, fecha_registro) VALUES (2, 'Calendario rutinario v1', 'Esta es una prueba de insert', 1, 1, now());
 
 SELECT t1.nombre_personalizado ,t2.nombre, t3.nombreRutina FROM calendario_rutinario t1 JOIN dias_semana t2 ON t1.id_dia = t2.id_dia
 JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina;
-
-select
-t2.direccion_media,
-t2.nombre,
-t2.Instrucctiones,
-t2.equipoNecesario,
-t2.seires,
-t2.repeticiones,
-t2.tiempo_descanso
-FROM dias_semana t4
-JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
-JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
-JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
-JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina 
-JOIN calendario_rutinario t6 ON;
 
 
 SELECT 
@@ -475,20 +460,11 @@ WHERE t1.id_dia = 1;
 -- WHERE t4.id_dia = 2
 select * from relacion_dia_rutina;
 
-INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES (1, 2);
+-- INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES (1, 2);
 
-select 
-t4.nombre,
-t2.direccion_media,
-t2.nombre,
-t2.Instrucctiones,
-t2.equipoNecesario,
-t2.seires,
-t2.repeticiones,
-t2.tiempo_descanso 
-FROM dias_semana t4
-JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
-JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
-JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
-JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '1'
-limit 2 ,1;
+
+SELECT t1.id_rutina, t1.nombreRutina, t1.objetivo , t1.fecha_registro, t2.categoria FROM rutinas t1 JOIN categorias_rutinas t2 ON t1.id_categoria = t2.id_categoria;
+
+DELETE FROM rutinas WHERE id_rutina = 1;
+
+select * from rutinas;
