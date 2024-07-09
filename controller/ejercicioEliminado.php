@@ -1,9 +1,11 @@
 <?php
 
 
-include ("../model/administrador.php");
+include_once ("../model/administrador.php");
+include_once ('../model/validate.php'); // Se incluye la clase que permite sanitizar
 
 $id_ejercicio = $_GET['id_ejercicio'];
+$id_ejercicio = validate::sanitize($id_ejercicio); // Sanitización de la contraseña;
 
 $resultado = Administrador::delete_data(1, $id_ejercicio);
 

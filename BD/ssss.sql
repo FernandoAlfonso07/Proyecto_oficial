@@ -467,4 +467,4 @@ SELECT t1.id_rutina, t1.nombreRutina, t1.objetivo , t1.fecha_registro, t2.catego
 
 DELETE FROM rutinas WHERE id_rutina = 1;
 
-select * from rutinas;
+select * from usuarios where 2=1;

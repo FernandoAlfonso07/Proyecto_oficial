@@ -1,11 +1,11 @@
 <?php
 
-
 include_once ('../model/administrador.php');
-
+include_once ('../model/validate.php'); // Se incluye la clase que permite sanitizar
 
 
 $nameCategory = $_GET['nameCategory'];
+$nameCategory = validate::sanitize($nameCategory); // Sanitización de la contraseña;
 
 $cont = Administrador::createCategory($nameCategory);
 

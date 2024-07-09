@@ -1,6 +1,7 @@
 <?php
 
-include ("../model/usuario.php");
+include_once ("../model/usuario.php");
+include_once ('../model/validate.php'); // Se incluye la clase que permite sanitizar
 
 if (!isset($_SESSION))
     session_start();
@@ -16,6 +17,7 @@ if (!isset($_SESSION['id'])) {
 
 
 $id = $_GET['iduser'];
+$id = validate::sanitize($id); // Sanitización de la contraseña;
 
 $resultado = usuarios::eliminarCuenta($id);
 

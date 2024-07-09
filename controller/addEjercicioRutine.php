@@ -1,11 +1,14 @@
 <?php
 
-include ("../model/administrador.php");
+include_once ("../model/administrador.php");
+include_once ('../model/validate.php'); // Se incluye la clase que permite sanitizar
 
 // Obtener los valores de los parámetros GET
 $id_rutina = $_GET['rutinaID'];
+$id_rutina = validate::sanitize($id_rutina); // Sanitización de la contraseña;
 
 $id_ejercico = $_GET['ejercicio_value'];
+$id_ejercico = validate::sanitize($id_ejercico); // Sanitización de la contraseña;
 
 /**
  * Verificar si la combinación de id_rutina y id_ejercicio ya existe.
@@ -40,7 +43,7 @@ if ($cont > 0) {
         echo 'Error 3019 No fue posible asociar el ejercicio';
     } else {
         // Si la inserción fue exitosa, redirigir a la página asociarEjerciciosRutinas.php
-    
+
         header('Location:  ../view/administrador/controladorVadmin.php?seccionAd=asociarEjerciciosRutinas');
         exit();
 

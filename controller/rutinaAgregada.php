@@ -1,12 +1,24 @@
 <?php
 // Incluye el archivo que contiene la definición de la clase Administrador.
-include ("../model/administrador.php");
+include_once ("../model/administrador.php");
+include_once ('../model/validate.php'); // Se incluye la clase que permite sanitizar
 
 // Obtiene los valores de los parámetros enviados a través del método GET.
+
 $nombreR = $_GET['nombreRutina'];
+$nombreR = validate::sanitize($nombreR); // Sanitización de la contraseña;
+
 $descripcionR = $_GET['Descripcion'];
+$descripcionR = validate::sanitize($descripcionR); // Sanitización de la contraseña;
+
 $objetivo = $_GET['objetivo'];
+$objetivo = validate::sanitize($objetivo); // Sanitización de la contraseña;
+
 $category = $_GET['id_category'];
+$category = validate::sanitize($category); // Sanitización de la contraseña;
+
+
+
 
 // Llama al método agregarRutina de la clase Administrador para agregar una nueva rutina.
 $respuesta = Administrador::agregarRutina($category, $nombreR, $descripcionR, $objetivo);
