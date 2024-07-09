@@ -1,0 +1,107 @@
+body {
+    background-color: #f0f8ff;
+}
+
+.delete {
+    transition: ease 0.2s;
+}
+
+.delete:hover {
+    /* boton de borrar */
+    color: red;
+    cursor: pointer;
+    transition: ease 0.2s;
+}
+
+.edit {
+    transition: ease 0.2s;
+}
+
+.icono {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.icono:hover {
+    cursor: pointer;
+}
+
+.edit:hover {
+    /* boton de editar */
+    color: rgb(0, 89, 255);
+    cursor: pointer;
+    transition: ease 0.2s;
+}
+
+.moreDetails {
+    transition: ease 0.2s;
+}
+
+.moreDetails:hover {
+    /* boton de detalles */
+    color: rgb(223, 208, 0);
+    cursor: pointer;
+    transition: ease 0.2s;
+}
+
+
+
+.conteo {
+    box-shadow: rgba(0, 161, 255, 0.4) -5px 5px,
+        rgba(0, 161, 255, 0.3) -10px 10px,
+        rgba(0, 161, 255, 0.2) -15px 15px,
+        rgba(0, 161, 255, 0.1) -20px 20px,
+        rgba(0, 161, 255, 0.05) -25px 25px;
+
+    transition: ease 0.5s;
+    padding: 20px;
+}
+
+.conteo:hover {
+    cursor: pointer;
+    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+    transition: ease 0.5s;
+}
+
+.container.tabla {
+    margin-top: 20px;
+    border: 2px solid #00A1FF;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table thead th {
+    background-color: #00A1FF;
+    color: #fff;
+    text-align: center;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table tbody td {
+    text-align: center;
+}
+
+.caracteristica {
+    font-weight: bold;
+}
+
+
+.container.tabla {
+    background-image: url('https://example.com/animal-pattern.png');
+    background-size: cover;
+}
+
+.container.tabla h1 {
+    color: #00A1FF;
+    font-family: 'Arial', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
