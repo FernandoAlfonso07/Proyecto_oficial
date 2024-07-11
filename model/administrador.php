@@ -389,6 +389,27 @@ class Administrador extends conexionBD
         return $r;
     }
 
+
+    public static function getIdCategory()
+    {
+        $conexion = self::getConexion();
+
+        $sql = "SELECT MAX(id_categoria) FROM categorias_rutinas ";
+
+        $resultado = $conexion->query($sql);
+
+        $r = 0;
+
+        while ($fila = $resultado->fetch_array()) {
+
+            $r = $fila[0];
+        }
+
+        $conexion->close();
+
+        return $r;
+    }
+
     /**
      * Método estático See_Added_Exercises
      *

@@ -25,7 +25,9 @@ if (!isset($_SESSION['id_rutina'])) {
             <h1>
                 <?php
                 $id_rutine = Administrador::getIdrutina();
+
                 $_SESSION['id_rutina'] = $id_rutine;
+                
                 echo routines::getInformation(1, $_SESSION['id_rutina']);
 
                 ?>

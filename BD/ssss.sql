@@ -44,6 +44,9 @@ create table usuarios(
     imgPerfil varchar(200) null,
     
     primary key (id_usuario),
+    
+	/* ASIGANACION DE LLAVES FORANEAS con formato ON DELETE CASCADE ON UPDATE CASCADE */
+    
     foreign key (id_genero) references genero(id_genero)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
@@ -53,20 +56,7 @@ create table usuarios(
 ); 
 -- delete from usuarios;
 
--- ingresar un usuario;
 
-SELECT * FROM rutinas;
-
-
--- UPDATE usuarios SET id_rol = 1 WHERE id_usuario = 3;
-
-select t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol from usuarios t1 
-JOIN genero t2 ON t1.id_genero = t2.id_genero 
-JOIN roles t3 ON t1.id_rol = t3.id_rol;
-
-
-select count(*) from usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero;
-select COUNT(*) FROM usuarios;
 -- Creación llave foranea para id_rol en usuarios.
 /*
 ALTER TABLE usuarios 
@@ -77,10 +67,6 @@ foreign key (id_rol) REFERENCES roles(id_rol);
 -- ------------------------------------------------ Informacion de usurio;
 -- select t1.nombre, t1.apellido, t1.correo, t1.contraseña, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero
 -- FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero WHERE id_usuario = 3;
-
-
--- Esta es la tabla de GENERO
-
 
 
 -- Creación llave foranea de la tabla USUARIOS y la tabla GENERO
@@ -100,6 +86,11 @@ CREATE TABLE categorias_rutinas (
     primary key (id_categoria)
 
 );
+-- // Se Insertan las categorias por defecto del sistema.
+INSERT INTO categorias_rutinas (id_categoria, categoria) VALUES (1, 'Tren Superior');
+
+INSERT INTO categorias_rutinas (id_categoria, categoria) VALUES (2, 'Tren Inferiror');
+
 
 
 -- ESTA ES LA TABLA DE EJERCICIOS
@@ -118,16 +109,6 @@ create table ejercicios(
     primary key(id_ejercicio)
 
 ); 
-/*
-select
-t1.id_ejercicio, t1.nombre, t1.Instrucctiones, t1.equipoNecesario, t1.seires, t1.repeticiones, t1.tiempo_descanso, t1.fecha_registro, t3.nombreRutina, t3.id_rutina, t1.direccion_media
-FROM ejercicios t1
-LEFT JOIN ejercicio_rutinas t2 ON t1.id_ejercicio = t2.id_ejercicio
-LEFT JOIN rutinas t3 ON t2.id_rutina = t3.id_rutina;
-*/
-
--- insert INTO ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) VALUES ('Curl de Martillo', 'Curl de Martillo', 'Curl de Martillo', '4', '2', '', now(), '');
-
 
 -- ESTA ES LA TABLA DE LAS RUTINAS
 create table rutinas(
@@ -141,13 +122,13 @@ create table rutinas(
     
 	primary key(id_rutina),
     
+	/* ASIGANACION DE LLAVES FORANEAS con formato ON DELETE CASCADE ON UPDATE CASCADE */
+    
 	foreign key(id_categoria) references categorias_rutinas(id_categoria) 
     ON DELETE CASCADE 
     ON UPDATE CASCADE
     
 );
-
-
 
 
 -- ESTA ES LA TABLA QUE RELACIONA RUTINAS Y EJERCICIOS
@@ -158,6 +139,9 @@ create table ejercicio_rutinas(
     id_ejercicio int null,
     
     primary key(id_relacion),
+    
+	/* ASIGANACION DE LLAVES FORANEAS con formato ON DELETE CASCADE ON UPDATE CASCADE */
+    
     foreign key(id_rutina) references rutinas(id_rutina) 
     ON DELETE CASCADE 
     ON UPDATE CASCADE,
@@ -172,8 +156,6 @@ create table ejercicio_rutinas(
 ALTER TABLE ejercicio_rutinas
 ADD constraint FK_ejercicio_rutinas_tb_ejerciciostb
 foreign key (id_ejercicio) references ejercicios(id_ejercicio);
-
--- creacion llaves foraneas para la relacion M:M de las tablas rutinas y relacion...
 
 ALTER TABLE ejercicio_rutinas
 ADD constraint FK_ejercicio_rutinas_tb_rutinastb
@@ -199,7 +181,6 @@ insert into dias_semana (id_dia, nombre) values (4, 'Jueves');
 insert into dias_semana (id_dia, nombre) values (5, 'Viernes');
 insert into dias_semana (id_dia, nombre) values (6, 'Sabado');
 
-
 -- ESTA ES LA TABLA QUE RELACIONA DIAS Y RUTINAS
 create table relacion_dia_rutina(
 
@@ -208,11 +189,17 @@ create table relacion_dia_rutina(
     id_rutina int null,
     
     primary key(id_relacion_d_r),
-    foreign key (id_dia) REFERENCES dias_semana(id_dia) ON DELETE CASCADE ON UPDATE CASCADE,
-    foreign key (id_rutina) REFERENCES rutinas(id_rutina) ON DELETE CASCADE ON UPDATE CASCADE
+    
+	/* ASIGANACION DE LLAVES FORANEAS con formato ON DELETE CASCADE ON UPDATE CASCADE */
+    
+    foreign key (id_dia) REFERENCES dias_semana(id_dia) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE,
+    foreign key (id_rutina) REFERENCES rutinas(id_rutina) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE
 
 );
-
 
 create table calendario_rutinario(
 
@@ -220,17 +207,44 @@ create table calendario_rutinario(
     id_usuario int null,
     nombre_personalizado varchar(100) not null,
     descripcion varchar(200) not null,
-    id_dia int null,
-    id_rutina int null,
     fecha_registro datetime not null,
     
     primary key(id_calendario),
-    foreign key (id_dia) REFERENCES dias_semana(id_dia) ON DELETE CASCADE ON UPDATE CASCADE,
-    foreign key (id_rutina) REFERENCES rutinas(id_rutina) ON DELETE CASCADE ON UPDATE CASCADE,
     
-     foreign key (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
+    /* ASIGANACION DE LLAVES FORANEAS con formato ON DELETE CASCADE ON UPDATE CASCADE */
+    
+	foreign key (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
+
+/* CREACION DE LA TABLA 'relacion_Calendario_categorias' */
+
+CREATE TABLE relacion_calendario_rutinas ( /* Aqui se va a relacionar las categorias a un solo calendario rutinario para que sea semanal */
+id_relacion int not null auto_increment,
+
+id_calendario int null,
+id_dia int null,
+id_rutina int null,
+
+primary key (id_relacion),
+
+    /* ASIGANACION DE LLAVES FORANEAS con formato ON DELETE CASCADE ON UPDATE CASCADE */
+
+foreign key (id_calendario) references calendario_rutinario(id_calendario) 
+ON UPDATE CASCADE 
+ON DELETE CASCADE,
+
+foreign key (id_dia) references dias_semana(id_dia) 
+ON UPDATE CASCADE 
+ON DELETE CASCADE,
+
+foreign key (id_rutina) references rutinas(id_rutina) 
+ON UPDATE CASCADE 
+ON DELETE CASCADE
+
+);
+
+
 -- select * from relacion_dia_rutina;
 
 -- creacion de las llaves foraneas para el id de la tabla DIA SEMANAS
@@ -245,192 +259,10 @@ ALTER TABLE relacion_dia_rutina
 ADD CONSTRAINT FK_relacion_dia_rutina_RUTINAS_relacion
 foreign key (id_rutina) REFERENCES rutinas(id_rutina);
 */
-/* 
-select
-t1.id_ejercicio, t1.nombre, t1.fecha_registro, t1.tiempo_descanso, t3.nombreRutina, t4.direccion
-FROM ejercicios t1
-LEFT JOIN ejercicio_rutinas t2 ON t1.id_ejercicio = t2.id_ejercicio
-LEFT JOIN rutinas t3 ON t2.id_rutina = t3.id_rutina
-LEFT JOIN media t4 ON t4.id_media = t1.id_media;
-/* 
--- Ejercicios Joins.
-
--- Insertar datos-
-
--- INSERT INTO ejercicios (nombre, fecha_registro, tiempo_descanso) VALUES('Curl de martillo', now(), 2);
--- INSERT INTO rutinas (nombre, fecha_registro, tiempo_descanso) VALUES('Curl de martillo', now(), 2);
-/* 
-select count(*) FROM ejercicios t1 JOIN ejercicio_rutinas t2 ON t1.id_ejercicio = t2.id_ejercicio
-LEFT JOIN rutinas t3 ON t2.id_rutina = t3.id_rutina 
-LEFT JOIN media t4 ON t4.id_media = t1.id_media;
 
 
-select count(*) FROM ejercicios;
-
-select * from usuarios;
-*/ 
-
-/* CREACION TABLA DE GIMNASIOS */
-
-
+/* USADO EN EL PROYECTO */
 /*
-INSERT INTO ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) 
-values ('Curl con barra','De pie, sostén una barra con las manos a la anchura de los hombros, con las palmas hacia adelante.
-Mantén los codos pegados al cuerpo y levanta la barra hacia los hombros contrayendo los bíceps.
-Baja la barra de manera controlada hasta la posición inicial.'
-,'Barra y discos de pesas'
-,'12'
-,'4' 
-,'2'
-, now()
-,'');
-INSERT INTO  ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) 
-values ('Curl de martillo con mancuernas','De pie, sostén una mancuerna en cada mano con las palmas mirando hacia el cuerpo.
-Levanta las mancuernas hacia los hombros manteniendo las palmas en la misma posición (como si estuvieras martillando).
-Baja las mancuernas de manera controlada hasta la posición inicial.'
-,'Mancuernas'
-,'12'
-,'3' 
-,'1'
-, now()
-,'');
-
-INSERT INTO  ejercicios (nombre, Instrucctiones, equipoNecesario, repeticiones, seires, tiempo_descanso, fecha_registro, direccion_media) 
-values ('Curl concentrado','1. Siéntate en un banco con los pies firmemente plantados en el suelo.
-2. Sostén una mancuerna con una mano y apoya el codo del brazo que sostiene la mancuerna en el interior del muslo.
-3. Levanta la mancuerna hacia el hombro contrayendo el bíceps y luego bájala de manera controlada.'
-,'Mancuernas'
-,'8'
-,'4' 
-,'1'
-, now()
-,'');
-
-/* INGRESO DE DOS NUEVAS  */
-/*
-INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro) VALUES ('Fuerza y Masa para Bíceps',
- 'Esta rutina se enfoca en ejercicios de fuerza para desarrollar masa muscular en los bíceps, combinando diferentes tipos de curls para trabajar el músculo desde distintos ángulos.'
- ,'Aumentar la fuerza y la masa muscular de los bíceps.',now());
- 
- INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro) VALUES ('Definición y Tono de Bíceps',
- ' Esta rutina está diseñada para definir y tonificar los bíceps, utilizando ejercicios que permitan un mayor control y contracción del músculo.'
- ,'Definir y tonificar los bíceps.',now());
- 
-  /* SE ASOCIAN LOS EJERCICIOS A LAS RUTINAS */
- 
-
- /*
- INSERT INTO ejercicio_rutinas (id_rutina, id_ejercicio) VALUES (2, 5);
-
-/* SE ASOCIAN RUTINAS A LOS DIAS */
-/* 
-INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES ( 6, 1);
-INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES ( 6,2);
- /* t4.id_dia,
-t4.nombre AS dia,
-t3.id_rutina,
-t3.descripcion,
-t3.nombreRutina AS nombre_rutina,
-t3.fecha_registro,
-t3.objetivo,
-t2.nombre AS nombre_ejercicio,
-t2.tiempo_descanso AS Descanso_min */
-/*
-INSERT INTO rutinas (nombreRutina,descripcion,objetivo,fecha_registro ) VALUES ('','','', now());
-
-/*
-t1 = ejercicio_rutinas
-t2 = ejercicios
-t3 = rutinas
-t4 = dias_semana
-t5 = relacion_dia_rutina
-
-SELECT 
-t4.nombre,
-t2.direccion_media,
-t2.nombre,
-t2.Instrucctiones,
-t2.equipoNecesario,
-t2.seires,
-t2.repeticiones,
-t2.tiempo_descanso
-FROM dias_semana t4
-JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
-JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
-JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
-JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '6';
-*/
--- CONTEO DE EJERCICIO PARA LA PAGINACION
-/*
-select count(*)
-FROM dias_semana t4
-JOIN relacion_dia_rutina t5 ON t4.id_dia = t5.id_dia
-JOIN ejercicio_rutinas t1 ON t5.id_rutina = t1.id_rutina
-JOIN ejercicios t2 ON t1.id_ejercicio = t2.id_ejercicio
-JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina WHERE t4.id_dia = '6';
-
-select * from usuarios;
-select * from dias_semana;
-select * from ejercicios;
-select * from rutinas;
-select * from ejercicio_rutinas; 
-select * from relacion_dia_rutina;
-select * from categorias_rutinas;
-select * from calendario_rutinario;
-
-INSERT INTO categorias_rutinas (categoria) VALUES ('Espalda');
-INSERT INTO categorias_rutinas (categoria) VALUES ('Pierna');
-INSERT INTO categorias_rutinas (categoria) VALUES ('Pecho y hombro');
-INSERT INTO categorias_rutinas (categoria) VALUES ('Rutina de brazo v2');
-INSERT INTO categorias_rutinas (categoria) VALUES ('Rutian de pierna v1');
-INSERT INTO categorias_rutinas (categoria) VALUES ('Rutina de Pecho y hombro v1');
-
-
-select count(*) from ejercicios;
-SELECT id_ejercicio, nombre FROM ejercicios;
-
-SELECT nombre FROM dias_semana WHERE id_dia = "2";
-
-SELECT * FROM categorias_rutinas;
-
-
-select t3.nombreRutina, (select t1.id_ejercicio, t1.nombre from ejercicios t1 join ejercicio_rutinas t2 on t1.id_ejercicio = t2.id_ejercicio where t3.id_rutina = 1) as ejerciciosAgregados from rutinas t3;
-
-/* Sql para ver los ejercicios agregados a esta rutina */
-
-/*
-select t2.id_relacion, t3.id_rutina, t3.nombreRutina, t1.id_ejercicio, t1.nombre
-from ejercicios t1 
-join ejercicio_rutinas t2 on t1.id_ejercicio = t2.id_ejercicio
-join rutinas t3 on t2.id_rutina = t3.id_rutina
-where t3.id_rutina = 1;
-
--- DELETE FROM ejercicios WHERE id_ejercicio = 2;
--- DELETE FROM rutinas;
-
--- DELETE FROM ejercicio_rutinas WHERE id_relacion = 4;
--- INSERT INTO ejercicio_rutinas (id_rutina, id_ejercicio) VALUES (,);
-
-
-SELECT count(*) FROM ejercicio_rutinas WHERE id_rutina = 1 AND id_ejercicio = 3;
-
-INSERT INTO rutinas (nombreRutina, descripcion, objetivo, fecha_registro)
-VALUES ('RUTINA V5', 'DESCRIPCION', 'OBJETIVO', NOW());
-
-SELECT count(*) FROM ejercicio_rutinas WHERE id_rutina = 1 AND id_ejercicio = 1; 
-
-SELECT * FROM rutinas WHERE id_rutina = 1;
-
-SELECT MAX(id_rutina) FROM rutinas;
-*/
-
-
--- INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, id_dia, id_rutina, fecha_registro) VALUES (2, 'Calendario rutinario v1', 'Esta es una prueba de insert', 1, 1, now());
-
-SELECT t1.nombre_personalizado ,t2.nombre, t3.nombreRutina FROM calendario_rutinario t1 JOIN dias_semana t2 ON t1.id_dia = t2.id_dia
-JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina;
-
-
 SELECT 
 t2.nombre,
 t5.direccion_media,
@@ -445,7 +277,7 @@ JOIN dias_semana t2 ON t1.id_dia = t2.id_dia
 JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina
 JOIN ejercicio_rutinas t4 ON t4.id_rutina = t3.id_rutina
 JOIN ejercicios t5 ON t4.id_ejercicio = t5.id_ejercicio
-WHERE t1.id_dia = 1 LIMIT 2 , 1;
+WHERE t1.id_dia = 3 LIMIT 1 , 1;
 
 SELECT 
 COUNT(*)
@@ -455,16 +287,66 @@ JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina
 JOIN ejercicio_rutinas t4 ON t4.id_rutina = t3.id_rutina
 JOIN ejercicios t5 ON t4.id_ejercicio = t5.id_ejercicio
 WHERE t1.id_dia = 1;
+*/
+-- --------------------------------------------
+
+SELECT * FROM categorias_rutinas;
+SELECT * FROM calendario_rutinario;
+SELECT * FROM relacion_calendario_categorias;
+SELECT * FROM usuarios;
 
 
--- WHERE t4.id_dia = 2
-select * from relacion_dia_rutina;
 
--- INSERT INTO relacion_dia_rutina (id_dia, id_rutina) VALUES (1, 2);
+/* EL USUARIO CREAR UN CALENDARIO RUTINARIO */
+-- INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, fecha_registro) VALUES (1, 'nombre', 'descripcion', now()); 
+
+/* EL USUARIO ASIGNA LAS RUTINAS AL DIA DESEADO */
+/*
+INSERT INTO relacion_calendario_categorias (id_calendario, id_dia, id_rutina) VALUES (1, 1, 7);
+INSERT INTO relacion_calendario_categorias (id_calendario, id_dia, id_rutina) VALUES (1, 2, 1);
+INSERT INTO relacion_calendario_categorias (id_calendario, id_dia, id_rutina) VALUES (1, 3, 3);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 4, 1);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 5, 5);
+INSERT INTO relacion_calendario_categorias (id_calendario, id_dia, id_rutina) VALUES (1, 6, 4);
 
 
-SELECT t1.id_rutina, t1.nombreRutina, t1.objetivo , t1.fecha_registro, t2.categoria FROM rutinas t1 JOIN categorias_rutinas t2 ON t1.id_categoria = t2.id_categoria;
 
-DELETE FROM rutinas WHERE id_rutina = 1;
+/* -------------------------- PARA IMPLEMENTAR ----------------------------------- */
 
-select * from usuarios where 2=1;
+SELECT 
+t2.nombre_personalizado,
+t4.nombreRutina,
+t3.nombre,
+t6.direccion_media,
+t6.nombre,
+t6.Instrucctiones,
+t6.equipoNecesario,
+t6.seires,
+t6.repeticiones,
+t6.tiempo_descanso
+FROM relacion_calendario_rutinas t1 
+JOIN calendario_rutinario t2 ON t1.id_calendario = t2.id_calendario 
+JOIN dias_semana t3 ON t3.id_dia = t1.id_dia 
+JOIN rutinas t4 ON t4.id_rutina = t1.id_rutina 
+JOIN ejercicio_rutinas t5 ON t5.id_rutina = t4.id_rutina 
+JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio 
+WHERE t1.id_dia = 4
+LIMIT 0, 1;
+
+SELECT * FROM usuarios;
+
+select count(*) FROM relacion_calendario_rutinas t1 
+JOIN calendario_rutinario t2 ON t1.id_calendario = t2.id_calendario 
+JOIN dias_semana t3 ON t3.id_dia = t1.id_dia 
+JOIN rutinas t4 ON t4.id_rutina = t1.id_rutina 
+JOIN ejercicio_rutinas t5 ON t5.id_rutina = t4.id_rutina 
+JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio WHERE t1.id_dia = '4';
+
+
+
+-- // --------------------------------------------------------------------
+
+SELECT * FROM rutinas t1 JOIN categorias_rutinas t2 ON t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 0; -- // Busqueda de las rutinas segun la categoria
+
+
+

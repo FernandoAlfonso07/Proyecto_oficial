@@ -1,8 +1,9 @@
 <?php
 
-include ("nombreSeccionH.php");
+include_once ("nombreSeccionH.php");
 
 //include ("../model/usuario.php");
+
 
 
 ?>
@@ -45,7 +46,7 @@ include ("nombreSeccionH.php");
                                     <?php
 
                                     //echo usuarios::getInformacion(1);
-
+                                    
                                     ?>
                                 </b></a>
                         </li>
@@ -67,8 +68,13 @@ include ("nombreSeccionH.php");
                         </li>
                         <a class="nav-link separado" href="#"><i class="fa-solid fa-question icono_usuario"></i>
                             Ayuda</a>
+
                         <a class="nav-link separado" href="#"><i class="fa-solid fa-exclamation icono_usuario"></i>
                             Reportar problemas</a>
+
+                        <a class="nav-link separado" href="#"><i class="fa-solid fa-exclamation icono_usuario"></i>
+                            Reportar problemas</a>
+
                         <a class="nav-link separado" href="Informacion_gimnasios.html"><i
                                 class="fa-regular fa-eye icono_usuario"></i>
                             Ver Gimnasios</a>

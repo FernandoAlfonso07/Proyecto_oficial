@@ -69,20 +69,30 @@ $dia_semana = date('w');
                         <p><?php echo calendarioRutinario::mostrarCalendario(1, 5, $dia_semana, $p) ?>
                     </b>Series de
                     <b class="numero">
-                        <?php echo calendarioRutinario::mostrarCalendario(1, 6, $dia_semana, $p) ?>
+                        <?php // echo calendarioRutinario::mostrarCalendario(1, 6, $dia_semana, $p);
+                        echo calendarioRutinario::mostrarCalendario(0, null, $dia_semana)
+                            ?>
                     </b> Repeticiones.
                 </h2>
             </div>
             <div class="col-md-12 contenedor_informacion text-center">
-                <button class="btn btn-warning btn-gradient botones">Descanso <i class="fa-solid fa-pause"></i></button>
-
+                <a href="">
+                    <button class="btn btn-warning btn-gradient botones">Descanso <i
+                            class="fa-solid fa-pause"></i></button>
+                </a>
                 <?php
-                echo calendarioRutinario::optionPage($p)
+                echo calendarioRutinario::optionPage($p) // Botonesd de la paginacion.
                     ?>
+
+                <a href="controlador.php?seccion=misCalendarios">
+                    <button id="salirButton" class="btn btn-danger">Salir <i
+                            class="fa-solid fa-person-shelter"></i></button>
+                </a>
             </div>
         </div>
     </div>
 
+    <script src="js/salirButton.js"></script>
 
     <script src="https://kit.fontawesome.com/296731592d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

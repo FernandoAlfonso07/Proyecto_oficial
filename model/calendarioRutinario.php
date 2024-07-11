@@ -25,21 +25,22 @@ class calendarioRutinario extends conexionBD
             $sql .= "count(*) ";
 
         } elseif ($opc == 1) {
-            $sql .= "t2.nombre,
-t5.direccion_media,
-t5.nombre,
-t5.Instrucctiones,
-t5.equipoNecesario,
-t5.seires,
-t5.repeticiones,
-t5.tiempo_descanso ";
+            $sql .= "t3.nombre,
+t6.direccion_media,
+t6.nombre,
+t6.Instrucctiones,
+t6.equipoNecesario,
+t6.seires,
+t6.repeticiones,
+t6.tiempo_descanso ";
         }
 
-        $sql .= "FROM calendario_rutinario t1 
-JOIN dias_semana t2 ON t1.id_dia = t2.id_dia
-JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina
-JOIN ejercicio_rutinas t4 ON t4.id_rutina = t3.id_rutina
-JOIN ejercicios t5 ON t4.id_ejercicio = t5.id_ejercicio
+        $sql .= "FROM relacion_calendario_rutinas t1 
+JOIN calendario_rutinario t2 ON t1.id_calendario = t2.id_calendario 
+JOIN dias_semana t3 ON t3.id_dia = t1.id_dia 
+JOIN rutinas t4 ON t4.id_rutina = t1.id_rutina 
+JOIN ejercicio_rutinas t5 ON t5.id_rutina = t4.id_rutina 
+JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio 
 WHERE t1.id_dia = '$dia' ";
 
         if ($opc == 0) {
@@ -48,7 +49,7 @@ WHERE t1.id_dia = '$dia' ";
             $sql .= "LIMIT $p , 1;";
         }
 
-        // echo $sql;
+        //echo $sql;
 
         $resultado = $conexion->query($sql);
 
@@ -69,7 +70,7 @@ WHERE t1.id_dia = '$dia' ";
                         $rr = $fila[1];
                         break;
                     case 2:
-                        $rr = $fila[2];
+                        $rr = $fila[2]; // dia
                         break;
                     case 3:
                         $rr = $fila[3];
@@ -98,7 +99,8 @@ WHERE t1.id_dia = '$dia' ";
     public static function optionPage($p)
     {
         $r = '';
-        for ($i = 0; $i < self::mostrarCalendario(0); $i++) {
+        $total = self::mostrarCalendario(0, null, date('w'));
+        for ($i = 0; $i < $total; $i++) {
 
             $p2 = $p * 1;
 

@@ -352,6 +352,40 @@ class usuarios extends conexionBD
         return $affected_rows;
     }
 
+    public static function createCalender($opc, $id_user, $name, $description)
+    {
+
+        $conexion = self::getConexion();
+
+        $sql = "INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, fecha_registro) ";
+        $sql .= "VALUES ($id_user, '$name', '$description', now()) ";
+
+        $conexion->query($sql);
+
+        $affected_rows = $conexion->affected_rows;
+
+        $conexion->close();
+
+        return $affected_rows;
+    }
+
+    public static function associateCalendarCategories($opc, $id_user, $name, $description)
+    {
+
+        $conexion = self::getConexion();
+
+        $sql = "INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, fecha_registro) ";
+        $sql .= "VALUES ($id_user, '$name', '$description', now()) ";
+
+        $conexion->query($sql);
+
+        $affected_rows = $conexion->affected_rows;
+
+        $conexion->close();
+
+        return $affected_rows;
+    }
+
 
 }
 
