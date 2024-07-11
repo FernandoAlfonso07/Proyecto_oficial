@@ -10,7 +10,7 @@ class validate
 
         $salida = str_replace(" or ", "", $salida);
         $salida = str_replace(" OR ", "", $salida);
-        $salida = str_replace(" ", "", $salida);
+        // $salida = str_replace(" ", "", $salida);
 
         $salida = str_replace("'", "", $salida);
         $salida = str_replace('"', '', $salida);

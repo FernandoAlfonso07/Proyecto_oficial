@@ -302,12 +302,12 @@ SELECT * FROM usuarios;
 
 /* EL USUARIO ASIGNA LAS RUTINAS AL DIA DESEADO */
 /*
-INSERT INTO relacion_calendario_categorias (id_calendario, id_dia, id_rutina) VALUES (1, 1, 7);
-INSERT INTO relacion_calendario_categorias (id_calendario, id_dia, id_rutina) VALUES (1, 2, 1);
-INSERT INTO relacion_calendario_categorias (id_calendario, id_dia, id_rutina) VALUES (1, 3, 3);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 1, 7);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 2, 1);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 3, 3);
 INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 4, 1);
 INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 5, 5);
-INSERT INTO relacion_calendario_categorias (id_calendario, id_dia, id_rutina) VALUES (1, 6, 4);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 6, 4);
 
 
 
@@ -330,7 +330,7 @@ JOIN dias_semana t3 ON t3.id_dia = t1.id_dia
 JOIN rutinas t4 ON t4.id_rutina = t1.id_rutina 
 JOIN ejercicio_rutinas t5 ON t5.id_rutina = t4.id_rutina 
 JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio 
-WHERE t1.id_dia = 4
+WHERE t1.id_dia = 4 AND t2.id_calendario = '1'
 LIMIT 0, 1;
 
 SELECT * FROM usuarios;
@@ -340,7 +340,7 @@ JOIN calendario_rutinario t2 ON t1.id_calendario = t2.id_calendario
 JOIN dias_semana t3 ON t3.id_dia = t1.id_dia 
 JOIN rutinas t4 ON t4.id_rutina = t1.id_rutina 
 JOIN ejercicio_rutinas t5 ON t5.id_rutina = t4.id_rutina 
-JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio WHERE t1.id_dia = '4';
+JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio WHERE t1.id_dia = '4' AND t2.id_calendario = '1' ;
 
 
 

@@ -291,6 +291,8 @@ class usuarios extends conexionBD
         $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de inserción
 
         $conexion->close(); // Cierra la conexión a la base de datos
+
+        return $affected_rows;
     }
 
     /**
@@ -335,30 +337,18 @@ class usuarios extends conexionBD
     }
 
 
-    public static function createCalenderR($id_usuario, $CustomName, $description, $id_day, $id_routine)
+    public static function createCalender($opc, $id_user = null, $name = null, $description = null, $id_calendar = null, $id_day = null, $id_routine = null)
     {
 
         $conexion = self::getConexion();
 
-        $sql = "";
-
-        $conexion->query($sql); // Ejecuta la consulta SQL para actualizar los datos del usuario
-
-        $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de actualización
-
-        $conexion->close(); // Cierra la conexión a la base de datos
-
-        // Retorna el número de filas afectadas
-        return $affected_rows;
-    }
-
-    public static function createCalender($opc, $id_user, $name, $description)
-    {
-
-        $conexion = self::getConexion();
-
-        $sql = "INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, fecha_registro) ";
-        $sql .= "VALUES ($id_user, '$name', '$description', now()) ";
+        if ($opc == 0) {
+            $sql = "INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, fecha_registro) ";
+            $sql .= "VALUES ('$id_user', '$name', '$description', now()) ";
+        } else {
+            $sql = "INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) ";
+            $sql .= "VALUES ('$id_calendar', '$id_day', '$id_routine');";
+        }
 
         $conexion->query($sql);
 
@@ -369,22 +359,6 @@ class usuarios extends conexionBD
         return $affected_rows;
     }
 
-    public static function associateCalendarCategories($opc, $id_user, $name, $description)
-    {
-
-        $conexion = self::getConexion();
-
-        $sql = "INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, fecha_registro) ";
-        $sql .= "VALUES ($id_user, '$name', '$description', now()) ";
-
-        $conexion->query($sql);
-
-        $affected_rows = $conexion->affected_rows;
-
-        $conexion->close();
-
-        return $affected_rows;
-    }
 
 
 }

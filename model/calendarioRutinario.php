@@ -6,6 +6,26 @@ include_once ("connect.php");
 class calendarioRutinario extends conexionBD
 {
 
+    public static function getID()
+    {
+        $conexion = self::getConexion();
+
+        $sql = "SELECT MAX(id_calendario) FROM calendario_rutinario ";
+
+        $resultado = $conexion->query($sql);
+
+        $r = 0;
+
+        while ($fila = $resultado->fetch_array()) {
+
+            $r = $fila[0];
+        }
+
+        $conexion->close();
+
+        return $r;
+    }
+
     /**
      * Este metodo tiene la funcionalidad principal del proyecto, debido a que muestra las rutinas que ofrece el sitema para el usuario.
      * 
