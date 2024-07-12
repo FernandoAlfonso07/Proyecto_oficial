@@ -4,6 +4,7 @@ include_once ('../model/Categories.php');
 
 ?>
 
+
 <form action="../controller/createCalender.php" class="my-5" method="get">
     <div class="row">
         <div class="col-md-12 text-center my-5">
@@ -25,13 +26,12 @@ include_once ('../model/Categories.php');
 
                 </div>
                 <div class="col-md-4">
-                    <select class="form-select" name="filterCategory" id="filterCategory"
+                    <select class="form-select" name="id_filterCategory" id="id_filterCategor" onchange="hola(event)">
                         aria-label="Default select example">
                         <option selected>Seleccione la categoria</option>
                         <?php // echo CycleCreateCalender::getCatgory() 
                         
                         include_once ('../model/connect.php');
-
                         $conexion = conexionBD::getConexion();
                         $sql = 'SELECT * FROM categorias_rutinas ';
 
@@ -48,14 +48,10 @@ include_once ('../model/Categories.php');
                     LUNES
                 </div>
                 <div class="col-md-6 my-2">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" id="options" aria-label="Default select example">
                         <option selected>Seleccione una rutina</option>
 
-                        <?php
-
-
-
-                        ?>
+                        <!-- Aqui se deben renderizar las rutinas segun el parametro de categoria elegido -->
 
                     </select>
                 </div>

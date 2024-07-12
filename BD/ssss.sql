@@ -1,6 +1,7 @@
 create schema worldfitsbd;
 use worldfitsbd; 
 
+SELECT * FROM USUARIOS;
 
 SET sql_safe_updates = 0;	
 
@@ -55,6 +56,7 @@ create table usuarios(
     ON UPDATE CASCADE
 ); 
 -- delete from usuarios;
+
 
 
 -- Creación llave foranea para id_rol en usuarios.
@@ -333,7 +335,8 @@ JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio
 WHERE t1.id_dia = 4 AND t2.id_calendario = '1'
 LIMIT 0, 1;
 
-SELECT * FROM usuarios;
+SELECT * FROM rutinas;
+SELECT id_rutina, nombreRutina FROM rutinas t1 JOIN categorias_rutinas t2  ON  t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 1;
 
 select count(*) FROM relacion_calendario_rutinas t1 
 JOIN calendario_rutinario t2 ON t1.id_calendario = t2.id_calendario 
@@ -342,11 +345,12 @@ JOIN rutinas t4 ON t4.id_rutina = t1.id_rutina
 JOIN ejercicio_rutinas t5 ON t5.id_rutina = t4.id_rutina 
 JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio WHERE t1.id_dia = '4' AND t2.id_calendario = '1' ;
 
-
+SELECT id_rutina, nombreRutina FROM rutinas WHERE id_categoria = '1';
+SELECT id_rutina, nombreRutina FROM rutinas WHERE id_categoria = '1';
 
 -- // --------------------------------------------------------------------
 
-SELECT * FROM rutinas t1 JOIN categorias_rutinas t2 ON t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 0; -- // Busqueda de las rutinas segun la categoria
+SELECT * FROM rutinas t1 JOIN categorias_rutinas t2 ON t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 1; -- // Busqueda de las rutinas segun la categoria
 
 
 

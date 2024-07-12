@@ -22,35 +22,4 @@ class CycleCreateCalender extends conexionBD
         return $r;
     }
 
-    /* public static function showCyle()
-     {
-
-         $conexion = self::getConexion();
-
-         $r = '';
-         for ($i = 1; $i <= 6; $i++) {
-
-             $sql = "select nombre FROM dias_semana WHERE id_dia = $i";
-
-             $result = $conexion->query($sql);
-
-             while ($fila = $result->fetch_array()) {
-
-                 $r .= '<div class="row">';
-                 $r .= '<div class="col-md-6">';
-                 $r .= '<b>' . $fila[0] . '</b>';
-                 $r .= '</div>';
-                 $r .= '<div class="col-md-6">';
-                 $r .= '<select class="form-select my-2" name="id_category" aria-label="Default select example">';
-                 $r .= '<option selected>Selecciona la categoria</option>';
-                 $r .= self::getCatgory();
-                 $r .= '</select>';
-                 $r .= '</div>';
-                 $r .= '</div>';
-
-             }
-         }
-         return $r;
-     }*/
-
 }

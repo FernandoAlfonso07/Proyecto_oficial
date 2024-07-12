@@ -19,6 +19,8 @@ include_once ("nombreSeccionH.php");
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="./img/logosinfondo.png">
 
+
+
     <link rel="stylesheet" href="css/estilos_ENCABEZADO_plantilla.css">
 
 
@@ -112,5 +114,6 @@ include_once ("nombreSeccionH.php");
     </script>
 
 </body>
-
+<script src="js/filterCategories.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </html>
