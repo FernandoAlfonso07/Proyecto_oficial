@@ -304,12 +304,12 @@ SELECT * FROM usuarios;
 
 /* EL USUARIO ASIGNA LAS RUTINAS AL DIA DESEADO */
 /*
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 1, 7);
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 2, 1);
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 3, 3);
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 4, 1);
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 5, 5);
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (1, 6, 4);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 1, 7);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 2, 1);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 3, 3);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 4, 1);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 5, 5);
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 6, 4);
 
 
 
@@ -335,7 +335,9 @@ JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio
 WHERE t1.id_dia = 4 AND t2.id_calendario = '1'
 LIMIT 0, 1;
 
-SELECT * FROM rutinas;
+
+
+
 SELECT id_rutina, nombreRutina FROM rutinas t1 JOIN categorias_rutinas t2  ON  t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 1;
 
 select count(*) FROM relacion_calendario_rutinas t1 
@@ -347,10 +349,18 @@ JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio WHERE t1.id_dia = '4' AN
 
 SELECT id_rutina, nombreRutina FROM rutinas WHERE id_categoria = '1';
 SELECT id_rutina, nombreRutina FROM rutinas WHERE id_categoria = '1';
-
+SELECT nombre FROM dias_semana WHERE id_dia = '1';
 -- // --------------------------------------------------------------------
 
 SELECT * FROM rutinas t1 JOIN categorias_rutinas t2 ON t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 1; -- // Busqueda de las rutinas segun la categoria
 
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES ('5', '1', '8');
 
+DELETE FROM calendario_rutinario;
 
+SELECT * FROM calendario_rutinario;
+SELECT * FROM relacion_calendario_rutinas;
+SELECT * FROM rutinas;
+SELECT MAX(id_calendario) FROM calendario_rutinario;
+
+SELECT * FROM usuarios;

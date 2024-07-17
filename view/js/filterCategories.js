@@ -1,5 +1,6 @@
 
-function hola(event) {
+function hola(event, id_routine) {
+
     var texto = event.target.value;
     var param = {
         'entrenamientos': texto
@@ -11,7 +12,7 @@ function hola(event) {
         method: 'get',
         success: function (data) {
             //console.log(data);
-            document.getElementById('options').innerHTML = data;
+            document.getElementById(id_routine).innerHTML = data;
         },
         error: function (xhr, status, error) {
             console.log(error);
@@ -19,5 +20,6 @@ function hola(event) {
     });
 
 }
+
 
 

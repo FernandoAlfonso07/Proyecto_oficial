@@ -27,7 +27,7 @@ if (!isset($_SESSION['id_rutina'])) {
                 $id_rutine = Administrador::getIdrutina();
 
                 $_SESSION['id_rutina'] = $id_rutine;
-                
+
                 echo routines::getInformation(1, $_SESSION['id_rutina']);
 
                 ?>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['id_rutina'])) {
                 </button>
             </div>
 
-            <a href="controladorVadmin.php?seccionAd=seccionAd1">
+            <a href="controladorVadmin.php?seccionAd=showRoutines">
                 <button type="submit" class="btn btn-danger ml-4 my-5"> Cerrar y guardar <i
                         class="fa-solid fa-circle-xmark ms-2 fs-5"></i> </button>
             </a>

@@ -4,6 +4,7 @@ include_once ('../model/Categories.php');
 
 ?>
 
+<link rel="stylesheet" href="css/addRoutinePrt2.css">
 
 <form action="../controller/createCalender.php" class="my-5" method="get">
     <div class="row">
@@ -21,41 +22,25 @@ include_once ('../model/Categories.php');
                 </h2>
             </label>
 
-            <div class="row">
-                <div class="col-md-8">
 
-                </div>
-                <div class="col-md-4">
-                    <select class="form-select" name="id_filterCategory" id="id_filterCategor" onchange="hola(event)">
-                        aria-label="Default select example">
-                        <option selected>Seleccione la categoria</option>
-                        <?php // echo CycleCreateCalender::getCatgory() 
-                        
-                        include_once ('../model/connect.php');
-                        $conexion = conexionBD::getConexion();
-                        $sql = 'SELECT * FROM categorias_rutinas ';
 
-                        $result = mysqli_query($conexion, $sql);
-                        while ($fila = $result->fetch_array()) {
-                            echo "<option value='" . $fila[0] . "'>" . $fila[1] . "</option>";
-                        }
+            <!-- function -->
+            <?php
 
-                        ?>
+            echo CycleCreateCalender::showFormuler('LUNES', 'filter_Category_Monday', 'filter_Routines_Monday', 'Routine_Of_Monday');
 
-                    </select>
-                </div>
-                <div class="col-md-6 my-2">
-                    LUNES
-                </div>
-                <div class="col-md-6 my-2">
-                    <select class="form-select" id="options" aria-label="Default select example">
-                        <option selected>Seleccione una rutina</option>
+            echo CycleCreateCalender::showFormuler('MARTES', 'filter_Category_Tuesday', 'filter_Routines_Tuesday', 'Routine_Of_Tuesday');
 
-                        <!-- Aqui se deben renderizar las rutinas segun el parametro de categoria elegido -->
+            echo CycleCreateCalender::showFormuler('MIERCOLES', 'filter_Category_Wednesday', 'filter_Routines_Wednesday', 'Routine_Of_Wednesday');
 
-                    </select>
-                </div>
-            </div>
+            echo CycleCreateCalender::showFormuler('JUEVES', 'filter_Category_Thursday', 'filter_Routines_Thursday', 'Routine_Of_Thursday');
+
+            echo CycleCreateCalender::showFormuler('VIERNES', 'filter_Category_Friday', 'filter_Routines_Friday', 'Routine_Of_Friday');
+
+            echo CycleCreateCalender::showFormuler('SABADO', 'filter_Category_Saturday', 'filter_Routines_Saturday', 'Routine_Of_Saturday');
+
+
+            ?>
         </div>
         <div class="col-md-2"> </div>
 

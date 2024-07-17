@@ -140,5 +140,4 @@ WHERE t1.id_dia = '$dia' ";
         return $r;
 
     }
-
 }

@@ -350,6 +350,8 @@ class usuarios extends conexionBD
             $sql .= "VALUES ('$id_calendar', '$id_day', '$id_routine');";
         }
 
+        echo $sql . '<br>';
+        
         $conexion->query($sql);
 
         $affected_rows = $conexion->affected_rows;
