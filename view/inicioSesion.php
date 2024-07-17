@@ -84,15 +84,13 @@ if (!isset($_SESSION['intento'])) {
                 </div>
 
                 <div class="col-md-12">
-
                     <center>
 
-                        <button type="submit" class="btn btn-outline-primary boton_ir">
+                        <button onclick="mensaje()" type="submit" class="btn btn-outline-primary boton_ir">
                             <i class="fa-solid fa-person-walking-arrow-right"></i>
                         </button>
 
                     </center>
-
                     <h4 class="texto_extra">
                         <a href="#">Olvide mi contraseña</a> <br> <br>
                         ¿No tienes una cuenta?, <a href="seccion-registro.php">¡Registrate ahora!</a>

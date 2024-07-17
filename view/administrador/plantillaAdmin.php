@@ -139,7 +139,7 @@ include ("../../view/nombreSeccionH.php");
             $("#wrapper").toggleClass("toggled");
         });
     </script>
-    <script src="js/event.js"></script>
+    <script src="../js/event.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

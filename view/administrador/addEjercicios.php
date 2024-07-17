@@ -43,7 +43,7 @@
                         <input type="text" name="t_descanso" placeholder="En minutos" class="form-control">
                     </div>
                     <div class="col-md-12 text-center">
-                         
+                        <button onclick="mensaje()" type="submit" class="btn btn-primary">Guardar
                     </div>
                 </div>
             </div>

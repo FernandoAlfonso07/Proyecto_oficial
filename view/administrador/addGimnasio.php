@@ -191,7 +191,7 @@
                     <br>
 
                     <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary boton">Registrar</button>
+                        <button onclick="mensaje()" type="submit" class="btn btn-primary boton">Registrar</button>
                     </div>
 
                 </div>

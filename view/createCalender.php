@@ -29,7 +29,7 @@ include_once ('../model/Categories.php');
 
             <div class="col-md-12 text-center my-5">
                 <h1>
-                    EMPECEMOS CON ESTO
+                    CREA AHORA
                 </h1>
             </div>
 
@@ -47,7 +47,7 @@ include_once ('../model/Categories.php');
 
             <div class="col-md-12 my-5 text-center">
 
-                <button class="btn btn-primary">
+                <button onclick="confirmar()"  class="btn btn-primary">
                     Guardar <i class="fa-solid fa-person-skating"></i>
                 </button>
             </div>

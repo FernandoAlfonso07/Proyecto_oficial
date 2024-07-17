@@ -148,7 +148,7 @@ if (!isset($_SESSION['id_rutina'])) {
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar <i
                             class="fa-regular fa-circle-xmark"></i></button>
-                    <button type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i>
+                    <button onclick="confirmar()" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i>
                     </button>
                 </div>
             </div>
