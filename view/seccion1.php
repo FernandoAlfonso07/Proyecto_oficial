@@ -19,11 +19,7 @@
         </div>
         <div class="col-md-6 text-center opciones-dos-dos">
 
-<<<<<<< HEAD
-            <a href="crear_calendario.html">
-=======
             <a href="controlador.php?seccion=createCalender">
->>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                 <div class="card text-bg-dark position-relative contenedor-opcion-dos">
                     <img src="img/imagen-calendario.png" class="card-img" alt="...">
                     <div

@@ -51,11 +51,7 @@ include_once ("../../model/Categories.php");// Se incluye el archivo con la clas
 
                     <br>
                     <div class="col-md-12 my-4 text-center">
-<<<<<<< HEAD
-                        <button onclick="mensaje()" type="submit" class="btn btn-primary boton">Agregar Rutina</button>
-=======
                         <button type="submit" class="btn btn-primary boton">Agregar Rutina</button>
->>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                     </div>
                 </div>
             </div>
