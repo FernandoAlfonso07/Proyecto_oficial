@@ -278,8 +278,11 @@ a {
     width: auto;
     height: 40em;
     margin: 10px;
+<<<<<<< HEAD
 }
 
 .custom-backdrop-class {    
     background-size: 20px;
+=======
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
 }

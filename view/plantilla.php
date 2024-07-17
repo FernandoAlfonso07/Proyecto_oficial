@@ -1,10 +1,18 @@
 <?php
 
+<<<<<<< HEAD
 include ("nombreSeccionH.php");
+=======
+include_once ("nombreSeccionH.php");
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
 
 //include ("../model/usuario.php");
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
 ?>
 
 <!doctype html>
@@ -18,6 +26,11 @@ include ("nombreSeccionH.php");
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="./img/logosinfondo.png">
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
     <link rel="stylesheet" href="css/estilos_ENCABEZADO_plantilla.css">
 
 
@@ -67,8 +80,18 @@ include ("nombreSeccionH.php");
                         </li>
                         <a class="nav-link separado" href="#"><i class="fa-solid fa-question icono_usuario"></i>
                             Ayuda</a>
+<<<<<<< HEAD
                         <a class="nav-link separado" href="#"><i class="fa-solid fa-exclamation icono_usuario"></i>
                             Reportar problemas</a>
+=======
+
+                        <a class="nav-link separado" href="#"><i class="fa-solid fa-exclamation icono_usuario"></i>
+                            Reportar problemas</a>
+
+                        <a class="nav-link separado" href="#"><i class="fa-solid fa-exclamation icono_usuario"></i>
+                            Reportar problemas</a>
+
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                         <a class="nav-link separado" href="Informacion_gimnasios.html"><i
                                 class="fa-regular fa-eye icono_usuario"></i>
                             Ver Gimnasios</a>
@@ -105,9 +128,15 @@ include ("nombreSeccionH.php");
         gtag('config', 'G-L41ZSW1R62');
     </script>
 
+<<<<<<< HEAD
     <script src="js/event.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 </body>
 
+=======
+</body>
+<script src="js/filterCategories.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
 </html>

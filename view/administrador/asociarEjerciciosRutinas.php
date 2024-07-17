@@ -25,7 +25,13 @@ if (!isset($_SESSION['id_rutina'])) {
             <h1>
                 <?php
                 $id_rutine = Administrador::getIdrutina();
+<<<<<<< HEAD
                 $_SESSION['id_rutina'] = $id_rutine;
+=======
+
+                $_SESSION['id_rutina'] = $id_rutine;
+
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                 echo routines::getInformation(1, $_SESSION['id_rutina']);
 
                 ?>
@@ -56,7 +62,11 @@ if (!isset($_SESSION['id_rutina'])) {
                 </button>
             </div>
 
+<<<<<<< HEAD
             <a href="controladorVadmin.php?seccionAd=seccionAd1">
+=======
+            <a href="controladorVadmin.php?seccionAd=showRoutines">
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                 <button type="submit" class="btn btn-danger ml-4 my-5"> Cerrar y guardar <i
                         class="fa-solid fa-circle-xmark ms-2 fs-5"></i> </button>
             </a>
@@ -148,7 +158,11 @@ if (!isset($_SESSION['id_rutina'])) {
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar <i
                             class="fa-regular fa-circle-xmark"></i></button>
+<<<<<<< HEAD
                     <button onclick="confirmar()" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i>
+=======
+                    <button type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i>
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                     </button>
                 </div>
             </div>

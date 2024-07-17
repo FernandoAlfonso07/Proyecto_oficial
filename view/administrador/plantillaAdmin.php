@@ -65,6 +65,7 @@ include ("../../view/nombreSeccionH.php");
                                 <li><a class="dropdown-item enlace_secundario"
                                         href="controladorVadmin.php?seccionAd=verEjercicios"><i
                                             class="fa-solid fa-eye icono"></i> Ver Ejercicios</a></li>
+<<<<<<< HEAD
                                 <li><a class="dropdown-item enlace_secundario"
                                         href="controladorVadmin.php?seccionAd=addEjercicios"><i
                                             class="fa-regular fa-pen-to-square icono"></i> Agregar ejercicio</a></li>
@@ -114,6 +115,59 @@ include ("../../view/nombreSeccionH.php");
 
                             </ul>
                         </li>
+=======
+                                < <li><a class="dropdown-item enlace_secundario"
+                                        href="controladorVadmin.php?seccionAd=addEjercicios"><i
+                                            class="fa-regular fa-pen-to-square icono"></i> Agregar ejercicio</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle enlace_principal" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Gestion <i class="fa-solid fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item enlace_secundario"
+                                    href="controladorVadmin.php?seccionAd=verUsuarios"><i
+                                        class="fa-solid fa-eye icono"></i>Historial de usuarios</a></li>
+                            <li><a class="dropdown-item enlace_secundario"
+                                    href="controladorVadmin.php?seccionAd=addUsuario"><i
+                                        class="fa-regular fa-pen-to-square icono"></i>Agregar usuario</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle enlace_principal" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Rutinas <i class="fa-solid fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item enlace_secundario"
+                                    href="controladorVadmin.php?seccionAd=showRoutines"><i
+                                        class="fa-solid fa-eye icono"></i> Ver Rutinas</a></li>
+                            <li><a class="dropdown-item enlace_secundario"
+                                    href="controladorVadmin.php?seccionAd=addRutina"><i
+                                        class="fa-regular fa-pen-to-square icono"></i> Agregar Rutinas</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle enlace_principal" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Gimnasios <i class="fa-solid fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item enlace_secundario" href="#"><i
+                                        class="fa-solid fa-eye icono"></i> Ver Gimnasios</a></li>
+                            <li><a class="dropdown-item enlace_secundario"
+                                    href="controladorVadmin.php?seccionAd=addGimnasio"><i
+                                        class="fa-regular fa-pen-to-square icono"></i> Agregar Gimnasios</a></li>
+
+                        </ul>
+                    </li>
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                     </ul>
                 </div>
             </div>
@@ -139,8 +193,11 @@ include ("../../view/nombreSeccionH.php");
             $("#wrapper").toggleClass("toggled");
         });
     </script>
+<<<<<<< HEAD
     <script src="../js/event.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+=======
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
 
 </body>
 

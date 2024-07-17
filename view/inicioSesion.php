@@ -84,13 +84,24 @@ if (!isset($_SESSION['intento'])) {
                 </div>
 
                 <div class="col-md-12">
+<<<<<<< HEAD
                     <center>
 
                         <button onclick="mensaje()" type="submit" class="btn btn-outline-primary boton_ir">
+=======
+
+                    <center>
+
+                        <button type="submit" class="btn btn-outline-primary boton_ir">
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                             <i class="fa-solid fa-person-walking-arrow-right"></i>
                         </button>
 
                     </center>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                     <h4 class="texto_extra">
                         <a href="#">Olvide mi contraseña</a> <br> <br>
                         ¿No tienes una cuenta?, <a href="seccion-registro.php">¡Registrate ahora!</a>
@@ -104,9 +115,12 @@ if (!isset($_SESSION['intento'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+<<<<<<< HEAD
 
     <script src="js/event.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+=======
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
 </body>
 
 </html>

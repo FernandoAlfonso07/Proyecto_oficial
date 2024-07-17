@@ -86,7 +86,11 @@
                     </div>
                     <br>
                     <div class="col-md-12 text-center">
+<<<<<<< HEAD
                         <button onclick="mensaje()" type="submit" class="btn btn-primary boton">Registrar</button>
+=======
+                        <button type="submit" class="btn btn-primary boton">Registrar</button>
+>>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                     </div>
                 </div>
             </div>
