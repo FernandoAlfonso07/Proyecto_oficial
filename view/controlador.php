@@ -23,6 +23,4 @@ if (isset($_GET['seccion'])) {
   header('location: inicioSesion.php');
 }
 
-
-
 include ("plantilla.php");
