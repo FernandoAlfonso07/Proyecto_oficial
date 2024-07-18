@@ -69,24 +69,13 @@ $dia_semana = date('w');
                         <p><?php echo calendarioRutinario::mostrarCalendario(1, 5, $dia_semana, $p) ?>
                     </b>Series de
                     <b class="numero">
-<<<<<<< HEAD
-                        <?php echo calendarioRutinario::mostrarCalendario(1, 6, $dia_semana, $p) ?>
-=======
                         <?php // echo calendarioRutinario::mostrarCalendario(1, 6, $dia_semana, $p);
                         echo calendarioRutinario::mostrarCalendario(0, null, $dia_semana)
                             ?>
->>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                     </b> Repeticiones.
                 </h2>
             </div>
             <div class="col-md-12 contenedor_informacion text-center">
-<<<<<<< HEAD
-                <button class="btn btn-warning btn-gradient botones">Descanso <i class="fa-solid fa-pause"></i></button>
-
-                <?php
-                echo calendarioRutinario::optionPage($p)
-                    ?>
-=======
                 <a href="">
                     <button class="btn btn-warning btn-gradient botones">Descanso <i
                             class="fa-solid fa-pause"></i></button>
@@ -99,15 +88,11 @@ $dia_semana = date('w');
                     <button id="salirButton" class="btn btn-danger">Salir <i
                             class="fa-solid fa-person-shelter"></i></button>
                 </a>
->>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
             </div>
         </div>
     </div>
 
-<<<<<<< HEAD
-=======
     <script src="js/salirButton.js"></script>
->>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
 
     <script src="https://kit.fontawesome.com/296731592d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

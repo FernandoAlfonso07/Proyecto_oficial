@@ -37,12 +37,8 @@
                                 <a class="nav-link separado" href="#contactanos_section">CONTACTANOS</a>
                                 <a class="nav-link separado" href="#servicios_section">SERVICIOS</a>
                                 <a class="nav-link separado" href="inicioSesion.php">INICIAR SESIÓN</a>
-<<<<<<< HEAD
                                 <button onclick="fire()" type="button"
                                     class="btn btn-outline-primary separado_principal">
-=======
-                                <button type="button" class="btn btn-outline-primary separado_principal">
->>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                                     <a href="seccion-registro.php">¡REGISTRATE YA!</a>
                                 </button>
 
@@ -68,11 +64,7 @@
                 </h1>
                 <div class="boton_registrar">
                     <h3><br>
-<<<<<<< HEAD
                         <button onclick="alertica()" type="button" class="btn btn-primary">
-=======
-                        <button type="button" class="btn btn-primary">
->>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                             <span>
                                 <img src="img/icono_pesa.png" alt="" width="37px">
                             </span>
@@ -134,15 +126,6 @@
                             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active c-item">
-<<<<<<< HEAD
-                                        <img src="img/imagen_inicio_dos.PNG" class="d-block w-100 c-img" alt="...">
-                                    </div>
-                                    <div class="carousel-item c-item">
-                                        <img src="img/imagen_inicio_tres.PNG" class="d-block w-100 c-img" alt="...">
-                                    </div>
-                                    <div class="carousel-item c-item">
-                                        <img src="img/imagen_inicio_cuatro.PNG" class="d-block w-100 c-img" alt="...">
-=======
                                         <img src="img/imagen_inicio_dos.PNG" class="d-block w-100 c-img"
                                             alt="...">
                                     </div>
@@ -153,7 +136,6 @@
                                     <div class="carousel-item c-item">
                                         <img src="img/imagen_inicio_cuatro.PNG" class="d-block w-100 c-img"
                                             alt="...">
->>>>>>> 362a3746bb87c88537df158e1ef052669ec6f207
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button"

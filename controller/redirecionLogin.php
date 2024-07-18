@@ -31,7 +31,7 @@ $seccionRol = usuarios::iniciarSesion(1, $correo, $password);
 
 if ($resultado < 1) {
 
-    header('location: ../view/inicioSesion.php');
+    header('location: ../view/inicioSesion.php?error=error1');
 
     exit();
     // echo "OCURRIO UN ERROR";
@@ -58,6 +58,6 @@ if ($resultado < 1) {
 
     }
 
-} 
+}
 
 

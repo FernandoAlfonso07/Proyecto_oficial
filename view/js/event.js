@@ -5,10 +5,40 @@ function error() {
         icon: "error",
         title: "Oops...",
         text: "Datos incorrectos",
-
+        confirmButtonText: 'Intentar de nuevo'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'inicioSesion.php';
+        }
     });
-
 }
+
+function errorUpdates() {
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Datos incorrectos",
+        confirmButtonText: 'Intentar de nuevo'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'controlador.php?seccion=MiPerfil';
+        }
+    });
+}
+
+function sucess() {
+    Swal.fire({
+        icon: "sucess",
+        title: "Todo fue correcto",
+        confirmButtonText: 'Ok'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'controlador.php?seccion=MiPerfil';
+        }
+    });
+}
+
+
 
 function mensaje() {
     Swal.fire({
@@ -17,7 +47,7 @@ function mensaje() {
         title: 'Los datos se guardaron correctamente!',
         showConfirmButton: false,
         timer: 1500,
-        
+
     });
 }
 
@@ -111,4 +141,15 @@ function messege() {
         showConfirmButton: false,
         timer: 1500
     });
+}
+
+let attemptCount = 0;
+const maxAttempts = 3;
+
+function checkAttempts() {
+    attemptCount++;
+    if (attemptCount >= maxAttempts) {
+        alert("Has alcanzado el máximo de intentos permitidos.");
+        attemptCount = 0; // Reiniciar el contador si deseas permitir más intentos
+    }
 }

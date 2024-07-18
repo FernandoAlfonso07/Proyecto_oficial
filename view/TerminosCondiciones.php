@@ -14,12 +14,15 @@
 <body>
 
     <header>
-        <h1 class="text-center my-5">
-            Terminos y condiciones
-        </h1>
+        <div class="container-fluid py-2 titulo">
+            <h1 class="text-center my-5">
+                Terminos y condiciones
+            </h1>
+        </div>
     </header>
-    <div class="text-center my-5"><img src="img/terminoscondiciones.png" width="220rem" alt="img"></div>
-   
+    <div class="text-center my-5"><img src="img/terminoscondiciones.png" class="img-fluid" width="220rem" alt="img">
+    </div>
+
     <div class="container">
         <p class="text-center">
             Bienvenido a <strong>WORLDFIT</strong>, el sitio web dedicado a ofrecer una experiencia única y
@@ -145,7 +148,7 @@
                         con alguna parte de estos términos y condiciones, te rogamos que no utilices nuestro sitio
                         web.</strong></p>
             </div>
- 
+
         </div>
     </div>
 

@@ -1,5 +1,6 @@
 <?php
 include ("../model/usuario.php");
+
 ?>
 
 <link rel="stylesheet" href="css/actualizarDatos.css">
@@ -128,3 +129,6 @@ include ("../model/usuario.php");
         </div>
     </div>
 </form>
+
+<script src="js/event.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
