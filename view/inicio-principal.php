@@ -37,7 +37,8 @@
                                 <a class="nav-link separado" href="#contactanos_section">CONTACTANOS</a>
                                 <a class="nav-link separado" href="#servicios_section">SERVICIOS</a>
                                 <a class="nav-link separado" href="inicioSesion.php">INICIAR SESIÓN</a>
-                                <button type="button" class="btn btn-outline-primary separado_principal">
+                                <button onclick="fire()" type="button"
+                                    class="btn btn-outline-primary separado_principal">
                                     <a href="seccion-registro.php">¡REGISTRATE YA!</a>
                                 </button>
 
@@ -63,7 +64,7 @@
                 </h1>
                 <div class="boton_registrar">
                     <h3><br>
-                        <button type="button" class="btn btn-primary">
+                        <button onclick="alertica()" type="button" class="btn btn-primary">
                             <span>
                                 <img src="img/icono_pesa.png" alt="" width="37px">
                             </span>
@@ -303,6 +304,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+
+    <script src="js/event.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 </body>
 
 </html>

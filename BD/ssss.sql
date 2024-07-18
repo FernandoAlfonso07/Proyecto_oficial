@@ -373,3 +373,17 @@ SELECT sumar(1, 2) as sumado; -- // Invocar la funcion
 
 SELECT numero_mayor('nada');
 
+
+
+SELECT * FROM rutinas t1 JOIN categorias_rutinas t2 ON t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 1; -- // Busqueda de las rutinas segun la categoria
+
+INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES ('5', '1', '8');
+
+DELETE FROM calendario_rutinario;
+
+SELECT * FROM calendario_rutinario;
+SELECT * FROM relacion_calendario_rutinas;
+SELECT * FROM rutinas;
+SELECT MAX(id_calendario) FROM calendario_rutinario;
+
+SELECT * FROM usuarios;

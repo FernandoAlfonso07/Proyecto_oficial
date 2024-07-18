@@ -69,11 +69,12 @@ $respuesta = usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $t
 
 if ($respuesta > 1) {
 
-    echo 'Error 1000';
+    header('Location: ../view/controlador.php?seccion=MiPerfil');
+    exit();
 
 } else {
 
-    header('Location: ../view/controlador.php?seccion=MiPerfil');
+    header('Location: ../view/controlador.php?seccion=MiPerfil&success=exito');
     exit();
 
 }

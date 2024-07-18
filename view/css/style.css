@@ -279,3 +279,7 @@ a {
     height: 40em;
     margin: 10px;
 }
+
+.custom-backdrop-class {
+    background-size: 20px;
+}

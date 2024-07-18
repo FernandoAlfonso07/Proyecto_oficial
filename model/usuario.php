@@ -362,7 +362,6 @@ class usuarios extends conexionBD
     }
 
 
-
 }
 
 

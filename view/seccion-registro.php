@@ -31,29 +31,29 @@
                             class="text-primary"><strong>¡REGÍSTRATE!</strong></span></h2>
                     <form action="../controller/registrado.php" method="GET">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="nombres" placeholder="Nombres" required>
+                            <input type="text" class="form-control" name="nombres" placeholder="Nombres" >
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" required>
+                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" >
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="telefono" placeholder="Telefono" required>
+                            <input type="text" class="form-control" name="telefono" placeholder="Telefono" >
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="correo" placeholder="Correo electronico"
-                                required>
+                                >
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" name="password" placeholder="Contraseña"
-                                required>
+                                >
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="pesoA" placeholder="Peso Actual en kg"
-                                required>
+                                >
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="alturaA" placeholder="Altura Actual - ej. 170"
-                                required>
+                                >
                         </div>
                         <div class="form-group">
                             <label for="inputGroupSelect01" class="form-label">
@@ -88,6 +88,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="js/event.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

@@ -13,23 +13,39 @@ if (isset($_GET['contraseña'])) {
 if (!isset($_SESSION))
     session_start();
 
-if (!isset($_SESSION['intento'])) {
-    $_SESSION['intento'] = 0;
-} else {
-    $_SESSION['intento']++;
 
-    if ($_SESSION['intento'] > 3) {
+if (!isset($_SESSION['intento'])) {
+
+    $_SESSION['intento'] = 0;
+
+} else {
+
+
+    $_SESSION['intento']++;
+    if ($_SESSION['intento'] > 5) {
 
         session_destroy();
         header('location: ../controller/errors/error1001.php');
     } else {
-        //echo 'Variable de intento= ' . $_SESSION['intento'];
         '';
     }
 
 }
 
 
+if (isset($_GET['error'])) {
+    // echo 'Detecto la variable';
+    ?>
+
+    <script>
+        window.onload = function () {
+            error();
+        };
+    </script>
+
+    <?php
+
+}
 
 ?>
 
@@ -92,7 +108,6 @@ if (!isset($_SESSION['intento'])) {
                         </button>
 
                     </center>
-
                     <h4 class="texto_extra">
                         <a href="#">Olvide mi contraseña</a> <br> <br>
                         ¿No tienes una cuenta?, <a href="seccion-registro.php">¡Registrate ahora!</a>
@@ -106,6 +121,9 @@ if (!isset($_SESSION['intento'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+    <script src="js/event.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

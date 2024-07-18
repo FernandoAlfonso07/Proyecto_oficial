@@ -51,7 +51,7 @@ $genero = validate::sanitize($genero); // Sanitización de la contraseña;
 $resultado = usuarios::registrar($nombres, $apellidos, $telefono, $correoElectronico, $password, $pesoActual, $altura, $genero);
 
 if ($resultado > 1) {
-    header('location: errors/errorRegister.php');
+    header('location: ../view/seccion-registro.php');
 
 } else {
 

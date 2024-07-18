@@ -43,7 +43,6 @@ if ($cont > 0) {
         echo 'Error 3019 No fue posible asociar el ejercicio';
     } else {
         // Si la inserción fue exitosa, redirigir a la página asociarEjerciciosRutinas.php
-
         header('Location:  ../view/administrador/controladorVadmin.php?seccionAd=asociarEjerciciosRutinas');
         exit();
 

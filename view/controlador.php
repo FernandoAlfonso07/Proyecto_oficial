@@ -11,8 +11,6 @@ if (!isset($_SESSION['id'])) {
   }
 }
 
-
-
 // Identificador de secciones.
 
 $seccion = "seccion1"; //Sección por defecto.
@@ -22,7 +20,5 @@ if (isset($_GET['seccion'])) {
 } else {
   header('location: inicioSesion.php');
 }
-
-
 
 include ("plantilla.php");

@@ -5,7 +5,6 @@ include_once ("nombreSeccionH.php");
 //include ("../model/usuario.php");
 
 
-
 ?>
 
 <!doctype html>
@@ -114,6 +113,8 @@ include_once ("nombreSeccionH.php");
     </script>
 
 </body>
-<script src="js/filterCategories.js"></script>
+<script src="js/event.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </html>
