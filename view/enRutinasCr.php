@@ -35,7 +35,6 @@ echo $id_calendar;
 
 <body>
 
-
     <div class="container cuerpo contenedorEnRutina">
         <div class="row">
             <div class="col-md-12 text-center contenedor_informacion colorear redondear dia_contenedor">
@@ -90,7 +89,6 @@ echo $id_calendar;
                 <?php
                 echo calendarioRutinario::optionPage($p, $id_calendar) // Botonesd de la paginacion.
                     ?>
-
                 <a href="controlador.php?seccion=misCalendarios">
                     <button id="salirButton" class="btn btn-danger">Salir <i
                             class="fa-solid fa-person-shelter"></i></button>

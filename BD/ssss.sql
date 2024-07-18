@@ -292,9 +292,9 @@ WHERE t1.id_dia = 1;
 */
 -- --------------------------------------------
 
-SELECT * FROM categorias_rutinas;
+
 SELECT * FROM calendario_rutinario;
-SELECT * FROM relacion_calendario_categorias;
+SELECT * FROM relacion_calendario_rutinas;
 SELECT * FROM usuarios;
 
 
@@ -332,12 +332,11 @@ JOIN dias_semana t3 ON t3.id_dia = t1.id_dia
 JOIN rutinas t4 ON t4.id_rutina = t1.id_rutina 
 JOIN ejercicio_rutinas t5 ON t5.id_rutina = t4.id_rutina 
 JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio 
-WHERE t1.id_dia = 4 AND t2.id_calendario = '1'
+WHERE t1.id_dia = 1 AND t2.id_calendario = '42'
 LIMIT 0, 1;
 
 
-
-
+/*
 SELECT id_rutina, nombreRutina FROM rutinas t1 JOIN categorias_rutinas t2  ON  t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 1;
 
 select count(*) FROM relacion_calendario_rutinas t1 
@@ -351,16 +350,26 @@ SELECT id_rutina, nombreRutina FROM rutinas WHERE id_categoria = '1';
 SELECT id_rutina, nombreRutina FROM rutinas WHERE id_categoria = '1';
 SELECT nombre FROM dias_semana WHERE id_dia = '1';
 -- // --------------------------------------------------------------------
+*/
 
-SELECT * FROM rutinas t1 JOIN categorias_rutinas t2 ON t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 1; -- // Busqueda de las rutinas segun la categoria
+# F U N C I O N E S
+DELIMITER //
+CREATE FUNCTION sumar(n1 float, n2 float)
+returns float
+return n1 + n2;
+//
 
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES ('5', '1', '8');
+DELIMITER //
+CREATE FUNCTION numero_mayor(text varchar(200))
+returns varchar(200)
+BEGIN 	
+return text;
+END
+//
 
-DELETE FROM calendario_rutinario;
+SELECT sumar(1, 2) as sumado; -- // Invocar la funcion
 
-SELECT * FROM calendario_rutinario;
-SELECT * FROM relacion_calendario_rutinas;
-SELECT * FROM rutinas;
-SELECT MAX(id_calendario) FROM calendario_rutinario;
+-- DROP FUNCTION numero_mayor -- Para eliminar una funcion
 
-SELECT * FROM usuarios;
+SELECT numero_mayor('nada');
+

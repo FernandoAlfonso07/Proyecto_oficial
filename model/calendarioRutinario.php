@@ -37,6 +37,7 @@ class calendarioRutinario extends conexionBD
     public static function mostrarCalendario($opc, $opcMuestra = null, $dia = null, $p = null, $id_calendar = null)
     {
 
+        
         $conexion = self::getConexion();
 
         $sql = "select ";
