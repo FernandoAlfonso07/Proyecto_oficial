@@ -6,10 +6,15 @@ if (isset($_GET['p'])) {
     $p = $_GET['p'];
 }
 
+$id_calendar = 0;
+
+if (isset($_GET['calendar'])) {
+    $id_calendar = $_GET['calendar'];
+}
 
 $dia_semana = date('w');
 
-
+echo $id_calendar;
 ?>
 
 <!doctype html>
@@ -18,7 +23,7 @@ $dia_semana = date('w');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>En rutina | <?php echo calendarioRutinario::mostrarCalendario(1, 0, $dia_semana, $p) ?></title>
+    <title>En rutina | <?php echo calendarioRutinario::mostrarCalendario(1, 0, $dia_semana, $p, $id_calendar) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="./img/logosinfondo.png">
@@ -35,16 +40,16 @@ $dia_semana = date('w');
         <div class="row">
             <div class="col-md-12 text-center contenedor_informacion colorear redondear dia_contenedor">
                 <h1 class="dia">
-                    <?php echo calendarioRutinario::mostrarCalendario(1, 0, $dia_semana, $p) ?>
+                    <?php echo calendarioRutinario::mostrarCalendario(1, 0, $dia_semana, $p, $id_calendar) ?>
                 </h1>
             </div>
             <div class="col-md-12 text-center imagenA">
-                <img src="img/ <?php echo calendarioRutinario::mostrarCalendario(1, 1, $dia_semana, $p) ?> "
-                    width="100%" alt="imagen ejercicios">
+                <img src="img/ <?php echo calendarioRutinario::mostrarCalendario(1, 1, $dia_semana, $p, $id_calendar) ?> "
+                    width="100%" name="imagenEjercico" alt="imagen ejercicios">
             </div>
             <div class="col-md-12 colorear text-center nombreEjercicio redondear">
                 <h1>
-                    <b><?php echo calendarioRutinario::mostrarCalendario(1, 2, $dia_semana, $p) ?></b>
+                    <b><?php echo calendarioRutinario::mostrarCalendario(1, 2, $dia_semana, $p, $id_calendar) ?></b>
                 </h1>
             </div>
             <div class="col-md-12 contenedor_informacion ">
@@ -52,7 +57,7 @@ $dia_semana = date('w');
                     Instrucciones:
                 </h2>
                 <p>
-                    <?php echo calendarioRutinario::mostrarCalendario(1, 3, $dia_semana, $p) ?>
+                    <?php echo calendarioRutinario::mostrarCalendario(1, 3, $dia_semana, $p, $id_calendar) ?>
                 </p>
             </div>
             <div class="col-md-12  contenedor_informacion colorear redondear">
@@ -60,18 +65,20 @@ $dia_semana = date('w');
                     Equipo necesario
                 </h2>
                 <p>
-                    <?php echo calendarioRutinario::mostrarCalendario(1, 4, $dia_semana, $p) ?>
+                    <?php echo calendarioRutinario::mostrarCalendario(1, 4, $dia_semana, $p, $id_calendar) ?>
                 </p>
             </div>
             <div class="col-md-12 text-center rep contenedor_informacion colorear">
                 <h2>
                     Haz <b class="numero">
-                        <p><?php echo calendarioRutinario::mostrarCalendario(1, 5, $dia_semana, $p) ?>
+                        <p><?php echo calendarioRutinario::mostrarCalendario(1, 5, $dia_semana, $p, $id_calendar) ?>
                     </b>Series de
                     <b class="numero">
-                        <?php // echo calendarioRutinario::mostrarCalendario(1, 6, $dia_semana, $p);
-                        echo calendarioRutinario::mostrarCalendario(0, null, $dia_semana)
-                            ?>
+                        <?php
+                        echo calendarioRutinario::mostrarCalendario(1, 6, $dia_semana, $p, $id_calendar);
+                        // echo calendarioRutinario::mostrarCalendario(0, null, $dia_semana)
+                        
+                        ?>
                     </b> Repeticiones.
                 </h2>
             </div>
@@ -81,7 +88,7 @@ $dia_semana = date('w');
                             class="fa-solid fa-pause"></i></button>
                 </a>
                 <?php
-                echo calendarioRutinario::optionPage($p) // Botonesd de la paginacion.
+                echo calendarioRutinario::optionPage($p, $id_calendar) // Botonesd de la paginacion.
                     ?>
 
                 <a href="controlador.php?seccion=misCalendarios">

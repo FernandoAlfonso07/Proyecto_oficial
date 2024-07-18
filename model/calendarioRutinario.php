@@ -34,7 +34,7 @@ class calendarioRutinario extends conexionBD
      * @param $dia = Con este parametro se trae el dia para que muestre las rutinas asociadas a ese dia.
      * @param $p = Con este parametro se identifica la pagina en la que esta la cual da lugar al Limit del SQL
      */
-    public static function mostrarCalendario($opc, $opcMuestra = null, $dia = null, $p = null)
+    public static function mostrarCalendario($opc, $opcMuestra = null, $dia = null, $p = null, $id_calendar = null)
     {
 
         $conexion = self::getConexion();
@@ -61,7 +61,7 @@ JOIN dias_semana t3 ON t3.id_dia = t1.id_dia
 JOIN rutinas t4 ON t4.id_rutina = t1.id_rutina 
 JOIN ejercicio_rutinas t5 ON t5.id_rutina = t4.id_rutina 
 JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio 
-WHERE t1.id_dia = '$dia' ";
+WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
 
         if ($opc == 0) {
             $sql .= "";
@@ -116,22 +116,22 @@ WHERE t1.id_dia = '$dia' ";
         return $rr;
     }
 
-    public static function optionPage($p)
+    public static function optionPage($p, $id_calendar)
     {
         $r = '';
-        $total = self::mostrarCalendario(0, null, date('w'));
+        $total = self::mostrarCalendario(0, null, date('w'), null, $id_calendar);
         for ($i = 0; $i < $total; $i++) {
 
             $p2 = $p * 1;
 
             if ($p2 == $i) {
 
-                $r .= '<a href="../view/enRutinasCr.php?p=' . $i . '"> ';
+                $r .= '<a href="../view/enRutinasCr.php?calendar=' . $id_calendar . '&p=' . $i . '"> ';
                 $r .= '<button class="btn btn-primary btn-gradient botones activo">' . $i . '</button> </a>';
 
             } else {
 
-                $r .= '<a href="../view/enRutinasCr.php?p=' . $i . '"> ';
+                $r .= '<a href="../view/enRutinasCr.php?calendar=' . $id_calendar . '&p=' . $i . '"> ';
                 $r .= '<button class="btn bg-primary-subtle btn-gradient botones">' . $i . '</button> </a>';
 
             }

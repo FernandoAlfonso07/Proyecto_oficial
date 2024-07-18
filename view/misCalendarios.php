@@ -20,7 +20,7 @@
 <div class="container calendario_usuario">
     <div class="row">
         <div class="col-md-12 seccion_de_cada_calendario">
-            <a href="enRutinasCr.php">
+            <a href="enRutinasCr.php?calendar=40&p=0">
                 <div class="row">
                     <div class="col-md-6">
                         <h1>
