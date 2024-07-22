@@ -1,6 +1,4 @@
 <?php
-
-
 class validate
 {
     /**
@@ -44,6 +42,43 @@ class validate
 
         // Retorna el String Sanitizado
         return $salida;
+    }
+
+    /**
+     * Valida y maneja la carga de archivos de imagen en el servidor.
+     *
+     * Este método verifica el formato de la imagen cargada, mueve la imagen al directorio especificado
+     * y devuelve la ruta de la imagen cargada o redirige al usuario si el formato de la imagen no es permitido.
+     *
+     * @param string $imageInsert Nombre del campo del formulario `input` de tipo `file` utilizado para la carga de la imagen.
+     * @param string $header URL a la que se redirigirá al usuario si el formato de la imagen no es permitido.
+     * @param string $directory_address Ruta del directorio en el servidor donde se almacenará la imagen cargada.
+     *                                  Debe incluir la barra diagonal final para concatenar el nombre de la imagen.
+     * 
+     * @return string Ruta de la imagen cargada en el servidor si el archivo se mueve correctamente, 
+     *                o un mensaje de error si no se logra cargar la imagen.
+     */
+    public static function image($imageInsert, $header, $directory_address) // name input, // direccion controlador, // directorio
+    {
+        $image = $_FILES[$imageInsert]['tmp_name'];
+        $name_image = $_FILES[$imageInsert]['name'];
+        $image_format = strtolower(pathinfo($name_image, PATHINFO_EXTENSION));
+
+        // Verificar si el formato de la imagen es uno de los permitidos
+        if ($image_format != 'jpg' && $image_format != 'jpeg' && $image_format != 'png') {
+            header('location: ' . $header);
+
+        } else {
+            $directory = $directory_address;
+            $image_Direction = $directory . basename($name_image);
+
+            // Mover la imagen al directorio especificado
+            if (move_uploaded_file($image, $image_Direction)) {
+                return $image_Direction; // Retornar la ruta de la imagen si se movió con éxito
+            } else {
+                return 'No se cargó correctamente la imagen';
+            }
+        }
     }
 
 }

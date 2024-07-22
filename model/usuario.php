@@ -326,6 +326,7 @@ class usuarios extends conexionBD
         $sql .= "pr = $pr ";
         $sql .= "WHERE id_usuario = '$id' ";
 
+        echo '<br>' . $sql;
         $conexion->query($sql); // Ejecuta la consulta SQL para actualizar los datos del usuario
 
         $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de actualización

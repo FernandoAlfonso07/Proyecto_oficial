@@ -6,76 +6,60 @@ include_once ('../model/validate.php'); // Se incluye la clase que permite sanit
 if (!isset($_SESSION))
     session_start();
 
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
     header("location: ../view/inicioSesion.php");
 
-} else {
-    if ($_SESSION['id'] == "") {
-        header("location: ../view/inicioSesion.php");
-    }
 }
 
 
+// Sanitización de entradas
+$nombres = validate::sanitize($_POST['nombre']);
+$apellidos = validate::sanitize($_POST['apellido']);
+$telefono = validate::sanitize($_POST['telefono']);
+$correo = validate::sanitize($_POST['correo']);
+$pr = validate::sanitize($_POST['personaleRecord']);
+$pesoActual = validate::sanitize($_POST['peso']);
+$altura = validate::sanitize($_POST['altura']);
 
+/* ****************************** V A L I D A C I O N E S ***************************** */
 
-$nombres = $_GET['nombre'];
+// Validación de imagen
+$ruta_imagen = validate::image('imagenPerfil', '../view/controlador.php?error=incorrectFormat&seccion=updateDatas', '../view/img/');
 
-$nombres = validate::sanitize($nombres); // Sanitización de la contraseña;
-
-$apellidos = $_GET['apellido'];
-
-$apellidos = validate::sanitize($apellidos); // Sanitización de la contraseña;
-
-$telefono = $_GET['telefono'];
-
-$telefono = validate::sanitize($telefono); // Sanitización de la contraseña;
-
-$correo = $_GET['correo'];
-
-$correo = validate::sanitize($correo); // Sanitización de la contraseña;
-
-$pr = $_GET['personaleRecord'];
-
-$pr = validate::sanitize($pr); // Sanitización de la contraseña;
-
-$pesoActual = $_GET['peso'];
-
-$pesoActual = validate::sanitize($pesoActual); // Sanitización de la contraseña;
-
-$altura = $_GET['altura'];
-
-$altura = validate::sanitize($altura); // Sanitización de la contraseña;
-
-$ruta_imagen = '';
-
-// $password = validate::sanitize($password); // Sanitización de la contraseña;
-
-
-/*
-$directorioDestino = '../view/imgPerfiles/';
-$nombreArchivo = '';
-
-if (!empty($_FILES['imagenPerfil']['name'])) {
-    $nombreArchivo = basename($_FILES['imagenPerfil']);
-
-    $ruta_completa = $directorioDestino . $nombreArchivo;
-    $ruta_imagen = $ruta_completa;
-
+// Validaciones de campos
+if (empty($nombres) || empty($apellidos) || empty($telefono) || empty($correo) || empty($pr) || empty($pesoActual) || empty($altura)) {
+    header('Location: controlador.php?error=incorrect&seccion=updateDatas');
+    exit();
 }
-*/
 
+// Convertir a flotante y validar
+$pr = floatval($pr);
+$pesoActual = floatval($pesoActual);
+$altura = floatval($altura);
+
+if (!filter_var($pr, FILTER_VALIDATE_FLOAT) || !filter_var($pesoActual, FILTER_VALIDATE_FLOAT) || !filter_var($altura, FILTER_VALIDATE_FLOAT)) {
+    header('Location: controlador.php?error=notNumber&seccion=updateDatas');
+    exit();
+}
+
+// Convertir a entero y validar
+$telefono = intval($telefono);
+if (!filter_var($telefono, FILTER_VALIDATE_INT)) {
+    header('Location: controlador.php?error=invalidPhone&seccion=updateDatas');
+    exit();
+}
+
+
+/* ****************************** V A L I D A C I O N E S | F I N ***************************** */
 
 $respuesta = usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen);
 
 if ($respuesta > 1) {
-
     header('Location: ../view/controlador.php?seccion=MiPerfil');
     exit();
 
 } else {
-
-    header('Location: ../view/controlador.php?seccion=MiPerfil&success=exito');
-    exit();
-
+    // header('Location: ../view/controlador.php?success=exito&seccion=MiPerfil');
+    // exit();
 }
 

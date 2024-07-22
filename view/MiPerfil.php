@@ -1,5 +1,5 @@
 <?php
-include ("../model/usuario.php");
+include_once ("../model/usuario.php");
 ?>
 
 <link rel="stylesheet" href="css/estilosinformacionU.css">
@@ -8,7 +8,10 @@ include ("../model/usuario.php");
     <div class="row">
         <div class="col-md-6 text-center">
             <img src="
-            <?php ?>" class="img-fluid imagen_perfil" width="80%" alt="Imagen Perfil">
+            <?php
+            echo usuarios::getPerfil(9, $_SESSION['id']);
+
+            ?>" class="img-fluid imagen_perfil" width="80%" alt="Imagen Perfil">
         </div>
         <div class="col-md-6">
             <div class="row">

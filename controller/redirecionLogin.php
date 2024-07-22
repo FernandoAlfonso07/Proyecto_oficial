@@ -23,7 +23,6 @@ $password = $_GET['password'];
 
 $password = validate::sanitize($password); // Sanitización de la contraseña;
 
-
 $resultado = usuarios::iniciarSesion(0, $correo, $password);
 
 $seccionRol = usuarios::iniciarSesion(1, $correo, $password);
@@ -46,12 +45,18 @@ if ($resultado < 1) {
         header("location: ../view/controlador.php?seccion=seccion1");
 
         exit();
+
     } elseif ($seccionRol == 1) {
 
         $id_usuario = usuarios::buscarId($correo, $password);
 
-        $_SESSION['id'] = $id_usuario;
+        if (!isset($_SESSION['id_admin'])) {
+            $_SESSION['id_admin'] = $id_usuario;    
+        } else {
+            $_SESSION['id_admin'] = $id_usuario;
+        }
 
+        $_SESSION['id'] = $id_usuario;
         header("location: ../view/administrador/controladorVadmin.php?seccionAd=seccionAd1");
 
         exit();

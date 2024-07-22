@@ -367,6 +367,4 @@ return text;
 END
 //
 
-SELECT * FROM calendario_rutinario;
-SELECT * FROM rutinas
 
