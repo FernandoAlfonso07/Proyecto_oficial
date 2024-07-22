@@ -50,3 +50,5 @@ include_once ('../model/Categories.php');
         </div>
     </div>
 </form>
+
+<script src="js/filterCategories.js"></script>

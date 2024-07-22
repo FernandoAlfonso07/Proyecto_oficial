@@ -1,6 +1,7 @@
 create schema someThimes;
 use someThimes;
 
+
 CREATE TABLE tb_conteo( -- // CREACION DE LA TABLA PARA ALMACENAR LOS TRIGGER
 id_conteo int not null auto_increment,
 descripcion varchar(10) null,
@@ -46,7 +47,7 @@ SELECT * FROM tb_conteo;
 
 
 
-INSERT INTO usuarios (name, fec_reg) VALUES ('Fernando', now());
+
 
 
 DELIMITER //
@@ -63,7 +64,54 @@ FOR EACH ROW BEGIN
 END;
 //
 
+# F U N C I O N E S
+DELIMITER //
+CREATE FUNCTION sumar(n1 float, n2 float)
+returns float
+return n1 + n2;
+//
 
 
+DELIMITER //
+CREATE FUNCTION promedio (n1 float, n2 float) 	
+returns float
+return sumar(n1, n2) / 2;
+//
 
+DROP FUNCTION promedio;
+
+SELECT promedio(4, 4.5) as promedio;
+
+DELIMITER //
+CREATE FUNCTION conteo (tabla varchar(100)) 	
+returns float
+BEGIN
+
+SELECT COUNT(*) INTO @conteo FROM tabla;
+return @conteo;
+END;
+//
+
+SELECT conteo('usuarios');
+
+DELIMITER //
+CREATE FUNCTION conteoUsers () 	
+	returns float
+BEGIN
+	SELECT COUNT(*) INTO @conteo FROM usuarios;
+	return @conteo;
+END;
+//
+SELECT conteoUsers();
+
+-- // ********************************************************************
+DELIMITER //
+CREATE FUNCTION userMoney (users float) 	
+	returns float
+BEGIN
+	return conteoUsers() * 4.018;
+END;
+//
+
+SELECT userMoney(conteoUsers());
 

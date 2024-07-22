@@ -314,7 +314,7 @@ INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUE
 
 
 /* -------------------------- PARA IMPLEMENTAR ----------------------------------- */
-
+/*
 SELECT 
 t2.nombre_personalizado,
 t4.nombreRutina,
@@ -332,9 +332,9 @@ JOIN dias_semana t3 ON t3.id_dia = t1.id_dia
 JOIN rutinas t4 ON t4.id_rutina = t1.id_rutina 
 JOIN ejercicio_rutinas t5 ON t5.id_rutina = t4.id_rutina 
 JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio 
-WHERE t1.id_dia = 1 AND t2.id_calendario = '42'
+WHERE t1.id_dia = 4 AND t2.id_calendario = '40'
 LIMIT 0, 1;
-
+*/
 
 /*
 SELECT id_rutina, nombreRutina FROM rutinas t1 JOIN categorias_rutinas t2  ON  t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 1;
@@ -367,23 +367,6 @@ return text;
 END
 //
 
-SELECT sumar(1, 2) as sumado; -- // Invocar la funcion
-
--- DROP FUNCTION numero_mayor -- Para eliminar una funcion
-
-SELECT numero_mayor('nada');
-
-
-
-SELECT * FROM rutinas t1 JOIN categorias_rutinas t2 ON t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 1; -- // Busqueda de las rutinas segun la categoria
-
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES ('5', '1', '8');
-
-DELETE FROM calendario_rutinario;
-
 SELECT * FROM calendario_rutinario;
-SELECT * FROM relacion_calendario_rutinas;
-SELECT * FROM rutinas;
-SELECT MAX(id_calendario) FROM calendario_rutinario;
+SELECT * FROM rutinas
 
-SELECT * FROM usuarios;

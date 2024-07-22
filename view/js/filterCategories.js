@@ -18,8 +18,4 @@ function hola(event, id_routine) {
             console.log(error);
         }
     });
-
 }
-
-
-

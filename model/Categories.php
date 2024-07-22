@@ -30,7 +30,7 @@ class CycleCreateCalender extends conexionBD
 
         $salida .= '</div>';
         $salida .= '<div class="col-md-4">';
-        $salida .= "<select class='form-select' name='id_filterCategory' id='$id_filterCategory' onchange='hola(event,\"$id_filterRoutines\")'>";
+        $salida .= "<select class='form-select' name='id_filterCategory' id='$id_filterCategory' onChange='hola(event,\"$id_filterRoutines\")'>";
         $salida .= 'aria-label="Default select example">';
         $salida .= '<option selected>Seleccione la categoria</option>';
 

@@ -7,6 +7,8 @@ if (isset($_GET['entrenamientos'])) {
     $entrenamiento = $_GET['entrenamientos'];
 
     $conexion = conexionBD::getConexion();
+    
+    echo 'ID que llega al sql ' . $entrenamiento;
 
     $sql = "SELECT id_rutina, nombreRutina FROM rutinas WHERE id_categoria = '$entrenamiento' ";
     $result = $conexion->query($sql);
