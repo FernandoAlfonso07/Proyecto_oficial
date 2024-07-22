@@ -59,7 +59,7 @@ if ($respuesta > 1) {
     exit();
 
 } else {
-    // header('Location: ../view/controlador.php?success=exito&seccion=MiPerfil');
-    // exit();
+    header('Location: ../view/controlador.php?success=exito&seccion=MiPerfil');
+    exit();
 }
 
