@@ -336,32 +336,55 @@ class usuarios extends conexionBD
         return $affected_rows;
     }
 
-
+    /**
+     * Crea registros en la base de datos para calendarios y su relación con rutinas.
+     * 
+     * Dependiendo del valor del parámetro `$opc`, este método realiza una de las siguientes acciones:
+     * - Si `$opc` es `0`, inserta un nuevo calendario en la tabla `calendario_rutinario`.
+     * - Si `$opc` es `1`, inserta una relación entre un calendario y una rutina en la tabla `relacion_calendario_rutinas`.
+     * 
+     * @param int $opc Determina el tipo de inserción:
+     *                 - `0` para insertar un nuevo calendario.
+     *                 - `1` para insertar una relación entre calendario y rutina.
+     * @param int|null $id_user (Opcional) El identificador del usuario asociado con el calendario. Requerido si `$opc` es `0`.
+     * @param string|null $name (Opcional) El nombre personalizado del calendario. Requerido si `$opc` es `0`.
+     * @param string|null $description (Opcional) La descripción del calendario. Requerido si `$opc` es `0`.
+     * @param int|null $id_calendar (Opcional) El identificador del calendario asociado con la rutina. Requerido si `$opc` es `1`.
+     * @param int|null $id_day (Opcional) El identificador del día en el calendario. Requerido si `$opc` es `1`.
+     * @param int|null $id_routine (Opcional) El identificador de la rutina asociada con el calendario. Requerido si `$opc` es `1`.
+     * 
+     * @return int El número de filas afectadas por la operación de inserción.
+     */
     public static function createCalender($opc, $id_user = null, $name = null, $description = null, $id_calendar = null, $id_day = null, $id_routine = null)
     {
-
+        // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
+        // Construir la consulta SQL según el valor de $opc
         if ($opc == 0) {
+
+            // Insertar un nuevo calendario en la tabla calendario_rutinario
             $sql = "INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, fecha_registro) ";
             $sql .= "VALUES ('$id_user', '$name', '$description', now()) ";
         } else {
+
+            // Insertar una relación entre calendario y rutina en la tabla relacion_calendario_rutinas
             $sql = "INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) ";
             $sql .= "VALUES ('$id_calendar', '$id_day', '$id_routine');";
         }
 
-        echo $sql . '<br>';
-        
+        // Ejecutar la consulta
         $conexion->query($sql);
 
+        // Obtener el número de filas afectadas
         $affected_rows = $conexion->affected_rows;
 
+        // Cerrar la conexión a la base de datos
         $conexion->close();
 
+        // Retornar el número de filas afectadas
         return $affected_rows;
     }
-
-
 }
 
 

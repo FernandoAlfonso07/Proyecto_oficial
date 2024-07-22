@@ -3,11 +3,11 @@
 if (!isset($_SESSION))
     session_start();
 
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id_admin'])) {
     header("location: ../inicioSesion.php");
 
 } else {
-    if ($_SESSION['id'] == "") {
+    if ($_SESSION['id_admin'] == "") {
         header("location: ../inicioSesion.php");
     }
 }

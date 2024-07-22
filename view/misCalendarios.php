@@ -23,13 +23,9 @@ include_once ('../model/calendarioRutinario.php');
 <div class="container">
     <hr class="linea">
 </div>
-<div class="container calendario_usuario">
-    <div class="row">
-        <?php
-        echo calendarioRutinario::getCalendarRoutinesUser(1, $_SESSION['id'])
-            ?>
-    </div>
-</div>
+<?php
+echo calendarioRutinario::getCalendarRoutinesUser(1, $_SESSION['id']) // Muestra los calendarios rutinarios del usuario
+    ?>
 <div class="container">
     <hr class="linea">
 </div>

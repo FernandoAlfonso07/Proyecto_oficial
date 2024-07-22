@@ -146,6 +146,8 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
                 }
             }
         }
+        // Cerrar la conexión a la base de datos
+        $conexion->close();
 
         // Retorna el resultado de la consulta
         return $rr;
@@ -189,63 +191,77 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
 
             }
         }
+
         // Retorna la cadena de enlaces HTML generada
         return $r;
 
     }
 
 
+    /**
+     * Obtiene las rutinas del calendario de un usuario y las muestra en formato HTML.
+     *
+     * @param int $opc Indica el tipo de consulta: 0 para contar las rutinas, 1 para obtener detalles de las rutinas.
+     * @param int $id_user El ID del usuario cuyas rutinas se desean obtener.
+     * 
+     * @return string El resultado de la consulta: un número si $opc es 0, o HTML con los detalles de las rutinas si $opc es 1.
+     */
     public static function getCalendarRoutinesUser($opc, $id_user)
     {
-
-
+        // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
+        // Iniciar la consulta SQL
         $sql = "SELECT ";
 
+        // Modificar la consulta según el valor de $opc
         if ($opc == 0) {
             $sql .= "COUNT(*) ";
         } elseif ($opc == 1) {
             $sql .= "t1.id_calendario, t1.nombre_personalizado, t1.descripcion, t1.fecha_registro ";
         }
+
+        // Completar la consulta SQL
         $sql .= "FROM calendario_rutinario t1 JOIN usuarios t2 ON t1.id_usuario = t2.id_usuario WHERE t2.id_usuario = '$id_user' ";
 
+        // Ejecutar la consulta
         $result = $conexion->query($sql);
         $r = '';
+
+        // Procesar los resultados de la consulta
         while ($row = $result->fetch_array()) {
 
             if ($opc == 0) {
-                $r = $row[0];
+                $r = $row[0]; // Devolver el número de rutinas
             } elseif ($opc == 1) {
-                $r .= '<div class="col-md-12 seccion_de_cada_calendario">';
-                $r .= '<a href="enRutinasCr.php?calendar=' . $row[0] . '&p=0">';
-                $r .= '<div class="row">';
-                $r .= '<div class="col-md-6">';
-                $r .= '<h1>';
-                $r .= $row[1];
-                $r .= '</h1>';
-                $r .= '<p>';
-                $r .= $row[3];
-                $r .= '</p>';
-                $r .= '<p>';
-                $r .= '<h4>';
-                $r .= '<b>descripcion</b>';
-                $r .= '</h4>';
-                $r .= '<p>';
-                $r .= $row[2];
-                $r .= '</p>';
-                $r .= '</p>';
+                // Generar HTML con los detalles de las rutinas
+                $r .= '<div class="container calendario_usuario">';
+                $r .= '    <div class="row">';
+                $r .= '        <div class="col-md-12 seccion_de_cada_calendario">';
+                $r .= '            <a href="enRutinasCr.php?calendar=' . $row[0] . '&p=0">';
+                $r .= '                <div class="row">';
+                $r .= '                    <div class="col-md-6">';
+                $r .= '                        <h1>' . $row[1] . '</h1>';
+                $r .= '                        <p>' . $row[3] . '</p>';
+                $r .= '                        <h4><b>descripcion</b></h4>';
+                $r .= '                        <p>' . $row[2] . '</p>';
+                $r .= '                    </div>';
+                $r .= '                    <div class="col-md-6 text-center position-relative">';
+                $r .= '                        <i class="fa-regular fa-calendar icono_calendario"></i>';
+                $r .= '                    </div>';
+                $r .= '                </div>';
+                $r .= '            </a>';
+                $r .= '        </div>';
+                $r .= '    </div>';
                 $r .= '</div>';
-                $r .= '<div class="col-md-6 text-center position-relative">';
-                $r .= '<i class="fa-regular fa-calendar icono_calendario"></i>';
-                $r .= '</div>';
-                $r .= '</div>';
-                $r .= '</a>';
-                $r .= '</div>';
-               
-                
             }
         }
+        // Cerrar la conexión a la base de datos
+        $conexion->close();
+
+        // Devolver el resultado
         return $r;
+
+
     }
 }

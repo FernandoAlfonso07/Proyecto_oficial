@@ -4,90 +4,120 @@ include_once ("connect.php");
 
 class Administrador extends conexionBD
 {
-
-
+    /**
+     * Obtiene y muestra los ejercicios desde la base de datos en formato HTML.
+     * 
+     * Este método realiza una consulta a la base de datos para obtener la información de los ejercicios,
+     * incluyendo detalles como ID, nombre, series, repeticiones, tiempo de descanso, fecha de registro,
+     * y la rutina asociada. Genera un HTML para mostrar estos detalles en una tabla.
+     * 
+     * @return string El HTML generado con los datos de los ejercicios.
+     */
     public static function verEjercicios()
     {
+        // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
+        // Crear la consulta SQL
         $sql = "SELECT";
         $sql .= " t1.id_ejercicio, t1.nombre, t1.Instrucctiones, t1.equipoNecesario, t1.seires, t1.repeticiones, t1.tiempo_descanso, t1.fecha_registro, t3.nombreRutina, t3.id_rutina, t1.direccion_media";
         $sql .= " FROM ejercicios t1";
         $sql .= " LEFT JOIN ejercicio_rutinas t2 ON t1.id_ejercicio = t2.id_ejercicio";
         $sql .= " LEFT JOIN rutinas t3 ON t2.id_rutina = t3.id_rutina ";
 
+        // Ejecutar la consulta
         $resultado = $conexion->query($sql);
 
+        // Inicializar la variable para almacenar el HTML
         $r = '';
+
+        // Procesar los resultados de la consulta
         while ($fila = $resultado->fetch_array()) {
             $r .= '<tr>';
-            $r .= "<td>" . $fila[0] . "</td>"; // Esto muestra el ID
-            $r .= "<td>" . $fila[1] . "</td>"; // Esto muestra el NOMBRE
+            $r .= "<td>" . $fila[0] . "</td>"; // Muestra el ID del ejercicio
+            $r .= "<td>" . $fila[1] . "</td>"; // Muestra el nombre del ejercicio
 
-            // $r .= "<td>" . $fila[2] . "</td>"; // Esto muestra el INSTRUCCIONES
-            // $r .= "<td>" . $fila[3] . "</td>"; // Esto muestra el EQUIPO REQUERIDO PARA EL EJERCICIO
+            // $r .= "<td>" . $fila[2] . "</td>"; // Muestra las instrucciones
+            // $r .= "<td>" . $fila[3] . "</td>"; // Muestra el equipo necesario
 
-            $r .= "<td>" . $fila[4] . "</td>"; // Esto muestra el SEIRES
-            $r .= "<td>" . $fila[5] . "</td>"; // Esto muestra el REPETICIONES
-            $r .= "<td>" . $fila[6] . "</td>"; // Esto muestra el TIEMPO DE DESCANSO
-            $r .= "<td>" . $fila[7] . "</td>"; // Esto muestra el FECHA DE REGISTRO
+            $r .= "<td>" . $fila[4] . "</td>"; // Muestra las series
+            $r .= "<td>" . $fila[5] . "</td>"; // Muestra las repeticiones
+            $r .= "<td>" . $fila[6] . "</td>"; // Muestra el tiempo de descanso
+            $r .= "<td>" . $fila[7] . "</td>"; // Muestra la fecha de registro
             $r .= "<td>";
 
-            ($fila[8] == '') ? $r .= 'Ninguna rutina asociada' : $r .= $fila[8]; // Descición para validar que existe una rutina asociada
+            // Validar si existe una rutina asociada
+            ($fila[8] == '') ? $r .= 'Ninguna rutina asociada' : $r .= $fila[8];
 
-            $r .= "</td>";// Muestra la RUTINA ASOCIADA
+            $r .= "</td>"; // Muestra la rutina asociada
 
-            // $r .= "<td>" . $fila[9] . "</td>"; // Esto muestra el ID DE LA RUTINA
+            // $r .= "<td>" . $fila[9] . "</td>"; // Muestra el ID de la rutina
 
-            $r .= "<td>" . $fila[10] . "</td>"; // Esto muestra el EJEMPLO GRAFICO
+            $r .= "<td>" . $fila[10] . "</td>";// Muestra el ejemplo gráfico
             $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <a href='../../controller/ejercicioEliminado.php?id_ejercicio=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <i class='fa-solid fa-pen-to-square icono edit'></i>";
             $r .= " </td>";
             $r .= '</tr>';
         }
+        // Cierra la conexion a la base de datos
+        $conexion->close();
 
+        // Devolver el HTML generado
         return $r;
     }
 
-    public static function delete_data($opc, $id_data) // ************************ 
+    /**
+     * Elimina datos de una tabla específica en la base de datos.
+     *
+     * @param int $opc Indica la tabla de la que se eliminarán los datos: 
+     *                 0 para la tabla 'rutinas',
+     *                 1 para la tabla 'ejercicios',
+     *                 2 para la tabla 'usuarios'.
+     * @param int $id_data El ID del dato que se desea eliminar.
+     * 
+     * @return int El número de filas afectadas por la eliminación.
+     */
+    public static function delete_data($opc, $id_data)
     {
 
+        // Inicializar las variables de tabla e identificador
         $table = '';
-
         $identifier = '';
 
+        // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
+        // Determinar la tabla y el identificador según el valor de $opc
         switch ($opc) {
             case 0:
                 $table = 'rutinas';
-
                 $identifier = 'id_rutina';
-
                 break;
             case 1:
                 $table = 'ejercicios';
-
                 $identifier = 'id_ejercicio';
-
                 break;
             case 2:
                 $table = 'usuarios';
-
                 $identifier = 'id_usuario';
-
                 break;
         }
 
+        // Crear la consulta SQL para eliminar el dato
         $sql = "DELETE FROM $table WHERE $identifier = $id_data ";
 
+        // Imprimir la consulta SQL para fines de depuración
         echo 'script ' . $sql;
 
+        // Ejecutar la consulta
         $conexion->query($sql);
 
+        // Obtener el número de filas afectadas
         $affected_rows = $conexion->affected_rows;
 
+        // Cerrar la conexión a la base de datos
         $conexion->close();
 
+        // Devolver el número de filas afectadas
         return $affected_rows;
 
     }
@@ -389,27 +419,6 @@ class Administrador extends conexionBD
         return $r;
     }
 
-
-    public static function getIdCategory()
-    {
-        $conexion = self::getConexion();
-
-        $sql = "SELECT MAX(id_categoria) FROM categorias_rutinas ";
-
-        $resultado = $conexion->query($sql);
-
-        $r = 0;
-
-        while ($fila = $resultado->fetch_array()) {
-
-            $r = $fila[0];
-        }
-
-        $conexion->close();
-
-        return $r;
-    }
-
     /**
      * Método estático See_Added_Exercises
      *
@@ -493,14 +502,27 @@ class Administrador extends conexionBD
 
     }
 
+    /**
+     * Crea una nueva categoría en la tabla `categorias_rutinas`.
+     * 
+     * Este método inserta una nueva categoría en la base de datos con el nombre proporcionado.
+     * 
+     * @param string $nameCategory El nombre de la categoría que se desea agregar.
+     * 
+     * @return int El número de filas afectadas por la operación de inserción.
+     */
     public static function createCategory($nameCategory)
     {
+        // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
+        // Crear la consulta SQL para insertar la nueva categoría
         $sql = "INSERT INTO categorias_rutinas (categoria) VALUES ('$nameCategory');";
 
+        // Ejecutar la consultaF
         $conexion->query($sql);
 
+        // Obtener el número de filas afectadasf
         $affected_rows = $conexion->affected_rows;
 
         // Cerrar la conexión a la base de datos
@@ -512,44 +534,71 @@ class Administrador extends conexionBD
 
     }
 
-
+    /**
+     * Muestra las rutinas desde la base de datos.
+     * 
+     * Este método realiza una consulta a la base de datos para obtener las rutinas y generar
+     * el HTML correspondiente para mostrar los resultados en una tabla. La información mostrada
+     * depende del valor del parámetro `$opc`.
+     * 
+     * @param int $opc Indica el tipo de información que se debe recuperar:
+     *                 - `0`: Contar el número total de rutinas.
+     *                 - `1`: Obtener detalles de las rutinas, incluyendo ID, nombre, objetivo, fecha de registro y categoría asociada.
+     * 
+     * @return string El HTML generado con los datos de las rutinas. Si `$opc` es `0`, se devuelve el número total de rutinas.
+     */
     public static function showRoutines($opc)
     {
-
-
+        // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
+        // Crear la consulta SQL
         $sql = "SELECT ";
 
         if ($opc == 0) {
+
+            // Contar el número total de rutinas
             $sql .= "count(*) ";
         } else {
+
+            // Obtener detalles de las rutinas
             $sql .= "t1.id_rutina, t1.nombreRutina, t1.objetivo , t1.fecha_registro, t2.categoria ";
         }
 
-
+        // Completar la consulta SQL
         $sql .= "FROM rutinas t1 JOIN categorias_rutinas t2 ON t1.id_categoria = t2.id_categoria ";
+
+        // Ejecutar la consulta
         $result = $conexion->query($sql);
+
+        // Inicializar la variable para almacenar el HTMLF
         $r = '';
+
+        // Procesar los resultados de la consulta
         while ($fila = $result->fetch_array()) {
 
             if ($opc == 0) {
+
                 $r = $fila[0];
+                // Si `$opc` es `0`, devolver el número total de rutinas
             } else {
+
+                // Si `$opc` no es `0`, generar el HTML con los detalles de las rutinas
                 $r .= '<tr>';
-                $r .= "<td>" . $fila[0] . "</td>"; // Esto muestra el IDX
-                $r .= "<td>" . $fila[1] . "</td>"; // Esto muestra el NOMBRE DE LA RUTINA
-                $r .= "<td>" . $fila[2] . "</td>"; // Esto muestra el OBJETIVO
-                $r .= "<td>" . $fila[3] . "</td>"; // Esto muestra el FECHA REGISTRO
-                $r .= "<td>" . $fila[4] . "</td>"; // Esto muestra el CATEGORIA ASOCIADA
+                $r .= "<td>" . $fila[0] . "</td>"; // Muestra el ID de la rutina
+                $r .= "<td>" . $fila[1] . "</td>"; // Muestra el nombre de la rutina
+                $r .= "<td>" . $fila[2] . "</td>"; // Muestra el objetivo de la rutina
+                $r .= "<td>" . $fila[3] . "</td>"; // Muestra la fecha de registro
+                $r .= "<td>" . $fila[4] . "</td>"; // Muestra la categoría asociada
                 $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <a href='../../controller/deleteRoutine.php?id_routine=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <i class='fa-solid fa-pen-to-square icono edit'></i>";
                 $r .= " </td>";
                 $r .= '</tr>';
             }
-
         }
+        // Cierra la conexion a la base de datos
+        $conexion->close();
+
+        // Devolver el resultado
         return $r;
-
     }
-
 }
