@@ -4,11 +4,8 @@ include_once ("../model/administrador.php");
 include_once ('../model/validate.php'); // Se incluye la clase que permite sanitizar
 
 // Obtener los valores de los parámetros GET
-$id_rutina = $_GET['rutinaID'];
-$id_rutina = validate::sanitize($id_rutina); // Sanitización de la contraseña;
-
-$id_ejercico = $_GET['ejercicio_value'];
-$id_ejercico = validate::sanitize($id_ejercico); // Sanitización de la contraseña;
+$id_rutina = validate::sanitize($_POST['rutinaID']); // Sanitización de la contraseña;
+$id_ejercico = validate::sanitize($_POST['ejercicio_value']); // Sanitización de la contraseña;
 
 /**
  * Verificar si la combinación de id_rutina y id_ejercicio ya existe.
@@ -24,8 +21,8 @@ $cont = Administrador::added_Exercises(0, $id_rutina, $id_ejercico);
  * reintentar la operación.
  */
 if ($cont > 0) {
-    echo 'Error 4101 YA SE AGREGO EL EJERCICIO';
-    echo '<a href=" ../view/administrador/controladorVadmin.php?seccionAd=addRutina">Reintertar</a>';
+    header('Location:  ../view/administrador/controladorVadmin.php?error=addedExercise&seccionAd=asociarEjerciciosRutinas');
+    exit();
 
 } else {
 
@@ -43,7 +40,7 @@ if ($cont > 0) {
         echo 'Error 3019 No fue posible asociar el ejercicio';
     } else {
         // Si la inserción fue exitosa, redirigir a la página asociarEjerciciosRutinas.php
-        header('Location:  ../view/administrador/controladorVadmin.php?seccionAd=asociarEjerciciosRutinas');
+        header('Location:  ../view/administrador/controladorVadmin.php?success=success&seccionAd=asociarEjerciciosRutinas');
         exit();
 
     }

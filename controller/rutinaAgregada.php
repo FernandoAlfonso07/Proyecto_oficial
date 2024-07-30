@@ -5,16 +5,16 @@ include_once ('../model/validate.php'); // Se incluye la clase que permite sanit
 
 // Obtiene los valores de los parámetros enviados a través del método GET.
 
-$nombreR = $_GET['nombreRutina'];
+$nombreR = $_POST['nombreRutina'];
 $nombreR = validate::sanitize($nombreR); // Sanitización de la contraseña;
 
-$descripcionR = $_GET['Descripcion'];
+$descripcionR = $_POST['Descripcion'];
 $descripcionR = validate::sanitize($descripcionR); // Sanitización de la contraseña;
 
-$objetivo = $_GET['objetivo'];
+$objetivo = $_POST['objetivo'];
 $objetivo = validate::sanitize($objetivo); // Sanitización de la contraseña;
 
-$category = $_GET['id_category'];
+$category = $_POST['id_category'];
 $category = validate::sanitize($category); // Sanitización de la contraseña;
 
 

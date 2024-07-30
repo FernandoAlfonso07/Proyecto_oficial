@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="css/createCalender.css">
 
 <div class="container cuerpo">
-    <form action="../controller/createCalender.php" class="form-floating">
+    <form action="../controller/createCalender.php" method="POST" class="form-floating">
         <div class="row">
 
             <div class="col-md-2"> </div>
@@ -20,7 +20,6 @@
                 <textarea class="form-control my-2" name="description" placeholder="Escribe aqui..."></textarea>
             </div>
             <div class="col-md-2"> <input type="hidden" name="page" value="1ro"> </div>
-        
             <div class="col-md-12 my-5 text-center">
                 <button class="btn btn-primary">
                     Siguiente <i class="fa-solid fa-person-skating"></i>

@@ -32,14 +32,9 @@ include ("../../model/administrador.php");
             </tr>
         </thead>
         <tbody>
-
-            <?php if (Administrador::verEjercicios() == '') {
-                echo '<td> Agregar ejercicios </td>';
-            } else {
-                echo Administrador::verEjercicios();
-            }
+            <?php
+            echo Administrador::verEjercicios() == '' ? '<td> Agregar ejercicios </td>' : Administrador::verEjercicios();
             ?>
-
         </tbody>
     </table>
 </div>

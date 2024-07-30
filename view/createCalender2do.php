@@ -3,10 +3,9 @@
 include_once ('../model/Categories.php');
 
 ?>
-
 <link rel="stylesheet" href="css/addRoutinePrt2.css">
 
-<form action="../controller/createCalender.php" class="my-5" method="get">
+<form action="../controller/createCalender.php" class="my-5" method="POST">
     <div class="row">
         <div class="col-md-12 text-center my-5">
             <h1>

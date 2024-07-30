@@ -29,7 +29,7 @@
                 <div class="form-container">
                     <h2 class="text-light texto_registro"> <span
                             class="text-primary"><strong>¡REGÍSTRATE!</strong></span></h2>
-                    <form action="../controller/registrado.php" method="GET">
+                    <form action="../controller/registrado.php" method="POST">
                         <div class="form-group">
                             <input type="text" class="form-control" name="nombres" placeholder="Nombres" >
                         </div>

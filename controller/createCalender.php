@@ -1,12 +1,8 @@
 <?php
 include_once ("../model/usuario.php"); // Se incluye el modelo de usuario
-
 include_once ('../model/validate.php'); // Se incluye la clase que permite sanitizar
-
 include_once ('../model/calendarioRutinario.php'); // Se incluye el modelo de calendario rutinario
-
 include_once ('../functions/insertsCalendar.php'); // Se incluyen las funciones para insertar en el calendario
-
 
 if (!isset($_SESSION))
     session_start(); // Inicia la sesión si no está iniciada
@@ -21,29 +17,30 @@ if (!isset($_SESSION['id'])) {
     }
 }
 
-
-$page = $_GET['page']; // Obtiene el parámetro 'page' desde la URL
+$page = $_POST['page']; // Obtiene el parámetro 'page' desde la URL
 
 // Proceso basado en el valor de 'page'
 if ($page == '1ro') {
 
-    // Proceso para la primera parte de la creación del calendario
-    $name = $_GET['nameCalendar']; // Obtiene el nombre del calendario desde la URL
-    $name = validate::sanitize($name); // Sanitiza el nombre del calendario utilizando una clase validate
+    $input = ['nameCalendar', 'description'];
 
-    $description = $_GET['description']; // Obtiene la descripción del calendario desde la URL
-    $description = validate::sanitize($description); // Sanitiza la descripción del calendario
+    if (validate::validateNotEmptyInputs($input)) {
+        $name = validate::sanitize($_POST['nameCalendar']); // Sanitiza el nombre del calendario utilizando una clase validate
+        $description = validate::sanitize($_POST['description']); // Sanitiza la descripción del calendario
+        $result = usuarios::createCalender(0, $_SESSION['id'], $name, $description, null, null, null);
+        if ($result > 1) {
+            echo 'No se creo correctamente el Calendario Rutinario code error';
+        } else {
 
-    // Llama al método estático 'createCalender' del modelo de usuario para crear el calendario
-    $result = usuarios::createCalender(0, $_SESSION['id'], $name, $description, null, null, null);
-    if ($result > 1) {
-        echo 'No se creo correctamente el Calendario Rutinario code error';
+            // Redirige al usuario a la siguiente parte del proceso
+            header('location: ../view/controlador.php?success=success&seccion=createCalender2do');
+            exit();
+        }
     } else {
-
-        // Redirige al usuario a la siguiente parte del proceso
-        header('location: ../view/controlador.php?seccion=createCalender2do');
+        header('location: ../view/controlador.php?error=emptyFields&seccion=createCalender');
         exit();
     }
+
 
 } elseif ($page == '2do') {
 
@@ -80,7 +77,7 @@ if ($page == '1ro') {
 
     // Recorre el arreglo y realiza acciones para cada nombre de rutina
     foreach ($arrayNameRoutine as $routineParam => $dayNumber) { // Obtiene el ID de la rutina desde la URL
-        $id_routine = $_GET[$routineParam];
+        $id_routine = $_POST[$routineParam];
 
         // Inserta el ID del calendario, el número de día y el ID de la rutina en la tabla correspondiente
         $result = inserts::run($_SESSION['id_calendar'], $dayNumber, $id_routine);
@@ -92,12 +89,8 @@ if ($page == '1ro') {
 
             // Si la inserción fue exitosa, redirige al usuario a la página de sus calendarios
             echo 'Todo insertado exitosamente ';
-            header('location: ../view/controlador.php?seccion=misCalendarios');
+            header('location: ../view/controlador.php?success=success&seccion=misCalendarios');
             exit();
         }
     }
-
 }
-
-
-

@@ -1,8 +1,6 @@
 create schema worldfitsbd;
 use worldfitsbd; 
 
-SELECT * FROM USUARIOS;
-
 SET sql_safe_updates = 0;	
 
  -- ESTA ES LA TABLA DE GENERO
@@ -351,7 +349,7 @@ SELECT id_rutina, nombreRutina FROM rutinas WHERE id_categoria = '1';
 SELECT nombre FROM dias_semana WHERE id_dia = '1';
 -- // --------------------------------------------------------------------
 */
-
+/*
 # F U N C I O N E S
 DELIMITER //
 CREATE FUNCTION sumar(n1 float, n2 float)
@@ -364,7 +362,8 @@ CREATE FUNCTION numero_mayor(text varchar(200))
 returns varchar(200)
 BEGIN 	
 return text;
-END
+END;
 //
-
+*/
+SELECT * FROM ejercicios;
 

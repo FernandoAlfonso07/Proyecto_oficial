@@ -5,7 +5,7 @@
 </style>
 
 <div class="container">
-    <form action="../../controller/ejercicioAgregado.php" method="get">
+    <form action="../../controller/ejercicioAgregado.php" method="POST">
         <div class="row">
 
             <div class="col-md-6 text-center">

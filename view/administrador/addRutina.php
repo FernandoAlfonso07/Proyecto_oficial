@@ -6,7 +6,7 @@ include_once ("../../model/Categories.php");// Se incluye el archivo con la clas
 ?>
 
 <div class="container">
-    <form action="../../controller/rutinaAgregada.php" method="get">
+    <form action="../../controller/rutinaAgregada.php" method="POST">
         <div class="row">
 
             <div class="col-md-6 text-center">
@@ -62,7 +62,7 @@ include_once ("../../model/Categories.php");// Se incluye el archivo con la clas
 
 <!-- Modal para agregar una categoria -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form action="../../controller/createdCategory.php" method="get">
+    <form action="../../controller/createdCategory.php" method="POST">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

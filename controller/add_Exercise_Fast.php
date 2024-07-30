@@ -1,37 +1,41 @@
 <?php
-
+// Incluye el archivo que contiene la clase Administrador para gestionar ejercicios
 include_once ("../model/administrador.php");
 
-include_once ('../model/validate.php'); // Se incluye la clase que permite sanitizar
+// Incluye el archivo que contiene la clase validate para la sanitización de datos
+include_once ('../model/validate.php');
 
-$nombre = $_GET['nombreEjercicio'];
-$nombre = validate::sanitize($nombre); // Sanitización de la contraseña;
+// Define los nombres de los campos que deben ser validados
+$inputsValidate = ['nombreEjercicio', 'instrucciones', 'equipo', 'repeticiones', 'series', 't_descanso'];
 
-$instruc = $_GET['instrucciones'];
-$instruc = validate::sanitize($instruc); // Sanitización de la contraseña;
+// Valida que los campos de entrada no estén vacíos
+if (validate::validateNotEmptyInputs($inputsValidate)) {
+    // Sanitiza cada campo de entrada para prevenir ataques de inyección y asegurar la integridad de los datos
+    $nombre = validate::sanitize($_POST['nombreEjercicio']); // Sanitización del nombre del ejercicio
+    $instruc = validate::sanitize($_POST['instrucciones']); // Sanitización de las instrucciones
+    $equiped = validate::sanitize($_POST['equipo']); // Sanitización del equipo necesario
+    $rep = validate::sanitize($_POST['repeticiones']); // Sanitización de las repeticiones
+    $series = validate::sanitize($_POST['series']); // Sanitización de las series
+    $tiempoDes = validate::sanitize($_POST['t_descanso']); // Sanitización del tiempo de descanso
 
-$equiped = $_GET['equipo'];
-$equiped = validate::sanitize($equiped); // Sanitización de la contraseña;
+    // Maneja la carga de archivos (si corresponde) y obtiene la ruta del archivo cargado
+    $direccion_media = validate::media('archivo', '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=asociarEjerciciosRutinas', '../view/img2/');
 
-$rep = $_GET['repeticiones'];
-$rep = validate::sanitize($rep); // Sanitización de la contraseña;
+    // Llama al método para agregar el ejercicio y verifica el resultado
+    if (Administrador::agregarEjercicio($nombre, $instruc, $equiped, $rep, $series, $tiempoDes, $direccion_media) > 1) {
+        // Muestra un mensaje de error si no fue posible registrar el ejercicio
+        echo 'No fue posible el registro';
 
-$series = $_GET['series'];
-$series = validate::sanitize($series); // Sanitización de la contraseña;
+    } else {
+        // Redirige a la página de ver ejercicios si el registro fue exitoso
+        header('location: ../view/administrador/controladorVadmin.php?seccionAd=asociarEjerciciosRutinas');
+        exit(); // Finaliza la ejecución del script para asegurar que no se ejecute código adicional
 
-$tiempoDes = $_GET['t_descanso'];
-$tiempoDes = validate::sanitize($tiempoDes); // Sanitización de la contraseña;
+    }
 
-$direccion_media = $_GET['archivo'];
-
-
-
-//$resultado = ;
-
-if (Administrador::agregarEjercicio($nombre, $instruc, $equiped, $rep, $series, $tiempoDes, $direccion_media) > 1) {
-    echo 'No fue posible el registro';
 } else {
+    // Redirige a la página de administración con un error si algún campo está vacío
+    header('location: ../view/administrador/controladorVadmin.php?error=emptyFields&seccionAd=asociarEjerciciosRutinas');
+    exit();  // Finaliza la ejecución del script para asegurar que no se ejecute código adicional
 
-    header('location: ../view/administrador/controladorVadmin.php?seccionAd=asociarEjerciciosRutinas');
-    exit();
 }

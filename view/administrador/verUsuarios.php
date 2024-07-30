@@ -32,9 +32,7 @@ include ("../../model/administrador.php");
             </tr>
         </thead>
         <tbody>
-
             <?php echo Administrador::getUsuarios(0) ?>
-
         </tbody>
     </table>
 </div>

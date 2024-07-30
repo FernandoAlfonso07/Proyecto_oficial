@@ -15,20 +15,15 @@ if (!isset($_SESSION['id'])) {
 }
 
 
-$nombres = $_GET['nombres'];
-$nombres = validate::sanitize($nombres); // Sanitización de la contraseña;
+$nombres = validate::sanitize($_POST['nombres']); // Sanitización de la contraseña;
 
-$apellidos = $_GET['apellidos'];
-$apellidos = validate::sanitize($apellidos); // Sanitización de la contraseña;
+$apellidos = validate::sanitize($_POST['apellidos']); // Sanitización de la contraseña;
 
-$telefono = $_GET['telefono'];
-$telefono = validate::sanitize($telefono); // Sanitización de la contraseña;
+$telefono = validate::sanitize($_POST['telefono']); // Sanitización de la contraseña;
 
-$correoElectronico = $_GET['correo'];
-$correoElectronico = validate::sanitize($correoElectronico); // Sanitización de la contraseña;
+$correoElectronico = validate::sanitize($_POST['correo']); // Sanitización de la contraseña;
 
-$password = $_GET['password'];
-$password = validate::sanitize($password); // Sanitización de la contraseña;
+$password = validate::sanitize($_POST['password']); // Sanitización de la contraseña;
 
 // intento de encriptacion de contraseña. Si algo borrar esto jjj
 
@@ -39,14 +34,11 @@ $encripata = $hash;
 
 
 // -------------------------------------------------------------
-$pesoActual = $_GET['pesoA'];
-$pesoActual = validate::sanitize($pesoActual); // Sanitización de la contraseña;
+$pesoActual = validate::sanitize($_POST['pesoA']); // Sanitización de la contraseña;
 
-$altura = $_GET['alturaA'];
-$altura = validate::sanitize($altura); // Sanitización de la contraseña;
+$altura = validate::sanitize($_POST['alturaA']); // Sanitización de la contraseña;
 
-$genero = $_GET['genero'];
-$genero = validate::sanitize($genero); // Sanitización de la contraseña;
+$genero = validate::sanitize($_POST['genero']); // Sanitización de la contraseña;
 
 $resultado = usuarios::registrar($nombres, $apellidos, $telefono, $correoElectronico, $password, $pesoActual, $altura, $genero);
 

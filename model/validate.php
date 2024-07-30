@@ -58,28 +58,59 @@ class validate
      * @return string Ruta de la imagen cargada en el servidor si el archivo se mueve correctamente, 
      *                o un mensaje de error si no se logra cargar la imagen.
      */
-    public static function image($imageInsert, $header, $directory_address) // name input, // direccion controlador, // directorio
+    public static function media($fileInsert, $header, $directory_address) // name input, // direccion controlador, // directorio
     {
-        $image = $_FILES[$imageInsert]['tmp_name'];
-        $name_image = $_FILES[$imageInsert]['name'];
-        $image_format = strtolower(pathinfo($name_image, PATHINFO_EXTENSION));
+        $file = $_FILES[$fileInsert]['tmp_name'];
+        $file_name = $_FILES[$fileInsert]['name'];
+        $file_format = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
         // Verificar si el formato de la imagen es uno de los permitidos
-        if ($image_format != 'jpg' && $image_format != 'jpeg' && $image_format != 'png') {
+        if ($file_format != 'jpg' && $file_format != 'jpeg' && $file_format != 'png' && $file_format != 'mp4' && $file_format != 'avi' && $file_format != 'mkv') {
             header('location: ' . $header);
+            exit();
 
         } else {
             $directory = $directory_address;
-            $image_Direction = $directory . basename($name_image);
+            $file_Direction = $directory . basename($file_name);
 
             // Mover la imagen al directorio especificado
-            if (move_uploaded_file($image, $image_Direction)) {
-                return $image_Direction; // Retornar la ruta de la imagen si se movió con éxito
+            if (move_uploaded_file($file, $file_Direction)) {
+                return $file_Direction; // Retornar la ruta de la imagen si se movió con éxito
             } else {
-                return 'No se cargó correctamente la imagen';
+                return 'No se cargó correctamente el archivo';
             }
         }
     }
+
+    /**
+     * Valida que los campos de entrada no estén vacíos.
+     *
+     * Este método recibe un array de nombres de campos y verifica que cada uno de esos campos,
+     * que deben ser enviados mediante el método GET, no esté vacío. Si alguno de los campos está vacío,
+     * el método retorna `false`. Si todos los campos tienen valores no vacíos, retorna `true`.
+     *
+     * @param array $inputs Un array que contiene los nombres de los campos que se desean validar.
+     *                      Cada valor en el array debe ser el nombre de un campo en el array `$_GET`.
+     * 
+     * @return bool Retorna `true` si todos los campos especificados tienen valores no vacíos,
+     *              y `false` si al menos uno de los campos está vacío.
+     *
+     * @throws InvalidArgumentException Lanza una excepción si el parámetro `$inputs` no es un array.
+     */
+    public static function validateNotEmptyInputs($inputs)
+    {
+        // Iterar sobre cada nombre de campo en el array
+        foreach ($inputs as $value) {
+            // Verificar si el campo correspondiente en $_GET está vacío
+            if (empty($_POST[$value])) {
+                return false; // Retorna falso si algún campo está vacío
+            }
+        }
+
+        // Retorna verdadero si todos los campos tienen valores no vacíos
+        return true;
+    }
+
 
 }
 

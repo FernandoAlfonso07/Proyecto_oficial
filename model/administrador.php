@@ -53,7 +53,11 @@ class Administrador extends conexionBD
 
             // $r .= "<td>" . $fila[9] . "</td>"; // Muestra el ID de la rutina
 
-            $r .= "<td>" . $fila[10] . "</td>";// Muestra el ejemplo gráfico
+            // Muestra el ejemplo gráfico
+            $r .= empty($fila[10]) || file_exists($fila[10]) ?
+                "<td>No existe un elemento grafico </td>" :
+                "<td><img src='../" . $fila[10] . "' class='img img-fluid' width='100px' alt='Elemento grafico de ejercicio'> </td>";
+
             $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <a href='../../controller/ejercicioEliminado.php?id_ejercicio=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <i class='fa-solid fa-pen-to-square icono edit'></i>";
             $r .= " </td>";
             $r .= '</tr>';
