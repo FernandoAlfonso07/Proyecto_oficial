@@ -11,8 +11,9 @@ create table genero(
     primary key(id_genero)
 );
 
-insert into genero (id_genero, genero) values (1, "masculino");
-insert into genero (id_genero, genero) values (0, "femenino");
+insert into genero (id_genero, genero) values (1, "Masculino");
+insert into genero (id_genero, genero) values (0, "Femenino");
+insert into genero (id_genero, genero) values (3, "Otro");
 
  -- ESTA ES LA TABLA DE ROLES
 CREATE TABLE roles (
@@ -365,5 +366,7 @@ return text;
 END;
 //
 */
-SELECT * FROM ejercicios;
 
+
+SELECT * FROM usuarios;
+SELECT * FROM genero;

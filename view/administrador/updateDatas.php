@@ -1,13 +1,13 @@
 <?php
-// include ("../model/usuario.php");
+include ("../../model/usuario.php");
 ?>
 
-<link rel="stylesheet" href="css/actualizarDatos.css">
-<form action="../controller/actualizarDataUser.php" method="POST" enctype="multipart/form-data">
+<link rel="stylesheet" href="../css/actualizarDatos.css">
+<form action="../../controller/actualizarDataUser.php" method="POST" enctype="multipart/form-data">
     <div class="container cuerpo">
         <div class="row">
             <div class="col-md-6 text-center">
-                <img src="<?php echo usuarios::getPerfil(9, $_SESSION['id']) ?: '../../view/user img/default_img.PNG'; ?>"
+                <img src="<?php echo usuarios::getPerfil(9, $_SESSION['id_admin']) ?: '../../view/user img/default_img.PNG'; ?>"
                     class="img-fluid imagen_perfil" width="50%" alt="Imagen Perfil">
                 <div class="input-group mb-3 subir">
                     <input type="file" class="form-control" name="imagenPerfil" id="inputGroupFile04"
@@ -16,8 +16,7 @@
             </div>
             <div class="col-md-6">
                 <div class="row">
-
-                    <div class="col-md-12 my-3">
+                    <div class="col-md-12">
                         <h1>
                             Mi Perfil
                         </h1>
@@ -28,7 +27,7 @@
                         </div>
                         <div class="col-md-12">
                             <input type="text" name="nombre" value="<?php
-                            echo usuarios::getPerfil(0, $_SESSION['id']);
+                            echo usuarios::getPerfil(0, $_SESSION['id_admin']);
                             ?>" class="form-control">
                         </div>
                     </div>
@@ -38,7 +37,7 @@
                         </div>
                         <div class="col-md-12">
                             <input type="text" name="apellido" value="<?php
-                            echo usuarios::getPerfil(1, $_SESSION['id']);
+                            echo usuarios::getPerfil(1, $_SESSION['id_admin']);
                             ?>" class="form-control">
                         </div>
                     </div>
@@ -48,7 +47,7 @@
                         </div>
                         <div class="col-md-12">
                             <input type="text" name="altura" value="<?php
-                            echo usuarios::getPerfil(5, $_SESSION['id']);
+                            echo usuarios::getPerfil(5, $_SESSION['id_admin']);
                             ?>" class="form-control">
                         </div>
                     </div>
@@ -58,7 +57,7 @@
                         </div>
                         <div class="col-md-12">
                             <input type="text" name="peso" value="<?php
-                            echo usuarios::getPerfil(4, $_SESSION['id']);
+                            echo usuarios::getPerfil(4, $_SESSION['id_admin']);
                             ?>
                             " class="form-control">
                         </div>
@@ -69,8 +68,9 @@
                         </div>
                         <div class="col-md-12 my-2">
                             <?php
-                            $sexo = usuarios::getPerfil(8, $_SESSION['id']);
+                            $sexo = usuarios::getPerfil(8, $_SESSION['id_admin']);
                             ?>
+
                             <select class="form-select" name="sex" aria-label="Default select example">
                                 <option selected disabled>Seleciona... </option>
                                 <option value="0" <?php echo ($sexo == 'Femenino') ? 'selected' : ''; ?>>Femenino
@@ -83,12 +83,22 @@
                     </div>
                     <div class="col-md-6">
                         <div class="col-md-12 gris">
-                            <Label>Pr:</Label>
+                            <Label>Rol:</Label>
                         </div>
-                        <div class="col-md-12">
-                            <input type="text" name="personaleRecord" value="<?php
-                            echo usuarios::getPerfil(6, $_SESSION['id']);
-                            ?>" class="form-control">
+                        <div class="col-md-12 my-2">
+                            <?php
+                            $role = usuarios::getPerfil(10, $_SESSION['id_admin']);
+                            ?>
+                            <select class="form-select" name="role" aria-label="Default select example">
+                                <option selected disabled>Seleciona... </option>
+                                <option value="0" <?php echo ($role == 'Invitado') ? 'selected' : ''; ?>>Invitado
+                                </option>
+                                <option value="1" <?php echo ($role == 'Administrador') ? 'selected' : ''; ?>>
+                                    Administrador
+                                </option>
+                                <option value="3" <?php echo ($role == 'Super-Admin') ? 'selected' : ''; ?>>Super
+                                    Administrador</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -105,7 +115,7 @@
                         <div class="col-md-12">
                             <input type="text" name="correo" value="<?php
 
-                            echo usuarios::getPerfil(2, $_SESSION['id']);
+                            echo usuarios::getPerfil(2, $_SESSION['id_admin']);
                             ?>
                             " class="form-control">
                         </div>
@@ -118,7 +128,7 @@
                         </div>
                         <div class="col-md-12">
                             <input type="text" name="telefono" value="<?php
-                            echo usuarios::getPerfil(7, $_SESSION['id']);
+                            echo usuarios::getPerfil(7, $_SESSION['id_admin']);
                             ?>" class="form-control">
                         </div>
                     </div>

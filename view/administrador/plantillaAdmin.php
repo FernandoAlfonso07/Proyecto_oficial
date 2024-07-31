@@ -1,6 +1,5 @@
 <?php
 include ("../../view/nombreSeccionH.php");
-
 ?>
 
 <!doctype html>
@@ -44,7 +43,7 @@ include ("../../view/nombreSeccionH.php");
                                 <i class="fa-regular fa-user icono"></i> Mi perfil
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item enlace_secundario" href="#"><i
+                                <li><a class="dropdown-item enlace_secundario" href="controladorVadmin.php?seccionAd=MiPerfil"><i
                                             class="fa-solid fa-cube icono"></i> Información</a></li>
                                 <li><a class="dropdown-item enlace_secundario" href="#"><i
                                             class="fa-solid fa-gear icono"></i>Editar</a></li>
@@ -110,7 +109,7 @@ include ("../../view/nombreSeccionH.php");
                                 <li><a class="dropdown-item enlace_secundario" href="#"><i
                                             class="fa-solid fa-eye icono"></i> Ver Gimnasios</a></li>
                                 <li><a class="dropdown-item enlace_secundario"
-                                        href="controladorVadmin.php?seccionAd=addGimnasio"><i
+                                        href="controladorVadmin.php?seccionAd=addGym"><i
                                             class="fa-regular fa-pen-to-square icono"></i> Agregar Gimnasios</a></li>
 
                             </ul>

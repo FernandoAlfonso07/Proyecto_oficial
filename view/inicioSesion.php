@@ -1,49 +1,28 @@
 <?php
-$correo = '';
-if (isset($_GET['correo'])) {
-    $correo = $_GET['correo'];
-}
-$contraseña = '';
-if (isset($_GET['contraseña'])) {
-    $contraseña = $_GET['contraseña'];
-}
+
 
 // ------------------------ Intentos ------------------
-
 if (!isset($_SESSION))
     session_start();
 
 
-if (!isset($_SESSION['intento'])) {
+$correo = $_GET['correo'] ?? '';
+$contraseña = $_GET['contraseña'] ?? '';
 
+if (!isset($_SESSION['intento'])) {
     $_SESSION['intento'] = 0;
 
 } else {
-
-
     $_SESSION['intento']++;
     if ($_SESSION['intento'] > 5) {
-
         session_destroy();
         header('location: ../controller/errors/error1001.php');
-    } else {
-        '';
+        exit();
     }
-
 }
 
-
 if (isset($_GET['error'])) {
-    // echo 'Detecto la variable';
-    ?>
-
-    <script>
-        window.onload = function () {
-            error();
-        };
-    </script>
-
-    <?php
+    echo '<script>window.onload = function () { error(); };</script>';
 
 }
 
@@ -66,7 +45,7 @@ if (isset($_GET['error'])) {
 
 
     <div class="container contenedor_formulario">
-        <form action="../controller/redirecionLogin.php">
+        <form action="../controller/redirecionLogin.php" method="POST">
             <div class="row">
                 <div class="col-md-12">
                     <div class="contenedor_bienvenidos">

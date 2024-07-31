@@ -1,15 +1,16 @@
 <?php
-include_once ("../model/usuario.php");
-echo 'Id usuario ' . $_SESSION['id'];
+include_once ("../../model/usuario.php");
 ?>
 
-<link rel="stylesheet" href="css/estilosinformacionU.css">
+<link rel="stylesheet" href="../css/estilosinformacionU.css">
 
 <div class="container cuerpo">
     <div class="row">
         <div class="col-md-6 text-center">
-            <img src=" <?php
-            echo usuarios::getPerfil(9, $_SESSION['id']);
+            <img src="
+            <?php
+            echo usuarios::getPerfil(9, $_SESSION['id_admin']);
+
             ?>" class="img-fluid imagen_perfil" width="80%" alt="Imagen Perfil">
         </div>
         <div class="col-md-6">
@@ -27,7 +28,7 @@ echo 'Id usuario ' . $_SESSION['id'];
                     <div class="col-md-12">
                         <p>
                             <?php
-                            echo usuarios::getPerfil(0, $_SESSION['id']);
+                            echo usuarios::getPerfil(0, $_SESSION['id_admin']);
                             ?>
                         </p>
                     </div>
@@ -40,7 +41,7 @@ echo 'Id usuario ' . $_SESSION['id'];
                         <p>
                             <?php
 
-                            echo usuarios::getPerfil(1, $_SESSION['id']);
+                            echo usuarios::getPerfil(1, $_SESSION['id_admin']);
 
                             ?>
                         </p>
@@ -53,7 +54,7 @@ echo 'Id usuario ' . $_SESSION['id'];
                     <div class="col-md-12">
                         <p>
                             <?php
-                            echo usuarios::getPerfil(5, $_SESSION['id']);
+                            echo usuarios::getPerfil(5, $_SESSION['id_admin']);
                             ?> Cm
                         </p>
                     </div>
@@ -65,7 +66,7 @@ echo 'Id usuario ' . $_SESSION['id'];
                     <div class="col-md-12">
                         <p>
                             <?php
-                            echo usuarios::getPerfil(4, $_SESSION['id']);
+                            echo usuarios::getPerfil(4, $_SESSION['id_admin']);
                             ?>
                             Kg
                         </p>
@@ -78,21 +79,19 @@ echo 'Id usuario ' . $_SESSION['id'];
                     <div class="col-md-12">
                         <p>
                             <?php
-                            echo usuarios::getPerfil(8, $_SESSION['id']);
+                            echo usuarios::getPerfil(8, $_SESSION['id_admin']);
                             ?>
                         </p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="col-md-12 gris">
-                        <Label>Pr:</Label>
+                        <Label>Rol:</Label>
                     </div>
                     <div class="col-md-12">
                         <p>
                             <?php
-
-                            $prResultado = usuarios::getPerfil(6, $_SESSION['id']);
-                            echo ($prResultado == '') ? 'Actualiza tu primer Personal Record' : $prResultado . ' Kg';
+                            echo usuarios::getPerfil(10, $_SESSION['id_admin']);
                             ?>
                         </p>
                     </div>
@@ -111,7 +110,7 @@ echo 'Id usuario ' . $_SESSION['id'];
                     <div class="col-md-12">
                         <p>
                             <?php
-                            echo usuarios::getPerfil(2, $_SESSION['id']);
+                            echo usuarios::getPerfil(2, $_SESSION['id_admin']);
                             ?>
                         </p>
                     </div>
@@ -125,7 +124,7 @@ echo 'Id usuario ' . $_SESSION['id'];
                     <div class="col-md-12">
                         <p>
                             <?php
-                            echo usuarios::getPerfil(7, $_SESSION['id']);
+                            echo usuarios::getPerfil(7, $_SESSION['id_admin']);
                             ?>
                         </p>
                     </div>
@@ -133,11 +132,11 @@ echo 'Id usuario ' . $_SESSION['id'];
                 <div class="col-md-12 text-center">
                     <button type="button" class="btn btn-warning compartir">Compartir
                         <i class="fa-solid fa-share-nodes icono"></i></button>
-                    <a href="../controller/eliminarCuenta.php?iduser=<?php echo $_SESSION['id'] ?>">
+                    <a href="../controller/eliminarCuenta.php?iduser=<?php echo $_SESSION['id_admin'] ?>">
                         <button type="button" class="btn btn-danger compartir">Eliminar Cuenta
                             <i class="fa-solid fa-trash-can icono"></i></button>
                     </a>
-                    <a href="controlador.php?seccion=updateDatas">
+                    <a href="controladorVadmin.php?seccionAd=updateDatas">
                         <button type="button" class="btn btn-primary compartir">Editar
                             <i class="fa-solid fa-pencil icono"></i></i></button>
                     </a>

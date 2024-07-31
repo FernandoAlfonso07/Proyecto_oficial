@@ -26,9 +26,15 @@ if (validate::validateNotEmptyInputs($inputs)) {
     $pr = validate::sanitize($_POST['personaleRecord']);
     $pesoActual = validate::sanitize($_POST['peso']);
     $altura = validate::sanitize($_POST['altura']);
+    $sex = isset($_POST['sex']) ? validate::sanitize($_POST['sex']) : null;
 
-    // Sanitiza y guarda la ruta de la imagen del perfil
-    $ruta_imagen = validate::media('imagenPerfil', '../view/controlador.php?error=incorrectFormat&seccion=updateDatas', '../view/img/');
+    // Verifica si se ha subido una nueva imagen
+    if (!empty($_FILES['imagenPerfil']['name'])) {
+        $ruta_imagen = validate::media('imagenPerfil', '../view/controlador.php?error=incorrectFormat&seccion=updateDatas', '../view/user img/');
+    } else {
+        // Si no se ha subido una nueva imagen, usa la imagen actual del perfil
+        $ruta_imagen = usuarios::getPerfil(9, $_SESSION['id']) ?: '../view/user img/default_img.PNG';
+    }
 
     // Convierte las variables a tipo float
     $pr = floatval($pr);
@@ -49,7 +55,7 @@ if (validate::validateNotEmptyInputs($inputs)) {
     }
 
     // Actualiza los datos del usuario en la base de datos
-    $respuesta = usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen);
+    $respuesta = usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $sex, $ruta_imagen);
 
     // Redirige según el resultado de la actualización
     if ($respuesta > 1) {
@@ -67,5 +73,3 @@ if (validate::validateNotEmptyInputs($inputs)) {
     header('Location: ../view/controlador.php?error=emptyFields&seccion=updateDatas');
     exit();
 }
-
-

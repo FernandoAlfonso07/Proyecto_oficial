@@ -68,8 +68,11 @@ class usuarios extends conexionBD
                 case 10: // Trae el Fecha registro
                     $salida = $fila[10];
                     break;
-                case 11: // Trae el Fecha Url_Imagen perfil
-                    $salida = $fila[10];
+                case 11: // Rol
+                    $salida = $fila[11];
+                    break;
+                case 12: // img perfil
+                    $salida = $fila[12];
                     break;
             }
         }
@@ -89,16 +92,26 @@ class usuarios extends conexionBD
         $conexion = self::getConexion(); // Obtiene la conexión a la base de datos
 
         // Consulta SQL para buscar el ID del usuario basado en correo y contraseña
-        $sql = "select id_usuario from usuarios where correo = '$correo' and password = '$password' ";
+        $sql = "SELECT id_usuario FROM usuarios WHERE correo = '$correo' AND password = '$password'";
+        $resultado = $conexion->query($sql);
 
-        $resultado = $conexion->query($sql); // Ejecuta la consulta SQL
-        $salida = 0; // Variable para almacenar el ID del usuario encontrado, inicializada en 0
+        $salida = 0;
 
-        // Itera sobre los resultados obtenidos
-        while ($fila = $resultado->fetch_array()) {
-            $salida += $fila[0]; // Suma el valor del ID encontrado
+        // Verifica si la consulta SQL devolvió algún resultado
+        if ($resultado) {
+
+            // Obtiene la primera fila del resultado de la consulta
+            if ($fila = $resultado->fetch_array()) {
+
+                // Almacena el ID del usuario en la variable $salida
+                $salida = $fila[0];
+            }
         }
-        return $salida; // Retorna el ID del usuario encontrado o 0 si no se encuentra
+        // Cierra la conexion a la base de datos
+        $conexion->close();
+
+        // Retorna el ID del usuario encontrado o 0 si no se encuentra
+        return $salida;
     }
 
     /**
@@ -119,29 +132,34 @@ class usuarios extends conexionBD
         $conexion = self::getConexion(); // Obtiene la conexión a la base de datos
 
         // Consulta SQL para contar coincidencias y obtener el ID del rol del usuario
-        $sql = "select COUNT(*), id_rol FROM usuarios WHERE correo = '$correo' AND password = '$password' ";
+        $sql = "SELECT COUNT(*), id_rol FROM usuarios WHERE correo = '$correo' AND password = '$password'";
+        $resultado = $conexion->query($sql);
 
-        $resultado = $conexion->query($sql); // Ejecuta la consulta SQL
+        $r = 0;
 
-        $r = 0; // Variable para almacenar el resultado
+        // Verifica si la consulta SQL devolvió algún resultado
+        if ($resultado) {
 
-        // Itera sobre los resultados obtenidos
-        while ($fila = $resultado->fetch_array()) {
+            // Obtiene la primera fila del resultado de la consulta
+            if ($fila = $resultado->fetch_array()) {
 
-            switch ($opc) {
-                case 0:
-                    $r = $fila[0]; // Retorna el número de coincidencias encontradas
-                    break;
-
-                case 1:
-
-                    $r = $fila[1];  // Retorna el ID del rol del usuario
-                    break;
+                // Determina qué valor retornar basado en el parámetro $opc
+                switch ($opc) {
+                    case 0:
+                        $r = $fila[0]; // Número de coincidencias encontradas
+                        break;
+                    case 1:
+                        $r = $fila[1]; // ID del rol del usuario
+                        break;
+                }
             }
-
         }
 
-        return $r; // Retorna el resultado según la opción `$opc` proporcionada
+        // Cierra la conexion a la base de datos
+        $conexion->close();
+
+        // Retorna el resultado según la opción proporcionada
+        return $r;
     }
 
 
@@ -168,12 +186,12 @@ class usuarios extends conexionBD
      */
     public static function getPerfil($opc, $idUsuario)
     {
-        $conexion = self::getConexion();// Obtiene la conexión a la base de datos
+        $conexion = self::getConexion(); // Obtiene la conexión a la base de datos
 
         // Construye la consulta SQL para obtener la información del perfil del usuario
 
-        $sql = "select t1.nombre, t1.apellido, t1.correo, t1.password, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero, t1.imgPerfil ";
-        $sql .= "FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero WHERE id_usuario = $idUsuario";
+        $sql = "select t1.nombre, t1.apellido, t1.correo, t1.password, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero, t1.imgPerfil, t3.rol ";
+        $sql .= "FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero JOIN roles t3 ON t1.id_rol = t3.id_rol WHERE id_usuario = $idUsuario";
 
         $resultado = $conexion->query($sql); // Ejecuta la consulta SQL
 
@@ -233,6 +251,11 @@ class usuarios extends conexionBD
                     $r .= $fila[9];
 
                     break;
+                case 10: // Muestra el rol.
+
+                    $r .= $fila[10];
+
+                    break;
             }
         }
         return $r;   // Devuelve la información del perfil del usuario como una cadena
@@ -262,7 +285,6 @@ class usuarios extends conexionBD
 
         // retorna el numero de filas afectada.
         return $affected_rows;
-
     }
 
     /**
@@ -283,8 +305,8 @@ class usuarios extends conexionBD
     {
         $conexion = self::getConexion();
         // Consulta SQL para insertar un nuevo usuario en la tabla 'usuarios'
-        $sql = "insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol)";
-        $sql .= " values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$password', $pesoActual ,$altura, $genero, now(), 0) ";
+        $sql = "insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol, imgPerfil)";
+        $sql .= " values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$password', $pesoActual ,$altura, $genero, now(), 0, '../view/user img/default_img.PNG') ";
 
         $conexion->query($sql); // Ejecuta la consulta SQL para insertar el nuevo usuario
 
@@ -309,7 +331,7 @@ class usuarios extends conexionBD
      * @param string $ruta_imagen Nueva ruta de la imagen de perfil del usuario.
      * @return int Número de filas afectadas por la operación de actualización.
      */
-    public static function actualizarDatos($id, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $ruta_imagen)
+    public static function actualizarDatos($id, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $sex, $ruta_imagen = null, $rol = null)
     {
         $conexion = self::getConexion();  // Obtiene la conexión a la base de datos
 
@@ -323,7 +345,8 @@ class usuarios extends conexionBD
         $sql .= "altura_actual = $altura, ";
         $sql .= "telefono = '$telefono', ";
         $sql .= "correo = '$correo', ";
-        $sql .= "pr = $pr ";
+        $sql .= "pr = $pr, ";
+        $sql .= "id_genero = $sex ";
         $sql .= "WHERE id_usuario = '$id' ";
 
         echo '<br>' . $sql;
@@ -386,9 +409,39 @@ class usuarios extends conexionBD
         // Retornar el número de filas afectadas
         return $affected_rows;
     }
+
+
+    /**
+     * Obtiene el hash de la contraseña almacenada en la base de datos para un correo dado.
+     *
+     * @param string $mail Correo electrónico del usuario.
+     * @return string Retorna el hash de la contraseña si se encuentra en la base de datos, o una cadena vacía si no se encuentra.
+     */
+    public static function getPasswordhash($mail)
+    {
+
+        // Obtiene la conexión a la base de datos
+        $conexion = self::getConexion();
+
+        // Consulta SQL para obtener el hash de la contraseña del usuario basado en el correo
+        $sql = "SELECT password FROM usuarios WHERE correo = '$mail'";
+        $resultado = $conexion->query($sql);
+
+        $password = '';
+
+        // Verifica si la consulta SQL devolvió algún resultado
+        if ($resultado) {
+
+            // Obtiene la primera fila del resultado de la consulta
+            if ($fila = $resultado->fetch_array()) {
+                $password = $fila[0];
+            }
+        }
+
+        // Cierra la conexión a la base de datos
+        $conexion->close();
+
+        // Retorna el hash de la contraseña o una cadena vacía si no se encuentra
+        return $password;
+    }
 }
-
-
-
-
-

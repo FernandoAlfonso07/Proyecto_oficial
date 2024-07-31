@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Retorna el nombre descriptivo de una sección según las opciones proporcionadas.
  *
@@ -10,38 +11,45 @@
 function nombrar($opc, $seccion = null, $seccion_admin = null)
 {
 
-    $nombreSeccion = '';
+    $secciones_user = [
+        'Pagina de inicio' => 'seccion1',
+        'WorldFit | Mis calendarios' => 'misCalendarios',
+        'WorldFit | Mi perfil' => 'MiPerfil',
+        'WorldFit | Actualizando' => 'updateDatas',
+        'Crear Calendario Rutinario' => 'createCalender',
+        'Asignar rutinas diarias' => 'createCalender2do',
+    ];
 
+    $secciones_admin = [
+        'Pagina de inicio | Administrador' => 'seccionAd1',
+        'Administrador | Agregar Ejercicios' => 'addEjercicios',
+        'Administrador | Ver Ejercicios' => 'verEjercicios',
+        'Administrador | Crear Rutina' => 'addRutina',
+        'Administrador | Ver Rutinas' => 'showRoutines',
+        'Administrador | Registrar Gimnasio' => 'addGym',
+        'Administrador | Crear Usuario' => 'addUsuario',
+        'Administrador | Ver Usuarios' => 'verUsuarios',
+    ];
+
+    $nombreSeccion = '';
 
     if ($opc == 0) {
         // Opciones para usuarios normales
-        if ($seccion == 'seccion1') {
-            $nombreSeccion = 'Home Page';
-
-        } elseif ($seccion == 'misCalendarios') {
-            $nombreSeccion = 'WorldFit | Mis calendarios';
-
-        } elseif ($seccion == 'MiPerfil') {
-            $nombreSeccion = 'WorldFit | Mi perfil';
-
+        foreach ($secciones_user as $nameSection => $sections) {
+            if ($seccion == $sections) {
+                $nombreSeccion = $nameSection;
+                break;
+            }
         }
     } elseif ($opc == 1) {
         // Opciones para administradores
-        if ($seccion_admin == 'seccionAd1') {
-            $nombreSeccion = 'Home Page | Administrador';
-
-        } elseif ($seccion_admin == 'seccionAd2') {
-            $nombreSeccion = '| Ejercicios';
-
-        } elseif ($seccion_admin == 'MiPerfil') {
-            $nombreSeccion = 'Mi perfil';
-
+        foreach ($secciones_admin as $nameSectionAdmin => $sectionAdmin) {
+            if ($seccion_admin == $sectionAdmin) {
+                $nombreSeccion = $nameSectionAdmin;
+                break;
+            }
         }
     }
-
-
-
-
 
     return $nombreSeccion;
 }

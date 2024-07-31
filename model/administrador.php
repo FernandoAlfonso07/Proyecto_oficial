@@ -4,6 +4,15 @@ include_once ("connect.php");
 
 class Administrador extends conexionBD
 {
+    public static function getInformationProfile($opc)
+    {
+        $conexion = self::getConexion();
+
+        $sql = "";
+
+
+    }
+
     /**
      * Obtiene y muestra los ejercicios desde la base de datos en formato HTML.
      * 
@@ -58,7 +67,7 @@ class Administrador extends conexionBD
                 "<td>No existe un elemento grafico </td>" :
                 "<td><img src='../" . $fila[10] . "' class='img img-fluid' width='100px' alt='Elemento grafico de ejercicio'> </td>";
 
-            $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <a href='../../controller/ejercicioEliminado.php?id_ejercicio=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <i class='fa-solid fa-pen-to-square icono edit'></i>";
+            $r .= "<td> <a href='../../controller/ejercicioEliminado.php?id_ejercicio=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <i class='fa-solid fa-pen-to-square icono edit'></i>";
             $r .= " </td>";
             $r .= '</tr>';
         }
@@ -123,7 +132,6 @@ class Administrador extends conexionBD
 
         // Devolver el número de filas afectadas
         return $affected_rows;
-
     }
 
     /**
@@ -182,7 +190,6 @@ class Administrador extends conexionBD
             $sql .= " t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol FROM usuarios t1";
             $sql .= " JOIN genero t2 ON t1.id_genero = t2.id_genero ";
             $sql .= " JOIN roles t3 ON t1.id_rol = t3.id_rol ";
-
         } elseif ($opc == 1) {
             $sql = "select COUNT(*) FROM usuarios;";
         }
@@ -256,7 +263,6 @@ class Administrador extends conexionBD
 
         // Retornar el número de filas afectadas por la operación de inserción
         return $affected_rows;
-
     }
 
     /**
@@ -286,7 +292,6 @@ class Administrador extends conexionBD
 
         // Retornar el número de filas afectadas por la operación de inserción
         return $affected_rows;
-
     }
 
     /**
@@ -353,12 +358,9 @@ class Administrador extends conexionBD
         if ($opc == 0) {
 
             $sql = "SELECT count(*) FROM ejercicio_rutinas WHERE id_rutina = $id_rutina AND id_ejercicio = $id_ejercico;";
-
-
         } elseif ($opc == 1) {
 
             $sql = "INSERT INTO ejercicio_rutinas (id_rutina, id_ejercicio) VALUES ($id_rutina, $id_ejercico);";
-
         }
 
         // Variable para almacenar el resultado
@@ -374,23 +376,19 @@ class Administrador extends conexionBD
             while ($fila = $resultado->fetch_array()) {
 
                 $r = $fila[0];
-
             }
-
         } elseif ($opc == 1) {
             // Ejecutar la inserción
             $conexion->query($sql);
 
             // Obtener el número de filas afectadas
             $r = $conexion->affected_rows;
-
         }
         // Cerrar la conexión a la base de datos
         $conexion->close();
 
         // Retornar el resultado de la operación
         return $r;
-
     }
 
     /**
@@ -503,7 +501,6 @@ class Administrador extends conexionBD
 
         // Retornar el número de filas afectadas
         return $affected_rows;
-
     }
 
     /**
@@ -534,8 +531,6 @@ class Administrador extends conexionBD
 
         // Retornar el número de filas afectadas
         return $affected_rows;
-
-
     }
 
     /**
