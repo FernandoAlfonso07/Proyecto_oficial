@@ -37,22 +37,24 @@ if (validate::validateNotEmptyInputs($inputs)) {
     }
 
     // Convierte las variables a tipo float
-    $pr = floatval($pr);
-    $pesoActual = floatval($pesoActual);
-    $altura = floatval($altura);
 
-    // Valida que las variables convertidas sean números válidos
-    if (!filter_var($pr, FILTER_VALIDATE_FLOAT) || !filter_var($pesoActual, FILTER_VALIDATE_FLOAT) || !filter_var($altura, FILTER_VALIDATE_FLOAT)) {
+
+    // Validación de entradas: todas deben ser números flotantes positivos
+    if (
+        !filter_var($pr, FILTER_VALIDATE_FLOAT) || $pr <= 0 ||
+        !filter_var($pesoActual, FILTER_VALIDATE_FLOAT) || $pesoActual <= 0 ||
+        !filter_var($altura, FILTER_VALIDATE_FLOAT) || $altura <= 0
+    ) {
         header('Location: ../view/controlador.php?error=notNumber&seccion=updateDatas');
         exit();
     }
 
-    // Convierte el teléfono a entero y valida que sea un número válido
-    $telefono = intval($telefono);
-    if (!filter_var($telefono, FILTER_VALIDATE_INT)) {
+    // Validación del teléfono: debe ser un número entero positivo
+    if (!filter_var($telefono, FILTER_VALIDATE_INT) || $telefono <= 0) {
         header('Location: ../view/controlador.php?error=invalidPhone&seccion=updateDatas');
         exit();
     }
+
 
     // Actualiza los datos del usuario en la base de datos
     $respuesta = usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $sex, $ruta_imagen);

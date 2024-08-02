@@ -106,6 +106,7 @@ create table ejercicios(
     tiempo_descanso int null,
     fecha_registro datetime not null,
     direccion_media varchar(200) null,
+    dateLastUpdated datetime null,
     
     primary key(id_ejercicio)
 
@@ -367,6 +368,4 @@ END;
 //
 */
 
-
 SELECT * FROM usuarios;
-SELECT * FROM genero;

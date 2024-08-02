@@ -43,7 +43,8 @@ include ("../../view/nombreSeccionH.php");
                                 <i class="fa-regular fa-user icono"></i> Mi perfil
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item enlace_secundario" href="controladorVadmin.php?seccionAd=MiPerfil"><i
+                                <li><a class="dropdown-item enlace_secundario"
+                                        href="controladorVadmin.php?seccionAd=MiPerfil"><i
                                             class="fa-solid fa-cube icono"></i> Información</a></li>
                                 <li><a class="dropdown-item enlace_secundario" href="#"><i
                                             class="fa-solid fa-gear icono"></i>Editar</a></li>
@@ -122,7 +123,7 @@ include ("../../view/nombreSeccionH.php");
 
     <div class="cuerpo">
         <?php
-
+    
         include ($seccion_admin . ".php");
 
         ?>

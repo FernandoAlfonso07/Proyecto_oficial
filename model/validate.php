@@ -65,7 +65,7 @@ class validate
         $file_format = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
         // Verificar si el formato de la imagen es uno de los permitidos
-        if ($file_format != 'jpg' && $file_format != 'jpeg' && $file_format != 'png' && $file_format != 'mp4' && $file_format != 'avi' && $file_format != 'mkv') {
+        if ($file_format != 'jpg' && $file_format != 'jpeg' && $file_format != 'png' && $file_format != 'mp4' && $file_format != 'avi' && $file_format != 'mkv' && $file_format != 'gif') {
             header('location: ' . $header);
             exit();
 

@@ -35,6 +35,27 @@ if (validate::validateNotEmptyInputs($inputs)) {
 
     $genero = validate::sanitize($_POST['genero']); // Sanitización de la contraseña;
 
+
+
+    // Validación del teléfono: debe ser un entero positivo
+    if (!filter_var($telefono, FILTER_VALIDATE_INT) || $telefono <= 0) {
+        header('Location: ../view/seccion-registro.php?error=notNumber');
+        exit();
+    }
+
+    // Validación del peso actual: debe ser un número flotante positivo
+    if (!filter_var($pesoActual, FILTER_VALIDATE_FLOAT) || $pesoActual <= 0) {
+        header('Location: ../view/seccion-registro.php?error=notNumber');
+        exit();
+    }
+
+    // Validación de la altura: debe ser un número flotante positivo
+    if (!filter_var($altura, FILTER_VALIDATE_FLOAT) || $altura <= 0) {
+        header('Location: ../view/seccion-registro.php?error=notNumber');
+        exit();
+    }
+
+
     $resultado = usuarios::registrar($nombres, $apellidos, $telefono, $correoElectronico, $passwordHashed, $pesoActual, $altura, $genero);
 
     if ($resultado > 1) {

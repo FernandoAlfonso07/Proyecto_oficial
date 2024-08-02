@@ -19,7 +19,7 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
     $tiempoDes = validate::sanitize($_POST['t_descanso']); // Sanitización del tiempo de descanso
 
     // Maneja la carga de archivos (si corresponde) y obtiene la ruta del archivo cargado
-    $direccion_media = validate::media('archivo', '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=asociarEjerciciosRutinas', '../view/img2/');
+    $direccion_media = validate::media('archivo', '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=asociarEjerciciosRutinas', '../view/media Exercises/');
 
     // Llama al método para agregar el ejercicio y verifica el resultado
     if (Administrador::agregarEjercicio($nombre, $instruc, $equiped, $rep, $series, $tiempoDes, $direccion_media) > 1) {

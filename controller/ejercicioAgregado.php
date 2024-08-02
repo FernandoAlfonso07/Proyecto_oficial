@@ -10,7 +10,6 @@ $inputsValidate = ['nombreEjercicio', 'instrucciones', 'equipo', 'repeticiones',
 
 // Valida que los campos de entrada no estén vacíos
 if (validate::validateNotEmptyInputs($inputsValidate)) {
-
     // Sanitiza cada campo de entrada para prevenir ataques de inyección y asegurar la integridad de los datos
     $nombre = validate::sanitize($_POST['nombreEjercicio']); // Sanitización del nombre del ejercicio
     $instruc = validate::sanitize($_POST['instrucciones']); // Sanitización de las instrucciones
@@ -20,7 +19,7 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
     $tiempoDes = validate::sanitize($_POST['t_descanso']); // Sanitización del tiempo de descanso
 
     // Maneja la carga de archivos (si corresponde) y obtiene la ruta del archivo cargado
-    $direccion_media = validate::media('archivo', '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=addEjercicios', '../view/img2/');
+    $direccion_media = validate::media('archivo', '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=addEjercicios', '../view/media Exercises/');
 
     // Llama al método para agregar el ejercicio y verifica el resultado
     if (Administrador::agregarEjercicio($nombre, $instruc, $equiped, $rep, $series, $tiempoDes, $direccion_media) > 1) {

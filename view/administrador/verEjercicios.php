@@ -38,3 +38,7 @@ include ("../../model/administrador.php");
         </tbody>
     </table>
 </div>
+
+<form action="administrador/controladorVadmin.php?exercise=1&seccionAd=updateExercises" method="post">
+    <input type="hidden" name="id_exercise">
+</form>

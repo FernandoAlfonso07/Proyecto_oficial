@@ -57,7 +57,6 @@ class Administrador extends conexionBD
 
             // Validar si existe una rutina asociada
             ($fila[8] == '') ? $r .= 'Ninguna rutina asociada' : $r .= $fila[8];
-
             $r .= "</td>"; // Muestra la rutina asociada
 
             // $r .= "<td>" . $fila[9] . "</td>"; // Muestra el ID de la rutina
@@ -67,7 +66,8 @@ class Administrador extends conexionBD
                 "<td>No existe un elemento grafico </td>" :
                 "<td><img src='../" . $fila[10] . "' class='img img-fluid' width='100px' alt='Elemento grafico de ejercicio'> </td>";
 
-            $r .= "<td> <a href='../../controller/ejercicioEliminado.php?id_ejercicio=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <i class='fa-solid fa-pen-to-square icono edit'></i>";
+            $r .= "<td> <a href='../../controller/ejercicioEliminado.php?id_ejercicio=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>";
+            $r .= "<td> <a href='../administrador/controladorVadmin.php?exerc=" . $fila[0] . "&seccionAd=updateExercises'><i class='fa-solid fa-pen-to-square icono edit'></i></a>";
             $r .= " </td>";
             $r .= '</tr>';
         }
@@ -599,5 +599,26 @@ class Administrador extends conexionBD
 
         // Devolver el resultado
         return $r;
+    }
+
+
+    public static function updateExercises($id, $newName, $newInstructions, $newEquiped, $newSets, $newRepetions, $newbreakTime, $pathvideo)
+    {
+        $conexion = self::getConexion();
+
+        $sql = "UPDATE ejercicios SET nombre = '$newName',";
+        $sql .= "Instrucctiones= '$newInstructions', ";
+        $sql .= "equipoNecesario = '$newEquiped', ";
+        $sql .= "repeticiones = $newRepetions, ";
+        $sql .= "seires = $newSets, ";
+        $sql .= "tiempo_descanso = $newbreakTime, ";
+        $sql .= "direccion_media = '$pathvideo', ";
+        $sql .= "dateLastUpdated = now() ";
+        $sql .= "WHERE id_ejercicio = $id ";
+
+        $conexion->query($sql);
+        $affected_rows = $conexion->affected_rows;
+        $conexion->close();
+        return $affected_rows;
     }
 }
