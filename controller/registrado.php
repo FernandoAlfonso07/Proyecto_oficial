@@ -17,6 +17,21 @@ $inputs = ['nombres', 'apellidos', 'telefono', 'correo', 'password', 'pesoA', 'a
 
 if (validate::validateNotEmptyInputs($inputs)) {
 
+    // Obtener la dirección IP del usuario y el valor del captcha de la solicitud POST
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $captcha = $_POST['g-recaptcha-response'];
+    $secretKey = "6Lc_QR4qAAAAAIVH1FiRj7iUMcRbON3V901P2dby"; // Clave secreta de reCAPTCHA
+
+    // Verificar el captcha con la API de Google reCAPTCHA
+    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha&remoteip=$ip");
+    $atributos = json_decode($response, true);
+
+    // Si la verificación del captcha falla, redirigir con un mensaje de error
+    if (!$atributos['success']) {
+        header('location: ../view/seccion-registro.php?error=notValidateCaptcha');
+        exit();
+    }
+
     $nombres = validate::sanitize($_POST['nombres']); // Sanitización de la contraseña;
 
     $apellidos = validate::sanitize($_POST['apellidos']); // Sanitización de la contraseña;

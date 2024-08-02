@@ -118,8 +118,6 @@ class Administrador extends conexionBD
         // Crear la consulta SQL para eliminar el dato
         $sql = "DELETE FROM $table WHERE $identifier = $id_data ";
 
-        // Imprimir la consulta SQL para fines de depuración
-        echo 'script ' . $sql;
 
         // Ejecutar la consulta
         $conexion->query($sql);

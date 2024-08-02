@@ -12,9 +12,9 @@ create table genero(
 );
 
 insert into genero (id_genero, genero) values (1, "Masculino");
-insert into genero (id_genero, genero) values (0, "Femenino");
+insert into genero (id_genero, genero) values (2, "Femenino");
 insert into genero (id_genero, genero) values (3, "Otro");
-
+select * from genero;
  -- ESTA ES LA TABLA DE ROLES
 CREATE TABLE roles (
 	id_rol int not null,
@@ -23,10 +23,10 @@ CREATE TABLE roles (
     primary key (id_rol)
 );
 
-INSERT INTO roles (id_rol, rol) VALUES (0, 'Invitado');
+INSERT INTO roles (id_rol, rol) VALUES (2, 'Invitado');
 INSERT INTO roles (id_rol, rol) VALUES (1, 'Administrador');
 INSERT INTO roles (id_rol, rol) VALUES (3, 'Super-Admin');
-
+select * from roles;
 -- ESTA ES LA TABLA DE USUARIOS
 create table usuarios(
 	id_usuario int not null auto_increment,
@@ -42,7 +42,7 @@ create table usuarios(
     fecha_registro datetime null,
     id_rol int null,
     imgPerfil varchar(200) null,
-    
+
     primary key (id_usuario),
     
 	/* ASIGANACION DE LLAVES FORANEAS con formato ON DELETE CASCADE ON UPDATE CASCADE */
@@ -292,13 +292,6 @@ WHERE t1.id_dia = 1;
 */
 -- --------------------------------------------
 
-
-SELECT * FROM calendario_rutinario;
-SELECT * FROM relacion_calendario_rutinas;
-SELECT * FROM usuarios;
-
-
-
 /* EL USUARIO CREAR UN CALENDARIO RUTINARIO */
 -- INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, fecha_registro) VALUES (1, 'nombre', 'descripcion', now()); 
 
@@ -367,5 +360,6 @@ return text;
 END;
 //
 */
-select * from usuarios;	
-UPDATE ejercicios SET nombre = 'Ejercicio 12',Instrucctiones= 'Instrucciones Ejercicio 1', equipoNecesario = 'Equipo necesario Ejercicio 1', repeticiones = 12, seires = 4, tiempo_descanso = 1, direccion_media = '../view/media Exercises/LMC_28 Jun 06_440 (2).jpg', dateLastUpdated = now() WHERE id_ejercicio = 1
+-- CREACION DE UNA CUENTA ADMINISTRADORA --
+insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol, imgPerfil) 
+values ('Usuario' ,'Administrador', '31156963325', 'admin@gmail.com', '$2y$10$kIUHogIqA8PsMPA9.4gnve05MVZzp.2GQOSd6k1Ngx98mx5VAjGem', 46 ,170, 1, now(), 1, '../view/user img/default_img.PNG');

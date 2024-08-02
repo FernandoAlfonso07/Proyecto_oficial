@@ -39,6 +39,7 @@ if (isset($_GET['error'])) {
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilos_inicio_sesion.css">
     <link rel="icon" href="./img/logosinfondo.png">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -78,7 +79,12 @@ if (isset($_GET['error'])) {
                     <img src="img/LOGO.png" class="img-thumbnail" alt="logo" width="220em">
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-12 mt-4 position-relative">
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <div class="g-recaptcha" data-sitekey="6Lc_QR4qAAAAAB9A8NzQmQyEYGYcLstGhwxOnoQA"></div>
+                    </div>
+                </div>
+                <div class="col-md-12 my-5">
 
                     <center>
 

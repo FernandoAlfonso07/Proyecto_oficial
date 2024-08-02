@@ -23,6 +23,20 @@ if (!validate::validateNotEmptyInputs($inputs)) {
     header("location: ../view/inicioSesion.php?error=emptyFields");
     exit();
 }
+// Obtener la dirección IP del usuario y el valor del captcha de la solicitud POST
+$ip = $_SERVER['REMOTE_ADDR'];
+$captcha = $_POST['g-recaptcha-response'];
+$secretKey = "6Lc_QR4qAAAAAIVH1FiRj7iUMcRbON3V901P2dby"; // Clave secreta de reCAPTCHA
+
+// Verificar el captcha con la API de Google reCAPTCHA
+$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha&remoteip=$ip");
+$atributos = json_decode($response, true);
+
+// Si la verificación del captcha falla, redirigir con un mensaje de error
+if (!$atributos['success']) {
+    header('location: ../view/inicioSesion.php?error=notValidateCaptcha');
+    exit();
+}
 
 // Sanitiza las entradas 'correo' y 'password' para evitar inyecciones de código
 $correo = validate::sanitize($_POST['correo']);

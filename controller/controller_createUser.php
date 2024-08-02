@@ -2,24 +2,19 @@
 include_once ("../model/usuario.php");
 include_once ("../model/validate.php");
 
+// Define los campos que deben ser validados
 $inputsValidate = ['name', 'lastName', 'phone', 'mail', 'password', 'weight', 'height', 'sex', 'roleUser'];
-foreach ($inputsValidate as $field) {
-    if (empty($_POST[$field])) {
-        echo "Falta el campo: $field<br>";
-    }
-}
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
 
+// Verifica que todos los campos requeridos no estén vacíos usando la función validateNotEmptyInputs
 if (validate::validateNotEmptyInputs($inputsValidate)) {
-    echo 'Todos ls camps llenos';
+
+    // Sanitiza los datos del formulario para prevenir inyecciones y otros problemas de seguridad
     $name = validate::sanitize($_POST['name']);
     $lastName = validate::sanitize($_POST['lastName']);
     $phone = validate::sanitize($_POST['phone']);
     $mail = validate::sanitize($_POST['mail']);
     $password = validate::sanitize($_POST['password']);
-    $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
+    $passwordHashed = password_hash($password, PASSWORD_DEFAULT); // Hashea la contraseña para almacenamiento seguro
     $weight = validate::sanitize($_POST['weight']);
     $height = validate::sanitize($_POST['height']);
     $sex = validate::sanitize($_POST['sex']);
@@ -43,15 +38,20 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
         exit();
     }
 
+    // Registra al usuario en la base de datos
     $resultado = usuarios::registrar($name, $lastName, $phone, $mail, $passwordHashed, $weight, $height, $sex, $roleUser);
 
     if ($resultado > 1) {
-        echo 'Error';
+        echo 'Error'; // Mensaje de error si el registro no es exitoso
     } else {
+
+        // Redirige a la página de visualización de usuarios si el registro es exitoso  
         header('location: ../view/administrador/controladorVadmin.php?seccionAd=verUsuarios');
         exit();
     }
 } else {
+
+    // Redirige si hay campos vacíos
     header('location: ../view/administrador/controladorVadmin.php?error=emptyFields&seccionAd=createUser');
     exit();
 }

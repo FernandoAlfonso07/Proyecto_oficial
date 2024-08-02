@@ -73,7 +73,7 @@
                             ?>
                             <select class="form-select" name="sex" aria-label="Default select example">
                                 <option selected disabled>Seleciona... </option>
-                                <option value="0" <?php echo ($sexo == 'Femenino') ? 'selected' : ''; ?>>Femenino
+                                <option value="2" <?php echo ($sexo == 'Femenino') ? 'selected' : ''; ?>>Femenino
                                 </option>
                                 <option value="1" <?php echo ($sexo == 'Masculino') ? 'selected' : ''; ?>>Masculino
                                 </option>

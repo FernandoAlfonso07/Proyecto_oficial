@@ -9,8 +9,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="./img/logosinfondo.png">
     <link rel="stylesheet" href="css/estilos-registro.css">
-
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -31,29 +30,26 @@
                             class="text-primary"><strong>¡REGÍSTRATE!</strong></span></h2>
                     <form action="../controller/registrado.php" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="nombres" placeholder="Nombres" >
+                            <input type="text" class="form-control" name="nombres" placeholder="Nombres">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" >
+                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="telefono" placeholder="Telefono" >
+                            <input type="text" class="form-control" name="telefono" placeholder="Telefono">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="correo" placeholder="Correo electronico"
-                                >
+                            <input type="text" class="form-control" name="correo" placeholder="Correo electronico">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="Contraseña"
-                                >
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="pesoA" placeholder="Peso Actual en kg"
-                                >
+                            <input type="text" class="form-control" name="pesoA" placeholder="Peso Actual en kg">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="alturaA" placeholder="Altura Actual - ej. 170"
-                                >
+                            <input type="text" class="form-control" name="alturaA"
+                                placeholder="Altura Actual - ej. 170">
                         </div>
                         <div class="form-group">
                             <label for="inputGroupSelect01" class="form-label">
@@ -62,7 +58,7 @@
                             <select class="form-select custom-select" name="genero" id="inputGroupSelect01" required>
                                 <option value="" disabled selected>Selecciona tu género</option>
                                 <option value="1">Masculino</option>
-                                <option value="0">Femenino</option>
+                                <option value="2">Femenino</option>
                             </select>
                         </div>
 
@@ -73,6 +69,11 @@
                                 Politicas y privacidad <a href="#" class="text-primary">Terminos </a>
                             </label>
                         </div>
+
+                        <div class="my-4">
+                            <div class="g-recaptcha" data-sitekey="6Lc_QR4qAAAAAB9A8NzQmQyEYGYcLstGhwxOnoQA"></div>
+                        </div>
+
                         <button type="submit" class="btn btn-primary btn-block">Registrar</button>
                     </form>
                     <p class="text-muted mt-3">Si tienes una cuenta, <a href="inicioSesion.php"
