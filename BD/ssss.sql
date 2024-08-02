@@ -367,5 +367,5 @@ return text;
 END;
 //
 */
-
-SELECT * FROM usuarios;
+select * from usuarios;	
+UPDATE ejercicios SET nombre = 'Ejercicio 12',Instrucctiones= 'Instrucciones Ejercicio 1', equipoNecesario = 'Equipo necesario Ejercicio 1', repeticiones = 12, seires = 4, tiempo_descanso = 1, direccion_media = '../view/media Exercises/LMC_28 Jun 06_440 (2).jpg', dateLastUpdated = now() WHERE id_ejercicio = 1

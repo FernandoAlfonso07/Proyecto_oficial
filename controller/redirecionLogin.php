@@ -51,7 +51,7 @@ if ($storedPasswordHash && password_verify($password, $storedPasswordHash)) {
     $seccionRol = usuarios::iniciarSesion(1, $correo, $storedPasswordHash);
 
     // Guarda el ID en la sesión y redirige según el rol del usuario
-    if ($seccionRol == 0) {
+    if ($seccionRol == 2) {
         $_SESSION['id'] = $id_usuario;
         header("location: ../view/controlador.php?seccion=seccion1");
     } elseif ($seccionRol == 1) {

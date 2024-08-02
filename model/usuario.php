@@ -301,13 +301,13 @@ class usuarios extends conexionBD
      * @return int Número de filas afectadas por la operación de inserción.
      */
 
-    public static function registrar($nombres, $apellidos, $telefono, $correoElectronico, $password, $pesoActual, $altura, $genero)
+    public static function registrar($nombres, $apellidos, $telefono, $correoElectronico, $password, $pesoActual, $altura, $genero, $rol = null)
     {
         $conexion = self::getConexion();
         // Consulta SQL para insertar un nuevo usuario en la tabla 'usuarios'
         $sql = "insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol, imgPerfil)";
-        $sql .= " values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$password', $pesoActual ,$altura, $genero, now(), 0, '../view/user img/default_img.PNG') ";
-
+        $sql .= " values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$password', $pesoActual ,$altura, $genero, now(), " . ($rol ?? 0) . ", '../view/user img/default_img.PNG') ";
+        echo $sql;
         $conexion->query($sql); // Ejecuta la consulta SQL para insertar el nuevo usuario
 
         $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de inserción
@@ -319,7 +319,7 @@ class usuarios extends conexionBD
 
     /**
      * Actualiza los datos de un usuario en la base de datos.
-     *
+     *  
      * @param int $id ID del usuario cuyos datos se van a actualizar.
      * @param string $nombres Nuevos nombres del usuario.
      * @param string $apellidos Nuevos apellidos del usuario.

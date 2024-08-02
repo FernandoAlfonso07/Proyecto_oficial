@@ -80,7 +80,7 @@ include ("../../view/nombreSeccionH.php");
                                         href="controladorVadmin.php?seccionAd=verUsuarios"><i
                                             class="fa-solid fa-eye icono"></i>Historial de usuarios</a></li>
                                 <li><a class="dropdown-item enlace_secundario"
-                                        href="controladorVadmin.php?seccionAd=addUsuario"><i
+                                        href="controladorVadmin.php?seccionAd=createUser"><i
                                             class="fa-regular fa-pen-to-square icono"></i>Agregar usuario</a></li>
 
                             </ul>
@@ -112,7 +112,6 @@ include ("../../view/nombreSeccionH.php");
                                 <li><a class="dropdown-item enlace_secundario"
                                         href="controladorVadmin.php?seccionAd=addGym"><i
                                             class="fa-regular fa-pen-to-square icono"></i> Agregar Gimnasios</a></li>
-
                             </ul>
                         </li>
                     </ul>
@@ -123,7 +122,7 @@ include ("../../view/nombreSeccionH.php");
 
     <div class="cuerpo">
         <?php
-    
+
         include ($seccion_admin . ".php");
 
         ?>

@@ -82,5 +82,4 @@ if (validate::validateNotEmptyInputs($inputs)) {
     }
 } else {
     header('location: ../view/seccion-registro.php?error=emptyFields');
-
 }
