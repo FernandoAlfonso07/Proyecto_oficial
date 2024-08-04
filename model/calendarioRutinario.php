@@ -100,7 +100,6 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
             $sql .= "LIMIT $p , 1;"; // Límite para paginación
         }
 
-
         // Ejecuta la consulta SQL
         $resultado = $conexion->query($sql);
 

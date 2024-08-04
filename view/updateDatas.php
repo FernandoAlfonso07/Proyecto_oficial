@@ -7,8 +7,8 @@
     <div class="container cuerpo">
         <div class="row">
             <div class="col-md-6 text-center">
-                <img src="<?php echo usuarios::getPerfil(9, $_SESSION['id']) ?: '../../view/user img/default_img.PNG'; ?>"
-                    class="img-fluid imagen_perfil" width="50%" alt="Imagen Perfil">
+                <img src="<?php echo usuarios::getPerfil(9, $_SESSION['id']) ?>" class="img-fluid imagen_perfil"
+                    width="50%" alt="Imagen Perfil">
                 <div class="input-group mb-3 subir">
                     <input type="file" class="form-control" name="imagenPerfil" id="inputGroupFile04"
                         aria-describedby="inputGroupFileAddon04" aria-label="Upload">

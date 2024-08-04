@@ -5,6 +5,11 @@ include_once ("../model/administrador.php");
 // Incluye el archivo que contiene la clase validate para la sanitización de datos
 include_once ("../model/validate.php");
 
+include_once ('../model/exercise.php');
+
+if (!isset($_SESSION))
+    session_start();
+
 // Define los nombres de los campos que deben ser validados
 $inputsValidate = ['newName', 'newinstructions', 'newEquipment', 'newSets', 'newRepetions', 'newBreakTime'];
 
@@ -19,8 +24,25 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
     $newSets = validate::sanitize($_POST['newSets']); // Sanitización de las series
     $newbreakTime = validate::sanitize($_POST['newBreakTime']); // Sanitización del tiempo de descanso
 
-    // Maneja la carga de archivos (si corresponde) y obtiene la ruta del archivo cargado
-    $pathvideo = validate::media('imageExercise', '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=updateExercises', '../view/media Exercises/');
+    // Ruta de la imagen actual
+    $currentImagePath = exercise::getInformationExercises(8, $id);
+
+    // Verifica si se ha subido una nueva imagen
+    if (!empty($_FILES['imageExercise']['name'])) {
+        // Procesa la nueva imagen
+        $pathvideo = validate::media(
+            'imageExercise',
+            '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=updateExercises',
+            '../view/media Exercises/'
+        );
+        // Elimina la imagen actual si se ha subido una nueva
+        if ($currentImagePath && file_exists($currentImagePath)) {
+            unlink($currentImagePath); // Borra la imagen actual
+        }
+    } else {
+        // Usa la imagen actual si no se ha subido una nueva
+        $pathvideo = $currentImagePath;
+    }
 
     // Validación de repeticiones: debe ser un número entero positivo
     if (!filter_var($newRepetions, FILTER_VALIDATE_INT) || $newRepetions <= 0) {
@@ -48,8 +70,8 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
 
     if ($result > 1) {
         // Muestra un mensaje de error si no fue posible registrar el ejercicio
-        // header("location: ../view/administrador/controladorVadmin.php?error=updateFailed&seccionAd=updateExercises");
-        // exit();
+        header("location: ../view/administrador/controladorVadmin.php?error=updateFailed&seccionAd=updateExercises");
+        exit();
 
     } else {
         // Si la actualización es exitosa, redirige a la página de ver ejercicios

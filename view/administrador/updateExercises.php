@@ -1,6 +1,5 @@
 <?php
 include_once ('../../model/exercise.php');
-$id_exercise = '';
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -10,16 +9,14 @@ $id_exercise = '';
 if (isset($_GET['exerc']) && !empty($_GET['exerc'])) {
     $id_exercise = $_GET['exerc'];
     $_SESSION['exercise'] = $id_exercise;
-    echo 'id en GET: ' . $id_exercise;
 } elseif (isset($_POST['exerc']) && !empty($_POST['exerc'])) {
     $id_exercise = $_POST['exerc'];
     $_SESSION['exercise'] = $id_exercise;
-    echo 'id en POST: ' . $id_exercise;
+
 } else {
     // Si no hay ni GET ni POST, revisa la sesión
     if (isset($_SESSION['exercise']) && !empty($_SESSION['exercise'])) {
         $id_exercise = $_SESSION['exercise'];
-        echo 'id en SESSION: ' . $id_exercise;
     } else {
         // Maneja el caso en que no haya ningún id_exercise disponible
         echo 'Error: No se ha proporcionado id_exercise.';

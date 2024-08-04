@@ -28,17 +28,25 @@ if (validate::validateNotEmptyInputs($inputs)) {
     $altura = validate::sanitize($_POST['altura']);
     $sex = isset($_POST['sex']) ? validate::sanitize($_POST['sex']) : null;
 
+    $currentImagePath = usuarios::getPerfil(9, $_SESSION['id']);
+    $defaultImagePath = '../view/user img/default_img.PNG';
+
     // Verifica si se ha subido una nueva imagen
     if (!empty($_FILES['imagenPerfil']['name'])) {
-        $ruta_imagen = validate::media('imagenPerfil', '../view/controlador.php?error=incorrectFormat&seccion=updateDatas', '../view/user img/');
+        // Procesa la nueva imagen
+        $ruta_imagen = validate::media(
+            'imagenPerfil',
+            '../view/controlador.php?error=incorrectFormat&seccion=updateDatas',
+            '../view/user img/'
+        );
+        // Elimina la imagen actual si se ha subido una nueva
+        if ($currentImagePath && file_exists($currentImagePath) && $currentImagePath !== $defaultImagePath) {
+            unlink($currentImagePath); // Borra la imagen actual
+        }
     } else {
-        // Si no se ha subido una nueva imagen, usa la imagen actual del perfil
-        $ruta_imagen = usuarios::getPerfil(9, $_SESSION['id']) ?: '../view/user img/default_img.PNG';
+        // Usa la imagen actual si no se ha subido una nueva
+        $ruta_imagen = $currentImagePath;
     }
-
-    // Convierte las variables a tipo float
-
-
     // Validación de entradas: todas deben ser números flotantes positivos
     if (
         !filter_var($pr, FILTER_VALIDATE_FLOAT) || $pr <= 0 ||

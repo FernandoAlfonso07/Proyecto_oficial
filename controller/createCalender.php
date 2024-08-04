@@ -77,6 +77,13 @@ if ($page == '1ro') {
 
     // Recorre el arreglo y realiza acciones para cada nombre de rutina
     foreach ($arrayNameRoutine as $routineParam => $dayNumber) { // Obtiene el ID de la rutina desde la URL
+        // Obtiene el ID de la rutina desde el formulario
+        if (empty($_POST[$routineParam])) {
+            // Si algún campo está vacío, redirige al usuario con un mensaje de error
+            header('location: ../view/controlador.php?error=emptyFields&seccion=createCalender2do');
+            exit();
+        }
+
         $id_routine = $_POST[$routineParam];
 
         // Inserta el ID del calendario, el número de día y el ID de la rutina en la tabla correspondiente
@@ -86,11 +93,12 @@ if ($page == '1ro') {
             echo "Ocurrio un error en el registro de la rutina del día $dayNumber";
             exit();
         } else {
-
-            // Si la inserción fue exitosa, redirige al usuario a la página de sus calendarios
+            // Si la inserción fue exitosa
             echo 'Todo insertado exitosamente ';
-            header('location: ../view/controlador.php?success=success&seccion=misCalendarios');
-            exit();
+
         }
     }
+
+    header('location: ../view/controlador.php?success=success&seccion=misCalendarios');
+    exit();
 }

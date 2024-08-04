@@ -46,8 +46,6 @@ include ("../../view/nombreSeccionH.php");
                                 <li><a class="dropdown-item enlace_secundario"
                                         href="controladorVadmin.php?seccionAd=MiPerfil"><i
                                             class="fa-solid fa-cube icono"></i> Información</a></li>
-                                <li><a class="dropdown-item enlace_secundario" href="#"><i
-                                            class="fa-solid fa-gear icono"></i>Editar</a></li>
                                 <li><a class="dropdown-item enlace_secundario" href="../../view/inicioSesion.php">
                                         <button class="btn btn-outline-danger boton_cerrar"><i
                                                 class="fa-solid fa-arrow-right-from-bracket icono"></i>Cerrar

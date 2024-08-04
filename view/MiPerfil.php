@@ -8,9 +8,8 @@ echo 'Id usuario ' . $_SESSION['id'];
 <div class="container cuerpo">
     <div class="row">
         <div class="col-md-6 text-center">
-            <img src=" <?php
-            echo usuarios::getPerfil(9, $_SESSION['id']);
-            ?>" class="img-fluid imagen_perfil" width="80%" alt="Imagen Perfil">
+            <img src=" <?php echo usuarios::getPerfil(9, $_SESSION['id']); ?>"
+                class="img-fluid imagen_perfil" width="80%" alt="Imagen Perfil">
         </div>
         <div class="col-md-6">
             <div class="row">

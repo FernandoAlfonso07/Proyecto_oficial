@@ -1,20 +1,27 @@
 <?php
 include ('../model/calendarioRutinario.php');
+date_default_timezone_set('America/Bogota');
+if (!isset($_SESSION))
+    session_start();
 
+if (!isset($_SESSION['id']) || $_SESSION['id'] == "") {
+    header('location: inicioSesion.php');
+    exit();
+}
 $p = 0;
+$id_calendar = 0;
+$dia_semana = 0;
 if (isset($_GET['p'])) {
     $p = $_GET['p'];
 }
-
-$id_calendar = 0;
 
 if (isset($_GET['calendar'])) {
     $id_calendar = $_GET['calendar'];
 }
 
-$dia_semana = date('w');
+// $dia_semana = date('w');
+$dia_semana = 6;
 
-echo $id_calendar;
 ?>
 
 <!doctype html>
@@ -43,7 +50,7 @@ echo $id_calendar;
                 </h1>
             </div>
             <div class="col-md-12 text-center imagenA">
-                <img src="img/ <?php echo calendarioRutinario::mostrarCalendario(1, 1, $dia_semana, $p, $id_calendar) ?> "
+                <img src="<?php echo calendarioRutinario::mostrarCalendario(1, 1, $dia_semana, $p, $id_calendar) ?> "
                     width="100%" name="imagenEjercico" alt="imagen ejercicios">
             </div>
             <div class="col-md-12 colorear text-center nombreEjercicio redondear">
@@ -75,19 +82,18 @@ echo $id_calendar;
                     <b class="numero">
                         <?php
                         echo calendarioRutinario::mostrarCalendario(1, 6, $dia_semana, $p, $id_calendar);
-                        // echo calendarioRutinario::mostrarCalendario(0, null, $dia_semana)
-                        
                         ?>
                     </b> Repeticiones.
                 </h2>
             </div>
             <div class="col-md-12 contenedor_informacion text-center">
-                <a href="">
-                    <button class="btn btn-warning btn-gradient botones">Descanso <i
-                            class="fa-solid fa-pause"></i></button>
+                <a
+                    href="timer.php?calendar=<?php echo $id_calendar; ?>&calef=<?php echo calendarioRutinario::mostrarCalendario(1, 7, $dia_semana, $p, $id_calendar); ?>&pg=<?php echo $p; ?>">
+                    <button class="btn btn-warning btn-gradient botones">Descanso <i class="fa-solid fa-pause"></i>
+                    </button>
                 </a>
                 <?php
-                echo calendarioRutinario::optionPage($p, $id_calendar) // Botonesd de la paginacion.
+                echo calendarioRutinario::optionPage($p, $id_calendar)
                     ?>
                 <a href="controlador.php?seccion=misCalendarios">
                     <button id="salirButton" class="btn btn-danger">Salir <i
