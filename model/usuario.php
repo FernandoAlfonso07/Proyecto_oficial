@@ -444,19 +444,38 @@ class usuarios extends conexionBD
         return $password;
     }
 
+    /**
+     * Obtiene un valor específico del índice de registro del usuario.
+     *
+     * @param int $id_user El ID del usuario.
+     * @param int $opc La opción que determina qué valor devolver (0, 1, 2 o 3).
+     *                 0 - Devuelve el valor del primer campo.
+     *                 1 - Devuelve el valor del segundo campo.
+     *                 2 - Devuelve el valor del tercer campo.
+     *                 3 - Devuelve el valor del cuarto campo.
+     * @return mixed El valor correspondiente del índice de registro del usuario según la opción seleccionada.
+     */
     public static function get_user_registration_indexes($id_user, $opc)
     {
+        // Establece la conexión a la base de datos 
         $conexion = self::getConexion();
 
+        // Consulta SQL para obtener todos los campos de la tabla user_registration_indexes para el usuario especificado
         $sql = "SELECT * FROM user_registration_indexes WHERE id_usuario = '$id_user'";
         $result = $conexion->query($sql);
+
+        // Inicializa la variable de salida
         $salida = "";
 
+        // Recorre los resultados de la consulta
         while ($row = $result->fetch_array()) {
+
+            // Selecciona el campo apropiado basado en el valor de $opc
             switch ($opc) {
                 case 0:
                     $salida = $row[0];
                     break;
+
                 case 1:
                     $salida = $row[1];
                     break;
@@ -468,7 +487,10 @@ class usuarios extends conexionBD
                     break;
             }
         }
+        // Cierra la conexión a la base de datos
         $conexion->close();
+
+        // Devuelve el valor seleccionado del índice de registro del usuario
         return $salida;
     }
 }

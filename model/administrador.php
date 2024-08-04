@@ -105,11 +105,16 @@ class Administrador extends conexionBD
                 $table = 'usuarios';
                 $identifier = 'id_usuario';
                 break;
+            case 3:
+                $table = 'ejercicio_rutinas';
+                $identifier = 'id_relacion';
+                break;
         }
 
         // Crear la consulta SQL para eliminar el dato
         $sql = "DELETE FROM $table WHERE $identifier = $id_data ";
 
+        echo $sql;
 
         // Ejecutar la consulta
         $conexion->query($sql);
@@ -285,6 +290,48 @@ class Administrador extends conexionBD
     }
 
     /**
+     * Actualiza una rutina en la base de datos.
+     *
+     * Este método actualiza una fila en la tabla `rutinas` con los valores proporcionados para el nombre, 
+     * la descripción, el objetivo y la categoría de la rutina especificada por su ID.
+     *
+     * @param int $id_routine El ID de la rutina que se va a actualizar.
+     * @param int $category El ID de la categoría a la que pertenece la rutina.
+     * @param string $nombreR El nuevo nombre de la rutina.
+     * @param string $descripcionR La nueva descripción de la rutina.
+     * @param string $objetivo El nuevo objetivo de la rutina.
+     *
+     * @return int El número de filas afectadas por la consulta SQL. Si la operación es exitosa,
+     *             retornará el número de filas actualizadas. Si no se actualiza ninguna fila (por
+     *             ejemplo, si el ID de la rutina no existe), retornará 0.
+     */
+    public static function updateRoutine($id_routine, $category, $nombreR, $descripcionR, $objetivo)
+    {
+        // Obtener la conexión a la base de datos
+        $conexion = self::getConexion();
+
+        // Construir la consulta SQL para actualizar una rutina
+        $sql = "UPDATE rutinas ";
+        $sql .= "SET nombreRutina = '$nombreR', ";
+        $sql .= "descripcion = '$descripcionR', ";
+        $sql .= "objetivo = '$objetivo', ";
+        $sql .= "id_categoria = '$category' ";
+        $sql .= "WHERE id_rutina = '$id_routine';";
+
+        // Ejecutar la consulta SQL
+        $conexion->query($sql);
+
+        // Obtener el número de filas afectadas por la operación de actualización
+        $affected_rows = $conexion->affected_rows;
+
+        // Cerrar la conexión a la base de datos
+        $conexion->close();
+
+        // Retornar el número de filas afectadas por la operación de actualización
+        return $affected_rows;
+    }
+
+    /**
      * Método estático mostrarEjercicios
      *
      * Este método recupera una lista de ejercicios de la base de datos `worldfitsbd` y 
@@ -450,7 +497,7 @@ class Administrador extends conexionBD
             $r .= '<td>' . $fila[4] . '</td>'; // Nombre del ejercicio
             $r .= '<td>';
             // Enlace para eliminar la asociación del ejercicio con la rutina
-            $r .= '<a href="../../controller/quitarEjercicio.php?idRelacion=' . $fila[0] . '" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"> ';
+            $r .= '<a href="../../controller/ejercicioEliminado.php?idRelacion=' . $fila[0] . '&mtDelete=2&iroutine=' . $id_rutina . '" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"> ';
             $r .= '<i class="fa-solid fa-delete-left fs-5"></i>';
             $r .= '</a> ';
             $r .= '</td>';
@@ -579,7 +626,7 @@ class Administrador extends conexionBD
                 $r .= "<td>" . $fila[2] . "</td>"; // Muestra el objetivo de la rutina
                 $r .= "<td>" . $fila[3] . "</td>"; // Muestra la fecha de registro
                 $r .= "<td>" . $fila[4] . "</td>"; // Muestra la categoría asociada
-                $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <a href='../../controller/deleteRoutine.php?id_routine=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <i class='fa-solid fa-pen-to-square icono edit'></i>";
+                $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <a href='../../controller/deleteRoutine.php?id_routine=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <a href='controladorVadmin.php?dRoutine=" . $fila[0] . "&seccionAd=addRutina'><i class='fa-solid fa-pen-to-square icono edit'></i></a>";
                 $r .= " </td>";
                 $r .= '</tr>';
             }
@@ -611,4 +658,6 @@ class Administrador extends conexionBD
         $conexion->close();
         return $affected_rows;
     }
+
+
 }

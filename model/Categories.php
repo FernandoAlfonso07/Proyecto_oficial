@@ -14,7 +14,7 @@ class CycleCreateCalender extends conexionBD
      * @return string Una cadena de texto con las opciones HTML para el elemento `<select>`, cada opción
      *                 representa una categoría con su valor y nombre correspondientes.
      */
-    public static function getCatgory()
+    public static function getCatgory($selectedCategory = null)
     {
         // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
@@ -30,9 +30,9 @@ class CycleCreateCalender extends conexionBD
 
         // Procesar los resultados de la consulta
         while ($fila = $result->fetch_array()) {
-
+            $isSelected = $fila[0] == $selectedCategory ? 'selected' : '';
             // Generar una opción HTML para cada categoría
-            $r .= "<option value='" . $fila[0] . "'>" . $fila[1] . "</option>";
+            $r .= "<option value='" . $fila[0] . "' $isSelected>" . $fila[1] . "</option>";
         }
         // Cierra la conexion a la base de datos
         $conexion->close();

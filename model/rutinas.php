@@ -50,6 +50,9 @@ class routines extends conexionBD
                 case 4:
                     $r = $fila[4]; // Trae la fecha de registro de la rutina
                     break;
+                case 5:
+                    $r = $fila[5]; // Trae la categoria de la rutina
+                    break;
             }
 
         }

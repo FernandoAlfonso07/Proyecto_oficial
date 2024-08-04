@@ -293,3 +293,8 @@ SELECT * FROM usuarios WHERE id_usuario = '33';
 -- CREACION DE UNA CUENTA ADMINISTRADORA --
 insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol, imgPerfil) 
 values ('Usuario' ,'Administrador', '31156963325', 'admin@gmail.com', '$2y$10$kIUHogIqA8PsMPA9.4gnve05MVZzp.2GQOSd6k1Ngx98mx5VAjGem', 46 ,170, 1, now(), 1, '../view/user img/default_img.PNG');
+
+
+
+
+
