@@ -99,7 +99,6 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
         } elseif ($opc == 1) {
             $sql .= "LIMIT $p , 1;"; // Límite para paginación
         }
-
         // Ejecuta la consulta SQL
         $resultado = $conexion->query($sql);
 
@@ -162,12 +161,12 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
      * @param int $id_calendar El ID del calendario para generar las opciones de página.
      * @return string Una cadena de enlaces HTML con botones para la paginación.
      */
-    public static function optionPage($p, $id_calendar)
+    public static function optionPage($p, $day, $id_calendar)
     {
         // Variable para almacenar el HTML generado
         $r = '';
         // Obtiene el total de páginas/calendarios
-        $total = self::mostrarCalendario(0, null, date('w'), null, $id_calendar);
+        $total = self::mostrarCalendario(0, null, $day, null, $id_calendar);
 
         // Itera sobre el total de páginas/calendarios
         for ($i = 0; $i < $total; $i++) {

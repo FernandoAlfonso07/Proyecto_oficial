@@ -93,7 +93,7 @@ $dia_semana = 6;
                     </button>
                 </a>
                 <?php
-                echo calendarioRutinario::optionPage($p, $id_calendar)
+                echo calendarioRutinario::optionPage($p, $dia_semana, $id_calendar)
                     ?>
                 <a href="controlador.php?seccion=misCalendarios">
                     <button id="salirButton" class="btn btn-danger">Salir <i
