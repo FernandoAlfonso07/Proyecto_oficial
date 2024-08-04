@@ -246,121 +246,50 @@ ON DELETE CASCADE
 
 );
 
-
--- select * from relacion_dia_rutina;
-
--- creacion de las llaves foraneas para el id de la tabla DIA SEMANAS
-/*
-ALTER TABLE relacion_dia_rutina 
-ADD CONSTRAINT FK_relacion_dia_rutina_Dia
-foreign key (id_dia) REFERENCES dias_semana(id_dia);
-
--- creacion de las llaves foraneas para el id de la tabla RELACION DE LAS RUTINAS CON EJERCICIOS
-
-ALTER TABLE relacion_dia_rutina 
-ADD CONSTRAINT FK_relacion_dia_rutina_RUTINAS_relacion
-foreign key (id_rutina) REFERENCES rutinas(id_rutina);
-*/
-
-
-/* USADO EN EL PROYECTO */
-/*
-SELECT 
-t2.nombre,
-t5.direccion_media,
-t5.nombre,
-t5.Instrucctiones,
-t5.equipoNecesario,
-t5.seires,
-t5.repeticiones,
-t5.tiempo_descanso
-FROM calendario_rutinario t1 
-JOIN dias_semana t2 ON t1.id_dia = t2.id_dia
-JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina
-JOIN ejercicio_rutinas t4 ON t4.id_rutina = t3.id_rutina
-JOIN ejercicios t5 ON t4.id_ejercicio = t5.id_ejercicio
-WHERE t1.id_dia = 3 LIMIT 1 , 1;
-
-SELECT 
-COUNT(*)
-FROM calendario_rutinario t1 
-JOIN dias_semana t2 ON t1.id_dia = t2.id_dia
-JOIN rutinas t3 ON t1.id_rutina = t3.id_rutina
-JOIN ejercicio_rutinas t4 ON t4.id_rutina = t3.id_rutina
-JOIN ejercicios t5 ON t4.id_ejercicio = t5.id_ejercicio
-WHERE t1.id_dia = 1;
-*/
--- --------------------------------------------
-
-/* EL USUARIO CREAR UN CALENDARIO RUTINARIO */
--- INSERT INTO calendario_rutinario (id_usuario, nombre_personalizado, descripcion, fecha_registro) VALUES (1, 'nombre', 'descripcion', now()); 
-
-/* EL USUARIO ASIGNA LAS RUTINAS AL DIA DESEADO */
-/*
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 1, 7);
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 2, 1);
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 3, 3);
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 4, 1);
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 5, 5);
-INSERT INTO relacion_calendario_rutinas (id_calendario, id_dia, id_rutina) VALUES (5, 6, 4);
-
-
-
-/* -------------------------- PARA IMPLEMENTAR ----------------------------------- */
-/*
-SELECT 
-t2.nombre_personalizado,
-t4.nombreRutina,
-t3.nombre,
-t6.direccion_media,
-t6.nombre,
-t6.Instrucctiones,
-t6.equipoNecesario,
-t6.seires,
-t6.repeticiones,
-t6.tiempo_descanso
-FROM relacion_calendario_rutinas t1 
-JOIN calendario_rutinario t2 ON t1.id_calendario = t2.id_calendario 
-JOIN dias_semana t3 ON t3.id_dia = t1.id_dia 
-JOIN rutinas t4 ON t4.id_rutina = t1.id_rutina 
-JOIN ejercicio_rutinas t5 ON t5.id_rutina = t4.id_rutina 
-JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio 
-WHERE t1.id_dia = 4 AND t2.id_calendario = '40'
-LIMIT 0, 1;
-*/
-
-/*
-SELECT id_rutina, nombreRutina FROM rutinas t1 JOIN categorias_rutinas t2  ON  t1.id_categoria = t2.id_categoria WHERE t2.id_categoria = 1;
-
-select count(*) FROM relacion_calendario_rutinas t1 
-JOIN calendario_rutinario t2 ON t1.id_calendario = t2.id_calendario 
-JOIN dias_semana t3 ON t3.id_dia = t1.id_dia 
-JOIN rutinas t4 ON t4.id_rutina = t1.id_rutina 
-JOIN ejercicio_rutinas t5 ON t5.id_rutina = t4.id_rutina 
-JOIN ejercicios t6 ON t6.id_ejercicio = t5.id_ejercicio WHERE t1.id_dia = '4' AND t2.id_calendario = '1' ;
-
-SELECT id_rutina, nombreRutina FROM rutinas WHERE id_categoria = '1';
-SELECT id_rutina, nombreRutina FROM rutinas WHERE id_categoria = '1';
-SELECT nombre FROM dias_semana WHERE id_dia = '1';
--- // --------------------------------------------------------------------
-*/
-/*
-# F U N C I O N E S
-DELIMITER //
-CREATE FUNCTION sumar(n1 float, n2 float)
-returns float
-return n1 + n2;
-//
+CREATE TABLE user_registration_indexes (
+	id_registro int not null auto_increment,
+    id_usuario int null, 
+    registration_date datetime null,
+    IMC int not null,
+   
+    
+    primary key (id_registro),
+    
+    foreign key (id_usuario) references usuarios(id_usuario)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
 
 DELIMITER //
-CREATE FUNCTION numero_mayor(text varchar(200))
-returns varchar(200)
+CREATE FUNCTION calculate_BMI (weight FLOAT, height  FLOAT)
+RETURNS FLOAT
+BEGIN
+	RETURN weight / (height * height);
+END
+DELIMITER //;
+
+DELIMITER //
+CREATE TRIGGER after_user_registration
+AFTER INSERT ON usuarios
+FOR EACH ROW
 BEGIN 	
-return text;
-END;
-//
-*/
+	DECLARE calculate_BMI FLOAT;
+    IF NEW.peso_actual IS NOT NULL AND NEW.altura_actual IS NOT NULL AND NEW.peso_actual > 0 AND NEW.altura_actual > 0 
+    THEN
+		SET calculate_BMI = calculate_BMI(NEW.peso_actual, NEW.altura_actual);
+        
+        INSERT INTO user_registration_indexes (id_usuario, registration_date, IMC) 
+        VALUES (NEW.id_usuario, now(), calculate_BMI);
+	ELSE	
+		INSERT INTO user_registration_indexes (id_usuario, registration_date, IMC) 
+        VALUES (NEW.id_usuario, now(), NULL);
+    END IF;
+END
+DELIMITER //;
+
+SELECT * FROM user_registration_indexes WHERE id_usuario = '34';
+SELECT * FROM usuarios WHERE id_usuario = '33';
+
 -- CREACION DE UNA CUENTA ADMINISTRADORA --
 insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol, imgPerfil) 
 values ('Usuario' ,'Administrador', '31156963325', 'admin@gmail.com', '$2y$10$kIUHogIqA8PsMPA9.4gnve05MVZzp.2GQOSd6k1Ngx98mx5VAjGem', 46 ,170, 1, now(), 1, '../view/user img/default_img.PNG');
-

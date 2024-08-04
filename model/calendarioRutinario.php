@@ -153,11 +153,12 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
     /**
      * Genera una serie de enlaces HTML para la paginación basada en el calendario.
      *
-     * Este método toma un número de página y un ID de calendario, luego genera una
-     * serie de enlaces HTML con botones para la paginación. Si la página actual 
-     * coincide con el índice, el botón se marcará como activo.
+     * Este método toma un número de página, un día y un ID de calendario, luego 
+     * genera una serie de enlaces HTML con botones para la paginación. Si la página 
+     * actual coincide con el índice, el botón se marcará como activo.
      *
      * @param int $p El número de página actual.
+     * @param int $day El día para filtrar el calendario.
      * @param int $id_calendar El ID del calendario para generar las opciones de página.
      * @return string Una cadena de enlaces HTML con botones para la paginación.
      */

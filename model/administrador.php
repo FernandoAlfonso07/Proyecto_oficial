@@ -4,14 +4,6 @@ include_once ("connect.php");
 
 class Administrador extends conexionBD
 {
-    public static function getInformationProfile($opc)
-    {
-        $conexion = self::getConexion();
-
-        $sql = "";
-
-
-    }
 
     /**
      * Obtiene y muestra los ejercicios desde la base de datos en formato HTML.

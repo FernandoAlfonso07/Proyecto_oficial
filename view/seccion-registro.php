@@ -49,7 +49,7 @@
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="alturaA"
-                                placeholder="Altura Actual - ej. 170">
+                                placeholder="Altura Actual - ej. 1.70">
                         </div>
                         <div class="form-group">
                             <label for="inputGroupSelect01" class="form-label">

@@ -1,10 +1,14 @@
 /* General Styles */
 body {
     background-color: white;
+    margin: 0;
 }
 
 .opciones-dos {
-    padding-top: 100px;
+    padding-top: 0;
+    /* Ajuste aquí */
+    margin-top: 0;
+    /* Ajuste aquí */
 }
 
 a {
@@ -21,6 +25,8 @@ a {
 
 .opciones-dos-dos {
     padding-top: 20px;
+    margin-top: 0;
+    /* Ajuste aquí */
 }
 
 .contenedor-opcion-dos {
@@ -55,7 +61,8 @@ a {
 }
 
 .texto-opcion-dos:hover {
-    background: rgba(0, 0, 0, 0.5); /* Fondo más oscuro */
+    background: rgba(0, 0, 0, 0.5);
+    /* Fondo más oscuro */
 }
 
 @media (max-width: 768px) {
@@ -91,5 +98,39 @@ a {
 }
 
 .contenedor-opcion-dos:hover .efecto-cristal {
-    background: rgba(0, 0, 0, 0.5); /* Fondo más oscuro */
+    background: rgba(0, 0, 0, 0.5);
+    /* Fondo más oscuro */
+}
+
+.BMI_record {
+    background-color: #00A1FF;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 4em;
+    padding: 2em;
+    /* Añadido para mejorar el espaciado interno */
+    text-align: center;
+    /* Centra el texto dentro del contenedor */
+    border-radius: 10px;
+    /* Bordes redondeados para un aspecto más moderno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra para dar profundidad */
+}
+
+.BMI_record h1 {
+    font-size: 3em;
+    /* Tamaño más grande para el número */
+    color: #FFD700;
+    /* Color dorado para hacer el número más visible */
+    margin: 0;
+    /* Quita el margen para un mejor ajuste del espacio */
+    font-weight: bold;
+    /* Resalta el número */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* Sombra de texto para mayor contraste */
+}
+
+/* Asegura que el color del texto general sigue siendo blanco */
+.BMI_record h1+p {
+    color: #fff;
 }

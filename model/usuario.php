@@ -443,4 +443,32 @@ class usuarios extends conexionBD
         // Retorna el hash de la contraseña o una cadena vacía si no se encuentra
         return $password;
     }
+
+    public static function get_user_registration_indexes($id_user, $opc)
+    {
+        $conexion = self::getConexion();
+
+        $sql = "SELECT * FROM user_registration_indexes WHERE id_usuario = '$id_user'";
+        $result = $conexion->query($sql);
+        $salida = "";
+
+        while ($row = $result->fetch_array()) {
+            switch ($opc) {
+                case 0:
+                    $salida = $row[0];
+                    break;
+                case 1:
+                    $salida = $row[1];
+                    break;
+                case 2:
+                    $salida = $row[2];
+                    break;
+                case 3:
+                    $salida = $row[3];
+                    break;
+            }
+        }
+        $conexion->close();
+        return $salida;
+    }
 }
