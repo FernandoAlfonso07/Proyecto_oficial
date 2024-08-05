@@ -51,7 +51,7 @@ $_SESSION['id_rutina'] = $id_rutine;
                                 <select class="form-select" name="id_category" aria-label="Default select example">
                                     <option selected>Selecciona la categoria</option>
                                     <?php $issetCategorySelected = isset($_GET['dRoutine']) ? routines::getInformation(5, $_SESSION['id_rutina']) : null;
-                                    echo CycleCreateCalender::getCatgory($issetCategorySelected) ?>
+                                    echo CycleCreateCalender::getCategories('categoryRoutine', $issetCategorySelected) ?>
                                 </select>
                             </div>
                             <div class="col-md-6">

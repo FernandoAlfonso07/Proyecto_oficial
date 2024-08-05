@@ -6,43 +6,6 @@ class CycleCreateCalender extends conexionBD
 {
 
     /**
-     * Obtiene todas las categorías de la base de datos y genera opciones HTML para un elemento `<select>`.
-     * 
-     * Este método realiza una consulta a la base de datos para recuperar todas las categorías disponibles
-     * y genera las opciones HTML correspondientes para un elemento `<select>`.
-     * 
-     * @return string Una cadena de texto con las opciones HTML para el elemento `<select>`, cada opción
-     *                 representa una categoría con su valor y nombre correspondientes.
-     */
-    public static function getCatgory($selectedCategory = null)
-    {
-        // Obtener la conexión a la base de datos
-        $conexion = self::getConexion();
-
-        // Crear la consulta SQL para obtener todas las categorías
-        $sql = "select * FROM categorias_rutinas ";
-
-        // Ejecutar la consulta
-        $result = $conexion->query($sql);
-
-        // Inicializar la variable para almacenar las opciones HTML
-        $r = '';
-
-        // Procesar los resultados de la consulta
-        while ($fila = $result->fetch_array()) {
-            $isSelected = $fila[0] == $selectedCategory ? 'selected' : '';
-            // Generar una opción HTML para cada categoría
-            $r .= "<option value='" . $fila[0] . "' $isSelected>" . $fila[1] . "</option>";
-        }
-        // Cierra la conexion a la base de datos
-        $conexion->close();
-
-        // Devolver las opciones HTML generadas
-        return $r;
-    }
-
-
-    /**
      * Genera un formulario HTML para seleccionar categorías y rutinas.
      *
      * @param string $nameDay El nombre del día que se mostrará en el formulario.
@@ -101,4 +64,62 @@ class CycleCreateCalender extends conexionBD
 
         return $salida;
     }
+
+    /**
+     * Obtiene una lista de categorías desde la base de datos y genera un conjunto de opciones HTML.
+     *
+     * @param string $opc La opción seleccionada que determina la tabla de la cual obtener las categorías.
+     *                    Puede ser 'roles', 'gyms', 'paymentMethods', o 'categoryRoutine'.
+     * @param mixed $selectedCategory El valor de la categoría seleccionada por defecto (opcional).
+     *                                Si se proporciona, la opción con este valor se marcará como seleccionada.
+     * @return string Un conjunto de opciones HTML (<option>) para ser utilizado en un elemento <select>.
+     */
+    public static function getCategories($opc, $selectedCategory = null)
+    {
+        // Obtiene la conexión a la base de datos.
+        $conexion = self::getConexion();
+
+        // Inicializa la variable de la consulta SQL.
+        $sql = '';
+
+        // Determina la consulta SQL basada en la opción seleccionada.
+        switch ($opc) {
+            case 'roles':
+                $sql = "SELECT * FROM roles ";
+                break;
+            case 'gyms':
+                $sql = "SELECT * FROM categorias_gyms ";
+                break;
+            case 'paymentMethods':
+                $sql = "SELECT * FROM payment_methods_gyms ";
+                break;
+            case 'categoryRoutine':
+                $sql = "SELECT * FROM categorias_rutinas ";
+                break;
+        }
+
+        // Ejecuta la consulta SQL.
+        $result = $conexion->query($sql);
+
+        // Inicializa una variable para almacenar las opciones HTML.
+        $salida = '';
+
+        // Itera sobre los resultados de la consulta.
+        while ($row = $result->fetch_array()) {
+
+            // Compara el valor de la categoría actual con el valor seleccionado.
+            // Si son iguales, marca la opción como seleccionada.
+            $isSelected = $row[0] == $selectedCategory ? 'selected' : '';
+
+            // Genera una opción HTML para la categoría actual.
+            $salida .= "<option value='" . $row[0] . "' $isSelected>" . $row[1] . "</option>";
+        }
+
+        // Cierra la conexión a la base de datos.
+        $conexion->close();
+
+        // Devuelve el conjunto de opciones HTML.
+        return $salida;
+    }
+
 }

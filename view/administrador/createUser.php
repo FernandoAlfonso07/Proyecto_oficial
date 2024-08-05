@@ -1,3 +1,6 @@
+<?php
+include_once ('../../model/Categories.php');
+?>
 <div class="container">
     <form action="../../controller/controller_createUser.php" method="POST">
         <div class="row">
@@ -55,9 +58,7 @@
                             <label for="inputGroupSelect02" class="form-label">Rol</label>
                             <select class="form-select custom-select" name="roleUser" id="inputGroupSelect02" required>
                                 <option value="" disabled selected>Selecciona el rol</option>
-                                <option value="2">Invitado</option>
-                                <option value="1">Administrador</option>
-                                <option value="3">Super-administrador</option>
+                                <?php echo CycleCreateCalender::getCategories('roles') ?>
                             </select>
                         </div>
                     </div>

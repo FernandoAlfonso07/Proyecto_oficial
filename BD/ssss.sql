@@ -26,6 +26,7 @@ CREATE TABLE roles (
 INSERT INTO roles (id_rol, rol) VALUES (2, 'Invitado');
 INSERT INTO roles (id_rol, rol) VALUES (1, 'Administrador');
 INSERT INTO roles (id_rol, rol) VALUES (3, 'Super-Admin');
+INSERT INTO roles (id_rol, rol) VALUES (4, 'Gerente de gimnasio');
 select * from roles;
 -- ESTA ES LA TABLA DE USUARIOS
 create table usuarios(
@@ -54,28 +55,6 @@ create table usuarios(
     ON DELETE CASCADE
     ON UPDATE CASCADE
 ); 
--- delete from usuarios;
-
-
-
--- Creación llave foranea para id_rol en usuarios.
-/*
-ALTER TABLE usuarios 
-ADD CONSTRAINT KF_id_rol_usuario
-foreign key (id_rol) REFERENCES roles(id_rol); 
-*/
-
--- ------------------------------------------------ Informacion de usurio;
--- select t1.nombre, t1.apellido, t1.correo, t1.contraseña, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero
--- FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero WHERE id_usuario = 3;
-
-
--- Creación llave foranea de la tabla USUARIOS y la tabla GENERO
-/*
-ALTER TABLE usuarios
-ADD CONSTRAINT FK_usuario_genero
-foreign key (id_genero) references genero(id_genero);
-*/
 
 -- CREACION DE LA TABLA DE CATEGORIAS
 
@@ -92,7 +71,20 @@ INSERT INTO categorias_rutinas (id_categoria, categoria) VALUES (1, 'Tren Superi
 
 INSERT INTO categorias_rutinas (id_categoria, categoria) VALUES (2, 'Tren Inferiror');
 
+CREATE TABLE categorias_gyms (
+	
+    id_categoria int not null auto_increment,
+    categoria varchar(100) not null,
+    
+    primary key (id_categoria)
 
+);
+
+INSERT INTO categorias_gyms (categoria) VALUES ('Categoria 1');
+INSERT INTO categorias_gyms (categoria) VALUES ('Crossfit');
+INSERT INTO categorias_gyms (categoria) VALUES ('Categoria 2');
+
+SELECT * FROM categorias_gyms;
 
 -- ESTA ES LA TABLA DE EJERCICIOS
 create table ejercicios(
@@ -153,19 +145,7 @@ create table ejercicio_rutinas(
     
 );
 
--- creacion llaves foraneas para la relacion M:M de las tablas ejercicio y relacion...
-/*
-ALTER TABLE ejercicio_rutinas
-ADD constraint FK_ejercicio_rutinas_tb_ejerciciostb
-foreign key (id_ejercicio) references ejercicios(id_ejercicio);
 
-ALTER TABLE ejercicio_rutinas
-ADD constraint FK_ejercicio_rutinas_tb_rutinastb
-foreign key (id_rutina) references rutinas(id_rutina);
-*/
-
-
--- ESTA ES LA TABLA DE DIAS DE LA SEMANA que se trabajaran en worldfit
 create table dias_semana (
 
 	id_dia int not null,
@@ -246,6 +226,16 @@ ON DELETE CASCADE
 
 );
 
+CREATE TABLE Payment_Methods_Gyms (
+	id int not null auto_increment,
+    method varchar(100) not null,
+    
+    primary key(id)
+);
+
+INSERT INTO Payment_Methods_Gyms (id, method) VALUES (1, 'Transfierencia');
+INSERT INTO Payment_Methods_Gyms (id, method) VALUES (2, 'Efectivo');
+
 CREATE TABLE user_registration_indexes (
 	id_registro int not null auto_increment,
     id_usuario int null, 
@@ -260,13 +250,56 @@ CREATE TABLE user_registration_indexes (
     ON UPDATE CASCADE
 );
 
+CREATE TABLE infoGyms (	
+	id int not null auto_increment,
+    name varchar(100) not null,
+    id_categoria int null,
+    description varchar(300) not null,
+    mission varchar (300) not null,
+    vision varchar (300) not null,
+    pathImage varchar(200) not null,
+    
+    time_start_morning_DAY varchar(100) null,
+    time_end_morning_DAY varchar(100) null,
+    time_start_afternoon_DAY varchar(100) null,
+    time_end_afternoon_DAY varchar(100) null,
+    
+    time_start_morning_END varchar(100) null,
+    time_end_morning_END varchar(100) null,
+    time_start_afternoon_END varchar(100) null,
+    time_end_afternoon_END varchar(100) null,
+    
+    phone int null,
+    mail varchar(200) null,
+    direction varchar (200) null,
+    id_pay int null,
+    id_gerente int null,
+    
+    primary key (id),
+    
+    foreign key (id_categoria) references categorias_gyms(id_categoria)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    
+    foreign key (id_gerente) references usuarios(id_usuario)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    
+    foreign key (id_pay) references Payment_Methods_Gyms(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+
+-- **************************** F U N C T I O N S A D N T R I G G E R S **********************************
+
 DELIMITER //
 CREATE FUNCTION calculate_BMI (weight FLOAT, height  FLOAT)
 RETURNS FLOAT
 BEGIN
 	RETURN weight / (height * height);
 END
-DELIMITER //;
+//
 
 DELIMITER //
 CREATE TRIGGER after_user_registration
@@ -285,15 +318,13 @@ BEGIN
         VALUES (NEW.id_usuario, now(), NULL);
     END IF;
 END
-DELIMITER //;
+//
 
-SELECT * FROM user_registration_indexes WHERE id_usuario = '34';
-SELECT * FROM usuarios WHERE id_usuario = '33';
+INSERT INTO infogyms (name, id_categoria, description, mission, vision, pathImage, time_start_morning_DAY, time_end_morning_DAY, time_start_afternoon_DAY, time_end_afternoon_DAY, time_start_morning_END, time_end_morning_END, time_start_afternoon_END, time_end_afternoon_END, phone, mail, direction, id_pay, id_gerente) VALUES ('SmarthAlpha', '1', 'wdwdwdw', 'wdwdwdwwdwdwdwwdwdwdw', 'wdwdwdwwdwdwdwwdwdwdwwdwdwdw', '../view/img Gyms/Captura.PNG', '14:22', '14:22', '14:22', '14:22', '14:22', '14:22', '14:22', '14:22', '31159623326', 'smarthAlpha@gmail.com', 'Cerca de la calle esa jajaj melo si inserto', '2', 'Fernando Enrique')
 
 -- CREACION DE UNA CUENTA ADMINISTRADORA --
 insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol, imgPerfil) 
 values ('Usuario' ,'Administrador', '31156963325', 'admin@gmail.com', '$2y$10$kIUHogIqA8PsMPA9.4gnve05MVZzp.2GQOSd6k1Ngx98mx5VAjGem', 46 ,170, 1, now(), 1, '../view/user img/default_img.PNG');
-
 
 
 

@@ -166,27 +166,51 @@ class Administrador extends conexionBD
     }
 
     /**
-     * Obtiene información de los usuarios según la opción especificada.
+     * Obtiene usuarios de la base de datos según la opción especificada.
      *
-     * @param int $opc Opción para determinar qué información de usuarios obtener:
-     *                 0 - Obtener detalles completos de usuarios (ID, nombre, apellido, correo, teléfono, género, fecha de registro, rol).
-     *                 1 - Contar el número total de usuarios registrados.
-     * @return string Una cadena HTML que contiene los datos de los usuarios o el número total de usuarios, según la opción especificada.
+     * @param int $opc La opción para determinar el tipo de consulta a realizar:
+     *                 - 0: Obtener todos los usuarios con detalles.
+     *                 - 1: Contar el número total de usuarios.
+     *                 - 3: Obtener usuarios por correo y teléfono.
+     * @param int|null $rowSelected (Opcional) Índice de la columna a seleccionar en la opción 3:
+     *                               - 0: id_usuario
+     *                               - 1: nombre
+     *                               - 2: apellido
+     *                               - 3: correo
+     *                               - 4: telefono
+     *                               - 5: genero
+     *                               - 6: fecha_registro
+     *                               - 7: rol
+     * @param string|null $email (Opcional) Correo electrónico del usuario para la opción 3.
+     * @param string|null $phone (Opcional) Teléfono del usuario para la opción 3.
+     *
+     * @return string|int Una cadena HTML de filas de una tabla si $opc es 0, el número total de usuarios si $opc es 1,
+     *                    o un valor específico según $rowSelected si $opc es 3.
      */
-    public static function getUsuarios($opc)
+    public static function getUsuarios($opc, $rowSelected = null, $email = null, $phone = null)
     {
         // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
         // Ejecutar la consulta según la opción especificada
         if ($opc == 0) {
-
+            // Obtener todos los usuarios con detalles
             $sql = "SELECT";
             $sql .= " t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol FROM usuarios t1";
             $sql .= " JOIN genero t2 ON t1.id_genero = t2.id_genero ";
             $sql .= " JOIN roles t3 ON t1.id_rol = t3.id_rol ";
         } elseif ($opc == 1) {
+
+            // Contar el número total de usuarios
             $sql = "select COUNT(*) FROM usuarios;";
+        } else if ($opc == 3) {
+
+            // Obtener usuarios por correo y teléfono
+            $sql = "SELECT";
+            $sql .= " t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol FROM usuarios t1";
+            $sql .= " JOIN genero t2 ON t1.id_genero = t2.id_genero ";
+            $sql .= " JOIN roles t3 ON t1.id_rol = t3.id_rol ";
+            $sql .= "WHERE t1.correo = '$email' AND t1.telefono = '$phone'";
         }
 
         // Ejecutar la consulta SQL
@@ -198,7 +222,7 @@ class Administrador extends conexionBD
         // Procesar los resultados de la consulta
         while ($fila = $r->fetch_array()) {
 
-            // Versión detallada para mostrar los datos de cada usuario en una tabla HTML
+            // Para la opción 0, crear filas de una tabla HTML
             if ($opc == 0) {
                 $rr .= '<tr>';
                 $rr .= '<th scope="row">' . $fila[0] . '</th>';
@@ -215,6 +239,36 @@ class Administrador extends conexionBD
 
                 // Para la opción 1, simplemente devolver el número total de usuarios
                 $rr .= $fila[0];
+            } elseif ($opc == 3) {
+
+                // Para la opción 3, devolver el valor según $rowSelected
+                switch ($rowSelected) {
+                    case 0:
+                        $rr = $fila[0];
+                        break;
+                    case 1:
+                        $rr = $fila[1];
+                        break;
+                    case 2:
+                        $rr = $fila[2];
+                        break;
+                    case 3:
+                        $rr = $fila[3];
+                        break;
+                    case 4:
+                        $rr = $fila[4];
+                        break;
+                    case 5:
+                        $rr = $fila[5];
+                        break;
+                    case 6:
+                        $rr = $fila[6];
+                        break;
+                    case 7:
+                        $rr = $fila[7];
+                        break;
+
+                }
             }
         }
 
@@ -638,11 +692,26 @@ class Administrador extends conexionBD
         return $r;
     }
 
-
+    /**
+     * Actualiza los detalles de un ejercicio en la base de datos.
+     *
+     * @param int $id ID del ejercicio a actualizar.
+     * @param string $newName Nuevo nombre del ejercicio.
+     * @param string $newInstructions Nuevas instrucciones para el ejercicio.
+     * @param string $newEquiped Equipo necesario para realizar el ejercicio.
+     * @param int $newSets Número de series del ejercicio.
+     * @param int $newRepetions Número de repeticiones del ejercicio.
+     * @param int $newbreakTime Tiempo de descanso entre series en segundos.
+     * @param string $pathvideo Ruta del video relacionado con el ejercicio.
+     *
+     * @return int El número de filas afectadas por la consulta.
+     */
     public static function updateExercises($id, $newName, $newInstructions, $newEquiped, $newSets, $newRepetions, $newbreakTime, $pathvideo)
     {
+        // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
 
+        // Crear la consulta SQL para actualizar los detalles del ejercicio
         $sql = "UPDATE ejercicios SET nombre = '$newName',";
         $sql .= "Instrucctiones= '$newInstructions', ";
         $sql .= "equipoNecesario = '$newEquiped', ";
@@ -653,11 +722,92 @@ class Administrador extends conexionBD
         $sql .= "dateLastUpdated = now() ";
         $sql .= "WHERE id_ejercicio = $id ";
 
+        // Ejecutar la consulta SQL
         $conexion->query($sql);
+
+        // Obtener el número de filas afectadas por la consulta
         $affected_rows = $conexion->affected_rows;
+
+        // Cerrar la conexión a la base de datos
         $conexion->close();
+
+        // Devolver el número de filas afectadas
         return $affected_rows;
     }
 
+    /**
+     * Registra un nuevo gimnasio en la base de datos.
+     *
+     * @param string $name Nombre del gimnasio.
+     * @param int $category_gym ID de la categoría del gimnasio.
+     * @param string $description Descripción del gimnasio.
+     * @param string $mission Misión del gimnasio.
+     * @param string $vision Visión del gimnasio.
+     * @param string $pathImage Ruta de la imagen del gimnasio.
+     * @param string $morning_time_weekday_start Hora de inicio de la mañana durante los días de semana.
+     * @param string $morning_time_weekday_end Hora de fin de la mañana durante los días de semana.
+     * @param string $afternoon_time_weekday_start Hora de inicio de la tarde durante los días de semana.
+     * @param string $afternoon_time_weekday_end Hora de fin de la tarde durante los días de semana.
+     * @param string $morning_time_weekend_start Hora de inicio de la mañana durante los fines de semana.
+     * @param string $morning_time_weekend_end Hora de fin de la mañana durante los fines de semana.
+     * @param string $afternoon_time_weekend_start Hora de inicio de la tarde durante los fines de semana.
+     * @param string $afternoon_time_weekend_end Hora de fin de la tarde durante los fines de semana.
+     * @param int $phone Número de teléfono del gimnasio.
+     * @param string $email Correo electrónico del gimnasio.
+     * @param string $address Dirección del gimnasio.
+     * @param int $payment_method ID del método de pago aceptado por el gimnasio.
+     * @param int $id_manager ID del gerente del gimnasio.
+     *
+     * @return int El número de filas afectadas por la consulta.
+     */
+    public static function registredGym(
+        $name,
+        $category_gym,
+        $description,
+        $mission,
+        $vision,
+        $pathImage,
+        $morning_time_weekday_start,
+        $morning_time_weekday_end,
+        $afternoon_time_weekday_start,
+        $afternoon_time_weekday_end,
+        $morning_time_weekend_start,
+        $morning_time_weekend_end,
+        $afternoon_time_weekend_start,
+        $afternoon_time_weekend_end,
+        $phone,
+        $email,
+        $address,
+        $payment_method,
+        $id_manager
+    ) {
+        // Obtener la conexión a la base de datos
+        $conexion = self::getConexion();
+
+        // Crear la consulta SQL completa para insertar los datos en la tabla `infoGyms`
+        $sql = "INSERT INTO infoGyms (
+        name, id_categoria, description, mission, vision, pathImage,
+        time_start_morning_DAY, time_end_morning_DAY, time_start_afternoon_DAY, time_end_afternoon_DAY,
+        time_start_morning_END, time_end_morning_END, time_start_afternoon_END, time_end_afternoon_END,
+        phone, mail, direction, id_pay, id_gerente
+    ) VALUES (
+        '$name', $category_gym, '$description', '$mission', '$vision', '$pathImage',
+        '$morning_time_weekday_start', '$morning_time_weekday_end', '$afternoon_time_weekday_start', '$afternoon_time_weekday_end',
+        '$morning_time_weekend_start', '$morning_time_weekend_end', '$afternoon_time_weekend_start', '$afternoon_time_weekend_end',
+        $phone, '$email', '$address', $payment_method, $id_manager
+    )";
+
+        // Ejecutar la consulta SQL
+        $conexion->query($sql);
+
+        // Obtener el número de filas afectadas por la consulta
+        $affected_rows = $conexion->affected_rows;
+
+        // Cerrar la conexión a la base de datos
+        $conexion->close();
+        // Devolver el número de filas afectadas
+        return $affected_rows;
+
+    }
 
 }
