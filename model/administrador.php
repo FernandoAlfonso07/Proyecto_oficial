@@ -712,15 +712,15 @@ class Administrador extends conexionBD
         $conexion = self::getConexion();
 
         // Crear la consulta SQL para actualizar los detalles del ejercicio
-        $sql = "UPDATE ejercicios SET nombre = '$newName',";
-        $sql .= "Instrucctiones= '$newInstructions', ";
-        $sql .= "equipoNecesario = '$newEquiped', ";
-        $sql .= "repeticiones = $newRepetions, ";
-        $sql .= "seires = $newSets, ";
-        $sql .= "tiempo_descanso = $newbreakTime, ";
-        $sql .= "direccion_media = '$pathvideo', ";
-        $sql .= "dateLastUpdated = now() ";
-        $sql .= "WHERE id_ejercicio = $id ";
+        $sql = "UPDATE ejercicios SET nombre = '$newName',
+        Instrucctiones= '$newInstructions', 
+        equipoNecesario = '$newEquiped', 
+        repeticiones = $newRepetions, 
+        seires = $newSets, 
+        tiempo_descanso = $newbreakTime, 
+        direccion_media = '$pathvideo', 
+        dateLastUpdated = now() 
+        WHERE id_ejercicio = $id";
 
         // Ejecutar la consulta SQL
         $conexion->query($sql);
