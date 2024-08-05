@@ -209,7 +209,7 @@ class Administrador extends conexionBD
                 $rr .= '<td>' . $fila[5] . '</td>';
                 $rr .= '<td>' . $fila[6] . '</td>';
                 $rr .= '<td>' . $fila[7] . '</td>';
-                $rr .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <i class='fa-solid fa-trash icono delete'></i>    <i class='fa-solid fa-pen-to-square icono edit'></i> </td>";
+                $rr .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i> <i class='fa-solid fa-pen-to-square icono edit'></i> </td>";
                 $rr .= '</tr>';
             } elseif ($opc == 1) {
 
