@@ -16,59 +16,38 @@ $id_rutine = isset($_GET['rtu']) ? $_GET['rtu'] : Administrador::getIdrutina();
 $_SESSION['id_rutina'] = $id_rutine;
 
 ?>
-
-
+<link rel="stylesheet" href="../css/routine_exercise.css">
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <label class="form-label">
-                <b>Nombre de Rutina</b>
-            </label>
-
+            <label class="form-label"><b>Nombre de Rutina</b></label>
             <h1>
-                <?php
-
-
-                echo routines::getInformation(1, $_SESSION['id_rutina']);
-
-                ?>
+                <?php echo routines::getInformation(1, $_SESSION['id_rutina']); ?>
             </h1>
         </div>
         <div class="col-md-6">
             <form action="../../controller/addEjercicioRutine.php" method="POST">
-                <label class="form-label">
-                    Agregar ejercicios
-                </label>
-
+                <label class="form-label">Agregar ejercicios</label>
                 <select class="form-select" name="ejercicio_value" aria-label="Default select example">
                     <option selected>Agregar ejercicio</option>
-
                     <?php echo Administrador::mostrarEjercicios() ?>
                 </select>
-
                 <input type="hidden" name="rutinaID" value="<?php echo $_SESSION['id_rutina']; ?>">
-
-                <button type="submit" class="btn btn-warning my-5">Agregar <i class="fa-solid fa-plus ms-2 fs-5"></i>
-                </button>
-
+                <button type="submit" class="btn btn-warning my-5">Agregar <i
+                        class="fa-solid fa-plus ms-2 fs-5"></i></button>
             </form>
-
             <div class="col-md-12">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Agregar Ejercicio <i class="fa-solid fa-square-plus ms-2 fs-5"></i>
-                </button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Agregar Ejercicio <i
+                        class="fa-solid fa-square-plus ms-2 fs-5"></i></button>
             </div>
-
             <a href="controladorVadmin.php?seccionAd=showRoutines">
                 <button type="submit" class="btn btn-danger ml-4 my-5"> Cerrar y guardar <i
                         class="fa-solid fa-circle-xmark ms-2 fs-5"></i> </button>
             </a>
-
         </div>
-
         <div class="col-md-12">
             <h2>EJERCICIOS AGREGADOS</h2>
-
             <table class="table">
                 <thead>
                     <tr>
@@ -81,11 +60,9 @@ $_SESSION['id_rutina'] = $id_rutine;
                     <?php echo Administrador::See_Added_Exercises($_SESSION['id_rutina']); ?>
                 </tbody>
             </table>
-
         </div>
     </div>
 </div>
-
 
 <!-- Modal para agregar una categoria -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -97,12 +74,10 @@ $_SESSION['id_rutina'] = $id_rutine;
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
                     <div class="row">
                         <div class="col-md-12">
                             Agrega un ejemplo grafico * <br>
                             <div class="input-group">
-
                                 <input type="file" name="archivo" class="form-control" id="inputGroupFile04"
                                     aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                             </div>
@@ -129,7 +104,6 @@ $_SESSION['id_rutina'] = $id_rutine;
                                             Seires
                                             <input type="text" name="series" class="form-control">
                                         </div>
-
                                         <div class="col-md-6">
                                             Repeticiones
                                             <input type="text" name="repeticiones" class="form-control">
@@ -138,7 +112,7 @@ $_SESSION['id_rutina'] = $id_rutine;
                                 </div>
                                 <div class="col-md-4">
                                     Tiempo de descanso
-                                    <input type="text" name="t_descanso" placeholder="En minutos" class="form-control">
+                                    <input type="text" name="t_descanso" placeholder="En Segundos" class="form-control">
                                 </div>
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="btn btn-primary">Agregar</button>
@@ -146,14 +120,12 @@ $_SESSION['id_rutina'] = $id_rutine;
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar <i
                             class="fa-regular fa-circle-xmark"></i></button>
                     <button onclick="confirmar()" type="submit" class="btn btn-primary">Guardar <i
-                            class="fa-solid fa-floppy-disk"></i>
-                    </button>
+                            class="fa-solid fa-floppy-disk"></i></button>
                 </div>
             </div>
         </div>

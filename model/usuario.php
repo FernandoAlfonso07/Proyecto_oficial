@@ -328,7 +328,9 @@ class usuarios extends conexionBD
      * @param string $pr Nuevo valor para el campo 'pr' del usuario.
      * @param float $pesoActual Nuevo peso actual del usuario.
      * @param float $altura Nueva altura actual del usuario.
-     * @param string $ruta_imagen Nueva ruta de la imagen de perfil del usuario.
+     * @param string|null $sex Nuevo valor para el campo de género del usuario.
+     * @param string|null $ruta_imagen Nueva ruta de la imagen de perfil del usuario.
+     * @param string|null $rol Nuevo valor para el campo 'rol' del usuario.
      * @return int Número de filas afectadas por la operación de actualización.
      */
     public static function actualizarDatos($id, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $sex, $ruta_imagen = null, $rol = null)
@@ -351,6 +353,8 @@ class usuarios extends conexionBD
             $sql .= "id_rol = '$rol'";
         }
         $sql .= "WHERE id_usuario = '$id' ";
+
+        echo 'gola' . $sql;
         $conexion->query($sql); // Ejecuta la consulta SQL para actualizar los datos del usuario
 
         $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de actualización

@@ -1,37 +1,100 @@
-.cuerpo {
-    margin-top: 120px;
+/* Estilos para las imágenes */
+.img-fluid.imagen_perfil {
+    border-radius: 0.5rem;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.cuerpo label {
-    font-weight: bold;
-}
-
-.gris {
-    background-color: #ddd;
-    padding: 10px 10px;
-}
-
-.compartir {
-    border-radius: 50px;
-    padding: 10px 20x;
-    margin-top: 80px;
-}
-
-.icono {
-    margin-left: 10px;
-    font-size: 20px;
-}
-
-.imagen_perfil {
-    border-radius: 300px;
-    margin-top: 50px;
-}
-
-.subir {
-    margin-top: 50px;
-}
-
-.col-md-6 { 
+/* Estilos para los encabezados */
+h1 {
+    color: #00A1FF;
+    font-size: 2rem;
     margin-bottom: 20px;
 }
 
+/* Estilos para los labels y párrafos */
+label,
+p {
+    color: #333;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Estilos para las secciones con clase gris */
+.gris {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 0.25rem;
+    margin-bottom: 10px;
+}
+
+/* Estilos para los botones */
+.btn {
+    border-radius: 0.25rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: 1px solid #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-primary {
+    background-color: #00A1FF;
+    border: 1px solid #00A1FF;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #007BFF;
+    border-color: #007BFF;
+}
+
+/* Estilos para los íconos dentro de los botones */
+.icono {
+    margin-left: 8px;
+    font-size: 1.2rem;
+}
+
+/* Estilos para los enlaces */
+a {
+    text-decoration: none;
+}
+
+/* Estilos para las columnas en el diseño de fila */
+.col-md-6,
+.col-md-12 {
+    margin-bottom: 15px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.content {
+    margin-top: 120px;
+}

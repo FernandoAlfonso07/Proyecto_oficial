@@ -1,8 +1,9 @@
 <?php
 include_once ('../../model/Categories.php');
 ?>
+<link rel="stylesheet" href="../css/createUser.css">
 <div class="container">
-    <form action="../../controller/controller_createUser.php" method="POST">
+    <form action="../../controller/controller_createUser.php" method="POST" class="form-registro">
         <div class="row">
             <div class="col-md-6 text-center">
                 <img src="https://media-public.canva.com/eFyVc/MAFUTdeFyVc/1/wm_s.png" class="img-fluid" width="70%"
@@ -11,30 +12,30 @@ include_once ('../../model/Categories.php');
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-6">
-                        <label class="form-label">Nombres</label>
-                        <input type="text" name="name" class="form-control" required>
+                        <label for="name" class="form-label">Nombres</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Apellidos</label>
-                        <input type="text" name="lastName" class="form-control" required>
+                        <label for="lastName" class="form-label">Apellidos</label>
+                        <input type="text" id="lastName" name="lastName" class="form-control" required>
                     </div>
 
                     <div class="col-md-12">
-                        <label class="form-label">Correo</label>
-                        <input type="text" name="mail" class="form-control">
+                        <label for="mail" class="form-label">Correo</label>
+                        <input type="text" id="mail" name="mail" class="form-control">
                     </div>
                     <div class="col-md-12">
-                        <label class="form-label">Contraseña</label>
-                        <input type="password" name="password" class="form-control" required>
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label">Peso actual</label>
-                        <input type="text" name="weight" class="form-control" required>
+                        <label for="weight" class="form-label">Peso actual</label>
+                        <input type="text" id="weight" name="weight" class="form-control" required>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Altura Actual</label>
-                        <input type="text" name="height" class="form-control" required>
+                        <label for="height" class="form-label">Altura Actual</label>
+                        <input type="text" id="height" name="height" class="form-control" required>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -49,8 +50,8 @@ include_once ('../../model/Categories.php');
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label">Teléfono</label>
-                        <input type="text" name="phone" class="form-control" required>
+                        <label for="phone" class="form-label">Teléfono</label>
+                        <input type="text" id="phone" name="phone" class="form-control" required>
                     </div>
 
                     <div class="col-md-12">
@@ -62,7 +63,6 @@ include_once ('../../model/Categories.php');
                             </select>
                         </div>
                     </div>
-                    <br>
                     <div class="col-md-12 my-4 text-center">
                         <button type="submit" class="btn btn-primary boton">Registrar</button>
                     </div>
@@ -71,3 +71,4 @@ include_once ('../../model/Categories.php');
         </div>
     </form>
 </div>
+</body>

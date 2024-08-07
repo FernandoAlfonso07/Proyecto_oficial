@@ -14,29 +14,36 @@ include ("../../model/administrador.php");
 </div>
 
 <div class="container tabla">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col text-center caracteristica 0">id</th>
-                <th scope="col text-center caracteristica 1">Nombre</th>
-                <!-- <th scope="col text-center caracteristica 2">Instrucciones</th>        Para poner en mas detalles -->
-                <!-- <th scope="col text-center caracteristica 3">Equipo necesario</th>     Para poner en mas detalles -->
-                <th scope="col text-center caracteristica 4">Series</th>
-                <th scope="col text-center caracteristica 5">Repeticiones</th>
-                <th scope="col text-center caracteristica 6">Tiempo de descanso</th>
-                <th scope="col text-center caracteristica 7">fecha de registro</th>
-                <th scope="col text-center caracteristica 8">Rutina asociada</th>
-                <!-- <th scope="col text-center caracteristica 9">Id Rutina</th>            Para poner en mas detalles -->
-                <th scope="col text-center caracteristica 10">Ejemplo Grafico</th>
-                <th scope="col text-center caracteristica iconosss"> </th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            echo Administrador::verEjercicios() == '' ? '<td> Agregar ejercicios </td>' : Administrador::verEjercicios();
-            ?>
-        </tbody>
-    </table>
+    <?php if (Administrador::verEjercicios() == '') {
+        ?>
+        <a href="controladorVadmin.php?seccionAd=addEjercicios">
+            <h1 class="text-center alert"> NO HAY EJERCICIOS AGREGAR AQUI <i class="fa-solid fa-square-plus ml-5"></i></h1>
+        </a>
+    <?php } else {
+        ?>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col text-center caracteristica 0">id</th>
+                    <th scope="col text-center caracteristica 1">Nombre</th>
+                    <th scope="col text-center caracteristica 4">Series</th>
+                    <th scope="col text-center caracteristica 5">Repeticiones</th>
+                    <th scope="col text-center caracteristica 6">Tiempo de descanso</th>
+                    <th scope="col text-center caracteristica 7">fecha de registro</th>
+                    <th scope="col text-center caracteristica 8">Rutina asociada</th>
+                    <th scope="col text-center caracteristica 10">Ejemplo Grafico</th>
+                    <th scope="col text-center caracteristica iconosss"> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                echo Administrador::verEjercicios();
+                ?>
+            </tbody>
+        </table> <?php
+    }
+    ?>
+
 </div>
 
 <form action="administrador/controladorVadmin.php?exercise=1&seccionAd=updateExercises" method="post">

@@ -1,54 +1,126 @@
-.cuerpo {
-    margin-top: 100px;
-    padding: 30px;
-}
+/* Archivo: enRutinasCr.css */
 
-.contenedorEnRutina {
-
-    border: 1px solid #00A1FF;
-    border-radius: 40px;
-}
-
-.colorear {
-    background-color: #00A1FF;
+/* Estilo para el contenedor principal */
+.container.cuerpo {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-
-.numero {
-    color: yellow;
+/* Estilo para el contenedor de la rutina */
+.contenedorEnRutina {
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    padding: 20px;
 }
 
-.imagenA {
-    margin-top: 20px;
+/* Estilo para la sección de información */
+.contenedor_informacion {
     margin-bottom: 20px;
 }
 
-.contenedor_informacion {
-    margin-bottom: 10px;
+/* Estilo para los encabezados principales */
+h1 {
+    color: #0044cc; /* Tonalidad más oscura */
+    margin-bottom: 20px;
 }
 
-.nombreEjercicio {
-    background-color: #3233DB;
-    color: yellow;
+h2 {
+    color: #007bff; /* Tonalidad media */
+    margin-bottom: 20px;
 }
 
-.rep {
-    background-color: #3268DB;
-    color: white;
+/* Estilo para la imagen de ejercicios */
+.imagenA img {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.dia {
-    font-size: 50px;
+/* Estilo para las secciones coloreadas */
+.colorear {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 0.5rem;
+}
+
+/* Estilo para el texto centrado */
+.text-center {
+    text-align: center;
+}
+
+/* Estilo para las secciones redondeadas */
+.redondear {
+    border-radius: 0.5rem;
+}
+
+/* Estilo para los nombres de los ejercicios */
+.nombreEjercicio h1 {
     font-weight: bold;
+    color: #0056b3; /* Tonalidad contrastante */
+}
+
+/* Estilo para el texto dentro de los botones */
+.btn {
+    border-radius: 0.25rem;
+    font-weight: bold;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Estilo para el botón de descanso */
+.btn-warning.btn-gradient {
+    background: linear-gradient(to right, #ff9800, #ff5722);
+    border: none;
     color: white;
-
 }
 
-.dia_contenedor {
-    background-color: #6932DB;
+/* Estilo para el botón de salida */
+#salirButton {
+    background-color: #dc3545;
+    border: none;
+    color: white;
 }
 
+#salirButton:hover {
+    background-color: #c82333;
+}
+
+/* Estilo para los números en el texto */
+.numero {
+    font-weight: bold;
+    color: #0044cc; /* Tonalidad más oscura */
+}
+
+/* Estilo para el botón de actualizar y otros botones de acción */
+.btn {
+    border-radius: 0.25rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: 1px solid #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
 
 /* Define the keyframes for the shake animation */
 @keyframes shake {

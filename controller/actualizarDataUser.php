@@ -7,10 +7,16 @@ include_once ('../model/validate.php'); // Se incluye la clase que permite sanit
 if (!isset($_SESSION))
     session_start();
 
-// Verifica si el usuario ha iniciado sesión, de lo contrario redirige a la página de inicio de sesión
-if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
-    header("location: ../view/inicioSesion.php");
+$id_user = 0;
+// Verifica si ambas sesiones están vacías o no definidas
+if ((!isset($_SESSION['id']) || empty($_SESSION['id'])) && (!isset($_SESSION['id_admin']) || empty($_SESSION['id_admin']))) {
+    // Redirige a la página de inicio de sesión si ambas sesiones están vacías o no definidas
+    header("Location: ../view/inicioSesion.php");
+    exit();
 }
+
+// Determina el ID del usuario basado en el tipo de sesión
+$id_user = isset($_SESSION['id']) ? $_SESSION['id'] : (isset($_SESSION['id_admin']) ? $_SESSION['id_admin'] : 0);
 
 // Define un arreglo con los nombres de los campos que se van a validar
 $inputs = isset($_GET['typeData']) ?
@@ -29,10 +35,10 @@ if (validate::validateNotEmptyInputs($inputs)) {
     $pesoActual = validate::sanitize($_POST['peso']);
     $altura = validate::sanitize($_POST['altura']);
     $sex = isset($_POST['sex']) ? validate::sanitize($_POST['sex']) : null;
-    $rol = isset($_POST['role']) ? validate::sanitize($_POS['role']) : null;
+    $rol = isset($_POST['role']) ? validate::sanitize($_POST['role']) : null;
 
     // Imagen de perfil
-    $currentImagePath = usuarios::getPerfil(9, $_SESSION['id']);
+    $currentImagePath = usuarios::getPerfil(9, $id_user);
     $defaultImagePath = '../view/user img/default_img.PNG';
 
     // Verifica si se ha subido una nueva imagen
@@ -81,8 +87,9 @@ if (validate::validateNotEmptyInputs($inputs)) {
 
 
     // Actualiza los datos del usuario en la base de datos
-    $respuesta = !isset($_GET['typeDdata']) ? usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $sex, $ruta_imagen) :
-        usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $sex, $ruta_imagen, $rol);
+    $respuesta = !isset($_GET['typeDdata']) ?
+        usuarios::actualizarDatos($id_user, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $sex, $ruta_imagen) :
+        usuarios::actualizarDatos($id_user, $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $sex, $ruta_imagen, $rol);
 
     // Redirige según el resultado de la actualización
     if ($respuesta > 1) {

@@ -1,9 +1,7 @@
 <?php
 include_once ("../../model/usuario.php");
 ?>
-
 <link rel="stylesheet" href="../css/estilosinformacionU.css">
-
 <div class="container cuerpo">
     <div class="row">
         <div class="col-md-6 text-center">
