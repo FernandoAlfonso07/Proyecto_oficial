@@ -13,7 +13,9 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
 }
 
 // Define un arreglo con los nombres de los campos que se van a validar
-$inputs = ['nombre', 'apellido', 'telefono', 'correo', 'personaleRecord', 'peso', 'altura'];
+$inputs = isset($_GET['typeData']) ?
+    ['nombre', 'apellido', 'telefono', 'correo', 'sex', 'peso', 'altura', 'role'] :
+    ['nombre', 'apellido', 'telefono', 'correo', 'sex', 'peso', 'altura'];
 
 // Verifica que todos los campos en el arreglo no estén vacíos
 if (validate::validateNotEmptyInputs($inputs)) {
@@ -23,49 +25,64 @@ if (validate::validateNotEmptyInputs($inputs)) {
     $apellidos = validate::sanitize($_POST['apellido']);
     $telefono = validate::sanitize($_POST['telefono']);
     $correo = validate::sanitize($_POST['correo']);
-    $pr = validate::sanitize($_POST['personaleRecord']);
+    $pr = isset($_POST['personaleRecord']) ? validate::sanitize($_POST['personaleRecord']) : 0;
     $pesoActual = validate::sanitize($_POST['peso']);
     $altura = validate::sanitize($_POST['altura']);
     $sex = isset($_POST['sex']) ? validate::sanitize($_POST['sex']) : null;
+    $rol = isset($_POST['role']) ? validate::sanitize($_POS['role']) : null;
 
+    // Imagen de perfil
     $currentImagePath = usuarios::getPerfil(9, $_SESSION['id']);
     $defaultImagePath = '../view/user img/default_img.PNG';
 
     // Verifica si se ha subido una nueva imagen
     if (!empty($_FILES['imagenPerfil']['name'])) {
-        // Procesa la nueva imagen
-        $ruta_imagen = validate::media(
-            'imagenPerfil',
-            '../view/controlador.php?error=incorrectFormat&seccion=updateDatas',
-            '../view/user img/'
-        );
-        // Elimina la imagen actual si se ha subido una nueva
-        if ($currentImagePath && file_exists($currentImagePath) && $currentImagePath !== $defaultImagePath) {
-            unlink($currentImagePath); // Borra la imagen actual
+        $ruta_imagen = isset($_GET['typeData']) ?
+            validate::media('imagenPerfil', '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=updateDatas', '../view/user img/') :
+            validate::media('imagenPerfil', '../view/controlador.php?error=incorrectFormat&seccion=updateDatas', '../view/user img/');
+
+        if ($currentImagePath && $currentImagePath !== $defaultImagePath) {
+            unlink($currentImagePath);
         }
     } else {
-        // Usa la imagen actual si no se ha subido una nueva
         $ruta_imagen = $currentImagePath;
     }
     // Validación de entradas: todas deben ser números flotantes positivos
-    if (
-        !filter_var($pr, FILTER_VALIDATE_FLOAT) || $pr <= 0 ||
-        !filter_var($pesoActual, FILTER_VALIDATE_FLOAT) || $pesoActual <= 0 ||
-        !filter_var($altura, FILTER_VALIDATE_FLOAT) || $altura <= 0
-    ) {
-        header('Location: ../view/controlador.php?error=notNumber&seccion=updateDatas');
-        exit();
+    if (!isset($_GET['typeData'])) {
+        if (
+            !filter_var($pr, FILTER_VALIDATE_FLOAT) || $pr <= 0 ||
+            !filter_var($pesoActual, FILTER_VALIDATE_FLOAT) || $pesoActual <= 0 ||
+            !filter_var($altura, FILTER_VALIDATE_FLOAT) || $altura <= 0
+        ) {
+            header('Location: ../view/controlador.php?error=notNumber&seccion=updateDatas');
+            exit(); // Detiene la ejecución después de redirigir
+        }
+    } else {
+        if (
+            !filter_var($pesoActual, FILTER_VALIDATE_FLOAT) || $pesoActual <= 0 ||
+            !filter_var($altura, FILTER_VALIDATE_FLOAT) || $altura <= 0
+        ) {
+            header('Location: ../view/administrador/controladorVadmin.php?error=notNumber&seccionAd=updateDatas');
+            exit(); // Detiene la ejecución después de redirigir
+        }
     }
 
     // Validación del teléfono: debe ser un número entero positivo
     if (!filter_var($telefono, FILTER_VALIDATE_INT) || $telefono <= 0) {
-        header('Location: ../view/controlador.php?error=invalidPhone&seccion=updateDatas');
-        exit();
+
+        if (!isset($_GET['typeData'])) {
+            header('Location: ../view/controlador.php?error=invalidPhone&seccion=updateDatas');
+
+        } else {
+            header('Location: ../view/administrador/controladorVadmin.php?error=invalidPhone&seccionAd=updateDatas');
+        }
+        exit(); // Detiene la ejecución después de redirigir
     }
 
 
     // Actualiza los datos del usuario en la base de datos
-    $respuesta = usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $sex, $ruta_imagen);
+    $respuesta = !isset($_GET['typeDdata']) ? usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $sex, $ruta_imagen) :
+        usuarios::actualizarDatos($_SESSION['id'], $nombres, $apellidos, $telefono, $correo, $pr, $pesoActual, $altura, $sex, $ruta_imagen, $rol);
 
     // Redirige según el resultado de la actualización
     if ($respuesta > 1) {
@@ -73,13 +90,18 @@ if (validate::validateNotEmptyInputs($inputs)) {
         exit();
 
     } else {
-        header('Location: ../view/controlador.php?success=exito&seccion=MiPerfil');
-        exit();
+        header('Location: ' . (isset($_GET['typeData']) ?
+            '../view/administrador/controladorVadmin.php?success=exito&seccionAd=MiPerfil' :
+            '../view/controlador.php?success=exito&seccion=MiPerfil'));
     }
 
 } else {
 
     // Si alguno de los campos está vacío, redirige con un error
-    header('Location: ../view/controlador.php?error=emptyFields&seccion=updateDatas');
-    exit();
+    header('Location: ' . (isset($_GET['typeData']) ?
+        '../view/administrador/controladorVadmin.php?error=emptyFields&seccion=updateDatas' :
+        '../view/controlador.php?error=emptyFields&seccion=updateDatas'));
+
+    exit(); // Detiene la ejecución después de redirigir
+
 }

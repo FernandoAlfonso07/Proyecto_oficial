@@ -3,11 +3,11 @@ include ("../../model/usuario.php");
 ?>
 
 <link rel="stylesheet" href="../css/actualizarDatos.css">
-<form action="../../controller/actualizarDataUser.php" method="POST" enctype="multipart/form-data">
+<form action="../../controller/actualizarDataUser.php?typeData=2" method="POST" enctype="multipart/form-data">
     <div class="container cuerpo">
         <div class="row">
             <div class="col-md-6 text-center">
-                <img src="<?php echo usuarios::getPerfil(9, $_SESSION['id_admin']) ?: '../../view/user img/default_img.PNG'; ?>"
+                <img src="../<?php echo usuarios::getPerfil(9, $_SESSION['id_admin']) ?: '../../view/user img/default_img.PNG'; ?>"
                     class="img-fluid imagen_perfil" width="50%" alt="Imagen Perfil">
                 <div class="input-group mb-3 subir">
                     <input type="file" class="form-control" name="imagenPerfil" id="inputGroupFile04"
@@ -73,7 +73,7 @@ include ("../../model/usuario.php");
 
                             <select class="form-select" name="sex" aria-label="Default select example">
                                 <option selected disabled>Seleciona... </option>
-                                <option value="0" <?php echo ($sexo == 'Femenino') ? 'selected' : ''; ?>>Femenino
+                                <option value="2" <?php echo ($sexo == 'Femenino') ? 'selected' : ''; ?>>Femenino
                                 </option>
                                 <option value="1" <?php echo ($sexo == 'Masculino') ? 'selected' : ''; ?>>Masculino
                                 </option>
