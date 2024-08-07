@@ -293,7 +293,7 @@ CREATE TABLE infoGyms (
 
 
 -- **************************** F U N C T I O N S A D N T R I G G E R S **********************************
-/*
+
 DELIMITER //
 CREATE FUNCTION calculate_BMI (weight FLOAT, height  FLOAT)
 RETURNS FLOAT
@@ -364,4 +364,3 @@ BEGIN
     );
 END //
 DELIMITER ;
-*/

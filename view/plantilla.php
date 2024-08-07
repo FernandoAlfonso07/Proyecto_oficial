@@ -61,12 +61,13 @@ include_once ("../model/usuario.php");
                                     </a></li>
                             </ul>
                         </li>
+                        <!--
                         <a class="nav-link separado" href="#"><i class="fa-solid fa-question icono_usuario"></i>
                             Ayuda</a>
 
                         <a class="nav-link separado" href="#"><i class="fa-solid fa-exclamation icono_usuario"></i>
                             Reportar problemas</a>
-
+                        -->
                         <a class="nav-link separado" href="Informacion_gimnasios.html"><i
                                 class="fa-regular fa-eye icono_usuario"></i>
                             Ver Gimnasios</a>

@@ -25,8 +25,8 @@ if ($conn->query($sql) === TRUE) {
 // Seleccionar base de datos
 $conn->select_db($db_name);
 
-// Leer y ejecutar el archivo dump.sql
-$dump_file = 'schemaWorlfit.sql'; // Asegúrate de tener el archivo dump.sql en el mismo directorio
+// Leer y ejecutar el archivo schemaWorlfit.sql
+$dump_file = 'schemaWorlfit.sql';
 if (file_exists($dump_file)) {
     $sql = file_get_contents($dump_file);
     if ($conn->multi_query($sql)) {
@@ -36,8 +36,8 @@ if (file_exists($dump_file)) {
             }
         } while ($conn->next_result());
 
-        // Leer y ejecutar el archivo funciones.sql
-        $functions_file = 'extrasBD.sql'; // Asegúrate de tener el archivo funciones.sql en el mismo directorio
+        // Leer y ejecutar el archivo extrasBD.sql
+        $functions_file = 'extrasBD.sql';
         if (file_exists($functions_file)) {
             $sql = file_get_contents($functions_file);
 
@@ -61,7 +61,7 @@ if (file_exists($dump_file)) {
                 $config_content .= "define('DB_PASS', '$password');\n";
                 file_put_contents('config.php', $config_content);
 
-                // Redirigir al index2.php
+                // Redirigir al index.php para realizar nueva validacion
                 header('Location: ../index.php');
                 exit;
             } else {
