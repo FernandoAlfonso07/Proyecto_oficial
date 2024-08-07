@@ -1,7 +1,6 @@
 create schema worldfitsbd;
 use worldfitsbd; 
 
-
 SET sql_safe_updates = 0;	
 
  -- ESTA ES LA TABLA DE GENERO
@@ -291,9 +290,10 @@ CREATE TABLE infoGyms (
     ON UPDATE CASCADE
 );
 
-
+insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol, imgPerfil) values ('Usuario' ,'Administrador', '3115963326', 'admin@gmail.com', '$2y$10$oVz5nr6qgn6yQ2aJ1bHGC.3GbjfSJ6hgtigA/d4brWmrcncLXj3Ru', 46 ,1.70, 1, now(), 1, '../view/user img/default_img.PNG');
+SELECT * FROM usuarios;
 -- **************************** F U N C T I O N S A D N T R I G G E R S **********************************
-
+/*
 DELIMITER //
 CREATE FUNCTION calculate_BMI (weight FLOAT, height  FLOAT)
 RETURNS FLOAT
@@ -364,3 +364,4 @@ BEGIN
     );
 END //
 DELIMITER ;
+*/

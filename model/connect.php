@@ -7,8 +7,7 @@ class conexionBD
     public static function getConexion()
     {
         // Incluir el archivo de configuración
-        include_once ('../installer/config.php');
-
+        include_once (__DIR__ . '/../installer/config.php');
         // Crear la conexión a la base de datos
         self::$connect = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
