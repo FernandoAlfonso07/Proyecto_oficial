@@ -785,17 +785,12 @@ class Administrador extends conexionBD
         $conexion = self::getConexion();
 
         // Crear la consulta SQL completa para insertar los datos en la tabla `infoGyms`
-        $sql = "INSERT INTO infoGyms (
-        name, id_categoria, description, mission, vision, pathImage,
-        time_start_morning_DAY, time_end_morning_DAY, time_start_afternoon_DAY, time_end_afternoon_DAY,
-        time_start_morning_END, time_end_morning_END, time_start_afternoon_END, time_end_afternoon_END,
-        phone, mail, direction, id_pay, id_gerente
-    ) VALUES (
+        $sql = "CALL Register_gym (
         '$name', $category_gym, '$description', '$mission', '$vision', '$pathImage',
         '$morning_time_weekday_start', '$morning_time_weekday_end', '$afternoon_time_weekday_start', '$afternoon_time_weekday_end',
         '$morning_time_weekend_start', '$morning_time_weekend_end', '$afternoon_time_weekend_start', '$afternoon_time_weekend_end',
         $phone, '$email', '$address', $payment_method, $id_manager
-    )";
+        )";
 
         // Ejecutar la consulta SQL
         $conexion->query($sql);
