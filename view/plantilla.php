@@ -68,7 +68,7 @@ include_once ("../model/usuario.php");
                         <a class="nav-link separado" href="#"><i class="fa-solid fa-exclamation icono_usuario"></i>
                             Reportar problemas</a>
                         -->
-                        <a class="nav-link separado" href="Informacion_gimnasios.html"><i
+                        <a class="nav-link separado" href="controlador.php?seccion=showGyms"><i
                                 class="fa-regular fa-eye icono_usuario"></i>
                             Ver Gimnasios</a>
                         </a>

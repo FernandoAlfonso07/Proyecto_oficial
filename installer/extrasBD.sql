@@ -29,7 +29,39 @@ END;
 DROP PROCEDURE IF EXISTS `getInfoGyms`;
 CREATE PROCEDURE `getInfoGyms` (IN id_gym INT)
 BEGIN
-    SELECT * FROM `infogyms` WHERE id = id_gym;
+    SELECT 
+        t1.name AS nameGym,
+        t1.description AS descriptionGym,
+        t1.mission AS missionGym,
+        t1.vision AS visionGym,
+        t1.pathImage,
+        t1.time_start_morning_DAY,
+        t1.time_end_morning_DAY,
+        t1.time_start_afternoon_DAY,
+        t1.time_end_afternoon_DAY,
+        t1.time_start_morning_END,
+        t1.time_end_morning_END,
+        t1.time_start_afternoon_END,
+        t1.time_end_afternoon_END,
+        t1.phone,
+        t1.mail,
+        t1.direction,
+        t2.categoria AS id_categoria,
+        t3.method AS id_pay,
+        t4.nombre AS gerente_nombre,
+        t4.apellido AS gerente_apellido,
+        t4.correo AS gerente_correo,
+        t4.telefono AS gerente_telefono
+    FROM 
+        infoGyms t1
+    JOIN 
+        categorias_gyms t2 ON t2.id_categoria = t1.id_categoria
+    JOIN 
+        payment_methods_gyms t3 ON t1.id_pay = t3.id
+    JOIN 
+        usuarios t4 ON t1.id_gerente = t4.id_usuario
+    WHERE 
+        t1.id = id_gym;
 END;
 
 -- Procedimiento almacenado `Register_gym`
