@@ -10,6 +10,7 @@ if (!isset($_SESSION['id']) || $_SESSION['id'] == "") {
 $seconds = isset($_GET['calef']) ? intval($_GET['calef']) : 0;
 $id = isset($_GET['calendar']) ? intval($_GET['calendar']) : 0;
 $page = isset($_GET['pg']) ? intval($_GET['pg']) : 0;
+$usu = isset($_GET['usu']) ? intval($_GET['usu']) : 0;
 
 ?>
 <!doctype html>
@@ -40,6 +41,7 @@ $page = isset($_GET['pg']) ? intval($_GET['pg']) : 0;
     <script>
         const calendarID = <?php echo json_encode($id); ?>;
         const page = <?php echo json_encode($page); ?>;
+        const usu = <?php echo json_encode($usu); ?>;
     </script>
 
     <script src="js/breakTimer.js"></script>

@@ -195,6 +195,42 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
 
     }
 
+    /**
+     * Obtiene el ID de la rutina asociada a un calendario y un día específicos.
+     *
+     * @param int $id_calendar El ID del calendario para buscar la rutina.
+     * @param int $id_dia El ID del día para buscar la rutina.
+     * @return string El ID de la rutina asociada, o una cadena vacía si no se encuentra ninguna.
+     */
+    public static function getIdRoutine($id_calendar, $id_dia)
+    {
+
+        $connect = self::getConexion(); // Obtiene una conexión a la base de datos.
+
+        // Prepara la consulta SQL para obtener el ID de la rutina asociado al calendario y al día especificados.
+        $sql = "SELECT t2.id_rutina FROM relacion_calendario_rutinas t1 
+                JOIN rutinas t2 ON t1.id_rutina = t2.id_rutina 
+                JOIN calendario_rutinario t3 ON t3.id_calendario = t1.id_calendario 
+                JOIN dias_semana t4 ON t4.id_dia = t1.id_dia
+                WHERE t3.id_calendario = '$id_calendar' AND t4.id_dia = '$id_dia' ";
+
+        // Ejecuta la consulta SQL.
+        $response = $connect->query($sql);
+
+        // Inicializa una variable para almacenar el resultado.
+        $exit = '';
+
+        while ($row = $response->fetch_array()) {
+            $exit = $row[0]; // Asigna el ID de la rutina a la variable `$exit`.
+        }
+
+        // Cierra la conexión a la base de datos.
+        $connect->close();
+
+        // Devuelve el ID de la rutina encontrado o una cadena vacía si no se encontró ninguna.
+        return $exit;
+    }
+
 
     /**
      * Obtiene las rutinas del calendario de un usuario y las muestra en formato HTML.
@@ -236,7 +272,7 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
                 $r .= '<div class="container calendario_usuario">';
                 $r .= '    <div class="row">';
                 $r .= '        <div class="col-md-12 seccion_de_cada_calendario">';
-                $r .= '            <a href="enRutinasCr.php?calendar=' . $row[0] . '&p=0">';
+                $r .= '            <a href="enRutinasCr.php?usu=' . $id_user . '&calendar=' . $row[0] . '&p=0">';
                 $r .= '                <div class="row">';
                 $r .= '                    <div class="col-md-6">';
                 $r .= '                        <h1>' . $row[1] . '</h1>';

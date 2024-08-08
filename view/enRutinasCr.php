@@ -11,17 +11,15 @@ if (!isset($_SESSION['id']) || $_SESSION['id'] == "") {
 $p = 0;
 $id_calendar = 0;
 $dia_semana = 0;
-if (isset($_GET['p'])) {
-    $p = $_GET['p'];
-}
+$usu = 0;
 
-if (isset($_GET['calendar'])) {
-    $id_calendar = $_GET['calendar'];
-}
+$p = $_GET['p'] ?? 0;
+$id_calendar = $_GET['calendar'] ?? 0;
+$usu = $_GET['usu'] ?? null;
 
-// $dia_semana = date('w');
-$dia_semana = 6;
+$dia_semana = date('w');
 
+$id_routine = calendarioRutinario::getIdRoutine($id_calendar, $dia_semana);
 ?>
 
 <!doctype html>
@@ -33,8 +31,8 @@ $dia_semana = 6;
     <title>En rutina | <?php echo calendarioRutinario::mostrarCalendario(1, 0, $dia_semana, $p, $id_calendar) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="icon" href="./img/logosinfondo.png">
-
     <link rel="stylesheet" href="css/enRutinasCr.css">
 
 
@@ -88,7 +86,7 @@ $dia_semana = 6;
             </div>
             <div class="col-md-12 contenedor_informacion text-center">
                 <a
-                    href="timer.php?calendar=<?php echo $id_calendar; ?>&calef=<?php echo calendarioRutinario::mostrarCalendario(1, 7, $dia_semana, $p, $id_calendar); ?>&pg=<?php echo $p; ?>">
+                    href="timer.php?usu=<?php echo $usu ?>&calendar=<?php echo $id_calendar; ?>&calef=<?php echo calendarioRutinario::mostrarCalendario(1, 7, $dia_semana, $p, $id_calendar); ?>&pg=<?php echo $p; ?>">
                     <button class="btn btn-warning btn-gradient botones">Descanso <i class="fa-solid fa-pause"></i>
                     </button>
                 </a>
@@ -99,12 +97,19 @@ $dia_semana = 6;
                     <button id="salirButton" class="btn btn-danger">Salir <i
                             class="fa-solid fa-person-shelter"></i></button>
                 </a>
+
+                <button class="btn buttonLike" id="interaction" data-id-routine="<?php echo $id_routine; ?>"
+                    data-id-usu="<?php echo $usu; ?>">
+                    <i class="fa-solid fa-heart like"></i>
+                </button>
+
             </div>
         </div>
     </div>
 
     <script src="js/salirButton.js"></script>
-
+    <script src="js/interactions.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/296731592d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

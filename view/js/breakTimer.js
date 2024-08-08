@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             elementTimer.innerHTML = "<h1>" + time + "s</h1>";
         } else {
             clearInterval(intervalTime);
-            elementTimer.innerHTML = '<a href="enRutinasCr.php?calendar=' + encodeURIComponent(calendarID) + '&p=' + encodeURIComponent(page) + '"><button class="btn btn-primary">Continuar Rutina</button></a>';
+            elementTimer.innerHTML = '<a href="enRutinasCr.php?usu=' + encodeURIComponent(usu) + '&calendar=' + encodeURIComponent(calendarID) + '&p=' + encodeURIComponent(page) + '"><button class="btn btn-primary">Continuar Rutina</button></a>';
         }
     };
 

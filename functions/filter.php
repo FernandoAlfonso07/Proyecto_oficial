@@ -11,9 +11,6 @@ if (isset($_GET['entrenamientos'])) {
     // Obtener una instancia de la conexión a la base de dat
     $conexion = conexionBD::getConexion();
 
-    // Imprimir el ID recibido en el parámetro 'entrenamientos'
-    echo 'ID que llega al sql ' . $entrenamiento;
-
     // Preparar la consulta SQL para seleccionar las rutinas con la categoría especificada
     $sql = "SELECT id_rutina, nombreRutina FROM rutinas WHERE id_categoria = '$entrenamiento' ";
     $result = $conexion->query($sql);

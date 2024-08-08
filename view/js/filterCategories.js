@@ -11,7 +11,6 @@ function hola(event, id_routine) {
         datatype: 'html',
         method: 'get',
         success: function (data) {
-            //console.log(data);
             document.getElementById(id_routine).innerHTML = data;
         },
         error: function (xhr, status, error) {

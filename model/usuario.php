@@ -499,4 +499,57 @@ class usuarios extends conexionBD
         // Devuelve el valor seleccionado del índice de registro del usuario
         return $salida;
     }
+
+    /**
+     * Inserta una nueva interacción en la base de datos.
+     *
+     * @param string $type El tipo de interacción (por ejemplo, 'like' o 'dislike').
+     * @param int $id_user El ID del usuario que realiza la interacción.
+     * @param int $id_routine El ID de la rutina a la que se aplica la interacción.
+     * @return int El número de filas afectadas por la consulta (0 si hubo un error o la inserción no se realizó).
+     */
+    public static function giveLike($type, $id_user, $id_routine)
+    {
+        $connect = self::getConexion(); // Obtiene una conexión a la base de datos.
+
+        // Prepara la consulta SQL para insertar una nueva interacción en la tabla `interactions`.
+        $sql = "INSERT INTO interactions (type, id_usuario, id_rutina) VALUES ('$type', $id_user, $id_routine) ";
+
+        $connect->query($sql); // Ejecuta la consulta SQL.
+
+        $affected_rows = $connect->affected_rows; // Obtiene el número de filas afectadas por la consulta.
+
+        $connect->close(); // Cierra la conexión a la base de datos.
+
+        return $affected_rows; // Devuelve el número de filas afectadas.
+    }
+
+    /**
+     * Actualiza una interacción existente en la base de datos.
+     *
+     * @param string $type El nuevo tipo de interacción (por ejemplo, 'like' o 'dislike').
+     * @param int $id_user El ID del usuario cuya interacción se va a actualizar.
+     * @param int $id_routine El ID de la rutina cuya interacción se va a actualizar.
+     * @return int El número de filas afectadas por la consulta (0 si no se actualizó ninguna fila o hubo un error).
+     */
+    public static function updateInteractions($type, $id_user, $id_routine)
+    {
+        $connect = self::getConexion(); // Obtiene una conexión a la base de datos.
+
+        // Prepara la consulta SQL para actualizar el tipo de interacción en la tabla `interactions`.
+        $sql = "UPDATE interactions SET type = '$type' WHERE id_usuario = '$id_user' AND id_rutina = '$id_routine' ";
+
+        // Ejecuta la consulta SQL.
+        $connect->query($sql);
+
+        // Obtiene el número de filas afectadas por la consulta.
+        $affected_rows = $connect->affected_rows;
+
+        // Cierra la conexión a la base de datos.
+        $connect->close();
+
+        // Devuelve el número de filas afectadas.
+        return $affected_rows;
+    }
+
 }
