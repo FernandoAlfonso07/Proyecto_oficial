@@ -1,14 +1,19 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h1>Bienvenido a la seccion de <b>
-                    administrador
-                </b></h1>
-            <p>
-            <h2>
-                ¿Que vamos a hacer hoy?
-            </h2>
-            </p>
+<link rel="stylesheet" href="../css/seccion1.css">
+<div class="custom-container">
+    <div class="custom-input-group">
+        <div class="custom-row">
+            <div class="custom-col">
+                <input type="date" class="custom-date-input" name="dateStart" id="fechaInicio">
+            </div>
+            <div class="custom-col">
+                <input type="date" class="custom-date-input" name="dateEnd" id="fechaFin">
+            </div>
         </div>
     </div>
 </div>
+<div class="custom-chart-container">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/analytic.js"></script>

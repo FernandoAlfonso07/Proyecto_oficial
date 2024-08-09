@@ -156,6 +156,6 @@ include_once ('../../model/Categories.php');
                 </div>
             </div>
         </div>
-</div>
-</form>
+
+    </form>
 </div>

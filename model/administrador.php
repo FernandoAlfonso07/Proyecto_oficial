@@ -883,4 +883,48 @@ class Administrador extends conexionBD
         // Retorna el resultado construido
         return $r;
     }
+
+    /**
+     * Obtiene las estadísticas de interacciones (likes o dislikes) para las rutinas dentro de un rango de fechas específico.
+     *
+     * @param string $dateMin Fecha de inicio del rango en formato 'YYYY-MM-DD'.
+     * @param string $dateMax Fecha de fin del rango en formato 'YYYY-MM-DD'.
+     * @param string $typeInteraction Tipo de interacción a consultar ('like' o 'dislike').
+     * @return array Retorna un array con los nombres de las rutinas y la cantidad de interacciones dentro del rango de fechas.
+     */
+    public static function viewAnalytics($dateMin, $dateMax, $typeInteraction)
+    {
+        // Establece la conexión con la base de datos.
+        $connect = self::getConexion();
+
+        // Inicializa la variable $sql con una consulta SQL vacía.
+        $sql = "";
+
+        // Construye la consulta SQL para obtener el nombre de las rutinas y la cantidad de interacciones.
+        $sql = "SELECT 
+                    t2.nombreRutina, (SELECT COUNT(*) FROM interactions t1 WHERE type = '$typeInteraction' AND t1.id_rutina = t2.id_rutina) as totalLikes 
+                FROM
+                    rutinas t2 
+                WHERE 
+                    fecha_registro BETWEEN '$dateMin' AND '$dateMax'
+                HAVING 
+                    totalLikes > 0 ";
+
+        // Ejecuta la consulta SQL y almacena la respuesta en la variable $response.
+        $response = $connect->query($sql);
+
+        // Inicializa un array vacío para almacenar los resultados.
+        $result = [];
+
+        // Itera sobre los resultados de la consulta y agrega cada fila al array $result.
+        while ($row = $response->fetch_array()) {
+            $result[] = $row;
+        }
+
+        // Cierra la conexión a la base de datos
+        $connect->close();
+
+        // Retorna el array con los resultados de la consulta.
+        return $result;
+    }
 }
