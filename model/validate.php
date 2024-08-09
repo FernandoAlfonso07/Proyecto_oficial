@@ -113,24 +113,115 @@ class validate extends conexionBD
         return true;
     }
 
-    public static function UserExists($mail, $opc)
+
+    /**
+     * Verifica la existencia de un usuario o gerente en la base de datos.
+     *
+     * @param string $mail Correo electrónico del usuario (para la opción 1).
+     * @param int $opc Opción que determina qué tipo de consulta realizar:
+     *                1 para verificar la existencia de un usuario por correo,
+     *                2 para verificar la existencia de un gerente por ID.
+     * @param int|null $id ID del gerente (opcional, solo para la opción 2).
+     * @param int|null $selectRow Fila a seleccionar de los resultados:
+     *                            1 para contar coincidencias,
+     *                            2 para obtener el ID del usuario,
+     *                            3 para obtener el conteo de coincidencias en la tabla `infogyms`.
+     * @return mixed El número de coincidencias encontradas o el ID del usuario, según la opción seleccionada.
+     */
+    public static function UserExists($opc, $mail = null, $id = null, $selectRow = null)
     {
+
+        // Obtener la conexión a la base de datos
         $connect = self::getConexion();
 
-        $sql = "SELECT COUNT(*), id_usuario FROM usuarios WHERE correo = '$mail' ";
+        $sql = "";
 
+        // Construir la consulta SQL según la opción
+        if ($opc == 1) {
+            // Opción 1: Verificar la existencia de un usuario por correo
+            $sql = "SELECT COUNT(*), id_usuario FROM usuarios WHERE correo = '$mail' ";
+        } elseif ($opc == 2) {
+            // Opción 2: Verificar la existencia de un gerente por ID
+            $sql = "SELECT COUNT(*) FROM infogyms WHERE id_gerente = '$id' ";
+        }
+
+        // Ejecutar la consulta
         $response = $connect->query($sql);
 
         $r = "";
 
         while ($row = $response->fetch_array()) {
-            $r = $opc == 1 ? $row[0] : $row[1];
+            // Determinar qué valor devolver según $selectRow
+            switch ($selectRow) {
+                case 1:
+                    // Obtener el conteo de coincidencias encontradas
+                    $r = $row[0];
+                    break;
+                case 2:
+                    // Obtener el ID del usuario encontrado
+                    $r = $row[1];
+                    break;
+
+                case 3:
+                    // Obtener el conteo de coincidencias en la tabla infogyms de un usuario gerente
+                    $r = $row[0];
+                    break;
+
+                default:
+                    $r = null;
+                    break;
+            }
         }
 
+        $connect->close();
+        return $r;
+    }
+
+    /**
+     * Busca un valor en una tabla específica basado en los parámetros proporcionados.
+     *
+     * @param string $opcQuery Opciones de consulta para determinar la tabla y el campo a buscar.
+     * @param mixed $data Valor que se utilizará para la búsqueda en el campo específico de la tabla.
+     * @return mixed El valor encontrado en la búsqueda o una cadena vacía si no se encuentra nada.
+     */
+    public static function search($opcQuery, $data)
+    {
+        // Obtiene la conexión a la base de datos
+        $connect = self::getConexion();
+
+        // Inicializa las variables para la consulta
+        $sql = "";
+        $nameTable = ""; // Nombre de la tabla donde se realizará la búsqueda
+        $identifier = ""; // Campo utilizado para identificar la fila a buscar
+        $toSearch = ""; // Campo del cual se obtendrá el valor
+        $r = "";
+
+        // Determina la tabla, el identificador y el campo a buscar según la opción de consulta
+        switch ($opcQuery) {
+            case 'searchStatus':
+                $nameTable = "infogyms";
+                $identifier = "id";
+                $toSearch = "status";
+                break;
+        }
+
+        // Construye la consulta SQL para obtener el valor deseado
+        $sql = "SELECT $toSearch FROM $nameTable WHERE $identifier = '$data' ";
+
+        // Ejecuta la consulta SQL
+        $response = $connect->query($sql);
+
+        // Procesa los resultados de la consulta
+        while ($row = $response->fetch_array()) {
+            $r = $row[0];  // Asigna el primer valor de la fila al resultado
+        }
+
+        // Cierra la conexión a la base de datos
+        $connect->close();
+
+        // Retorna el valor encontrado o una cadena vacía si no se encontró nada
         return $r;
 
     }
-
-
 }
 

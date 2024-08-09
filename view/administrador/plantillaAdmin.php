@@ -11,6 +11,7 @@ include ("../../view/nombreSeccionH.php");
     <title><?php echo nombrar(1, null, $seccion_admin); ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="icon" href="../../view/img/logosinfondo.png">
     <link rel="stylesheet" href="../../view/css/estilos-plantillaAdmin.css">
 </head>
@@ -105,7 +106,8 @@ include ("../../view/nombreSeccionH.php");
                                 Gimnasios <i class="fa-solid fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item enlace_secundario" href="#"><i
+                                <li><a class="dropdown-item enlace_secundario"
+                                        href="controladorVadmin.php?seccionAd=showGyms"><i
                                             class="fa-solid fa-eye icono"></i> Ver Gimnasios</a></li>
                                 <li><a class="dropdown-item enlace_secundario"
                                         href="controladorVadmin.php?seccionAd=addGym"><i
@@ -130,7 +132,7 @@ include ("../../view/nombreSeccionH.php");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $("#menu-toggle").click(function (e) {
             e.preventDefault();

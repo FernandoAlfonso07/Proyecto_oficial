@@ -22,8 +22,8 @@ if ($email == null) {
     exit();
 }
 
-$validate = validate::UserExists($email, 1);
-$id = validate::UserExists($email, 2);
+$validate = validate::UserExists(1, $email, null, 1);
+$id = validate::UserExists(1, $email, null, 2);
 if ($validate < 1) {
     header('location: ../view/password/change_password.php?error=notmatches');
     exit();

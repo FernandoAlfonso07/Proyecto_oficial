@@ -19,7 +19,7 @@ class Gyms extends conexionBD
         $connect = self::getConexion();
 
         // Preparar la consulta SQL según la opción ($opc)
-        $sql = $opc == 1 ? "SELECT * FROM infoGyms" : "CALL getInfoGyms($id_gym)";
+        $sql = $opc == 1 ? "SELECT * FROM infoGyms WHERE status = 'activo'" : "CALL getInfoGyms($id_gym)";
 
         // Ejecutar la consulta
         $response = $connect->query($sql);

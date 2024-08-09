@@ -31,28 +31,20 @@ class Administrador extends conexionBD
 
         // Inicializar la variable para almacenar el HTML
         $r = '';
-
+        $i = 1;
         // Procesar los resultados de la consulta
         while ($fila = $resultado->fetch_array()) {
             $r .= '<tr>';
-            $r .= "<td>" . $fila[0] . "</td>"; // Muestra el ID del ejercicio
-            $r .= "<td>" . $fila[1] . "</td>"; // Muestra el nombre del ejercicio
-
-            // $r .= "<td>" . $fila[2] . "</td>"; // Muestra las instrucciones
-            // $r .= "<td>" . $fila[3] . "</td>"; // Muestra el equipo necesario
-
+            $r .= "<td>" . $i++ . "</td>";
+            $r .= "<td>" . $fila[1] . "</td>";
             $r .= "<td>" . $fila[4] . "</td>"; // Muestra las series
             $r .= "<td>" . $fila[5] . "</td>"; // Muestra las repeticiones
             $r .= "<td>" . $fila[6] . "</td>"; // Muestra el tiempo de descanso
             $r .= "<td>" . $fila[7] . "</td>"; // Muestra la fecha de registro
             $r .= "<td>";
-
             // Validar si existe una rutina asociada
             ($fila[8] == '') ? $r .= 'Ninguna rutina asociada' : $r .= $fila[8];
             $r .= "</td>"; // Muestra la rutina asociada
-
-            // $r .= "<td>" . $fila[9] . "</td>"; // Muestra el ID de la rutina
-
             // Muestra el ejemplo gráfico
             $r .= empty($fila[10]) || file_exists($fila[10]) ?
                 "<td>No existe un elemento grafico </td>" :
@@ -195,22 +187,22 @@ class Administrador extends conexionBD
         // Ejecutar la consulta según la opción especificada
         if ($opc == 0) {
             // Obtener todos los usuarios con detalles
-            $sql = "SELECT";
-            $sql .= " t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol FROM usuarios t1";
-            $sql .= " JOIN genero t2 ON t1.id_genero = t2.id_genero ";
-            $sql .= " JOIN roles t3 ON t1.id_rol = t3.id_rol ";
+            $sql = "SELECT
+            t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol FROM usuarios t1
+            JOIN genero t2 ON t1.id_genero = t2.id_genero 
+            JOIN roles t3 ON t1.id_rol = t3.id_rol ";
         } elseif ($opc == 1) {
 
             // Contar el número total de usuarios
-            $sql = "select COUNT(*) FROM usuarios;";
+            $sql = "SELECT COUNT(*) FROM usuarios;";
         } else if ($opc == 3) {
 
             // Obtener usuarios por correo y teléfono
-            $sql = "SELECT";
-            $sql .= " t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol FROM usuarios t1";
-            $sql .= " JOIN genero t2 ON t1.id_genero = t2.id_genero ";
-            $sql .= " JOIN roles t3 ON t1.id_rol = t3.id_rol ";
-            $sql .= "WHERE t1.correo = '$email' AND t1.telefono = '$phone'";
+            $sql = "SELECT
+            t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol FROM usuarios t1
+            JOIN genero t2 ON t1.id_genero = t2.id_genero 
+            JOIN roles t3 ON t1.id_rol = t3.id_rol 
+            WHERE t1.correo = '$email' AND t1.telefono = '$phone'";
         }
 
         // Ejecutar la consulta SQL
@@ -218,14 +210,14 @@ class Administrador extends conexionBD
 
         // Variable para almacenar el resultado final
         $rr = "";
-
+        $i = 1;
         // Procesar los resultados de la consulta
         while ($fila = $r->fetch_array()) {
 
             // Para la opción 0, crear filas de una tabla HTML
             if ($opc == 0) {
                 $rr .= '<tr>';
-                $rr .= '<th scope="row">' . $fila[0] . '</th>';
+                $rr .= '<th scope="row">' . $i++ . '</th>';
                 $rr .= '<td>' . $fila[1] . '</td>';
                 $rr .= '<td>' . $fila[2] . '</td>';
                 $rr .= '<td>' . $fila[3] . '</td>';
@@ -244,28 +236,28 @@ class Administrador extends conexionBD
                 // Para la opción 3, devolver el valor según $rowSelected
                 switch ($rowSelected) {
                     case 0:
-                        $rr = $fila[0];
+                        $rr = $fila[0]; // id
                         break;
                     case 1:
-                        $rr = $fila[1];
+                        $rr = $fila[1]; // Nombre
                         break;
                     case 2:
-                        $rr = $fila[2];
+                        $rr = $fila[2]; // Apellido
                         break;
                     case 3:
-                        $rr = $fila[3];
+                        $rr = $fila[3]; // Correo
                         break;
                     case 4:
-                        $rr = $fila[4];
+                        $rr = $fila[4]; // Telefono
                         break;
                     case 5:
-                        $rr = $fila[5];
+                        $rr = $fila[5]; // Genero
                         break;
                     case 6:
-                        $rr = $fila[6];
+                        $rr = $fila[6]; // Fecha registro
                         break;
                     case 7:
-                        $rr = $fila[7];
+                        $rr = $fila[7]; // Rol en frase
                         break;
 
                 }
@@ -663,7 +655,7 @@ class Administrador extends conexionBD
 
         // Inicializar la variable para almacenar el HTMLF
         $r = '';
-
+        $i = 1;
         // Procesar los resultados de la consulta
         while ($fila = $result->fetch_array()) {
 
@@ -675,7 +667,7 @@ class Administrador extends conexionBD
 
                 // Si `$opc` no es `0`, generar el HTML con los detalles de las rutinas
                 $r .= '<tr>';
-                $r .= "<td>" . $fila[0] . "</td>"; // Muestra el ID de la rutina
+                $r .= "<td>" . $i++ . "</td>"; // Muestra el ID de la rutina
                 $r .= "<td>" . $fila[1] . "</td>"; // Muestra el nombre de la rutina
                 $r .= "<td>" . $fila[2] . "</td>"; // Muestra el objetivo de la rutina
                 $r .= "<td>" . $fila[3] . "</td>"; // Muestra la fecha de registro
@@ -802,7 +794,93 @@ class Administrador extends conexionBD
         $conexion->close();
         // Devolver el número de filas afectadas
         return $affected_rows;
+    }
+
+    public static function updateStatus($id, $newStatus)
+    {
+
+        $connect = self::getConexion();
+
+        $sql = "";
+        $sql = "UPDATE infogyms SET status = '$newStatus' WHERE id = '$id';";
+
+        $connect->query($sql);
+
+        $affected_rows = $connect->affected_rows;
+
+        $connect->close();
+        return $affected_rows;
 
     }
 
+    /**
+     * Muestra una lista de gimnasios o cuenta el número de gimnasios según la opción proporcionada.
+     *
+     * @param int $opc Opción para determinar el tipo de consulta:
+     *                  - 1: Obtiene la lista completa de gimnasios con detalles.
+     *                  - Cualquier otro valor: Cuenta el número total de gimnasios en la tabla.
+     * @return string Retorna una cadena HTML con la tabla de gimnasios si `$opc` es 1, o el número total de gimnasios si `$opc` es diferente de 1.
+     */
+    public static function showListGyms($opc)
+    {
+
+        // Obtiene la conexión a la base de datos
+        $connect = self::getConexion();
+
+        // Inicializa la variable de consulta SQL
+        $sql = "";
+
+        // Define la consulta SQL según la opción proporcionada
+        $sql = $opc == 1 ? "CALL getInfoGymsAll() " : "SELECT COUNT(*) FROM infogyms ";
+
+        // Ejecuta la consulta SQL
+        $response = $connect->query($sql);
+
+        // Inicializa la variable para almacenar el resultado
+        $r = "";
+        $i = 1;
+
+        // Procesa los resultados de la consulta
+        while ($row = $response->fetch_array()) {
+            if ($opc == 1) {
+
+                // Construye una fila HTML para cada gimnasio si la opción es 1
+                $r .= "
+                <tr>
+                    <th>" . $i++ . "</th>
+                    <th>" . $row[1] . "</th>
+                    <th>" . $row[14] . "</th>
+                    <th>" . $row[15] . "</th>
+                    <th>" . $row[17] . "</th>
+                    <th>" . $row[18] . "</th>
+                    <th>" . $row[20] . "</th>
+                    <th>" . $row[22] . "</th>
+                    <th>" . $row[21] . "</th>
+                    <th> <img src='../" . $row[5] . "' width='80px' alt='imagen del gimnasio'></th>
+                    <th>
+                        <button class='btn btn-status status' data-id-gym='" . $row[0] . "'>";
+                if ($row[23] == 'activo') {
+                    $r .= "<i class='fa-solid fa-toggle-on text-success'></i>";
+                } else {
+                    $r .= "<i class='fa-solid fa-toggle-off text-danger'></i>";
+                }
+                $r .= "</button>
+                        <a href='controladorVadmin.php?dgym=" . $row[0] . "&seccionAd=addGym'>
+                            <i class='fa-solid fa-pen-to-square icono edit'></i>
+                        </a>
+                    </th>
+                </tr>";
+
+            } else {
+
+                // Asigna el conteo total de gimnasios si la opción no es 1
+                $r = $row[0];
+            }
+        }
+        // Cierra la conexión a la base de datos
+        $connect->close();
+
+        // Retorna el resultado construido
+        return $r;
+    }
 }

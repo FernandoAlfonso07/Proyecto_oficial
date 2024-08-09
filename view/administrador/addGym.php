@@ -128,17 +128,16 @@ include_once ('../../model/Categories.php');
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-12"> <!--Información del gerente-->
                         <h1 class="text-center">Datos gerente</h1>
                         <div class="row">
-                            <div class="col-md-6">
-                                <label class="form-label">Nombres Completos</label>
-                                <input type="text" name="managerName" class="form-control">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Apellidos Completos</label>
-                                <input type="text" name="managerLastname" class="form-control">
+
+                            <div class="col-md-12">
+                                <div class="alert alert-warning" role="alert">
+                                    <b>¡Recuerda</b>: El correo electrónico y el numero de telefono deben estar
+                                    registrados en
+                                    el sistema con rol de gerente de gimnasio!
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Correo electrónico</label>
@@ -150,12 +149,13 @@ include_once ('../../model/Categories.php');
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="col-md-12 my-4 text-center">
-                        <button type="submit" class="btn btn-primary boton">Registrar</button>
-                    </div>
+                </div>
+                <br>
+                <div class="col-md-12 my-4 text-center">
+                    <button type="submit" class="btn btn-primary boton">Registrar</button>
                 </div>
             </div>
         </div>
-    </form>
+</div>
+</form>
 </div>

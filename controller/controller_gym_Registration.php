@@ -69,13 +69,29 @@ $address = validate::sanitize($_POST['address']); // Dirección del gimnasio
 $payment_method = validate::sanitize($_POST['payment_method']); // Método de pago del gimnasio
 
 // Información de contacto del gerente
-$managerName = validate::sanitize($_POST['managerName']); // Nombre del gerente
-$managerLastname = validate::sanitize($_POST['managerLastname']); // Apellido del gerente
 $managerEmail = validate::sanitize($_POST['managerEmail']); // Correo electrónico del gerente
 $managerPhone = validate::sanitize($_POST['managerPhone']); // Teléfono del gerente
 
 // Obtener el ID del gerente utilizando su correo electrónico y teléfono
 $id_manager = Administrador::getUsuarios(3, 0, $managerEmail, $managerPhone);
+
+// Obtener el rol del usuario basado en el email o teléfono del gerente
+$role = Administrador::getUsuarios(3, 7, $managerEmail, $managerPhone);
+
+// Validar si existe más de un gerente con el mismo ID
+$count = validate::UserExists(2, null, $id_manager, 3);
+
+// Verificar si el rol no es 'Gerente de gimnasio' y redirigir si no tiene el rol adecuado
+if (!isset($role) || $role !== 'Gerente de gimnasio') {
+    header('location: ../view/administrador/controladorVadmin.php?error=Unauthorized&seccionAd=addGym');
+    exit();
+}
+
+// Verificar si existe más de un gerente con el mismo ID y redirigir si es el caso
+if (!isset($count) || $count > 1) {
+    header('location: ../view/administrador/controladorVadmin.php?error=gymexists&seccionAd=addGym');
+    exit();
+}
 
 // Registrar el gimnasio en la base de datos utilizando los datos proporcionados
 $response = Administrador::registredGym(
@@ -107,6 +123,6 @@ if ($response > 1) {
     exit(); // Terminar el script
 } else {
     // Si el registro es exitoso, redirigir para mostrar la lista de gimnasios
-    header('location: ../view/administrador/controladorVadmin.php?seccionAd=showGyms');
+    header('location: ../view/administrador/controladorVadmin.php?succes=createGym&seccionAd=showGyms');
     exit(); // Terminar el script
 }
