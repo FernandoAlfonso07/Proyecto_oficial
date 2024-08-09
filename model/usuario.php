@@ -552,4 +552,24 @@ class usuarios extends conexionBD
         return $affected_rows;
     }
 
+    public static function updatePassword($newPassword, $id)
+    {
+        $connect = self::getConexion(); // Obtiene una conexión a la base de datos.
+
+        // Prepara la consulta SQL para actualizar el campo de la contraseña en la tabla `usuario`.
+        $sql = "UPDATE usuarios SET password = '$newPassword' WHERE id_usuario = '$id' ";
+
+        // Ejecuta la consulta SQL.
+        $connect->query($sql);
+
+        // Obtiene el número de filas afectadas por la consulta.
+        $affected_rows = $connect->affected_rows;
+
+        // Cierra la conexión a la base de datos.
+        $connect->close();
+
+        // Devuelve el número de filas afectadas.
+        return $affected_rows;
+    }
+
 }

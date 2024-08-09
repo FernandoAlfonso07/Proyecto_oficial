@@ -1,4 +1,3 @@
-
 function hola(event, id_routine) {
 
     var texto = event.target.value;

@@ -1,10 +1,6 @@
 <?php
-
-
-// ------------------------ Intentos ------------------
 if (!isset($_SESSION))
     session_start();
-
 
 $correo = $_GET['correo'] ?? '';
 $contraseña = $_GET['contraseña'] ?? '';
@@ -15,7 +11,7 @@ if (!isset($_SESSION['intento'])) {
 } else {
     $_SESSION['intento']++;
     if ($_SESSION['intento'] > 5) {
-        session_destroy();
+        $_SESSION['intento'] = 0;
         header('location: ../controller/errors/error1001.php');
         exit();
     }
@@ -94,7 +90,7 @@ if (isset($_GET['error'])) {
 
                     </center>
                     <h4 class="texto_extra">
-                        <a href="#">Olvide mi contraseña</a> <br> <br>
+                        <a href="password/change_password.php">Olvide mi contraseña</a> <br> <br>
                         ¿No tienes una cuenta?, <a href="seccion-registro.php">¡Registrate ahora!</a>
                     </h4>
                 </div>

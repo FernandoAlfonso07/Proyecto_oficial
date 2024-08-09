@@ -1,5 +1,7 @@
 <?php
-class validate
+include_once ("connect.php");
+
+class validate extends conexionBD
 {
     /**
      * Sanitiza una cadena de texto para prevenir inyecciones SQL y ataques XSS (Cross-Site Scripting).
@@ -109,6 +111,24 @@ class validate
 
         // Retorna verdadero si todos los campos tienen valores no vacíos
         return true;
+    }
+
+    public static function UserExists($mail, $opc)
+    {
+        $connect = self::getConexion();
+
+        $sql = "SELECT COUNT(*), id_usuario FROM usuarios WHERE correo = '$mail' ";
+
+        $response = $connect->query($sql);
+
+        $r = "";
+
+        while ($row = $response->fetch_array()) {
+            $r = $opc == 1 ? $row[0] : $row[1];
+        }
+
+        return $r;
+
     }
 
 
