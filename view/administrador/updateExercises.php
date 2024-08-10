@@ -25,17 +25,17 @@ if (isset($_GET['exerc']) && !empty($_GET['exerc'])) {
 }
 
 ?>
-
+<link rel="stylesheet" href="../css/styles_update_exercise.css">
 <form action="../../controller/controller_update_exercise.php" method="POST" enctype="multipart/form-data">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="../<?php echo exercise::getInformationExercises(8, $_SESSION['exercise']); ?>"
-                    class="img-fluid img_exercise" width="95%" alt="Imagen del ejercicio">
-                <div class="input-group mb-3 subir">
-                    <input type="file" class="form-control" name="imageExercise" id="inputGroupFile04"
-                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                </div>
+                <video id="videoExample"
+                    src="<?php echo exercise::getInformationExercises(8, $_SESSION['exercise']); ?>"
+                    class="img-fluid img_exercise" width="95%" controls>
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="input-group mb-3 subir"> </div>
                 <input type="hidden" value="<?php echo exercise::getInformationExercises(0, $_SESSION['exercise']); ?>"
                     name="exerc">
             </div>
@@ -72,8 +72,22 @@ if (isset($_GET['exerc']) && !empty($_GET['exerc'])) {
                         <input type="text" name="newBreakTime" class="form-control" id="breakTime"
                             value="<?php echo exercise::getInformationExercises(6, $_SESSION['exercise']) ?>">
                     </div>
+                    <div class="col-md-12 my-4">
+                        <label for="inputTypeSelector" class="form-label">Agrega un ejemplo gráfico *</label>
+                        <div>
+                            <select id="inputTypeSelector" class="form-control">
+                                <option value="text">Agregar URL</option>
+                                <option value="file">Subir Archivo</option>
+                            </select>
+                            <div id="inputContainer" class="mt-3">
+                                <input type="text" name="archivo_url" class="form-control" placeholder="Agrega la URL"
+                                    id="inputText" style="display: none;">
+                                <input type="file" name="archivo" class="form-control" id="inputFile"
+                                    style="display: none;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
 
             <div class="col-md-12 text-center py-2">
@@ -82,6 +96,21 @@ if (isset($_GET['exerc']) && !empty($_GET['exerc'])) {
                 </button>
             </div>
         </div>
-
     </div>
 </form>
+
+<script>
+    $(document).ready(function () {
+        $('#inputTypeSelector').change(function () {
+            if ($(this).val() === 'text') {
+                $('#inputText').show();
+                $('#inputFile').hide();
+                $('#fileUploadContainer').hide();
+            } else if ($(this).val() === 'file') {
+                $('#inputText').hide();
+                $('#inputFile').show();
+                $('#fileUploadContainer').show();
+            }
+        }).trigger('change');
+    });
+</script>

@@ -71,6 +71,6 @@
                 $('#inputText').hide();
                 $('#inputFile').show();
             }
-        }).trigger('change'); // Trigger change event on page load to set initial state
+        }).trigger('change'); 
     });
 </script>

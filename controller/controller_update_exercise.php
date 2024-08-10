@@ -27,22 +27,41 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
     // Ruta de la imagen actual
     $currentImagePath = exercise::getInformationExercises(8, $id);
 
-    // Verifica si se ha subido una nueva imagen
+    // Procesa la carga de la imagen (si se ha subido una nueva)
     if (!empty($_FILES['imageExercise']['name'])) {
-        // Procesa la nueva imagen
+        // Valida y procesa la nueva imagen
         $pathvideo = validate::media(
             'imageExercise',
             '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=updateExercises',
             '../view/media Exercises/'
         );
+
         // Elimina la imagen actual si se ha subido una nueva
-        if ($currentImagePath && file_exists($currentImagePath)) {
+        if (isset($currentImagePath) && file_exists($currentImagePath)) {
             unlink($currentImagePath); // Borra la imagen actual
         }
     } else {
         // Usa la imagen actual si no se ha subido una nueva
-        $pathvideo = $currentImagePath;
+        $pathvideo = isset($currentImagePath) ? $currentImagePath : '';
     }
+
+    // Procesa la carga de archivos
+    if (isset($_FILES['archivo']) && !empty($_FILES['archivo']['name'])) {
+        // Maneja la carga de archivos
+        $pathFile = validate::media(
+            'archivo',
+            '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=addEjercicios',
+            '../view/media Exercises/'
+        );
+    } else {
+        // Sanitiza la URL proporcionada
+        $pathFile = isset($_POST['archivo_url']) ? validate::sanitize($_POST['archivo_url']) : '';
+    }
+
+    // Asigna la ruta del archivo o imagen
+    $direccion_media = $pathFile ? $pathFile : $pathvideo;
+
+
 
     // Validación de repeticiones: debe ser un número entero positivo
     if (!filter_var($newRepetions, FILTER_VALIDATE_INT) || $newRepetions <= 0) {

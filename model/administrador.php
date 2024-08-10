@@ -45,10 +45,9 @@ class Administrador extends conexionBD
             // Validar si existe una rutina asociada
             ($fila[8] == '') ? $r .= 'Ninguna rutina asociada' : $r .= $fila[8];
             $r .= "</td>"; // Muestra la rutina asociada
-            // Muestra el ejemplo gráfico
-            $r .= empty($fila[10]) || file_exists($fila[10]) ?
-                "<td>No existe un elemento grafico </td>" :
-                "<td><img src='../" . $fila[10] . "' class='img img-fluid' width='100px' alt='Elemento grafico de ejercicio'> </td>";
+
+            // Muestra el video gráfico
+            $r .= "<td><video src='" . htmlspecialchars($fila[10]) . "' class='img img-fluid' width='100px' controls></video></td>";
 
             $r .= "<td> <a href='../../controller/ejercicioEliminado.php?id_ejercicio=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>";
             $r .= "<td> <a href='../administrador/controladorVadmin.php?exerc=" . $fila[0] . "&seccionAd=updateExercises'><i class='fa-solid fa-pen-to-square icono edit'></i></a>";
