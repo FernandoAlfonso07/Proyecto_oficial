@@ -3,14 +3,16 @@ table {
     width: 80%;
     margin-top: 9%;
     margin-left: 10%;
-    
+
 
 }
-th, td {
+
+th,
+td {
     border: 1px solid #dddd;
     text-align: left;
     padding: 8px;
-    
+
 }
 
 th {
@@ -22,25 +24,27 @@ tr:nth-child(even) {
     background-color: #dddd;
 
 }
+
 .navbar-toggler-icon {
-    /* Estilos para el ícono */
+
     color: white;
     background-color: black;
 }
 
 .acciones i {
-    margin-right: 20px; /* Espacio entre los íconos */
-    font-size: 25px ;
+    margin-right: 20px;
+    font-size: 25px;
 }
-.cuerpotabla{
+
+.cuerpotabla {
     margin-top: 60px;
 }
 
-.columna {  
+.columna {
     padding-top: 20px;
 }
 
-.seccionData { 
+.seccionData {
     background-color: #dddd;
     padding: 30px 20px;
 }
@@ -81,4 +85,14 @@ tr:nth-child(even) {
 .container.tabla h1 {
     color: #00A1FF;
     font-family: 'Arial', sans-serif;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
 }

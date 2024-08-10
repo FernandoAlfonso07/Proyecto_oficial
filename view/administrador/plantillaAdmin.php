@@ -127,6 +127,13 @@ include ("../../view/nombreSeccionH.php");
         ?>
     </div>
 
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 WorldFit. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
     <script src="https://kit.fontawesome.com/296731592d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -139,6 +146,7 @@ include ("../../view/nombreSeccionH.php");
             $("#wrapper").toggleClass("toggled");
         });
     </script>
+
 </body>
 
 </html>

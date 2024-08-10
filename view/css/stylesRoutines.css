@@ -101,23 +101,22 @@ a {
     color: black;
 }
 
-/* ------------------------------------------------------ */
 
 .text-center.alert {
     text-align: center;
-    color: #000; /* Color de texto inicial */
-    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease; /* Añade una transición suave */
-    cursor: pointer; /* Cambia el cursor a un puntero al pasar sobre el texto */
+    color: #000; 
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease; 
+    cursor: pointer; 
 }
 
 .text-center.alert:hover {
-    color: #00A1FF; /* Cambia el color al pasar el cursor */
-    transform: scale(1.1) rotate(3deg); /* Aumenta ligeramente el tamaño y rota */
-    text-shadow: 2px 2px 5px rgba(0, 161, 255, 0.5); /* Añade sombra al texto */
+    color: #00A1FF; 
+    transform: scale(1.1) rotate(3deg); 
+    text-shadow: 2px 2px 5px rgba(0, 161, 255, 0.5); 
 }
 
 .text-center.alert:hover i {
-    animation: bounce 0.5s; /* Añade una animación a los iconos al pasar el cursor */
+    animation: bounce 0.5s;
 }
 
 @keyframes bounce {
