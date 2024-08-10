@@ -47,7 +47,12 @@ class Administrador extends conexionBD
             $r .= "</td>"; // Muestra la rutina asociada
 
             // Muestra el video gráfico
-            $r .= "<td><video src='" . htmlspecialchars($fila[10]) . "' class='img img-fluid' width='100px' controls></video></td>";
+            $r .= "<td>
+                    <iframe src='https://www.youtube.com/embed/" . htmlspecialchars($fila[10]) . "' 
+                            class='img img-fluid' width='100px' height='auto' frameborder='0' 
+                            allowfullscreen>
+                    </iframe>
+                </td>";
 
             $r .= "<td> <a href='../../controller/ejercicioEliminado.php?id_ejercicio=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>";
             $r .= "<td> <a href='../administrador/controladorVadmin.php?exerc=" . $fila[0] . "&seccionAd=updateExercises'><i class='fa-solid fa-pen-to-square icono edit'></i></a>";

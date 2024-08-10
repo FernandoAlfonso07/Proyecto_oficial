@@ -11,7 +11,7 @@ include_once ("../../model/administrador.php");
 
 <div class="container-fluid tabla">
     <?php if (Administrador::showListGyms(1) == '') { ?>
-        <a href="controladorVadmin.php?seccionAd=addEjercicios">
+        <a href="controladorVadmin.php?seccionAd=addGym">
             <h1 class="text-center alert"> NO HAY GIMNASIOS REGISTRADOS
                 <i class="fa-solid fa-square-plus ml-5"></i>
             </h1>

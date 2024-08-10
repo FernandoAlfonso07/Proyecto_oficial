@@ -31,7 +31,7 @@ CREATE TABLE `calendario_rutinario` (
   PRIMARY KEY (`id_calendario`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `calendario_rutinario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `calendario_rutinario` (
 
 LOCK TABLES `calendario_rutinario` WRITE;
 /*!40000 ALTER TABLE `calendario_rutinario` DISABLE KEYS */;
+INSERT INTO `calendario_rutinario` VALUES (1,2,'wwww','www','2024-08-10 17:30:42'),(2,3,'prueba','wwwww','2024-08-10 18:42:49');
 /*!40000 ALTER TABLE `calendario_rutinario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +132,7 @@ CREATE TABLE `ejercicio_rutinas` (
   KEY `id_ejercicio` (`id_ejercicio`),
   CONSTRAINT `ejercicio_rutinas_ibfk_1` FOREIGN KEY (`id_rutina`) REFERENCES `rutinas` (`id_rutina`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `ejercicio_rutinas_ibfk_2` FOREIGN KEY (`id_ejercicio`) REFERENCES `ejercicios` (`id_ejercicio`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,6 +141,7 @@ CREATE TABLE `ejercicio_rutinas` (
 
 LOCK TABLES `ejercicio_rutinas` WRITE;
 /*!40000 ALTER TABLE `ejercicio_rutinas` DISABLE KEYS */;
+INSERT INTO `ejercicio_rutinas` VALUES (1,1,1),(2,1,2);
 /*!40000 ALTER TABLE `ejercicio_rutinas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +164,7 @@ CREATE TABLE `ejercicios` (
   `direccion_media` varchar(200) DEFAULT NULL,
   `dateLastUpdated` datetime DEFAULT NULL,
   PRIMARY KEY (`id_ejercicio`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,6 +173,7 @@ CREATE TABLE `ejercicios` (
 
 LOCK TABLES `ejercicios` WRITE;
 /*!40000 ALTER TABLE `ejercicios` DISABLE KEYS */;
+INSERT INTO `ejercicios` VALUES (1,'ooooooo2','ooooo2','oooo2','333','33',3,'2024-08-10 17:46:12','qC0yZwpF9Ew','2024-08-10 18:30:06'),(2,'Ejercicio 24','www','wwww','22','22',10,'2024-08-10 18:35:19','j99intoPKGE',NULL);
 /*!40000 ALTER TABLE `ejercicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,6 +229,7 @@ CREATE TABLE `infogyms` (
   `direction` varchar(200) DEFAULT NULL,
   `id_pay` int(11) DEFAULT NULL,
   `id_gerente` int(11) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_categoria` (`id_categoria`),
   KEY `id_gerente` (`id_gerente`),
@@ -243,6 +247,36 @@ CREATE TABLE `infogyms` (
 LOCK TABLES `infogyms` WRITE;
 /*!40000 ALTER TABLE `infogyms` DISABLE KEYS */;
 /*!40000 ALTER TABLE `infogyms` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `interactions`
+--
+
+DROP TABLE IF EXISTS `interactions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `interactions` (
+  `id_interaction` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(20) DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_rutina` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_interaction`),
+  KEY `id_usuario` (`id_usuario`),
+  KEY `id_rutina` (`id_rutina`),
+  CONSTRAINT `interactions_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `interactions_ibfk_2` FOREIGN KEY (`id_rutina`) REFERENCES `rutinas` (`id_rutina`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `interactions`
+--
+
+LOCK TABLES `interactions` WRITE;
+/*!40000 ALTER TABLE `interactions` DISABLE KEYS */;
+INSERT INTO `interactions` VALUES (1,'like',3,1);
+/*!40000 ALTER TABLE `interactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -288,7 +322,7 @@ CREATE TABLE `relacion_calendario_rutinas` (
   CONSTRAINT `relacion_calendario_rutinas_ibfk_1` FOREIGN KEY (`id_calendario`) REFERENCES `calendario_rutinario` (`id_calendario`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `relacion_calendario_rutinas_ibfk_2` FOREIGN KEY (`id_dia`) REFERENCES `dias_semana` (`id_dia`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `relacion_calendario_rutinas_ibfk_3` FOREIGN KEY (`id_rutina`) REFERENCES `rutinas` (`id_rutina`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -297,6 +331,7 @@ CREATE TABLE `relacion_calendario_rutinas` (
 
 LOCK TABLES `relacion_calendario_rutinas` WRITE;
 /*!40000 ALTER TABLE `relacion_calendario_rutinas` DISABLE KEYS */;
+INSERT INTO `relacion_calendario_rutinas` VALUES (1,1,1,1),(2,1,2,1),(3,1,3,1),(4,1,4,1),(5,1,5,1),(6,1,6,1),(7,2,1,1),(8,2,2,1),(9,2,3,1),(10,2,4,1),(11,2,5,1),(12,2,6,1);
 /*!40000 ALTER TABLE `relacion_calendario_rutinas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,7 +404,7 @@ CREATE TABLE `rutinas` (
   PRIMARY KEY (`id_rutina`),
   KEY `id_categoria` (`id_categoria`),
   CONSTRAINT `rutinas_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias_rutinas` (`id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -378,6 +413,7 @@ CREATE TABLE `rutinas` (
 
 LOCK TABLES `rutinas` WRITE;
 /*!40000 ALTER TABLE `rutinas` DISABLE KEYS */;
+INSERT INTO `rutinas` VALUES (1,'www','www','www','2024-08-10 18:30:39',1);
 /*!40000 ALTER TABLE `rutinas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -396,7 +432,7 @@ CREATE TABLE `user_registration_indexes` (
   PRIMARY KEY (`id_registro`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `user_registration_indexes_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -405,6 +441,7 @@ CREATE TABLE `user_registration_indexes` (
 
 LOCK TABLES `user_registration_indexes` WRITE;
 /*!40000 ALTER TABLE `user_registration_indexes` DISABLE KEYS */;
+INSERT INTO `user_registration_indexes` VALUES (1,2,'2024-08-10 17:30:04',6),(2,3,'2024-08-10 18:42:42',16);
 /*!40000 ALTER TABLE `user_registration_indexes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -434,7 +471,7 @@ CREATE TABLE `usuarios` (
   KEY `id_rol` (`id_rol`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_genero`) REFERENCES `genero` (`id_genero`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -443,7 +480,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Usuario','Administrador','admin@gmail.com','$2y$10$oVz5nr6qgn6yQ2aJ1bHGC.3GbjfSJ6hgtigA/d4brWmrcncLXj3Ru',46,1.7,1,'3115963326',NULL,'2024-08-07 11:18:33',1,'../view/user img/default_img.PNG');
+INSERT INTO `usuarios` VALUES (1,'Usuario','Administrador','admin@gmail.com','$2y$10$oVz5nr6qgn6yQ2aJ1bHGC.3GbjfSJ6hgtigA/d4brWmrcncLXj3Ru',46,1.7,1,'3115963326',NULL,'2024-08-07 11:18:33',1,'../view/user img/default_img.PNG'),(2,'www','www','correo@gmail.com','$2y$10$0VY9wpG/0pZKruS9pHCXRODVz8T5LDF9fwBIQR4OYgFl2UEyP2SV.',12,1.4,1,'2222',NULL,'2024-08-10 17:30:04',2,'../view/user img/default_img.PNG'),(3,'hola ','mundo','alfonso07amaya@gmail.com','$2y$10$IsOwKGvbA7FnF0BwQwoIHuei1DNzaTYT0JSU6Eo6HcyJMtkJU1jZm',46,1.7,1,'3115963326',NULL,'2024-08-10 18:42:42',2,'../view/user img/default_img.PNG');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -456,4 +493,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-07 11:19:31
+-- Dump completed on 2024-08-10 18:50:59

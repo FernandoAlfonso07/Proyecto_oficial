@@ -77,7 +77,7 @@ END;
 -- Procedimiento almacenado `Register_gym`
 DROP PROCEDURE IF EXISTS `Register_gym`;
 
-DELIMITER / / CREATE PROCEDURE `Register_gym` (
+CREATE PROCEDURE `Register_gym` (
     IN name VARCHAR(100),
     IN id_categoria INT,
     IN description VARCHAR(100),

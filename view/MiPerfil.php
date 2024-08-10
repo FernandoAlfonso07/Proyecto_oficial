@@ -127,8 +127,8 @@ include_once ("../model/usuario.php");
                     </div>
                 </div>
                 <div class="col-md-12 text-center">
-                    <button type="button" class="btn btn-warning compartir">Compartir
-                        <i class="fa-solid fa-share-nodes icono"></i></button>
+                    <!-- <button type="button" class="btn btn-warning compartir">Compartir
+                                            <i class="fa-solid fa-share-nodes icono"></i></button> -->
                     <a href="../controller/eliminarCuenta.php?iduser=<?php echo $_SESSION['id'] ?>">
                         <button type="button" class="btn btn-danger compartir">Eliminar Cuenta
                             <i class="fa-solid fa-trash-can icono"></i></button>
@@ -143,3 +143,8 @@ include_once ("../model/usuario.php");
         </div>
     </div>
 </div>
+<footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 WorldFit. Todos los derechos reservados.</p>
+        </div>
+    </footer>

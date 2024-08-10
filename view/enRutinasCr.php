@@ -48,8 +48,10 @@ $id_routine = calendarioRutinario::getIdRoutine($id_calendar, $dia_semana);
                 </h1>
             </div>
             <div class="col-md-12 text-center imagenA">
-                <img src="<?php echo calendarioRutinario::mostrarCalendario(1, 1, $dia_semana, $p, $id_calendar) ?> "
-                    width="100%" name="imagenEjercico" alt="imagen ejercicios">
+                <iframe
+                    src="https://www.youtube.com/embed/<?php echo calendarioRutinario::mostrarCalendario(1, 1, $dia_semana, $p, $id_calendar) ?>"
+                    width="100%" height="auto" frameborder="0" allowfullscreen>
+                </iframe>
             </div>
             <div class="col-md-12 colorear text-center nombreEjercicio redondear">
                 <h1>
@@ -91,7 +93,7 @@ $id_routine = calendarioRutinario::getIdRoutine($id_calendar, $dia_semana);
                     </button>
                 </a>
                 <?php
-                echo calendarioRutinario::optionPage($p, $dia_semana, $id_calendar)
+                echo calendarioRutinario::optionPage($p, $dia_semana, $id_calendar, $usu)
                     ?>
                 <a href="controlador.php?seccion=misCalendarios">
                     <button id="salirButton" class="btn btn-danger">Salir <i

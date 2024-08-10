@@ -162,7 +162,7 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
      * @param int $id_calendar El ID del calendario para generar las opciones de página.
      * @return string Una cadena de enlaces HTML con botones para la paginación.
      */
-    public static function optionPage($p, $day, $id_calendar)
+    public static function optionPage($p, $day, $id_calendar, $id_usu)
     {
         // Variable para almacenar el HTML generado
         $r = '';
@@ -178,13 +178,13 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
             if ($p2 == $i) {
 
                 // Si coincide, añade un enlace con un botón marcado como activo
-                $r .= '<a href="../view/enRutinasCr.php?calendar=' . $id_calendar . '&p=' . $i . '"> ';
+                $r .= '<a href="../view/enRutinasCr.php?usu=' . $id_usu . '&calendar=' . $id_calendar . '&p=' . $i . '"> ';
                 $r .= '<button class="btn btn-primary btn-gradient botones activo">' . $i . '</button> </a>';
 
             } else {
 
                 // Si no coincide, añade un enlace con un botón normal
-                $r .= '<a href="../view/enRutinasCr.php?calendar=' . $id_calendar . '&p=' . $i . '"> ';
+                $r .= '<a href="../view/enRutinasCr.php?usu=' . $id_usu . '&calendar=' . $id_calendar . '&p=' . $i . '"> ';
                 $r .= '<button class="btn bg-primary-subtle btn-gradient botones">' . $i . '</button> </a>';
 
             }

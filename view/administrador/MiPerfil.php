@@ -125,8 +125,6 @@ include_once ("../../model/usuario.php");
                     </div>
                 </div>
                 <div class="col-md-12 text-center">
-                    <button type="button" class="btn btn-warning compartir">Compartir
-                        <i class="fa-solid fa-share-nodes icono"></i></button>
                     <a href="../controller/eliminarCuenta.php?iduser=<?php echo $_SESSION['id_admin'] ?>">
                         <button type="button" class="btn btn-danger compartir">Eliminar Cuenta
                             <i class="fa-solid fa-trash-can icono"></i></button>

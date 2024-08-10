@@ -30,11 +30,18 @@ if (isset($_GET['exerc']) && !empty($_GET['exerc'])) {
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <video id="videoExample"
-                    src="<?php echo exercise::getInformationExercises(8, $_SESSION['exercise']); ?>"
+                <!--
+            <video id="videoExample"
+                    src="<?php // echo exercise::getInformationExercises(8, $_SESSION['exercise']); ?>"
                     class="img-fluid img_exercise" width="95%" controls>
                     Tu navegador no soporta el elemento de video.
-                </video>
+                </video>-->
+                
+                <iframe id="videoExample"
+                    src="https://www.youtube.com/embed/<?php echo exercise::getInformationExercises(8, $_SESSION['exercise']); ?>"
+                    class="img-fluid img_exercise" width="95%" height="80%" frameborder="0" allowfullscreen>
+                </iframe>
+
                 <div class="input-group mb-3 subir"> </div>
                 <input type="hidden" value="<?php echo exercise::getInformationExercises(0, $_SESSION['exercise']); ?>"
                     name="exerc">
@@ -81,7 +88,8 @@ if (isset($_GET['exerc']) && !empty($_GET['exerc'])) {
                             </select>
                             <div id="inputContainer" class="mt-3">
                                 <input type="text" name="archivo_url" class="form-control" placeholder="Agrega la URL"
-                                    id="inputText" style="display: none;">
+                                    id="inputText" style="display: none;"
+                                    value="<?php echo exercise::getInformationExercises(8, $_SESSION['exercise']); ?>">
                                 <input type="file" name="archivo" class="form-control" id="inputFile"
                                     style="display: none;">
                             </div>

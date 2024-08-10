@@ -24,42 +24,13 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
     $newSets = validate::sanitize($_POST['newSets']); // Sanitización de las series
     $newbreakTime = validate::sanitize($_POST['newBreakTime']); // Sanitización del tiempo de descanso
 
-    // Ruta de la imagen actual
     $currentImagePath = exercise::getInformationExercises(8, $id);
 
-    // Procesa la carga de la imagen (si se ha subido una nueva)
-    if (!empty($_FILES['imageExercise']['name'])) {
-        // Valida y procesa la nueva imagen
-        $pathvideo = validate::media(
-            'imageExercise',
-            '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=updateExercises',
-            '../view/media Exercises/'
-        );
-
-        // Elimina la imagen actual si se ha subido una nueva
-        if (isset($currentImagePath) && file_exists($currentImagePath)) {
-            unlink($currentImagePath); // Borra la imagen actual
-        }
-    } else {
-        // Usa la imagen actual si no se ha subido una nueva
-        $pathvideo = isset($currentImagePath) ? $currentImagePath : '';
-    }
-
-    // Procesa la carga de archivos
-    if (isset($_FILES['archivo']) && !empty($_FILES['archivo']['name'])) {
-        // Maneja la carga de archivos
-        $pathFile = validate::media(
-            'archivo',
-            '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=addEjercicios',
-            '../view/media Exercises/'
-        );
-    } else {
-        // Sanitiza la URL proporcionada
-        $pathFile = isset($_POST['archivo_url']) ? validate::sanitize($_POST['archivo_url']) : '';
-    }
+    // Sanitiza la URL proporcionada en el campo 'archivo_url' desde el formulario
+    $pathFile = isset($_POST['archivo_url']) ? validate::sanitize($_POST['archivo_url']) : $currentImagePath;
 
     // Asigna la ruta del archivo o imagen
-    $direccion_media = $pathFile ? $pathFile : $pathvideo;
+    $direccion_media = $pathFile;
 
 
 
@@ -85,7 +56,7 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
     }
 
     // Llama al método para actualizar el ejercicio y verifica el resultado
-    $result = Administrador::updateExercises($id, $newName, $newInstructions, $newEquipment, $newSets, $newRepetions, $newbreakTime, $pathvideo);
+    $result = Administrador::updateExercises($id, $newName, $newInstructions, $newEquipment, $newSets, $newRepetions, $newbreakTime, $direccion_media);
 
     if ($result > 1) {
         // Muestra un mensaje de error si no fue posible registrar el ejercicio

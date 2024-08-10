@@ -132,6 +132,11 @@
         </div>
     </div>
 </form>
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 WorldFit. Todos los derechos reservados.</p>
+    </div>
+</footer>
 
 <script src="js/event.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
