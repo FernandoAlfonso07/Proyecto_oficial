@@ -83,7 +83,8 @@
                             'invalidPhone' => "El <strong>telefono</strong> ingresado no es <strong>válido</strong>.",
                             'notNumberP' => "Ingresa datos validos para tu <strong>Peso</strong>.",
                             'notNumberA' => "Ingresa datos validos para tu <strong>Altura</strong>.",
-                            'emptyFields' => "Debes completar todos los <strong>campos</strong>."
+                            'emptyFields' => "Debes completar todos los <strong>campos</strong>.",
+                            'invalidPassword' => "La contraseña es muy <strong>Corta</strong> debe de ser de mas 8 caracteres."
                         ];
 
                         $error = $_GET['error'];

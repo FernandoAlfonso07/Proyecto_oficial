@@ -192,7 +192,6 @@ class usuarios extends conexionBD
 
         $sql = "select t1.nombre, t1.apellido, t1.correo, t1.password, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero, t1.imgPerfil, t3.rol ";
         $sql .= "FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero JOIN roles t3 ON t1.id_rol = t3.id_rol WHERE id_usuario = $idUsuario";
-
         $resultado = $conexion->query($sql); // Ejecuta la consulta SQL
 
         $r = ''; // Inicializa la variable $r para almacenar el resultado
@@ -350,11 +349,10 @@ class usuarios extends conexionBD
         $sql .= "pr = $pr, ";
         $sql .= "id_genero = $sex ";
         if (isset($rol)) {
-            $sql .= "id_rol = '$rol'";
+            $sql .= ", id_rol = '$rol'";
         }
-        $sql .= "WHERE id_usuario = '$id' ";
-
-        echo 'gola' . $sql;
+        $sql .= " WHERE id_usuario = '$id' ";
+        echo $sql;
         $conexion->query($sql); // Ejecuta la consulta SQL para actualizar los datos del usuario
 
         $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de actualización

@@ -1,6 +1,6 @@
 <?php
 include_once ("../model/usuario.php");
-include_once ("../../functions/alerts.php");
+include_once ("../functions/alerts.php");
 if (isset($_GET['success'])) {
     if ($_GET['success'] == 'exito') {
         echo Alerts::ok(1, 'Datos Actualizados', 'MiPerfil');
@@ -149,8 +149,3 @@ if (isset($_GET['success'])) {
         </div>
     </div>
 </div>
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2024 WorldFit. Todos los derechos reservados.</p>
-    </div>
-</footer>

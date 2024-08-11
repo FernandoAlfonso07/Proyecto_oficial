@@ -42,6 +42,12 @@ if (!$atributos['success']) {
 $correo = validate::sanitize($_POST['correo']);
 $password = validate::sanitize($_POST['password']);
 
+// Validación del correo electrónico
+if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+    header('Location: ../view/inicioSesion.php?error=invalidEmail');
+    exit();
+}
+
 // Obtiene el hash de la contraseña almacenada en la base de datos para el correo proporcionado
 $storedPasswordHash = usuarios::getPasswordhash($correo);
 
@@ -54,7 +60,7 @@ if ($storedPasswordHash && password_verify($password, $storedPasswordHash)) {
     // Redirige a la página de inicio de sesión con un mensaje de error si no hay coincidencias
     if ($resultado < 1) {
         // Redirige si no hay coincidencias de correo o contraseña
-        header('location: ../view/inicioSesion.php?error=error1');
+        header('location: ../view/inicioSesion.php?error=invalidCredentials');
         exit();
     }
 

@@ -1,4 +1,5 @@
 <?php
+include_once ("../functions/alerts.php");
 if (!isset($_SESSION))
     session_start();
 
@@ -16,11 +17,6 @@ if (!isset($_SESSION['intento'])) {
     }
 }
 
-if (isset($_GET['error'])) {
-    echo '<script>window.onload = function () { error(); };</script>';
-
-}
-
 ?>
 
 <!doctype html>
@@ -35,6 +31,7 @@ if (isset($_GET['error'])) {
     <link rel="stylesheet" href="css/estilos_inicio_sesion.css">
     <link rel="icon" href="./img/logosinfondo.png">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -92,6 +89,25 @@ if (isset($_GET['error'])) {
                         <a href="password/change_password.php">Olvide mi contraseña</a> <br> <br>
                         ¿No tienes una cuenta?, <a href="seccion-registro.php">¡Registrate ahora!</a>
                     </h4>
+
+                    <?php
+                    if (isset($_GET['error'])) {
+                        $errorMessages = [
+                            'invalidEmail' => "El correo ingresado no es <strong>válido</strong>.",
+                            'invalidCredentials' => "Credenciales <strong>Incorrectas</strong>.",
+                            'emptyFields' => "Debes completar <strong>todos</strong> los campos."
+                        ];
+
+                        $error = $_GET['error'];
+
+                        if (isset($errorMessages[$error])) {
+                            echo "<div class='alert alert-danger' role='alert'>
+                                    {$errorMessages[$error]}
+                                </div>";
+                        }
+                    }
+                    ?>
+
                 </div>
             </div>
         </form>

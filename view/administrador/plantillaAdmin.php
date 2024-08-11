@@ -51,7 +51,8 @@ include ("../../view/nombreSeccionH.php");
                                     <li><a class="dropdown-item enlace_secundario"
                                             href="controladorVadmin.php?seccionAd=MiPerfil"><i
                                                 class="fa-solid fa-cube icono"></i> Información</a></li>
-                                    <li><a class="dropdown-item enlace_secundario" href="../../controller/logout.php">
+                                    <li><a class="dropdown-item enlace_secundario"
+                                            href="../../controller/logout.php?type=admin">
                                             <button class="btn btn-outline-danger boton_cerrar"><i
                                                     class="fa-solid fa-arrow-right-from-bracket icono"></i>Cerrar
                                                 sesión</button>

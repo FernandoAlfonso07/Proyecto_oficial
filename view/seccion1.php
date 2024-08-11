@@ -15,7 +15,7 @@
     <div class="container opciones-dos">
         <div class="row">
             <div class="col-md-6 text-center opciones-dos-dos">
-                <a href="#">
+                <a href="controlador.php?seccion=showGyms">
                     <div class="card text-bg-dark position-relative contenedor-opcion-dos">
                         <img src="img/imagen_gimnasioss.png" class="card-img" alt="...">
                         <div

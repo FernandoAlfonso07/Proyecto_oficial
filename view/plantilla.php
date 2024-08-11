@@ -52,7 +52,8 @@ include_once ("../model/usuario.php");
                                     <li><a class="dropdown-item enlace_secundario"
                                             href="controlador.php?seccion=MiPerfil">Información</a>
                                     </li>
-                                    <li><a class="dropdown-item enlace_secundario" href="../controller/logout.php">
+                                    <li><a class="dropdown-item enlace_secundario"
+                                            href="../controller/logout.php?type=user">
                                             <button class="btn btn-outline-danger boton_cerrar"><i
                                                     class="fa-solid fa-arrow-right-from-bracket icono_usuario"></i>Cerrar
                                                 sesión</button>

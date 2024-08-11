@@ -42,6 +42,13 @@ if (validate::validateNotEmptyInputs($inputs)) {
 
     $password = validate::sanitize($_POST['password']); // Sanitización de la contraseña;
 
+    $password = strlen($password);
+
+    if ($password < 8) {
+        header("Location: ../view/seccion-registro.php?error=invalidPassword");
+        exit();
+    }
+
     $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
 
     $pesoActual = validate::sanitize($_POST['pesoA']); // Sanitización de la contraseña;

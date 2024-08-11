@@ -2,29 +2,23 @@
 include ("../../model/usuario.php");
 include_once ("../../functions/alerts.php");
 if (isset($_GET['error'])) {
-    if ($_GET['error'] == 'emptyFields') {
-        echo Alerts::error(2, 'Datos Actualizados', 'updateDatas');
-    }
+    $errorMessages = [
+        'emptyFields' => 'Datos Actualizados',
+        'incorrectFormat' => 'Formato incorrecto',
+        'notNumber' => 'Los campos deben ser tipo número',
+        'invalidPhone' => 'Número de teléfono inválido',
+        'invalidEmail' => 'El correo ingresado no es válido'
+    ];
 
-    if ($_GET['error'] == 'incorrectFormat') {
-        echo Alerts::error(2, 'Formato incorrecto', 'updateDatas');
-    }
-
-    if ($_GET['error'] == 'notNumber') {
-        echo Alerts::error(2, 'Los campos deben ser tipo numero', 'updateDatas');
-    }
-
-    if ($_GET['error'] == 'invalidPhone') {
-        echo Alerts::error(2, 'Numero telefono invalido', 'updateDatas');
+    $error = $_GET['error'];
+    if (isset($errorMessages[$error])) {
+        echo Alerts::error(2, $errorMessages[$error], 'updateDatas');
     }
 }
-
-
-
 ?>
 <link rel="stylesheet" href="../css/actualizarDatos.css">
 <section>
-    <form action="../../controller/actualizarDataUser.php?typeData=2" method="POST" enctype="multipart/form-data">
+    <form action="../../controller/actualizarDataUser.php?type=admin" method="POST" enctype="multipart/form-data">
         <div class="container cuerpo">
             <div class="row">
                 <div class="col-md-6 text-center">
@@ -47,7 +41,7 @@ if (isset($_GET['error'])) {
                                 <Label>Nombres: </Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="nombre" value="<?php
+                                <input type="text" name="name" value="<?php
                                 echo usuarios::getPerfil(0, $_SESSION['id_admin']);
                                 ?>" class="form-control">
                             </div>
@@ -57,7 +51,7 @@ if (isset($_GET['error'])) {
                                 <Label>Apellidos</Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="apellido" value="<?php
+                                <input type="text" name="lastName" value="<?php
                                 echo usuarios::getPerfil(1, $_SESSION['id_admin']);
                                 ?>" class="form-control">
                             </div>
@@ -67,7 +61,7 @@ if (isset($_GET['error'])) {
                                 <Label>Altura actual:</Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="altura" value="<?php
+                                <input type="text" name="height" value="<?php
                                 echo usuarios::getPerfil(5, $_SESSION['id_admin']);
                                 ?>" class="form-control">
                             </div>
@@ -77,7 +71,7 @@ if (isset($_GET['error'])) {
                                 <Label>Peso Actual:</Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="peso" value="<?php
+                                <input type="text" name="weight" value="<?php
                                 echo usuarios::getPerfil(4, $_SESSION['id_admin']);
                                 ?>
                             " class="form-control">
@@ -110,7 +104,7 @@ if (isset($_GET['error'])) {
                                 <?php
                                 $role = usuarios::getPerfil(10, $_SESSION['id_admin']);
                                 ?>
-                                <select class="form-select" name="role" aria-label="Default select example">
+                                <select class="form-select" name="roleUser" aria-label="Default select example">
                                     <option selected disabled>Seleciona... </option>
                                     <option value="0" <?php echo ($role == 'Invitado') ? 'selected' : ''; ?>>Invitado
                                     </option>
@@ -134,11 +128,8 @@ if (isset($_GET['error'])) {
                                 </label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="correo" value="<?php
-
-                                echo usuarios::getPerfil(2, $_SESSION['id_admin']);
-                                ?>
-                            " class="form-control">
+                                <input type="email" name="mail" value="<?php
+                                echo usuarios::getPerfil(2, $_SESSION['id_admin']); ?>" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -148,7 +139,7 @@ if (isset($_GET['error'])) {
                                 </label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="telefono" value="<?php
+                                <input type="text" name="phone" value="<?php
                                 echo usuarios::getPerfil(7, $_SESSION['id_admin']);
                                 ?>" class="form-control">
                             </div>
