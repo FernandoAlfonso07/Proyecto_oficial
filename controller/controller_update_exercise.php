@@ -65,7 +65,7 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
 
     } else {
         // Si la actualización es exitosa, redirige a la página de ver ejercicios
-        header('location: ../view/administrador/controladorVadmin.php?seccionAd=verEjercicios');
+        header('location: ../view/administrador/controladorVadmin.php?success=updated&seccionAd=verEjercicios');
         exit(); // Finaliza la ejecución del script para asegurar que no se ejecute código adicional
 
     }

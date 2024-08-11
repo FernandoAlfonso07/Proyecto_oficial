@@ -22,3 +22,17 @@
 .cuerpo {
     margin-top: 120px;
 }
+
+.grid {
+    min-height: 100dvh;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+}
+
+.footer {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}

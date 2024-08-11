@@ -36,11 +36,11 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
     } else {
         // Si la respuesta es 1 o menor, redirige al controlador del administrador en la sección especificada.
         if (!isset($_GET['dRoutine'])) {
-            header('location: ../view/administrador/controladorVadmin.php?seccionAd=asociarEjerciciosRutinas');
+            header('location: ../view/administrador/controladorVadmin.php?success=add&seccionAd=asociarEjerciciosRutinas');
             exit();
 
         } else {
-            header('location: ../view/administrador/controladorVadmin.php?rtu=' . $id_routine . '&seccionAd=asociarEjerciciosRutinas');
+            header('location: ../view/administrador/controladorVadmin.php?success=updated&rtu=' . $id_routine . '&seccionAd=asociarEjerciciosRutinas');
             exit();
         }
     }

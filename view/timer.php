@@ -23,7 +23,7 @@ $usu = isset($_GET['usu']) ? intval($_GET['usu']) : 0;
     </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="icon" href="./img/logosinfondo.png">
+    <link rel="icon" href="img/logosinfondo.png">
 
     <link rel="stylesheet" href="css/timer/styles_timer.css">
 
@@ -31,13 +31,14 @@ $usu = isset($_GET['usu']) ? intval($_GET['usu']) : 0;
 </head>
 
 <body>
-    <div class="content">
-        <div class="message">- Descansa un rato 😪 -</div>
-        <div id="timer" class="timer" data-seconds="<?php echo $seconds; ?>">
-            <h1><?php echo $seconds; ?>s</h1>
+    <section>
+        <div class="content">
+            <div class="message">- Descansa un rato 😪 -</div>
+            <div id="timer" class="timer" data-seconds="<?php echo $seconds; ?>">
+                <h1><?php echo $seconds; ?>s</h1>
+            </div>
         </div>
-    </div>
-
+    </section>
     <script>
         const calendarID = <?php echo json_encode($id); ?>;
         const page = <?php echo json_encode($page); ?>;

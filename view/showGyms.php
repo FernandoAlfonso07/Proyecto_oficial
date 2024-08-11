@@ -3,14 +3,11 @@
 include_once ("../model/gyms.php");
 ?>
 <link rel="stylesheet" href="css/showGyms.css">
-<div class="cuerpo-show-gyms">
-    <?php
-    // Llamar al método showInfoGyms de la clase Gyms con el parámetro 1 para mostrar la información de todos los gimnasios
-    echo Gyms::showInfoGyms(1)
-        ?>
-</div>
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2024 WorldFit. Todos los derechos reservados.</p>
+<section>
+    <div class="cuerpo-show-gyms">
+        <?php
+        // Llamar al método showInfoGyms de la clase Gyms con el parámetro 1 para mostrar la información de todos los gimnasios
+        echo Gyms::showInfoGyms(1)
+            ?>
     </div>
-</footer>
+</section>

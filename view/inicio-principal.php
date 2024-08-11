@@ -12,9 +12,6 @@
 <link rel="stylesheet" href="css/style.css">
 
 <body>
-
-
-
     <header>
         <div class="contenedor_encabezado">
             <div class="menu">
@@ -51,205 +48,215 @@
     </header>
 
 
-    <div id="inicio">
-        <div class="contenedor_imagen_i1">
-
-
-            <img src="img/imagen_inicio.PNG" class="masthed" alt="" width="100%">
-
-
-            <div class="capa_opacidad">
-                <h1>GUIA DE RUTINAS Y
-                    <br>SEGUIMIENTO
-                </h1>
-                <div class="boton_registrar">
-                    <h3><br>
-                        <button onclick="alertica()" type="button" class="btn btn-primary">
-                            <span>
-                                <img src="img/icono_pesa.png" alt="" width="37px">
-                            </span>
-                            <a href="#">
-                                ¡INSCRIBETE AHORA!
-                            </a>
-                        </button>
-                    </h3>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-
-
-
-    <!--
-       
-    -->
-
-
-    <div class="contenedor_total_2da_parte">
-        <div class="container">
-            <div class="contenedor_segunda_parte">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="contenido">
-                            <h2 class="titulo">
-                                - ¡Transforma tu Vida con el Poder del Gimnasio! -
-                            </h2>
-                            <p>
-                                El gimnasio es una excelente opción para aquellos que desean mejorar su salud y físico.
-                                Esta
-                                práctica no
-                                solo fortalece los músculos, sino que también mejora la resistencia y la flexibilidad.
-                                Además,
-                                el
-                                ejercicio regular en el gimnasio ayuda a reducir el riesgo de enfermedades cardíacas,
-                                diabetes y
-                                obesidad. <br>
-                                Además de los beneficios físicos, el gimnasio también puede mejorar la salud mental. El
-                                ejercicio
-                                libera
-                                endorfinas, que son conocidas como las hormonas de la felicidad, lo que puede ayudar a
-                                reducir
-                                el
-                                estrés, la ansiedad y la depresión. <br>
-                                En resumen, el gimnasio es una gran alternativa para lograr una buena salud y un buen
-                                físico, ya
-                                que
-                                ofrece una variedad de beneficios tanto físicos como mentales.
-                            </p>
+    <main>
+        <section>
+            <div id="inicio">
+                <div class="contenedor_imagen_i1">
+                    <img src="img/imagen_inicio.PNG" class="masthed" alt="" width="100%">
+                    <div class="capa_opacidad">
+                        <h1>GUIA DE RUTINAS Y
+                            <br>SEGUIMIENTO
+                        </h1>
+                        <div class="boton_registrar">
+                            <h3><br>
+                                <button onclick="alertica()" type="button" class="btn btn-primary">
+                                    <span>
+                                        <img src="img/icono_pesa.png" alt="" width="37px">
+                                    </span>
+                                    <a href="#">
+                                        ¡INSCRIBETE AHORA!
+                                    </a>
+                                </button>
+                            </h3>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="col-md-4">
-                        <div class="contenido carousel-imagenes">
-                            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active c-item">
-                                        <img src="img/imagen_inicio_dos.PNG" class="d-block w-100 c-img"
-                                            alt="...">
-                                    </div>
-                                    <div class="carousel-item c-item">
-                                        <img src="img/imagen_inicio_tres.PNG" class="d-block w-100 c-img"
-                                            alt="...">
-                                    </div>
-                                    <div class="carousel-item c-item">
-                                        <img src="img/imagen_inicio_cuatro.PNG" class="d-block w-100 c-img"
-                                            alt="...">
+
+        <section>
+            <div class="contenedor_total_2da_parte">
+                <div class="container">
+                    <div class="contenedor_segunda_parte">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="contenido">
+                                    <h2 class="titulo">
+                                        - ¡Transforma tu Vida con el Poder del Gimnasio! -
+                                    </h2>
+                                    <p>
+                                        El gimnasio es una excelente opción para aquellos que desean mejorar su salud y
+                                        físico.
+                                        Esta
+                                        práctica no
+                                        solo fortalece los músculos, sino que también mejora la resistencia y la
+                                        flexibilidad.
+                                        Además,
+                                        el
+                                        ejercicio regular en el gimnasio ayuda a reducir el riesgo de enfermedades
+                                        cardíacas,
+                                        diabetes y
+                                        obesidad. <br>
+                                        Además de los beneficios físicos, el gimnasio también puede mejorar la salud
+                                        mental.
+                                        El
+                                        ejercicio
+                                        libera
+                                        endorfinas, que son conocidas como las hormonas de la felicidad, lo que puede
+                                        ayudar
+                                        a
+                                        reducir
+                                        el
+                                        estrés, la ansiedad y la depresión. <br>
+                                        En resumen, el gimnasio es una gran alternativa para lograr una buena salud y un
+                                        buen
+                                        físico, ya
+                                        que
+                                        ofrece una variedad de beneficios tanto físicos como mentales.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="contenido carousel-imagenes">
+                                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active c-item">
+                                                <img src="img/imagen_inicio_dos.PNG" class="d-block w-100 c-img"
+                                                    alt="...">
+                                            </div>
+                                            <div class="carousel-item c-item">
+                                                <img src="img/imagen_inicio_tres.PNG" class="d-block w-100 c-img"
+                                                    alt="...">
+                                            </div>
+                                            <div class="carousel-item c-item">
+                                                <img src="img/imagen_inicio_cuatro.PNG" class="d-block w-100 c-img"
+                                                    alt="...">
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
                                     </div>
                                 </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-
-    <div class="contenedor_parrafo_dos">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="contenido hero">
-                        <h2 class="titulo">
-                            - Descubre tu Mejor Versión con Nuestra Guía Personalizada de Entrenamiento y Nutrición -
-                        </h2>
-                        <p>
-                            Nuestra plataforma ofrece rutinas diarias adaptadas a tu calendario regular, indicándote
-                            qué
-                            días ejercitarás cada parte del cuerpo. Te proporcionaremos las rutinas correspondientes
-                            para
-                            cada día, asegurando un entrenamiento efectivo y completo. <br>
-
-                            Además de las rutinas, nuestro sistema ofrece un seguimiento personalizado para que
-                            puedas
-                            observar incluso los cambios más mínimos en tu cuerpo. Te proporcionaremos pautas sobre
-                            alimentación y recetas que puedes incorporar en tu dieta. También recibirás consejos
-                            profesionales para optimizar tus entrenamientos y mejorar tus resultados. <br>
-
-                            Además, tendrás la posibilidad de inscribirte en gimnasios cercanos a tu ubicación,
-                            brindándote
-                            opciones para entrenar en un ambiente que te resulte conveniente y cómodo. <br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="servicios_section">
-        <div class="contenedor_parte_tres">
-            <img src="img/imagen_ofrecer.png" alt="" class="img-fluid filtro" width="100%">
-            <div class="texto">
-                <h2>
-                    ¡AQUÍ TE <br>
-                    OFRECEMOS!
-                </h2>
-            </div>
-        </div>
-
-        <div class="contenedor_cuatro">
-            <div class="container">
-                <div class="contenedor_parte4">
+        <section>
+            <div class="contenedor_parrafo_dos">
+                <div class="container">
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="contenido hero">
+                                <h2 class="titulo">
+                                    - Descubre tu Mejor Versión con Nuestra Guía Personalizada de Entrenamiento y
+                                    Nutrición
+                                    -
+                                </h2>
+                                <p>
+                                    Nuestra plataforma ofrece rutinas diarias adaptadas a tu calendario regular,
+                                    indicándote
+                                    qué
+                                    días ejercitarás cada parte del cuerpo. Te proporcionaremos las rutinas
+                                    correspondientes
+                                    para
+                                    cada día, asegurando un entrenamiento efectivo y completo. <br>
 
-                        <div class="col-md-4">
-                            <center>
-                                <div class="card" style="width: 18rem;">
-                                    <img src="img/rutinas.png" class="card-img-top imagen_carta" alt="...">
-                                    <div class="card-body titulo_carta">
-                                        <h5 class="card-title">Rutinas</h5>
+                                    Además de las rutinas, nuestro sistema ofrece un seguimiento personalizado para que
+                                    puedas
+                                    observar incluso los cambios más mínimos en tu cuerpo. Te proporcionaremos pautas
+                                    sobre
+                                    alimentación y recetas que puedes incorporar en tu dieta. También recibirás consejos
+                                    profesionales para optimizar tus entrenamientos y mejorar tus resultados. <br>
 
-                                    </div>
-                                </div>
-                            </center>
-                        </div>
-                        <div class="col-md-4">
-
-                        </div>
-                        <div class="col-md-4">
-                            <center>
-                                <div class="card" style="width: 18rem;">
-                                    <img src="img/gimnasio.png" class="card-img-top imagen_carta" alt="...">
-                                    <div class="card-body titulo_carta">
-                                        <h5 class="card-title">Gimnasios</h5>
-
-                                    </div>
-                                </div>
-                            </center>
+                                    Además, tendrás la posibilidad de inscribirte en gimnasios cercanos a tu ubicación,
+                                    brindándote
+                                    opciones para entrenar en un ambiente que te resulte conveniente y cómodo. <br>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
+        <section>
+            <div id="servicios_section">
+                <div class="contenedor_parte_tres">
+                    <img src="img/imagen_ofrecer.png" alt="" class="img-fluid filtro" width="100%">
+                    <div class="texto">
+                        <h2>
+                            ¡AQUÍ TE <br>
+                            OFRECEMOS!
+                        </h2>
+                    </div>
+                </div>
 
+                <div class="contenedor_cuatro">
 
+                    <div class="container">
+                        <div class="contenedor_parte4">
+                            <div class="row">
 
-    <div id="contactanos_section">
-        <div class="cuerpo_cinco">
-            <div class="container">
-                <div class="cuerpo_contenedor_cinco">
-                    <h2 class="titulo">
-                        CONTACTANOS <br> PARA MÁS <br> INFORMACIÓN
-                    </h2>
+                                <div class="col-md-4">
+                                    <center>
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="img/rutinas.png" class="card-img-top imagen_carta" alt="...">
+                                            <div class="card-body titulo_carta">
+                                                <h5 class="card-title">Rutinas</h5>
+
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>
+                                <div class="col-md-4">
+
+                                </div>
+                                <div class="col-md-4">
+                                    <center>
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="img/gimnasio.png" class="card-img-top imagen_carta" alt="...">
+                                            <div class="card-body titulo_carta">
+                                                <h5 class="card-title">Gimnasios</h5>
+
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
+        <section>
+            <div id="contactanos_section">
+                <div class="cuerpo_cinco">
+                    <div class="container">
+                        <div class="cuerpo_contenedor_cinco">
+                            <h2 class="titulo">
+                                CONTACTANOS <br> PARA MÁS <br> INFORMACIÓN
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+
+    <footer>
         <div class="cuerpo_informacion">
             <div class="container">
                 <div class="cuerpo_contenedor_cinco">
@@ -283,10 +290,7 @@
                 </div>
             </div>
         </div>
-
-    </div>
-
-
+    </footer>
 
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -299,17 +303,11 @@
             });
         });
     </script>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
-
     <script src="js/event.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
 </body>
 
 </html>

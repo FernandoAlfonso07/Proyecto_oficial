@@ -1,5 +1,22 @@
 <?php
-// include ("../model/usuario.php");
+include_once ('../functions/alerts.php');
+if (isset($_GET['error'])) {
+    if ($_GET['error'] == 'emptyFields') {
+        echo Alerts::error(1, 'Debes de llenar todos los campos', 'updateDatas');
+    }
+
+    if ($_GET['error'] == 'incorrectFormat') {
+        echo Alerts::error(1, 'Formato incorrecto', 'updateDatas');
+    }
+
+    if ($_GET['error'] == 'notNumber') {
+        echo Alerts::error(1, 'Los campos deben ser tipo numero', 'updateDatas');
+    }
+
+    if ($_GET['error'] == 'invalidPhone') {
+        echo Alerts::error(1, 'Numero telefono invalido', 'updateDatas');
+    }
+}
 ?>
 
 <link rel="stylesheet" href="css/actualizarDatos.css">
@@ -132,11 +149,5 @@
         </div>
     </div>
 </form>
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2024 WorldFit. Todos los derechos reservados.</p>
-    </div>
-</footer>
-
 <script src="js/event.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

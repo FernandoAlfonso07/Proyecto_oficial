@@ -11,7 +11,6 @@ if (!isset($_SESSION['intento'])) {
 } else {
     $_SESSION['intento']++;
     if ($_SESSION['intento'] > 5) {
-        $_SESSION['intento'] = 0;
         header('location: ../controller/errors/error1001.php');
         exit();
     }

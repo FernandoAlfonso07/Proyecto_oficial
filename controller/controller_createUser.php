@@ -38,6 +38,12 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
         exit();
     }
 
+    // Validación del correo electrónico: debe ser una dirección de correo válida
+    if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+        header('location: ../view/administrador/controladorVadmin.php?error=invalidEmail&seccionAd=createUser');
+        exit();
+    }
+
     // Registra al usuario en la base de datos
     $resultado = usuarios::registrar($name, $lastName, $phone, $mail, $passwordHashed, $weight, $height, $sex, $roleUser);
 
@@ -46,7 +52,7 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
     } else {
 
         // Redirige a la página de visualización de usuarios si el registro es exitoso  
-        header('location: ../view/administrador/controladorVadmin.php?seccionAd=verUsuarios');
+        header('location: ../view/administrador/controladorVadmin.php?success=created&seccionAd=verUsuarios');
         exit();
     }
 } else {

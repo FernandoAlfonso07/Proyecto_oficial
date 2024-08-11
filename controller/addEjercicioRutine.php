@@ -5,6 +5,11 @@ include_once ("../model/administrador.php");
 // Incluye el archivo que define la clase `validate`, que proporciona métodos para sanitizar entradas.
 include_once ('../model/validate.php');
 
+if (empty($_POST['ejercicio_value'])) {
+    header('Location:  ../view/administrador/controladorVadmin.php?error=emptyFields&seccionAd=asociarEjerciciosRutinas');
+    exit(); // Termina la ejecución del script después de la redirección.
+}
+
 // Obtiene y sanitiza el valor del parámetro 'rutinaID' recibido por POST. 
 // La sanitización previene la entrada de datos maliciosos.
 $id_rutina = validate::sanitize($_POST['rutinaID']);

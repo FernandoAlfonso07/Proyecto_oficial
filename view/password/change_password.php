@@ -8,9 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/296731592d.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="./img/logosinfondo.png">
+    <link rel="icon" href="img/logosinfondo.png">
     <link rel="stylesheet" href="../css/recoveryStyles.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -54,6 +54,20 @@
                             <button type="submit" class="btn btn-primary btn-gradient w-100 mb-3">Cambiar</button>
                         </form>
                         <a href="../inicioSesion.php" class="btn btn-secondary w-100">Volver al Inicio</a>
+
+                        <?php
+                        if (isset($_GET['error'])) {
+                            if ($_GET['error'] == 'notmatches') {
+                                ?>
+                                <div class="alert alert-danger my-3" role="alert">
+                                    No existe un usuario con ese correo.
+                                </div> <?php
+                            } else {
+                                echo "";
+                            }
+                        }
+                        ?>
+
                     </div>
                 </div>
             </div>

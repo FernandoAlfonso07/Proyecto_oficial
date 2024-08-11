@@ -35,8 +35,3 @@ echo $message;
 <div class="container">
     <hr class="linea">
 </div>
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2024 WorldFit. Todos los derechos reservados.</p>
-    </div>
-</footer>

@@ -127,12 +127,3 @@ h1 {
 .btn-close {
     filter: invert(1);
 }
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}

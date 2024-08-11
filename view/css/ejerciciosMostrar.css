@@ -130,13 +130,3 @@ h1.text-center.alert:hover {
     transform: scale(1.05);
     /* Escala ligeramente el encabezado en hover */
 }
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}

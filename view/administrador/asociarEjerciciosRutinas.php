@@ -4,7 +4,24 @@ include_once ("../../model/administrador.php");// Se incluye el archivo con la c
 
 include_once ("../../model/rutinas.php");// Se incluye el archivo con la clase de 'routines'
 
+include_once ('../../functions/alerts.php');
 
+if (isset($_GET['error'])) {
+    if ($_GET['error'] == 'emptyFields') {
+        echo Alerts::error(2, 'Debes de llenar todos los campos', 'asociarEjerciciosRutinas');
+    }
+    if ($_GET['error'] == 'incorrectFormat') {
+        echo Alerts::error(2, 'Formato incorrecto', 'asociarEjerciciosRutinas');
+    }
+    if ($_GET['error'] == 'addedExercise') {
+        echo Alerts::error(2, 'Ya se agrego ese ejercicio', 'asociarEjerciciosRutinas');
+    }
+}
+if (isset($_GET['success'])) {
+    if ($_GET['success'] == 'exito') {
+        echo Alerts::ok(2, 'Se agrego el ejercicio', 'asociarEjerciciosRutinas');
+    }
+}
 if (!isset($_SESSION))
     session_start();
 
@@ -29,7 +46,7 @@ $_SESSION['id_rutina'] = $id_rutine;
             <form action="../../controller/addEjercicioRutine.php" method="POST">
                 <label class="form-label">Agregar ejercicios</label>
                 <select class="form-select" name="ejercicio_value" aria-label="Default select example">
-                    <option selected>Agregar ejercicio</option>
+                    <option selected value="">Agregar ejercicio</option>
                     <?php echo Administrador::mostrarEjercicios() ?>
                 </select>
                 <input type="hidden" name="rutinaID" value="<?php echo $_SESSION['id_rutina']; ?>">
@@ -41,7 +58,7 @@ $_SESSION['id_rutina'] = $id_rutine;
                     data-bs-target="#exampleModal">Agregar Ejercicio <i
                         class="fa-solid fa-square-plus ms-2 fs-5"></i></button>
             </div>
-            <a href="controladorVadmin.php?seccionAd=showRoutines">
+            <a href="controladorVadmin.php?success=addedExercise&seccionAd=showRoutines">
                 <button type="submit" class="btn btn-danger ml-4 my-5"> Cerrar y guardar <i
                         class="fa-solid fa-circle-xmark ms-2 fs-5"></i> </button>
             </a>
@@ -66,56 +83,64 @@ $_SESSION['id_rutina'] = $id_rutine;
 
 <!-- Modal para agregar una categoria -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form action="../../controller/add_Exercise_Fast.php" method="POST">
+    <form action="../../controller/add_Exercise_Fast.php" method="POST" enctype="multipart/form-data">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar ejercicio rapido</h1>
+                    <h1 class="modal-title fs-5" style="color: white;" id="exampleModalLabel">Agregar ejercicio rapido
+                    </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            Agrega un ejemplo grafico * <br>
-                            <div class="input-group">
-                                <input type="file" name="archivo" class="form-control" id="inputGroupFile04"
-                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                            <label for="inputTypeSelector">Agrega un ejemplo gráfico *</label>
+                            <div>
+                                <select id="inputTypeSelector" class="form-control">
+                                    <option value="text">Agregar URL</option>
+                                    <option value="file">Subir Archivo</option>
+                                </select>
+                                <div id="inputContainer" class="mt-3">
+                                    <input type="text" name="archivo_url" class="form-control"
+                                        placeholder="Agrega la URL" id="inputText" style="display: none;">
+                                    <input type="file" name="archivo" class="form-control" id="inputFile"
+                                        style="display: none;">
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
-                                    Nombre del ejercicio *
-                                    <input type="text" name="nombreEjercicio" class="form-control">
+                                    <label for="nombreEjercicio">Nombre del ejercicio *</label>
+                                    <input type="text" id="nombreEjercicio" name="nombreEjercicio" class="form-control">
                                 </div>
                                 <div class="col-md-12">
-                                    Instrucciones *
-                                    <textarea class="form-control" placeholder="Escribe aqui..." name="instrucciones"
-                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="instrucciones">Instrucciones *</label>
+                                    <textarea class="form-control" id="instrucciones" placeholder="Escribe aquí..."
+                                        name="instrucciones" style="height: 100px"></textarea>
                                 </div>
                                 <div class="col-md-12">
-                                    Equipo necesario
-                                    <textarea class="form-control" placeholder="Escribe aqui..." name="equipo"
-                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="equipo">Equipo necesario</label>
+                                    <textarea class="form-control" id="equipo" placeholder="Escribe aquí..."
+                                        name="equipo" style="height: 100px"></textarea>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            Seires
-                                            <input type="text" name="series" class="form-control">
+                                            <label for="series">Series</label>
+                                            <input type="text" id="series" name="series" class="form-control">
                                         </div>
                                         <div class="col-md-6">
-                                            Repeticiones
-                                            <input type="text" name="repeticiones" class="form-control">
+                                            <label for="repeticiones">Repeticiones</label>
+                                            <input type="text" id="repeticiones" name="repeticiones"
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    Tiempo de descanso
-                                    <input type="text" name="t_descanso" placeholder="En Segundos" class="form-control">
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-primary">Agregar</button>
+                                    <label for="t_descanso">Tiempo de descanso</label>
+                                    <input type="text" id="t_descanso" name="t_descanso" placeholder="En Segundos"
+                                        class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -131,3 +156,17 @@ $_SESSION['id_rutina'] = $id_rutine;
         </div>
     </form>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#inputTypeSelector').change(function () {
+            if ($(this).val() === 'text') {
+                $('#inputText').show();
+                $('#inputFile').hide();
+            } else if ($(this).val() === 'file') {
+                $('#inputText').hide();
+                $('#inputFile').show();
+            }
+        }).trigger('change');
+    });
+</script>

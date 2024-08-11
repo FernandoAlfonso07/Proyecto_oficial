@@ -19,7 +19,23 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
     $tiempoDes = validate::sanitize($_POST['t_descanso']); // Sanitización del tiempo de descanso
 
     // Maneja la carga de archivos (si corresponde) y obtiene la ruta del archivo cargado
-    $direccion_media = validate::media('archivo', '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=asociarEjerciciosRutinas', '../view/media Exercises/');
+    if (isset($_POST['archivo'])) {
+        // Maneja la carga de archivos
+        echo "Antes de media()";
+        $pathFile = validate::media(
+            'archivo',
+            '../view/administrador/controladorVadmin.php?error=incorrectFormat&seccionAd=asociarEjerciciosRutinas',
+            '../view/media Exercises/'
+        );
+        echo "Después de media()";
+        echo "Ruta del archivo: $pathFile";
+    } else {
+        // Sanitiza la URL proporcionada
+        $pathFile = validate::sanitize($_POST['archivo_url']);
+    }
+
+    // Maneja la carga de archivos (si corresponde) y obtiene la ruta del archivo cargado
+    $direccion_media = $pathFile;
 
     // Llama al método para agregar el ejercicio y verifica el resultado
     if (Administrador::agregarEjercicio($nombre, $instruc, $equiped, $rep, $series, $tiempoDes, $direccion_media) > 1) {
@@ -28,14 +44,12 @@ if (validate::validateNotEmptyInputs($inputsValidate)) {
 
     } else {
         // Redirige a la página de ver ejercicios si el registro fue exitoso
-        header('location: ../view/administrador/controladorVadmin.php?seccionAd=asociarEjerciciosRutinas');
+        header('location: ../view/administrador/controladorVadmin.php?success=exito&seccionAd=asociarEjerciciosRutinas');
         exit(); // Finaliza la ejecución del script para asegurar que no se ejecute código adicional
-
     }
 
 } else {
     // Redirige a la página de administración con un error si algún campo está vacío
     header('location: ../view/administrador/controladorVadmin.php?error=emptyFields&seccionAd=asociarEjerciciosRutinas');
     exit();  // Finaliza la ejecución del script para asegurar que no se ejecute código adicional
-
 }

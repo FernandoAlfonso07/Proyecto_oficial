@@ -79,14 +79,3 @@ select.form-control:focus {
 #inputContainer input[type="file"] {
     width: 100%;
 }
-
-/* Estilo para el pie de página (si es necesario) */
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}

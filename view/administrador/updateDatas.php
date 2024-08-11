@@ -1,147 +1,169 @@
 <?php
 include ("../../model/usuario.php");
+include_once ("../../functions/alerts.php");
+if (isset($_GET['error'])) {
+    if ($_GET['error'] == 'emptyFields') {
+        echo Alerts::error(2, 'Datos Actualizados', 'updateDatas');
+    }
+
+    if ($_GET['error'] == 'incorrectFormat') {
+        echo Alerts::error(2, 'Formato incorrecto', 'updateDatas');
+    }
+
+    if ($_GET['error'] == 'notNumber') {
+        echo Alerts::error(2, 'Los campos deben ser tipo numero', 'updateDatas');
+    }
+
+    if ($_GET['error'] == 'invalidPhone') {
+        echo Alerts::error(2, 'Numero telefono invalido', 'updateDatas');
+    }
+}
+
+
+
 ?>
-
 <link rel="stylesheet" href="../css/actualizarDatos.css">
-<form action="../../controller/actualizarDataUser.php?typeData=2" method="POST" enctype="multipart/form-data">
-    <div class="container cuerpo">
-        <div class="row">
-            <div class="col-md-6 text-center">
-                <img src="../<?php echo usuarios::getPerfil(9, $_SESSION['id_admin']) ?: '../../view/user img/default_img.PNG'; ?>"
-                    class="img-fluid imagen_perfil" width="50%" alt="Imagen Perfil">
-                <div class="input-group mb-3 subir">
-                    <input type="file" class="form-control" name="imagenPerfil" id="inputGroupFile04"
-                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+<section>
+    <form action="../../controller/actualizarDataUser.php?typeData=2" method="POST" enctype="multipart/form-data">
+        <div class="container cuerpo">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <img src="../<?php echo usuarios::getPerfil(9, $_SESSION['id_admin']) ?: '../../view/user img/default_img.PNG'; ?>"
+                        class="img-fluid imagen_perfil" width="50%" alt="Imagen Perfil">
+                    <div class="input-group mb-3 subir">
+                        <input type="file" class="form-control" name="imagenPerfil" id="inputGroupFile04"
+                            aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>
-                            Mi Perfil
-                        </h1>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="col-md-12 gris">
-                            <Label>Nombres: </Label>
-                        </div>
+                <div class="col-md-6">
+                    <div class="row">
                         <div class="col-md-12">
-                            <input type="text" name="nombre" value="<?php
-                            echo usuarios::getPerfil(0, $_SESSION['id_admin']);
-                            ?>" class="form-control">
+                            <h1>
+                                Mi Perfil
+                            </h1>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="col-md-12 gris">
-                            <Label>Apellidos</Label>
+                        <div class="col-md-6">
+                            <div class="col-md-12 gris">
+                                <Label>Nombres: </Label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" name="nombre" value="<?php
+                                echo usuarios::getPerfil(0, $_SESSION['id_admin']);
+                                ?>" class="form-control">
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <input type="text" name="apellido" value="<?php
-                            echo usuarios::getPerfil(1, $_SESSION['id_admin']);
-                            ?>" class="form-control">
+                        <div class="col-md-6">
+                            <div class="col-md-12 gris">
+                                <Label>Apellidos</Label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" name="apellido" value="<?php
+                                echo usuarios::getPerfil(1, $_SESSION['id_admin']);
+                                ?>" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="col-md-12 gris">
-                            <Label>Altura actual:</Label>
+                        <div class="col-md-6">
+                            <div class="col-md-12 gris">
+                                <Label>Altura actual:</Label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" name="altura" value="<?php
+                                echo usuarios::getPerfil(5, $_SESSION['id_admin']);
+                                ?>" class="form-control">
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <input type="text" name="altura" value="<?php
-                            echo usuarios::getPerfil(5, $_SESSION['id_admin']);
-                            ?>" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="col-md-12 gris">
-                            <Label>Peso Actual:</Label>
-                        </div>
-                        <div class="col-md-12">
-                            <input type="text" name="peso" value="<?php
-                            echo usuarios::getPerfil(4, $_SESSION['id_admin']);
-                            ?>
+                        <div class="col-md-6">
+                            <div class="col-md-12 gris">
+                                <Label>Peso Actual:</Label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" name="peso" value="<?php
+                                echo usuarios::getPerfil(4, $_SESSION['id_admin']);
+                                ?>
                             " class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="col-md-12 gris">
-                            <Label>Genero:</Label>
-                        </div>
-                        <div class="col-md-12 my-2">
-                            <?php
-                            $sexo = usuarios::getPerfil(8, $_SESSION['id_admin']);
-                            ?>
+                        <div class="col-md-6">
+                            <div class="col-md-12 gris">
+                                <Label>Genero:</Label>
+                            </div>
+                            <div class="col-md-12 my-2">
+                                <?php
+                                $sexo = usuarios::getPerfil(8, $_SESSION['id_admin']);
+                                ?>
 
-                            <select class="form-select" name="sex" aria-label="Default select example">
-                                <option selected disabled>Seleciona... </option>
-                                <option value="2" <?php echo ($sexo == 'Femenino') ? 'selected' : ''; ?>>Femenino
-                                </option>
-                                <option value="1" <?php echo ($sexo == 'Masculino') ? 'selected' : ''; ?>>Masculino
-                                </option>
-                                <option value="3" <?php echo ($sexo == 'Otro') ? 'selected' : ''; ?>>Otro</option>
-                            </select>
+                                <select class="form-select" name="sex" aria-label="Default select example">
+                                    <option selected disabled>Seleciona... </option>
+                                    <option value="2" <?php echo ($sexo == 'Femenino') ? 'selected' : ''; ?>>Femenino
+                                    </option>
+                                    <option value="1" <?php echo ($sexo == 'Masculino') ? 'selected' : ''; ?>>Masculino
+                                    </option>
+                                    <option value="3" <?php echo ($sexo == 'Otro') ? 'selected' : ''; ?>>Otro</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="col-md-12 gris">
-                            <Label>Rol:</Label>
-                        </div>
-                        <div class="col-md-12 my-2">
-                            <?php
-                            $role = usuarios::getPerfil(10, $_SESSION['id_admin']);
-                            ?>
-                            <select class="form-select" name="role" aria-label="Default select example">
-                                <option selected disabled>Seleciona... </option>
-                                <option value="0" <?php echo ($role == 'Invitado') ? 'selected' : ''; ?>>Invitado
-                                </option>
-                                <option value="1" <?php echo ($role == 'Administrador') ? 'selected' : ''; ?>>
-                                    Administrador
-                                </option>
-                                <option value="3" <?php echo ($role == 'Super-Admin') ? 'selected' : ''; ?>>Super
-                                    Administrador</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h1>
-                            Contacto
-                        </h1>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="col-md-12 gris">
-                            <label>
-                                Correo Electronico:
-                            </label>
+                        <div class="col-md-6">
+                            <div class="col-md-12 gris">
+                                <Label>Rol:</Label>
+                            </div>
+                            <div class="col-md-12 my-2">
+                                <?php
+                                $role = usuarios::getPerfil(10, $_SESSION['id_admin']);
+                                ?>
+                                <select class="form-select" name="role" aria-label="Default select example">
+                                    <option selected disabled>Seleciona... </option>
+                                    <option value="0" <?php echo ($role == 'Invitado') ? 'selected' : ''; ?>>Invitado
+                                    </option>
+                                    <option value="1" <?php echo ($role == 'Administrador') ? 'selected' : ''; ?>>
+                                        Administrador
+                                    </option>
+                                    <option value="3" <?php echo ($role == 'Super-Admin') ? 'selected' : ''; ?>>Super
+                                        Administrador</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="col-md-12">
-                            <input type="text" name="correo" value="<?php
+                            <h1>
+                                Contacto
+                            </h1>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-12 gris">
+                                <label>
+                                    Correo Electronico:
+                                </label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" name="correo" value="<?php
 
-                            echo usuarios::getPerfil(2, $_SESSION['id_admin']);
-                            ?>
+                                echo usuarios::getPerfil(2, $_SESSION['id_admin']);
+                                ?>
                             " class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="col-md-12 gris">
-                            <label>
-                                Telefono
-                            </label>
+                        <div class="col-md-6">
+                            <div class="col-md-12 gris">
+                                <label>
+                                    Telefono
+                                </label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" name="telefono" value="<?php
+                                echo usuarios::getPerfil(7, $_SESSION['id_admin']);
+                                ?>" class="form-control">
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <input type="text" name="telefono" value="<?php
-                            echo usuarios::getPerfil(7, $_SESSION['id_admin']);
-                            ?>" class="form-control">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-warning compartir">Actualizar
+                                <i class="fa-solid fa-rotate icono"></i></button>
                         </div>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-warning compartir">Actualizar
-                            <i class="fa-solid fa-rotate icono"></i></button>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</section>
 
 <script src="js/event.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
