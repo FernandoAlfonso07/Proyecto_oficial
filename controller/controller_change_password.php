@@ -40,8 +40,10 @@ if ($type == null) {
         $id_user = isset($_SESSION['id']) ? $_SESSION['id'] : null;
         $email = usuarios::getPerfil(2, $id_user);
         $nameGym = isset($_SESSION['id']) ? Gyms::getInfoThisGym(0, $_SESSION['thisGym'], 'call') : null;
+        $mountGym = isset($_SESSION['id']) ? Gyms::getInfoThisGym(21, $_SESSION['thisGym'], 'detailedInfo') : null;
+        $dateInscription = isset($_SESSION['id']) ? Gyms::getInfoThisGym(5, $_SESSION['thisGym'], 'datailedMore') : null;
         $messageSubject = "Registro de Gimnasio";
-        $messageBody = "Se ha activado tu membresia para el gimnasio $nameGym";
+        $messageBody = "Se ha activado tu membresia para el gimnasio $nameGym por un valor de <b>$mountGym</b>, el dia <b>$dateInscription</b>";
         $redirect = "../view/controlador.php?seccion=seccion1";
 
         if (!$email || !$nameGym) {
