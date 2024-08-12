@@ -59,9 +59,6 @@ if ($response > 1) {
 } else {
     header("Location: controller_change_password.php?usu=" . $_SESSION['id'] . "");
     exit();
-    // unset($_SESSION['thisGym']);
-    // header("Location: ../view/controlador.php?success=inscriptionSuccess&seccion=seccion1");
-    // exit();
 }
 
 
