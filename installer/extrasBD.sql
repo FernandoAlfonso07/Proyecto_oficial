@@ -37,6 +37,19 @@ END IF;
 
 END;
 
+-- Trigger `register_purchase_user`
+DROP TRIGGER IF EXISTS `register_purchase_user`;
+
+CREATE TRIGGER `register_purchase_user`
+AFTER INSERT
+ON `plan_registration` FOR EACH ROW
+BEGIN
+    INSERT INTO
+        `purchase_history` (id_usuario, id_plan, date_register)
+    VALUES
+        (NEW.id_usuario, NEW.id_plan, NOW());
+END;
+
 -- Procedimiento almacenado `getInfoGyms`
 DROP PROCEDURE IF EXISTS `getInfoGyms`;
 

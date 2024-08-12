@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: worldfitsbd
+-- Host: 127.0.0.1    Database: worldfitsbdnew
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.32-MariaDB
 
@@ -31,7 +31,7 @@ CREATE TABLE `calendario_rutinario` (
   PRIMARY KEY (`id_calendario`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `calendario_rutinario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `calendario_rutinario` (
 
 LOCK TABLES `calendario_rutinario` WRITE;
 /*!40000 ALTER TABLE `calendario_rutinario` DISABLE KEYS */;
-INSERT INTO `calendario_rutinario` VALUES (5,7,'www','wwww','2024-08-11 16:00:30'),(6,7,'wdwdw','dwdwdwd','2024-08-11 17:05:31');
+INSERT INTO `calendario_rutinario` VALUES (14,16,'qqq','qqqq','2024-08-12 02:30:25'),(15,16,'wdw','dwdw','2024-08-12 02:30:40');
 /*!40000 ALTER TABLE `calendario_rutinario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +277,6 @@ CREATE TABLE `interactions` (
 
 LOCK TABLES `interactions` WRITE;
 /*!40000 ALTER TABLE `interactions` DISABLE KEYS */;
-INSERT INTO `interactions` VALUES (2,'like',7,1);
 /*!40000 ALTER TABLE `interactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,6 +305,90 @@ INSERT INTO `payment_methods_gyms` VALUES (1,'Transfierencia'),(2,'Efectivo');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `plan_registration`
+--
+
+DROP TABLE IF EXISTS `plan_registration`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `plan_registration` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_plan` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`),
+  KEY `id_plan` (`id_plan`),
+  CONSTRAINT `plan_registration_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `plan_registration_ibfk_2` FOREIGN KEY (`id_plan`) REFERENCES `plans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `plan_registration`
+--
+
+LOCK TABLES `plan_registration` WRITE;
+/*!40000 ALTER TABLE `plan_registration` DISABLE KEYS */;
+INSERT INTO `plan_registration` VALUES (3,16,1);
+/*!40000 ALTER TABLE `plan_registration` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `plans`
+--
+
+DROP TABLE IF EXISTS `plans`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `plans` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `cost` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `plans`
+--
+
+LOCK TABLES `plans` WRITE;
+/*!40000 ALTER TABLE `plans` DISABLE KEYS */;
+INSERT INTO `plans` VALUES (1,'Plan de usuario',20000),(2,'Plan de Gerente',30000);
+/*!40000 ALTER TABLE `plans` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `purchase_history`
+--
+
+DROP TABLE IF EXISTS `purchase_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `purchase_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_plan` int(11) DEFAULT NULL,
+  `date_register` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`),
+  KEY `id_plan` (`id_plan`),
+  CONSTRAINT `purchase_history_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `purchase_history_ibfk_2` FOREIGN KEY (`id_plan`) REFERENCES `plans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `purchase_history`
+--
+
+LOCK TABLES `purchase_history` WRITE;
+/*!40000 ALTER TABLE `purchase_history` DISABLE KEYS */;
+INSERT INTO `purchase_history` VALUES (3,16,1,'2024-08-12 02:31:38');
+/*!40000 ALTER TABLE `purchase_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `registration_inscriptions`
 --
 
@@ -325,7 +408,7 @@ CREATE TABLE `registration_inscriptions` (
   KEY `id_gym` (`id_gym`),
   CONSTRAINT `registration_inscriptions_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `registration_inscriptions_ibfk_2` FOREIGN KEY (`id_gym`) REFERENCES `infogyms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -334,7 +417,7 @@ CREATE TABLE `registration_inscriptions` (
 
 LOCK TABLES `registration_inscriptions` WRITE;
 /*!40000 ALTER TABLE `registration_inscriptions` DISABLE KEYS */;
-INSERT INTO `registration_inscriptions` VALUES (1,7,'direccion #direccion con Numeor Direcoianl',1120562806,'Ninguna','2024-08-11',1),(5,12,'wwwww',1120562806,'Ninguna','2024-08-11',1);
+INSERT INTO `registration_inscriptions` VALUES (7,15,'direccion #direccion con Numeor Direcoianl',1120562806,'Ninguna','2024-08-12',1);
 /*!40000 ALTER TABLE `registration_inscriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,7 +440,7 @@ CREATE TABLE `relacion_calendario_rutinas` (
   CONSTRAINT `relacion_calendario_rutinas_ibfk_1` FOREIGN KEY (`id_calendario`) REFERENCES `calendario_rutinario` (`id_calendario`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `relacion_calendario_rutinas_ibfk_2` FOREIGN KEY (`id_dia`) REFERENCES `dias_semana` (`id_dia`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `relacion_calendario_rutinas_ibfk_3` FOREIGN KEY (`id_rutina`) REFERENCES `rutinas` (`id_rutina`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -366,7 +449,7 @@ CREATE TABLE `relacion_calendario_rutinas` (
 
 LOCK TABLES `relacion_calendario_rutinas` WRITE;
 /*!40000 ALTER TABLE `relacion_calendario_rutinas` DISABLE KEYS */;
-INSERT INTO `relacion_calendario_rutinas` VALUES (25,5,1,1),(26,5,2,1),(27,5,3,1),(28,5,4,1),(29,5,5,1),(30,5,6,1),(31,6,1,1),(32,6,2,1),(33,6,3,3),(34,6,4,2),(35,6,5,1),(36,6,6,1);
+INSERT INTO `relacion_calendario_rutinas` VALUES (79,14,1,1),(80,14,2,1),(81,14,3,1),(82,14,4,1),(83,14,5,1),(84,14,6,1),(85,15,1,1),(86,15,2,2),(87,15,3,1),(88,15,4,3),(89,15,5,1),(90,15,6,1);
 /*!40000 ALTER TABLE `relacion_calendario_rutinas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -467,7 +550,7 @@ CREATE TABLE `user_registration_indexes` (
   PRIMARY KEY (`id_registro`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `user_registration_indexes_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -476,7 +559,7 @@ CREATE TABLE `user_registration_indexes` (
 
 LOCK TABLES `user_registration_indexes` WRITE;
 /*!40000 ALTER TABLE `user_registration_indexes` DISABLE KEYS */;
-INSERT INTO `user_registration_indexes` VALUES (6,7,'2024-08-11 11:00:06',16),(7,8,'2024-08-11 11:19:55',19),(8,9,'2024-08-11 21:04:05',16),(11,12,'2024-08-11 23:11:57',16);
+INSERT INTO `user_registration_indexes` VALUES (7,8,'2024-08-11 11:19:55',19),(8,9,'2024-08-11 21:04:05',16),(14,15,'2024-08-12 02:28:25',16),(15,16,'2024-08-12 02:30:18',16);
 /*!40000 ALTER TABLE `user_registration_indexes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -506,7 +589,7 @@ CREATE TABLE `usuarios` (
   KEY `id_rol` (`id_rol`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_genero`) REFERENCES `genero` (`id_genero`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -515,7 +598,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Usuario ','Administrador ','admin@gmail.com','$2y$10$oVz5nr6qgn6yQ2aJ1bHGC.3GbjfSJ6hgtigA/d4brWmrcncLXj3Ru',47,1.71,1,'31159633267',0,'2024-08-07 11:18:33',1,'../view/user img/default_img.PNG'),(7,'Fernando','Alfonso Amaya','alfonso07amaya@gmail.com','$2y$10$ipBhbN7FrDvwvp0.HA86vOwNrBJZ5h/tWcGcaNPk1HIIVTiJP0qlW',51,1.7,1,'3115963326',0,'2024-08-11 11:00:06',2,'../view/user img/Captura.PNG'),(8,'Dayana Andrea','Romo Urrego','dayana123romou@gmail.com','$2y$10$LbGViwhna/24540KoejRReyIB2/A0WI8l3aZN5PUqxZyWnXG5pQjq',48,1.6,2,'3214140782',0,'2024-08-11 11:19:55',4,'../view/user img/default_img.PNG'),(9,'wdwdw','dwdw','222@gmail.com','$2y$10$2OM0E23u4n2M/6/jHVpmmOZ1RSXJDDoBHFLOXWossFrtqJ6i8ZE5q',46,1.7,1,'64444',NULL,'2024-08-11 21:04:05',4,'../view/user img/default_img.PNG'),(12,'Fernando Enrique','Alfonso Amaya','tiringistingis52@gmail.com','$2y$10$y8hZjwE1Sgj96BWFMVcR3u5p3E4WUcldFGiyrC6HokSRr/o4lmXxG',46,1.7,1,'3115963326',NULL,'2024-08-11 23:11:57',2,'../view/user img/default_img.PNG');
+INSERT INTO `usuarios` VALUES (1,'Usuario ','Administrador ','admin@gmail.com','$2y$10$oVz5nr6qgn6yQ2aJ1bHGC.3GbjfSJ6hgtigA/d4brWmrcncLXj3Ru',47,1.71,1,'31159633267',0,'2024-08-07 11:18:33',1,'../view/user img/default_img.PNG'),(8,'Dayana Andrea','Romo Urrego','dayana123romou@gmail.com','$2y$10$LbGViwhna/24540KoejRReyIB2/A0WI8l3aZN5PUqxZyWnXG5pQjq',48,1.6,2,'3214140782',0,'2024-08-11 11:19:55',4,'../view/user img/default_img.PNG'),(9,'wdwdw','dwdw','222@gmail.com','$2y$10$2OM0E23u4n2M/6/jHVpmmOZ1RSXJDDoBHFLOXWossFrtqJ6i8ZE5q',46,1.7,1,'64444',NULL,'2024-08-11 21:04:05',4,'../view/user img/default_img.PNG'),(15,'Fernando Enrique','Alfonso Amaya','alfonso07amaya@gmail.com','$2y$10$kzUCcMik7pdTcxBKc7MRsO3ZNGMD/plWgYYyToCTClnsw5kA6v.DW',46,1.7,1,'3115963326',NULL,'2024-08-12 02:28:25',2,'../view/user img/default_img.PNG'),(16,'tiringis','tingis','tiringistingis52@gmail.com','$2y$10$3Y6XL1T4p.sT3gmiGO.hV.cBIpRPFm2/3GNpq3vMlnYCrCB9gRcyK',46,1.7,2,'3115963328',NULL,'2024-08-12 02:30:18',2,'../view/user img/default_img.PNG');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -528,4 +611,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-11 23:16:41
+-- Dump completed on 2024-08-12  2:34:41
