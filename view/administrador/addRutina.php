@@ -88,7 +88,7 @@ $_SESSION['id_rutina'] = $id_rutine;
 
 <!-- Modal para agregar una categoria -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form action="../../controller/createdCategory.php" method="POST">
+    <form action="../../controller/createdCategory.php?newCategory=routine" method="POST">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

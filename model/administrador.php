@@ -574,14 +574,27 @@ class Administrador extends conexionBD
      * 
      * @return int El número de filas afectadas por la operación de inserción.
      */
-    public static function createCategory($nameCategory)
+    public static function createCategory($nameCategory, $opc)
     {
         // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
+        $nameTable = "";
+        $nameCamp = "";
+
+        if ($opc == "routine") {
+            $nameTable = "categorias_rutinas";
+            $nameCamp = "categoria";
+        } elseif ($opc == "gym") {
+            $nameTable = "categorias_gyms";
+            $nameCamp = "categoria";
+        } elseif ($opc == "method") {
+            $nameTable = "payment_methods_gyms";
+            $nameCamp = "method";
+        }
 
         // Crear la consulta SQL para insertar la nueva categoría
-        $sql = "INSERT INTO categorias_rutinas (categoria) VALUES ('$nameCategory');";
-
+        $sql = "INSERT INTO $nameTable ($nameCamp) VALUES ('$nameCategory');";
+        
         // Ejecutar la consultaF
         $conexion->query($sql);
 

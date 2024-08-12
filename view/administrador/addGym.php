@@ -40,14 +40,23 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label class="form-label">Categoría</label>
-                                    <select class="form-select" name="category_gym" aria-label="Default select example">
-                                        <option selected>Escoge la categoría</option>
-                                        <?php $selectedCategory = isset($_GET['dgym']) ? Gyms::getInfoThisGym(16, $_SESSION['id_gym'], 'call') : null;
-                                        echo CycleCreateCalender::getCategories('gyms', $selectedCategory) ?>
-                                    </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Categoría</label>
+                                            <select class="form-select" name="category_gym"
+                                                aria-label="Default select example">
+                                                <option selected>Escoge la categoría</option>
+                                                <?php $selectedCategory = isset($_GET['dgym']) ? Gyms::getInfoThisGym(16, $_SESSION['id_gym'], 'call') : null;
+                                                echo CycleCreateCalender::getCategories('gyms', $selectedCategory) ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 my-4">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">Crear Categoria <i
+                                                    class="fa-solid fa-square-plus"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
-
                                 <div class="col-md-12">
                                     <label class="form-label">Descripción</label>
                                     <textarea class="form-control" placeholder="Escribe aquí..." name="description"
@@ -168,15 +177,25 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                             <h1 class="text-center">Servicios</h1>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="form-label">Formas de pago</label>
-                                    <select class="form-select" name="payment_method"
-                                        aria-label="Default select example">
-                                        <option selected>Escoge la forma de pago</option>
-                                        <?php
-                                        $selectedMethod = isset($_GET['dgym']) ? Gyms::getInfoThisGym(17, $_SESSION['id_gym'], 'call') : null;
-                                        echo CycleCreateCalender::getCategories('paymentMethods', $selectedMethod)
-                                            ?>
-                                    </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Formas de pago</label>
+                                            <select class="form-select" name="payment_method"
+                                                aria-label="Default select example">
+                                                <option selected>Escoge la forma de pago</option>
+                                                <?php
+                                                $selectedMethod = isset($_GET['dgym']) ? Gyms::getInfoThisGym(17, $_SESSION['id_gym'], 'call') : null;
+                                                echo CycleCreateCalender::getCategories('paymentMethods', $selectedMethod)
+                                                    ?>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6 my-4">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#methodModal">Crear Metodo de pago <i
+                                                    class="fa-solid fa-square-plus"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Pago De mensualidad</label>
@@ -221,3 +240,50 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
         </form>
     </div>
 </section>
+
+<!-- Modal para agregar una categoria -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="../../controller/createdCategory.php?newCategory=gym" method="POST">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Crear categoria</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="nameCategory" class="form-label">Nombre de la categoria</label>
+                    <input type="text" class="form-control" name="nameCategory">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar <i
+                            class="fa-regular fa-circle-xmark"></i></button>
+                    <button type="submit" class="btn btn-primary">Guardar <i
+                            class="fa-solid fa-floppy-disk"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Modal para agregar una categoria -->
+<div class="modal fade" id="methodModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="../../controller/createdCategory.php?newCategory=method" method="POST">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Metodo de Pago</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="nameCategory" class="form-label">Nombre de la categoria</label>
+                    <input type="text" class="form-control" name="nameCategory">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar <i
+                            class="fa-regular fa-circle-xmark"></i></button>
+                    <button type="submit" class="btn btn-primary">Guardar <i
+                            class="fa-solid fa-floppy-disk"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
