@@ -127,3 +127,4 @@ if (isset($_GET['exerc']) && !empty($_GET['exerc'])) {
         }).trigger('change');
     });
 </script>
+<?php unset($_SESSION['exercise']) ?>

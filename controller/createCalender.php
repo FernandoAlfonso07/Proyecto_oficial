@@ -54,14 +54,10 @@ if ($page == '1ro') {
         $id = calendarioRutinario::getID();
         $_SESSION['id_calendar'] = $id;
 
-        echo 'Variable NACIDA: ' . $_SESSION['id_calendar'] . '<br>';
-
     } else {
 
         $id = calendarioRutinario::getID();
         $_SESSION['id_calendar'] = $id;
-
-        echo 'Variable EXISTIENDO: ' . $_SESSION['id_calendar'] . '<br>';
     }
 
     $arrayNameRoutine = [ // Arreglo que mapea nombres de rutinas a números de días
@@ -98,7 +94,7 @@ if ($page == '1ro') {
 
         }
     }
-
+    unset($_SESSION['id_calendar']); // Eliminar Variable de sesion
     header('location: ../view/controlador.php?success=success&seccion=misCalendarios');
     exit();
 }

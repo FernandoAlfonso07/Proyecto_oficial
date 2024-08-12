@@ -71,6 +71,7 @@ $payment_method = validate::sanitize($_POST['payment_method']); // Método de pa
 // Información de contacto del gerente
 $managerEmail = validate::sanitize($_POST['managerEmail']); // Correo electrónico del gerente
 $managerPhone = validate::sanitize($_POST['managerPhone']); // Teléfono del gerente
+$monthly_payment = validate::sanitize($_POST['monthly_payment']); // Teléfono del gerente
 
 // Obtener el ID del gerente utilizando su correo electrónico y teléfono
 $id_manager = Administrador::getUsuarios(3, 0, $managerEmail, $managerPhone);
@@ -79,7 +80,7 @@ $id_manager = Administrador::getUsuarios(3, 0, $managerEmail, $managerPhone);
 $role = Administrador::getUsuarios(3, 7, $managerEmail, $managerPhone);
 
 // Validar si existe más de un gerente con el mismo ID
-$count = validate::UserExists(2, null, $id_manager, 3);
+$count = validate::UserExists(2, null, $id_manager, 0);
 
 // Verificar si el rol no es 'Gerente de gimnasio' y redirigir si no tiene el rol adecuado
 if (!isset($role) || $role !== 'Gerente de gimnasio') {
@@ -113,7 +114,8 @@ $response = Administrador::registredGym(
     $email,
     $address,
     $payment_method,
-    $id_manager
+    $id_manager,
+    $monthly_payment
 );
 
 // Redirigir al usuario según el resultado de la operación de registro

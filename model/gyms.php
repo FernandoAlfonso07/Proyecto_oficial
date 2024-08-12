@@ -115,4 +115,47 @@ class Gyms extends conexionBD
         // Devolver el HTML generado
         return $gymsInfo;
     }
+
+    /**
+     * Obtiene información específica de un gimnasio desde la base de datos.
+     *
+     * @param string $opc El nombre de la columna que se desea recuperar de la respuesta de la base de datos.
+     * @param int $id_gym El identificador del gimnasio cuya información se desea obtener.
+     * @return mixed El valor de la columna especificada en $opc para el gimnasio con el ID dado, o null si no se encuentra la columna.
+     */
+    public static function getInfoThisGym($opc, $id_gym, $selectedSql)
+    {
+        // Establece la conexión con la base de datos
+        $connect = self::getConexion();
+
+        // Prepara la consulta SQL para llamar al procedimiento almacenado que obtiene información del gimnasio por ID.
+        $sql = "";
+        if (isset($selectedSql)) {
+            if ($selectedSql == "call") {
+                $sql = "CALL getInfoGyms ($id_gym) ";
+            } elseif ($selectedSql == "detailedInfo") {
+                $sql = "SELECT * FROM infogyms WHERE id = '$id_gym'";
+            }
+        }
+
+        // Ejecuta la consulta y almacena la respuesta.
+        $response = $connect->query($sql);
+
+        // Inicializa una variable para almacenar el resultado de la consulta.
+        $r = "";
+
+        // Itera sobre las filas obtenidas de la consulta.
+        while ($row = $response->fetch_array()) {
+
+            // Asigna el valor de la columna especificada en $opc a la variable $r. Si la columna no existe, $r será null.
+            $r = $row[$opc] ?? null;
+        }
+        // Cierra la conexión con la base de datos.
+        $connect->close();
+
+        // Devuelve el valor obtenido para la columna especificada, o null si no se encontró la columna.
+        return $r;
+
+    }
+
 }

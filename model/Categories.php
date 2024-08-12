@@ -96,6 +96,9 @@ class CycleCreateCalender extends conexionBD
             case 'categoryRoutine':
                 $sql = "SELECT * FROM categorias_rutinas ";
                 break;
+            case 'genero':
+                $sql = "SELECT * FROM genero ";
+                break;
         }
 
         // Ejecuta la consulta SQL.
@@ -109,7 +112,7 @@ class CycleCreateCalender extends conexionBD
 
             // Compara el valor de la categoría actual con el valor seleccionado.
             // Si son iguales, marca la opción como seleccionada.
-            $isSelected = $row[0] == $selectedCategory ? 'selected' : '';
+            $isSelected = $row[0] == $selectedCategory ? 'selected' : ($row[1] === $selectedCategory ? 'selected' : '');
 
             // Genera una opción HTML para la categoría actual.
             $salida .= "<option value='" . $row[0] . "' $isSelected>" . $row[1] . "</option>";

@@ -5,10 +5,6 @@ include_once ("../model/administrador.php");
 // Incluye el archivo que contiene la clase validate para la sanitización de datos
 include_once ('../model/validate.php');
 
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
-
 // Define los nombres de los campos que deben ser validados
 $inputsValidate = ['nombreEjercicio', 'instrucciones', 'equipo', 'repeticiones', 'series', 't_descanso'];
 

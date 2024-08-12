@@ -114,33 +114,7 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
 
             } elseif ($opc == 1) {
                 // Si $opc es 1, selecciona el campo específico según $opcMuestra
-
-                switch ($opcMuestra) {
-                    case 0:
-                        $rr = $fila[0]; // dia
-                        break;
-                    case 1:
-                        $rr = $fila[1]; // img
-                        break;
-                    case 2:
-                        $rr = $fila[2]; // Nombre del ejercicio
-                        break;
-                    case 3:
-                        $rr = $fila[3];// instrucciones del ejercicio
-                        break;
-                    case 4:
-                        $rr = $fila[4];// equipo necesario
-                        break;
-                    case 5:
-                        $rr = $fila[5];// Seires 
-                        break;
-                    case 6:
-                        $rr = $fila[6];// Repeticiones
-                        break;
-                    case 7:
-                        $rr = $fila[7];// tiempo de descanso
-                        break;
-                }
+                $rr = $fila[$opcMuestra] ?? null;
             }
         }
         // Cerrar la conexión a la base de datos

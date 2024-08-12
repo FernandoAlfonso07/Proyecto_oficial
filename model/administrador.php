@@ -195,6 +195,7 @@ class Administrador extends conexionBD
             t1.id_usuario, t1.nombre, t1.apellido, t1.correo, t1.telefono, t2.genero, t1.fecha_registro, t3.rol FROM usuarios t1
             JOIN genero t2 ON t1.id_genero = t2.id_genero 
             JOIN roles t3 ON t1.id_rol = t3.id_rol ";
+
         } elseif ($opc == 1) {
 
             // Contar el número total de usuarios
@@ -237,35 +238,8 @@ class Administrador extends conexionBD
                 // Para la opción 1, simplemente devolver el número total de usuarios
                 $rr .= $fila[0];
             } elseif ($opc == 3) {
-
                 // Para la opción 3, devolver el valor según $rowSelected
-                switch ($rowSelected) {
-                    case 0:
-                        $rr = $fila[0]; // id
-                        break;
-                    case 1:
-                        $rr = $fila[1]; // Nombre
-                        break;
-                    case 2:
-                        $rr = $fila[2]; // Apellido
-                        break;
-                    case 3:
-                        $rr = $fila[3]; // Correo
-                        break;
-                    case 4:
-                        $rr = $fila[4]; // Telefono
-                        break;
-                    case 5:
-                        $rr = $fila[5]; // Genero
-                        break;
-                    case 6:
-                        $rr = $fila[6]; // Fecha registro
-                        break;
-                    case 7:
-                        $rr = $fila[7]; // Rol en frase
-                        break;
-
-                }
+                $rr = $fila[$rowSelected] ?? null;
             }
         }
 
@@ -776,7 +750,8 @@ class Administrador extends conexionBD
         $email,
         $address,
         $payment_method,
-        $id_manager
+        $id_manager,
+        $monthly_payment
     ) {
         // Obtener la conexión a la base de datos
         $conexion = self::getConexion();
@@ -786,7 +761,7 @@ class Administrador extends conexionBD
         '$name', $category_gym, '$description', '$mission', '$vision', '$pathImage',
         '$morning_time_weekday_start', '$morning_time_weekday_end', '$afternoon_time_weekday_start', '$afternoon_time_weekday_end',
         '$morning_time_weekend_start', '$morning_time_weekend_end', '$afternoon_time_weekend_start', '$afternoon_time_weekend_end',
-        $phone, '$email', '$address', $payment_method, $id_manager
+        $phone, '$email', '$address', $payment_method, $id_manager, '$monthly_payment'
         )";
 
         // Ejecutar la consulta SQL
@@ -931,5 +906,46 @@ class Administrador extends conexionBD
 
         // Retorna el array con los resultados de la consulta.
         return $result;
+    }
+
+    public static function updateGymInfo($id_gym, $name, $id_categoria, $description, $mission, $vision, $pathImage, $time_start_morning_DAY, $time_end_morning_DAY, $time_start_afternoon_DAY, $time_end_afternoon_DAY, $time_start_morning_END, $time_end_morning_END, $time_start_afternoon_END, $time_end_afternoon_END, $phone, $email, $address, $id_pay, $id_gerente, $monthly_payment)
+    {
+        $connect = self::getConexion(); // Obtiene una conexión a la base de datos.
+
+        // Prepara la consulta SQL para actualizar la información del gimnasio en la tabla `infogyms`.
+        $sql = "UPDATE infogyms 
+            SET name = '$name', 
+                id_categoria = '$id_categoria', 
+                description = '$description', 
+                mission = '$mission', 
+                vision = '$vision', 
+                pathImage = '$pathImage', 
+                time_start_morning_DAY = '$time_start_morning_DAY', 
+                time_end_morning_DAY = '$time_end_morning_DAY', 
+                time_start_afternoon_DAY = '$time_start_afternoon_DAY', 
+                time_end_afternoon_DAY = '$time_end_afternoon_DAY', 
+                time_start_morning_END = '$time_start_morning_END', 
+                time_end_morning_END = '$time_end_morning_END', 
+                time_start_afternoon_END = '$time_start_afternoon_END', 
+                time_end_afternoon_END = '$time_end_afternoon_END', 
+                phone = '$phone', 
+                mail = '$email', 
+                direction = '$address', 
+                id_pay = '$id_pay', 
+                id_gerente = '$id_gerente',
+                monthly_payment = '$monthly_payment'
+            WHERE id = '$id_gym'";
+
+        // Ejecuta la consulta SQL.
+        $connect->query($sql);
+
+        // Obtiene el número de filas afectadas por la consulta.
+        $affected_rows = $connect->affected_rows;
+
+        // Cierra la conexión a la base de datos.
+        $connect->close();
+
+        // Devuelve el número de filas afectadas.
+        return $affected_rows;
     }
 }

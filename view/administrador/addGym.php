@@ -1,6 +1,8 @@
 <?php
+!isset($_SESSION) ? session_start() : null;
 include_once ('../../model/Categories.php');
 include_once ('../../functions/alerts.php');
+include_once ("../../model/gyms.php");
 
 if (isset($_GET['error'])) {
     if ($_GET['error'] == 'emptyFields') {
@@ -12,12 +14,15 @@ if (isset($_GET['error'])) {
     }
 }
 
+$_SESSION['id_gym'] = $_GET['dgym'] ?? null;
 ?>
 <link rel="stylesheet" href="../css/addGimansio.css">
 
 <section>
     <div class="container">
-        <form action="../../controller/controller_gym_Registration.php" method="POST" enctype="multipart/form-data">
+        <form
+            action="<?php echo isset($_GET['dgym']) ? "../../controller/updateInfoGym.php" : "../../controller/controller_gym_Registration.php"; ?>"
+            method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-12">
 
@@ -29,34 +34,50 @@ if (isset($_GET['error'])) {
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="form-label">Nombre</label>
-                                    <input type="text" name="nameGym" class="form-control">
+                                    <input type="text" name="nameGym"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(0, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        class="form-control">
                                 </div>
 
                                 <div class="col-md-12">
                                     <label class="form-label">Categoría</label>
                                     <select class="form-select" name="category_gym" aria-label="Default select example">
                                         <option selected>Escoge la categoría</option>
-                                        <?php echo CycleCreateCalender::getCategories('gyms') ?>
+                                        <?php $selectedCategory = isset($_GET['dgym']) ? Gyms::getInfoThisGym(16, $_SESSION['id_gym'], 'call') : null;
+                                        echo CycleCreateCalender::getCategories('gyms', $selectedCategory) ?>
                                     </select>
                                 </div>
 
                                 <div class="col-md-12">
                                     <label class="form-label">Descripción</label>
                                     <textarea class="form-control" placeholder="Escribe aquí..." name="description"
-                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                        id="floatingTextarea2"
+                                        style="height: 100px"><?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(1, $_SESSION['id_gym'], 'call') : null; ?></textarea>
                                 </div>
 
                                 <div class="col-md-12">
                                     <label class="form-label">Misión</label>
                                     <textarea class="form-control" placeholder="Escribe aquí la misión del gimnasio..."
-                                        name="mission" id="floatingTextarea2" style="height: 100px"></textarea>
+                                        name="mission" id="floatingTextarea2"
+                                        style="height: 100px"><?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(2, $_SESSION['id_gym'], 'call') : null; ?></textarea>
                                 </div>
 
                                 <div class="col-md-12">
                                     <label class="form-label">Visión</label>
                                     <textarea class="form-control" placeholder="Escribe aquí la visión del gimnasio..."
-                                        name="vision" id="floatingTextarea2" style="height: 100px"></textarea>
+                                        name="vision" id="floatingTextarea2"
+                                        style="height: 100px"><?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(3, $_SESSION['id_gym'], 'call') : null; ?></textarea>
                                 </div>
+
+                                <?php
+                                if (isset($_GET['dgym'])) {
+                                    ?>
+                                    <img src="../<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(4, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        style="width: 40%;" alt="Logo De gimnasio Actual">
+                                    <?php
+                                }
+
+                                ?>
 
                                 <div class="col-md-12">
                                     <label class="form-label">Agrega fotos del gimnasio</label>
@@ -76,38 +97,46 @@ if (isset($_GET['error'])) {
                                 </label>
                                 <div class="col-md-12">En la <b>mañana</b></div>
                                 <div class="col-md-1">De</div>
-                                <div class="col-md-3"><input type="time" name="morning_time_weekday_start"
-                                        class="form-control"></div>
+                                <div class="col-md-3"><input type="time"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(5, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        name="morning_time_weekday_start" class="form-control"></div>
                                 <div class="col-md-1 text-center">A</div>
-                                <div class="col-md-3"><input type="time" name="morning_time_weekday_end"
-                                        class="form-control"></div>
+                                <div class="col-md-3"><input type="time"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(6, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        name="morning_time_weekday_end" class="form-control"></div>
 
                                 <div class="col-md-12">En la <b>Tarde</b></div> <!--Horario de la tarde-->
                                 <div class="col-md-1">De</div>
-                                <div class="col-md-3"><input type="time" name="afternoon_time_weekday_start"
-                                        class="form-control"></div>
+                                <div class="col-md-3"><input type="time"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(7, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        name="afternoon_time_weekday_start" class="form-control"></div>
                                 <div class="col-md-1 text-center">A</div>
-                                <div class="col-md-3"><input type="time" name="afternoon_time_weekday_end"
-                                        class="form-control"><br></div>
+                                <div class="col-md-3"><input type="time"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(8, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        name="afternoon_time_weekday_end" class="form-control"><br></div>
 
                                 <label class="form-label"> <!--Horario de los festivos y sábados-->
                                     <b>Sábado y festivos</b>
                                 </label>
                                 <div class="col-md-12">En la <b>mañana</b></div> <!--Horario de la mañana-->
                                 <div class="col-md-1">De</div>
-                                <div class="col-md-3"><input type="time" name="morning_time_weekend_start"
-                                        class="form-control"></div>
+                                <div class="col-md-3"><input type="time"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(9, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        name="morning_time_weekend_start" class="form-control"></div>
                                 <div class="col-md-1 text-center">A</div>
-                                <div class="col-md-3"><input type="time" name="morning_time_weekend_end"
-                                        class="form-control"></div>
+                                <div class="col-md-3"><input type="time"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(10, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        name="morning_time_weekend_end" class="form-control"></div>
 
                                 <div class="col-md-12">En la <b>Tarde</b></div> <!--Horario de la tarde-->
                                 <div class="col-md-1">De</div>
-                                <div class="col-md-3"><input type="time" name="afternoon_time_weekend_start"
-                                        class="form-control"></div>
+                                <div class="col-md-3"><input type="time"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(11, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        name="afternoon_time_weekend_start" class="form-control"></div>
                                 <div class="col-md-1 text-center">A</div>
-                                <div class="col-md-3"><input type="time" name="afternoon_time_weekend_end"
-                                        class="form-control"></div>
+                                <div class="col-md-3"><input type="time"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(12, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        name="afternoon_time_weekend_end" class="form-control"></div>
                             </div>
                         </div>
 
@@ -116,15 +145,21 @@ if (isset($_GET['error'])) {
                             <div class="row">
                                 <div class="col-md-6">
                                     <label class="form-label">Teléfono</label>
-                                    <input type="text" name="phone" class="form-control">
+                                    <input type="text"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(13, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        name="phone" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Correo</label>
-                                    <input type="text" name="email" class="form-control">
+                                    <input type="text"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(14, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        name="email" class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                     <label class="form-label">Dirección</label>
-                                    <input type="text" name="address" class="form-control">
+                                    <input type="text"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(15, $_SESSION['id_gym'], 'call') : null; ?>"
+                                        name="address" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -132,44 +167,56 @@ if (isset($_GET['error'])) {
                         <div class="col-md-12"> <!--Servicios del gimnasio-->
                             <h1 class="text-center">Servicios</h1>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label class="form-label">Formas de pago</label>
                                     <select class="form-select" name="payment_method"
                                         aria-label="Default select example">
                                         <option selected>Escoge la forma de pago</option>
-                                        <?php echo CycleCreateCalender::getCategories('paymentMethods') ?>
+                                        <?php
+                                        $selectedMethod = isset($_GET['dgym']) ? Gyms::getInfoThisGym(17, $_SESSION['id_gym'], 'call') : null;
+                                        echo CycleCreateCalender::getCategories('paymentMethods', $selectedMethod)
+                                            ?>
                                     </select>
                                 </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Pago De mensualidad</label>
+                                    <input type="text"
+                                        value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(21, $_SESSION['id_gym'], 'detailedInfo') : null; ?>"
+                                        name="monthly_payment" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12"> <!--Información del gerente-->
-                            <h1 class="text-center">Datos gerente</h1>
-                            <div class="row">
+                            <div class="col-md-12"> <!--Información del gerente-->
+                                <h1 class="text-center">Datos gerente</h1>
+                                <div class="row">
 
-                                <div class="col-md-12">
-                                    <div class="alert alert-warning" role="alert">
-                                        <b>¡Recuerda</b>: El correo electrónico y el numero de telefono deben estar
-                                        registrados en
-                                        el sistema con rol de gerente de gimnasio!
+                                    <div class="col-md-12">
+                                        <div class="alert alert-warning" role="alert">
+                                            <b>¡Recuerda</b>: El correo electrónico y el numero de telefono deben estar
+                                            registrados en
+                                            el sistema con rol de gerente de gimnasio!
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Correo electrónico</label>
+                                        <input type="text"
+                                            value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(20, $_SESSION['id_gym'], 'call') : null; ?>"
+                                            name="managerEmail" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Teléfono</label>
+                                        <input type="text"
+                                            value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(21, $_SESSION['id_gym'], 'call') : null; ?>"
+                                            name="managerPhone" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Correo electrónico</label>
-                                    <input type="text" name="managerEmail" class="form-control">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Teléfono</label>
-                                    <input type="text" name="managerPhone" class="form-control">
-                                </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="col-md-12 my-4 text-center">
-                        <button type="submit" class="btn btn-primary boton">Registrar</button>
+                        <br>
+                        <div class="col-md-12 my-4 text-center">
+                            <button type="submit" class="btn btn-primary boton">Registrar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
         </form>
     </div>

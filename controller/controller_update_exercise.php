@@ -7,9 +7,6 @@ include_once ("../model/validate.php");
 
 include_once ('../model/exercise.php');
 
-if (!isset($_SESSION))
-    session_start();
-
 // Define los nombres de los campos que deben ser validados
 $inputsValidate = ['newName', 'newinstructions', 'newEquipment', 'newSets', 'newRepetions', 'newBreakTime'];
 

@@ -90,30 +90,15 @@ if (isset($_GET['error'])) {
                             <div class="form-group">
                                 <label for="inputGroupSelect01" class="form-label">Género</label>
 
-                                <?php
-                                if (isset($_GET['edit'])) {
-                                    $sexo = usuarios::getPerfil(8, $_SESSION['id_edit_usu']);
-                                    ?>
-                                    <select class="form-select custom-select" name="sex" id="inputGroupSelect01" required>
-                                        <option selected disabled>Selecciona...</option>
-                                        <option value="2" <?php echo ($sexo == 'Femenino') ? 'selected' : ''; ?>>Femenino
-                                        </option>
-                                        <option value="1" <?php echo ($sexo == 'Masculino') ? 'selected' : ''; ?>>Masculino
-                                        </option>
-                                        <option value="3" <?php echo ($sexo == 'Otro') ? 'selected' : ''; ?>>Otro</option>
-                                    </select>
+
+                                <select class="form-select custom-select" name="sex" id="inputGroupSelect01" required>
+                                    <option selected disabled>Selecciona...</option>
                                     <?php
-                                } else {
+                                    $selectedSex = isset($_GET['edit']) ? usuarios::getPerfil(8, $_SESSION['id_edit_usu']) : null;
+                                    echo CycleCreateCalender::getCategories('genero', $selectedSex) ?>
                                     ?>
-                                    <select class="form-select custom-select" name="sex" id="inputGroupSelect01" required>
-                                        <option selected disabled>Selecciona...</option>
-                                        <option value="2">Femenino</option>
-                                        <option value="1">Masculino</option>
-                                        <option value="3">Otro</option>
-                                    </select>
-                                    <?php
-                                }
-                                ?>
+                                </select>
+
                             </div>
                         </div>
 
@@ -132,21 +117,8 @@ if (isset($_GET['error'])) {
                                     <option value="" disabled selected>Selecciona el rol</option>
 
                                     <?php
-                                    if (isset($_GET['edit'])) {
-                                        $role = usuarios::getPerfil(10, $_SESSION['id_edit_usu']);
-                                        ?>
-                                        <option value="2" <?php echo ($role == 'Invitado') ? 'selected' : ''; ?>>Invitado
-                                        </option>
-                                        <option value="1" <?php echo ($role == 'Administrador') ? 'selected' : ''; ?>>
-                                            Administrador</option>
-                                        <option value="3" <?php echo ($role == 'Super-Admin') ? 'selected' : ''; ?>>
-                                            Super-Admin</option>
-                                        <option value="4" <?php echo ($role == 'Gerente de gimnasio') ? 'selected' : ''; ?>>
-                                            Gerente de gimnasio</option>
-                                        <?php
-                                    } else {
-                                        echo CycleCreateCalender::getCategories('roles');
-                                    }
+                                    $selectedRole = isset($_GET['edit']) ? usuarios::getPerfil(10, $_SESSION['id_edit_usu']) : null;
+                                    echo CycleCreateCalender::getCategories('roles', $selectedRole) ?>
                                     ?>
                                 </select>
                             </div>

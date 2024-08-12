@@ -152,25 +152,7 @@ class validate extends conexionBD
 
         while ($row = $response->fetch_array()) {
             // Determinar qué valor devolver según $selectRow
-            switch ($selectRow) {
-                case 1:
-                    // Obtener el conteo de coincidencias encontradas
-                    $r = $row[0];
-                    break;
-                case 2:
-                    // Obtener el ID del usuario encontrado
-                    $r = $row[1];
-                    break;
-
-                case 3:
-                    // Obtener el conteo de coincidencias en la tabla infogyms de un usuario gerente
-                    $r = $row[0];
-                    break;
-
-                default:
-                    $r = null;
-                    break;
-            }
+            $r = $row[$selectRow] ?? null;
         }
 
         $connect->close();

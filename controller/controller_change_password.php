@@ -1,5 +1,9 @@
 <?php
+!isset($_SESSION) ? session_start() : null;
 include_once ("../model/validate.php");
+include_once ("../model/usuario.php");
+include_once ("../functions/messages.php");
+include_once ("../model/gyms.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -8,25 +12,36 @@ require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/Exception.php';
 require 'PHPMailer/SMTP.php';
 
-$array = ['email'];
+$id_user = isset($_GET['usu']) ? $_GET['usu'] : null;
+$email = isset($_GET['usu']) ? usuarios::getPerfil(2, $id_user) : null;
+$nameGym = isset($_GET['usu']) ? Gyms::getInfoThisGym(0, $_SESSION['thisGym'], 'call') : null;
 
-if (!validate::validateNotEmptyInputs($array)) {
-    header('location: ../view/password/change_password.php?error=emptyFild');
+if (isset($_GET['usu']) && ($email === null || $nameGym === null)) {
+    echo "Error: No se pudo obtener el correo electrónico o el nombre del gimnasio.";
     exit();
 }
 
-$email = isset($_POST['email']) ? validate::sanitize($_POST['email']) : null;
+if (!isset($_GET['usu'])) {
+    $array = ['email'];
 
-if ($email == null) {
-    header('location: ../view/password/change_password.php?error=error');
-    exit();
-}
+    if (!validate::validateNotEmptyInputs($array)) {
+        header('location: ../view/password/change_password.php?error=emptyFild');
+        exit();
+    }
 
-$validate = validate::UserExists(1, $email, null, 1);
-$id = validate::UserExists(1, $email, null, 2);
-if ($validate < 1) {
-    header('location: ../view/password/change_password.php?error=notmatches');
-    exit();
+    $email = isset($_POST['email']) ? validate::sanitize($_POST['email']) : null;
+
+    if ($email == null) {
+        header('location: ../view/password/change_password.php?error=error');
+        exit();
+    }
+
+    $validate = validate::UserExists(1, $email, null, 0);
+    $id = validate::UserExists(1, $email, null, 1);
+    if ($validate < 1) {
+        header('location: ../view/password/change_password.php?error=notmatches');
+        exit();
+    }
 }
 
 $mail = new PHPMailer(true);
@@ -47,12 +62,17 @@ try {
 
     // Contenido del correo
     $mail->isHTML(true);
-    $mail->Subject = "Solicitud Cambio de Contraseña";
-    $mail->Body = $mail->Body = "<a href='http://localhost/wordlfit_php_project/view/password/change_password.php?usuiden=" . $id . "&step=2'>Cambio de contraseña aqui</a>";
+    $mail->Subject = isset($_GET['usu']) ? "Inscripcion De Gimnasio" : "Solicitud Cambio de Contraseña";
+    $mail->Body = isset($_GET['usu']) ? "Se ha activado tu membresia para el gimnasio $nameGym" : "<a href='http://localhost/wordlfit_php_project/view/password/change_password.php?usuiden=" . $id . "&step=2'>Cambio de contraseña aqui</a>";
     // $mail->AltBody = 'Texto alternativo para clientes que no soportan HTML';
 
     $mail->send();
-    header("location: ../view/inicioSesion.php?alert=viewemail");
+    unset($_SESSION['thisGym']);
+    if (isset($_GET['usu'])) {
+        header("location: ../view/controlador.php?alert=viewemail&seccion=seccion1");
+    } else {
+        header("location: ../view/inicioSesion.php?alert=viewemail");
+    }
     exit(); // Asegura que el script se detenga aquí después de redirigir
 } catch (Exception $e) {
     echo "Error al enviar el correo: " . $mail->ErrorInfo;

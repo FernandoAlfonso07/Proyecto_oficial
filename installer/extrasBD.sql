@@ -96,10 +96,10 @@ CREATE PROCEDURE `Register_gym` (
     IN mail VARCHAR(200),
     IN direction VARCHAR(200),
     IN id_pay INT(11),
-    IN id_gerente INT(11)
+    IN id_gerente INT(11),
+    IN monthly_payment INT(11)
 ) BEGIN
-INSERT INTO
-    `infoGyms` (
+    INSERT INTO `infoGyms` (
         name,
         id_categoria,
         description,
@@ -119,10 +119,10 @@ INSERT INTO
         direction,
         id_pay,
         id_gerente,
-        status
+        status,
+        monthly_payment
     )
-VALUES
-    (
+    VALUES (
         name,
         id_categoria,
         description,
@@ -142,9 +142,9 @@ VALUES
         direction,
         id_pay,
         id_gerente,
-        'activo'
+        'activo',
+        monthly_payment
     );
-
 END;
 
 DROP PROCEDURE IF EXISTS `getInfoGymsAll`;

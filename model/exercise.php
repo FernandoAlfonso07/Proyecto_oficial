@@ -42,40 +42,7 @@ class exercise extends conexionBD
         while ($row = $result->fetch_array()) {
 
             // Dependiendo del valor de $opc, asigna el valor correspondiente de la fila a $salida.
-            switch ($opc) {
-                case 0:
-                    // Asigna el valor de la primera columna (ID del ejercicio).
-                    $salida = $row[0];
-                    break;
-                case 1:
-                    // Asigna el valor de la segunda columna (Nombre del ejercicio).
-                    $salida = $row[1];
-                    break;
-                case 2:
-                    // Asigna el valor de la tercera columna (Instrucciones).
-                    $salida = $row[2];
-                    break;
-                case 3:
-                    // Asigna el valor de la cuarta columna (Equipo necesario).
-                    $salida = $row[3];
-                    break;
-                case 4:
-                    // Asigna el valor de la quinta columna (Series).
-                    $salida = $row[4];
-                    break;
-                case 5:
-                    // Asigna el valor de la sexta columna (Repeticiones).
-                    $salida = $row[5];
-                    break;
-                case 6:
-                    // Asigna el valor de la séptima columna (Tiempo de descanso).
-                    $salida = $row[6];
-                    break;
-                case 8:
-                    // Asigna el valor de la octava columna (Direccion del archivo multimedia).
-                    $salida = $row[8];
-                    break;
-            }
+            $salida = $row[$opc] ?? null;
         }
         // Cierra la conexion a la base de datos.
         $conexion->close();

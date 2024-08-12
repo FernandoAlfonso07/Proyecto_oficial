@@ -65,7 +65,7 @@
                     <?php echo htmlspecialchars($correo); ?> | Teléfono: <?php echo htmlspecialchars($telefono); ?>
                 </p>
             </div>
-            <a href="signup.php" class="btn btn-register">Inscribirse</a>
+            <a href="controlador.php?seccion=inscription_gym" class="btn btn-register">Inscribirse</a>
         </div>
     </div>
 </div>

@@ -159,6 +159,8 @@ if (validate::validateNotEmptyInputs($inputs)) {
         } elseif ($type === 'admin') {
             header('Location: ../view/administrador/controladorVadmin.php?success=exito&seccionAd=MiPerfil');
         } elseif ($type === 'editUser') {
+            // Elimina la variable de sesión específica
+            unset($_SESSION['id_edit_usu']);
             header('Location: ../view/administrador/controladorVadmin.php?success=exitoEdit&seccionAd=verUsuarios');
         }
         exit(); // Detiene la ejecución después de redirigir

@@ -34,47 +34,7 @@ class usuarios extends conexionBD
         // Itera sobre los resultados obtenidos
         while ($fila = $resultado->fetch_array()) {
 
-            switch ($opc) {
-                case 0: // Trae el id_usuario
-                    $salida = $fila[0];
-                    break;
-                case 1: // Trae el nombre
-                    $salida = $fila[1];
-                    break;
-                case 2: // Trae el Apillidos
-                    $salida = $fila[2];
-                    break;
-                case 3: // Trae el Correo
-                    $salida = $fila[3];
-                    break;
-                case 4: // Trae el Contraseña
-                    $salida = $fila[4];
-                    break;
-                case 5: // Trae el peso
-                    $salida = $fila[5];
-                    break;
-                case 6: // Trae el alura
-                    $salida = $fila[6];
-                    break;
-                case 7: // Trae el id_genero
-                    $salida = $fila[7];
-                    break;
-                case 8: // Trae el telefono
-                    $salida = $fila[8];
-                    break;
-                case 9: // Trae el Pr
-                    $salida = $fila[9];
-                    break;
-                case 10: // Trae el Fecha registro
-                    $salida = $fila[10];
-                    break;
-                case 11: // Rol
-                    $salida = $fila[11];
-                    break;
-                case 12: // img perfil
-                    $salida = $fila[12];
-                    break;
-            }
+            $salida = $fila[$opc] ?? null;
         }
         return $salida;
     }
@@ -142,16 +102,8 @@ class usuarios extends conexionBD
 
             // Obtiene la primera fila del resultado de la consulta
             if ($fila = $resultado->fetch_array()) {
-
                 // Determina qué valor retornar basado en el parámetro $opc
-                switch ($opc) {
-                    case 0:
-                        $r = $fila[0]; // Número de coincidencias encontradas
-                        break;
-                    case 1:
-                        $r = $fila[1]; // ID del rol del usuario
-                        break;
-                }
+                $r = $fila[$opc] ?? null;
             }
         }
 
@@ -177,7 +129,7 @@ class usuarios extends conexionBD
      *                          - 3: Contraseña (no recomendado devolver por razones de seguridad)
      *                          - 4: Peso actual
      *                          - 5: Altura actual
-     *                          - 6: PR (¿Presión arterial?)
+     *                          - 6: PR (Personal Record)
      *                          - 7: Teléfono
      *                          - 8: Género
      *                          - 9: Ruta de la imagen de perfil
@@ -199,63 +151,7 @@ class usuarios extends conexionBD
         // Procesa cada fila del resultado de la consulta
         while ($fila = $resultado->fetch_array()) {
 
-            switch ($opc) {
-                case 0: // Muestra NOMBRE
-
-                    $r .= $fila[0];
-
-                    break;
-                case 1: // Muestra APELLIDO
-
-                    $r .= $fila[1];
-
-                    break;
-                case 2: // Muestra CORREO
-
-                    $r .= $fila[2];
-
-                    break;
-                case 3: // Muestra CONTRASEÑA
-
-                    $r .= $fila[3];
-
-                    break;
-                case 4: // Muestra PESO
-
-                    $r .= $fila[4];
-
-                    break;
-                case 5: // Muestra ALTURA
-
-                    $r .= $fila[5];
-
-                    break;
-                case 6: // Muestra PR
-
-                    $r .= $fila[6];
-
-                    break;
-                case 7: // Muestra TELEFONO
-
-                    $r .= $fila[7];
-
-                    break;
-                case 8: // Muestra GENERO
-
-                    $r .= $fila[8];
-
-                    break;
-                case 9: // Muestra la ruta de la imagen de perfil.
-
-                    $r .= $fila[9];
-
-                    break;
-                case 10: // Muestra el rol.
-
-                    $r .= $fila[10];
-
-                    break;
-            }
+            $r = $fila[$opc] ?? null;
         }
         return $r;   // Devuelve la información del perfil del usuario como una cadena
     }
@@ -473,23 +369,9 @@ class usuarios extends conexionBD
 
         // Recorre los resultados de la consulta
         while ($row = $result->fetch_array()) {
-
             // Selecciona el campo apropiado basado en el valor de $opc
-            switch ($opc) {
-                case 0:
-                    $salida = $row[0];
-                    break;
+            $salida = $row[$opc] ?? null;
 
-                case 1:
-                    $salida = $row[1];
-                    break;
-                case 2:
-                    $salida = $row[2];
-                    break;
-                case 3:
-                    $salida = $row[3];
-                    break;
-            }
         }
         // Cierra la conexión a la base de datos
         $conexion->close();
@@ -550,12 +432,45 @@ class usuarios extends conexionBD
         return $affected_rows;
     }
 
+    /**
+     * Actualiza la contraseña de un usuario en la base de datos.
+     *
+     * @param string $newPassword La nueva contraseña que se establecerá para el usuario.
+     * @param int $id El ID del usuario cuya contraseña se va a actualizar.
+     * @return int El número de filas afectadas por la consulta.
+     */
     public static function updatePassword($newPassword, $id)
     {
         $connect = self::getConexion(); // Obtiene una conexión a la base de datos.
 
         // Prepara la consulta SQL para actualizar el campo de la contraseña en la tabla `usuario`.
         $sql = "UPDATE usuarios SET password = '$newPassword' WHERE id_usuario = '$id' ";
+
+        // Ejecuta la consulta SQL.
+        $connect->query($sql);
+
+        // Obtiene el número de filas afectadas por la consulta.
+        $affected_rows = $connect->affected_rows;
+
+        // Cierra la conexión a la base de datos.
+        $connect->close();
+
+        // Devuelve el número de filas afectadas.
+        return $affected_rows;
+    }
+    
+    public static function inscriptionGym(
+        $id_user,
+        $address_user,
+        $document_user,
+        $information_extra,
+        $id_gym
+    ) {
+        $connect = self::getConexion(); // Obtiene una conexión a la base de datos.
+
+        // Prepara la consulta SQL para actualizar el campo de la contraseña en la tabla `usuario`.
+        $sql = "INSERT INTO registration_inscriptions (id_user, address_user, document_user, information_extra, date_inscription, id_gym) 
+        VALUES ('$id_user','$address_user','$document_user','$information_extra',now(), '$id_gym') ";
 
         // Ejecuta la consulta SQL.
         $connect->query($sql);
