@@ -1,7 +1,5 @@
 <?php
-
 include_once ('../model/calendarioRutinario.php');
-
 ?>
 
 <link rel="stylesheet" href="css/estilos_mis_calendarios.css">
@@ -13,7 +11,7 @@ include_once ('../model/calendarioRutinario.php');
 <div class="container text-center crear_calendario_btn">
     <div class="row">
         <div class="col-md-12">
-            <a href="controlador.php?seccion=createCalender">
+            <a href="../controller/validateCalendar.php">
                 <i class="fa-regular fa-calendar-plus"></i>
             </a>
         </div>

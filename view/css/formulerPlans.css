@@ -1,0 +1,82 @@
+body {
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo del contenedor del formulario */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilo del formulario */
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de los campos del formulario */
+.form-control,
+.btn {
+    border-radius: 20px;
+}
+
+/* Estilo de las etiquetas */
+label {
+    color: #00A1FF;
+    font-weight: bold;
+}
+
+/* Espaciado para los grupos de entrada */
+.input-group,
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    margin-bottom: 20px;
+}
+
+/* Estilo para los campos de entrada en foco */
+.form-control:focus {
+    border-color: #00A1FF;
+    box-shadow: 0 0 5px rgba(0, 161, 255, 0.5);
+}
+
+/* Estilo para el botón de compra con degradado */
+.btn-primary {
+    background: linear-gradient(135deg, #00A1FF, #0080cc);
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0080cc, #00A1FF);
+    transform: scale(1.05);
+}
+
+/* Estilo para el botón "Volver" */
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: scale(0.95);
+}
+
+/* Estilo para la imagen del logo */
+.img-fluid {
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

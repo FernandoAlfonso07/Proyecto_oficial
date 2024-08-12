@@ -19,7 +19,7 @@
         <div class="plans-container">
             <!-- Plan para Usuarios -->
             <div class="plan user-plan">
-                <h2>Usuarios <i class="fa-solid fa-user"></i></h2>
+                <h2>Plan para Usuarios <i class="fa-solid fa-user"></i></h2>
                 <p class="price">$20,000</p>
                 <ul>
                     <li>
@@ -28,27 +28,34 @@
                     <li>
                         <div class="service">Creación de calendarios ilimitados</div>
                     </li>
+                    <li>
+                        <div class="service">Inscripcion a Gimnasios</div>
+                    </li>
                 </ul>
-                <a href="#" class="btn-select">Elegir Plan</a>
+                <a href="formulerPlan.php?plan=1" class="btn-select">Elegir Plan</a>
             </div>
             <!-- Plan para Gerentes de Gimnasio -->
             <div class="plan gym-manager-plan">
-                <h2>Gerentes de Gimnasio <i class="fa-solid fa-building-user"></i></h2>
+                <h2>Plan para Gerentes de Gimnasio <i class="fa-solid fa-building-user"></i></h2>
                 <p class="price">$30,000</p>
                 <ul>
                     <li>
                         <div class="service">Publicación de todos los datos del gimnasio detallada</div>
                     </li>
                     <li>
-                        <div class="service">Visible para todos los usuarios</div>
-                    </li>
-                    <li>
                         <div class="service">Acceso a que los usuarios se inscriban en su gimnasio</div>
                     </li>
                 </ul>
-                <a href="#" class="btn-select">Elegir Plan</a>
+                <a href="formulerPlan.php?plan=2" class="btn-select">Elegir Plan</a>
             </div>
         </div>
+
+        <a href="<?php echo isset($_SESSION['id']) ? "../controlador.php?seccion=seccion1" : "../inicio-principal.php"; ?>"
+            class="my-3">
+            <button class="btn btn-secondary">
+                Volver
+            </button>
+        </a>
     </div>
 </body>
 <script src="https://kit.fontawesome.com/296731592d.js" crossorigin="anonymous"></script>

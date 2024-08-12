@@ -63,7 +63,7 @@
                                     <span>
                                         <img src="img/icono_pesa.png" alt="" width="37px">
                                     </span>
-                                    <a href="#">
+                                    <a href="pages/plans.php">
                                         ¡INSCRIBETE AHORA!
                                     </a>
                                 </button>

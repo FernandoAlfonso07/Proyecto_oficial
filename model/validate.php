@@ -205,5 +205,50 @@ class validate extends conexionBD
         return $r;
 
     }
+
+    /**
+     * Valida y cuenta el número de registros en una tabla específica basado en una opción de consulta.
+     *
+     * @param string $opc Tipo de operación a realizar, aunque no se usa directamente en la función.
+     * @param int $data_id Identificador del usuario o dato a contar en la tabla.
+     * @param string $opcQuery Opción de consulta para determinar qué tabla y campo utilizar. Puede ser 'countCalendars' o 'purchase count'.
+     * 
+     * @return int El número de registros encontrados en la base de datos que coinciden con el identificador dado.
+     */
+    public static function validateCountsDatas($opc, $data_id, $opcQuery)
+    {
+        // Obtiene la conexión a la base de datos
+        $connect = self::getConexion();
+
+        // Determina la tabla, el identificador y el campo a buscar según la opción de consulta
+        switch ($opcQuery) {
+            case 'countCalendars':
+                $nameTable = "calendario_rutinario";
+                $identifier = "id_usuario";
+                break;
+            case 'purchase count':
+                $nameTable = "plan_registration";
+                $identifier = "id_usuario";
+                break;
+        }
+
+        // Construye la consulta SQL para obtener el valor deseado
+        $sql = "SELECT COUNT(*) FROM $nameTable WHERE $identifier = '$data_id' ";
+
+        // Ejecuta la consulta SQL
+        $response = $connect->query($sql);
+
+        // Procesa los resultados de la consulta
+        while ($row = $response->fetch_array()) {
+            $r = $row[0];  // Asigna el primer valor de la fila al resultado
+        }
+
+        // Cierra la conexión a la base de datos
+        $connect->close();
+
+        // Retorna el valor encontrado o una cadena vacía si no se encontró nada
+        return $r;
+
+    }
 }
 

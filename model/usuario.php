@@ -458,7 +458,20 @@ class usuarios extends conexionBD
         // Devuelve el número de filas afectadas.
         return $affected_rows;
     }
-    
+
+    /**
+     * Este método registra una nueva inscripción de un usuario en un gimnasio en la base de datos, incluyendo detalles
+     * como la dirección, el documento, información adicional, y la fecha de inscripción.
+     *
+     * @param int $id_user El ID del usuario que se va a inscribir en el gimnasio.
+     * @param string $address_user La dirección del usuario.
+     * @param int $document_user El número de documento del usuario.
+     * @param string $information_extra Información adicional sobre la inscripción.
+     * @param int $id_gym El ID del gimnasio donde se va a inscribir el usuario.
+     *
+     * @return int Devuelve el número de filas afectadas por la inserción en la base de datos. 
+     *             Si es mayor que 0, la inserción fue exitosa.
+     */
     public static function inscriptionGym(
         $id_user,
         $address_user,
@@ -468,7 +481,7 @@ class usuarios extends conexionBD
     ) {
         $connect = self::getConexion(); // Obtiene una conexión a la base de datos.
 
-        // Prepara la consulta SQL para actualizar el campo de la contraseña en la tabla `usuario`.
+        // Prepara la consulta SQL para insertar los datos de inscripción en la tabla `registration_inscriptions`.
         $sql = "INSERT INTO registration_inscriptions (id_user, address_user, document_user, information_extra, date_inscription, id_gym) 
         VALUES ('$id_user','$address_user','$document_user','$information_extra',now(), '$id_gym') ";
 
@@ -485,4 +498,31 @@ class usuarios extends conexionBD
         return $affected_rows;
     }
 
+    /**
+     * Registra la compra de un plan por un usuario.
+     *
+     * @param int $id_user Identificador del usuario que compra el plan.
+     * @param int $id_plan Identificador del plan que se compra.
+     * 
+     * @return int El número de filas afectadas por la consulta de inserción.
+     */
+    public static function buy_plan($id_user, $id_plan)
+    {
+        $connect = self::getConexion(); // Obtiene una conexión a la base de datos.
+
+        // Prepara la consulta SQL para insertar los datos de inscripción en la tabla `registration_inscriptions`.
+        $sql = "INSERT INTO plan_registration (id_usuario, id_plan) VALUES('$id_user','$id_plan') ";
+        echo $sql;
+        // Ejecuta la consulta SQL.
+        $connect->query($sql);
+
+        // Obtiene el número de filas afectadas por la consulta.
+        $affected_rows = $connect->affected_rows;
+
+        // Cierra la conexión a la base de datos.
+        $connect->close();
+
+        // Devuelve el número de filas afectadas.
+        return $affected_rows;
+    }
 }

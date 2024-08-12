@@ -57,7 +57,7 @@ if ($response > 1) {
     header("Location: ../view/controlador.php?error=errorInscription&seccion=inscription_gym");
     exit();
 } else {
-    header("Location: controller_change_password.php?usu=" . $_SESSION['id'] . "");
+    header("Location: controller_change_password.php?type=InscriptionGym&usu=" . $_SESSION['id'] . "");
     exit();
 }
 
