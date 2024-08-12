@@ -76,13 +76,13 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.mailersend.net';
     $mail->SMTPAuth = true;
-    $mail->Username = 'MS_Fl1Fni@trial-pr9084zxemjlw63d.mlsender.net';
-    $mail->Password = 'ktUM3Dtb0B86LHtl';
+    $mail->Username = 'MS_MlgRgY@trial-pr9084zxemjlw63d.mlsender.net';
+    $mail->Password = 'oiRIvrxeeuhSQypL';
     // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
     // Destinatarios
-    $mail->setFrom('MS_Fl1Fni@trial-pr9084zxemjlw63d.mlsender.net', 'WorldFit');
+    $mail->setFrom('MS_MlgRgY@trial-pr9084zxemjlw63d.mlsender.net', 'WorldFit');
     $mail->addAddress($email);
 
     // Contenido del correo
