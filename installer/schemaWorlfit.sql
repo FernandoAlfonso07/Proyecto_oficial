@@ -40,7 +40,6 @@ CREATE TABLE `calendario_rutinario` (
 
 LOCK TABLES `calendario_rutinario` WRITE;
 /*!40000 ALTER TABLE `calendario_rutinario` DISABLE KEYS */;
-INSERT INTO `calendario_rutinario` VALUES (14,16,'qqq','qqqq','2024-08-12 02:30:25'),(15,16,'wdw','dwdw','2024-08-12 02:30:40');
 /*!40000 ALTER TABLE `calendario_rutinario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +63,6 @@ CREATE TABLE `categorias_gyms` (
 
 LOCK TABLES `categorias_gyms` WRITE;
 /*!40000 ALTER TABLE `categorias_gyms` DISABLE KEYS */;
-INSERT INTO `categorias_gyms` VALUES (1,'Categoria 1'),(2,'Crossfit'),(3,'Categoria 2');
 /*!40000 ALTER TABLE `categorias_gyms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +139,6 @@ CREATE TABLE `ejercicio_rutinas` (
 
 LOCK TABLES `ejercicio_rutinas` WRITE;
 /*!40000 ALTER TABLE `ejercicio_rutinas` DISABLE KEYS */;
-INSERT INTO `ejercicio_rutinas` VALUES (2,1,2),(3,2,7),(4,2,3),(6,2,8),(7,3,2),(8,3,3),(9,3,5),(10,3,6),(11,3,7),(12,3,9);
 /*!40000 ALTER TABLE `ejercicio_rutinas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +170,6 @@ CREATE TABLE `ejercicios` (
 
 LOCK TABLES `ejercicios` WRITE;
 /*!40000 ALTER TABLE `ejercicios` DISABLE KEYS */;
-INSERT INTO `ejercicios` VALUES (2,'Ejercicio 212','www','wwww','22','22',10,'2024-08-10 18:35:19','j99intoPKGE','2024-08-11 17:04:25'),(3,'Elevacion de talon','SESSS','sssss','5','15',5,'2024-08-10 20:19:15','yyoubmNCDk4','2024-08-10 20:24:39'),(4,'www','www','www','22','22',6,'2024-08-10 20:22:21','LQ3_vb8xqqU',NULL),(5,'www','www','www','222','22',22,'2024-08-10 20:54:48','ApcFOawMStM',NULL),(6,'www','www','www','22','22',22,'2024-08-10 20:58:21','m0Kd7qttGBc',NULL),(7,'nuevo neuvo','nuevo neuvo','nuevo neuvo','15','2',15,'2024-08-10 20:59:29','',NULL),(8,'www22','wwww222','ww2','22','22',22,'2024-08-10 21:16:21','3BDjbk1imWo',NULL),(9,'23123','23123','1232','11','22',22,'2024-08-10 21:30:44','MxAjEdybuVQ',NULL);
 /*!40000 ALTER TABLE `ejercicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +243,6 @@ CREATE TABLE `infogyms` (
 
 LOCK TABLES `infogyms` WRITE;
 /*!40000 ALTER TABLE `infogyms` DISABLE KEYS */;
-INSERT INTO `infogyms` VALUES (1,'SmarthAlpha',3,'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit incidunt adipisci et nesciunt labore ','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit incidunt adipisci et nesciunt labore similique ea\r\nmollitia ducimus architecto ut dignissimos at minus eligendi cum consequuntur aut voluptas, explicabo id.','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit incidunt adipisci et nesciunt labore similique ea\r\nmollitia ducimus architecto ut dignissimos at minus eligendi cum consequuntur aut voluptas, explicabo id.','../view/img Gyms/Captura.PNG','15:33','15:33','15:33','15:33','15:33','15:33','15:22','15:22',311596648,'smarthAlpha@gmail.com','direccion #direccion con Numeor Direcoianl',2,8,'activo',20000),(2,'wdwdwdwd',1,'wdwdwdwdw','dwdwdwd','wdwdwdwdw','../view/img Gyms/abeja.JPG','11:01','11:01','11:01','11:11','11:11','11:11','11:11','11:11',111111,'111111@gmail.com','wdwdwdwdwd',1,9,'activo',70000);
 /*!40000 ALTER TABLE `infogyms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,7 +324,6 @@ CREATE TABLE `plan_registration` (
 
 LOCK TABLES `plan_registration` WRITE;
 /*!40000 ALTER TABLE `plan_registration` DISABLE KEYS */;
-INSERT INTO `plan_registration` VALUES (3,16,1);
 /*!40000 ALTER TABLE `plan_registration` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -384,7 +378,6 @@ CREATE TABLE `purchase_history` (
 
 LOCK TABLES `purchase_history` WRITE;
 /*!40000 ALTER TABLE `purchase_history` DISABLE KEYS */;
-INSERT INTO `purchase_history` VALUES (3,16,1,'2024-08-12 02:31:38');
 /*!40000 ALTER TABLE `purchase_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,7 +410,6 @@ CREATE TABLE `registration_inscriptions` (
 
 LOCK TABLES `registration_inscriptions` WRITE;
 /*!40000 ALTER TABLE `registration_inscriptions` DISABLE KEYS */;
-INSERT INTO `registration_inscriptions` VALUES (7,15,'direccion #direccion con Numeor Direcoianl',1120562806,'Ninguna','2024-08-12',1);
 /*!40000 ALTER TABLE `registration_inscriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -449,7 +441,6 @@ CREATE TABLE `relacion_calendario_rutinas` (
 
 LOCK TABLES `relacion_calendario_rutinas` WRITE;
 /*!40000 ALTER TABLE `relacion_calendario_rutinas` DISABLE KEYS */;
-INSERT INTO `relacion_calendario_rutinas` VALUES (79,14,1,1),(80,14,2,1),(81,14,3,1),(82,14,4,1),(83,14,5,1),(84,14,6,1),(85,15,1,1),(86,15,2,2),(87,15,3,1),(88,15,4,3),(89,15,5,1),(90,15,6,1);
 /*!40000 ALTER TABLE `relacion_calendario_rutinas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -531,7 +522,6 @@ CREATE TABLE `rutinas` (
 
 LOCK TABLES `rutinas` WRITE;
 /*!40000 ALTER TABLE `rutinas` DISABLE KEYS */;
-INSERT INTO `rutinas` VALUES (1,'www','www','www','2024-08-10 18:30:39',1),(2,'sdsds','dsdsd','sdsdsd','2024-08-10 20:30:57',1),(3,'Rutina 24','Rutina 24Rutina 24','Rutina 24Rutina 24Rutina 24','2024-08-11 09:15:58',1);
 /*!40000 ALTER TABLE `rutinas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -559,7 +549,6 @@ CREATE TABLE `user_registration_indexes` (
 
 LOCK TABLES `user_registration_indexes` WRITE;
 /*!40000 ALTER TABLE `user_registration_indexes` DISABLE KEYS */;
-INSERT INTO `user_registration_indexes` VALUES (7,8,'2024-08-11 11:19:55',19),(8,9,'2024-08-11 21:04:05',16),(14,15,'2024-08-12 02:28:25',16),(15,16,'2024-08-12 02:30:18',16);
 /*!40000 ALTER TABLE `user_registration_indexes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -598,7 +587,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Usuario ','Administrador ','admin@gmail.com','$2y$10$oVz5nr6qgn6yQ2aJ1bHGC.3GbjfSJ6hgtigA/d4brWmrcncLXj3Ru',47,1.71,1,'31159633267',0,'2024-08-07 11:18:33',1,'../view/user img/default_img.PNG'),(8,'Dayana Andrea','Romo Urrego','dayana123romou@gmail.com','$2y$10$LbGViwhna/24540KoejRReyIB2/A0WI8l3aZN5PUqxZyWnXG5pQjq',48,1.6,2,'3214140782',0,'2024-08-11 11:19:55',4,'../view/user img/default_img.PNG'),(9,'wdwdw','dwdw','222@gmail.com','$2y$10$2OM0E23u4n2M/6/jHVpmmOZ1RSXJDDoBHFLOXWossFrtqJ6i8ZE5q',46,1.7,1,'64444',NULL,'2024-08-11 21:04:05',4,'../view/user img/default_img.PNG'),(15,'Fernando Enrique','Alfonso Amaya','alfonso07amaya@gmail.com','$2y$10$kzUCcMik7pdTcxBKc7MRsO3ZNGMD/plWgYYyToCTClnsw5kA6v.DW',46,1.7,1,'3115963326',NULL,'2024-08-12 02:28:25',2,'../view/user img/default_img.PNG'),(16,'tiringis','tingis','tiringistingis52@gmail.com','$2y$10$3Y6XL1T4p.sT3gmiGO.hV.cBIpRPFm2/3GNpq3vMlnYCrCB9gRcyK',46,1.7,2,'3115963328',NULL,'2024-08-12 02:30:18',2,'../view/user img/default_img.PNG');
+INSERT INTO `usuarios` VALUES (1,'Usuario ','Administrador ','admin@gmail.com','$2y$10$oVz5nr6qgn6yQ2aJ1bHGC.3GbjfSJ6hgtigA/d4brWmrcncLXj3Ru',47,1.71,1,'31159633267',0,'2024-08-07 11:18:33',1,'../view/user img/default_img.PNG');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -611,4 +600,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-12  2:34:41
+-- Dump completed on 2024-08-12  4:24:37

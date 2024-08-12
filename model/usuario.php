@@ -202,7 +202,7 @@ class usuarios extends conexionBD
         // Consulta SQL para insertar un nuevo usuario en la tabla 'usuarios'
         $sql = "insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol, imgPerfil)";
         $sql .= " values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$password', $pesoActual ,$altura, $genero, now(), " . ($rol ?? 2) . ", '../view/user img/default_img.PNG') ";
-
+        
         $conexion->query($sql); // Ejecuta la consulta SQL para insertar el nuevo usuario
 
         $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de inserción

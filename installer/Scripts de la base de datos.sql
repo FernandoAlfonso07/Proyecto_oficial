@@ -68,7 +68,6 @@ CREATE TABLE categorias_rutinas (
 );
 -- // Se Insertan las categorias por defecto del sistema.
 INSERT INTO categorias_rutinas (id_categoria, categoria) VALUES (1, 'Tren Superior');
-
 INSERT INTO categorias_rutinas (id_categoria, categoria) VALUES (2, 'Tren Inferiror');
 
 CREATE TABLE categorias_gyms (
@@ -80,9 +79,6 @@ CREATE TABLE categorias_gyms (
 
 );
 
-INSERT INTO categorias_gyms (categoria) VALUES ('Categoria 1');
-INSERT INTO categorias_gyms (categoria) VALUES ('Crossfit');
-INSERT INTO categorias_gyms (categoria) VALUES ('Categoria 2');
 
 SELECT * FROM categorias_gyms;
 
@@ -233,8 +229,6 @@ CREATE TABLE Payment_Methods_Gyms (
     primary key(id)
 );
 
-INSERT INTO Payment_Methods_Gyms (id, method) VALUES (1, 'Transfierencia');
-INSERT INTO Payment_Methods_Gyms (id, method) VALUES (2, 'Efectivo');
 
 CREATE TABLE user_registration_indexes (
 	id_registro int not null auto_increment,
@@ -308,6 +302,8 @@ CREATE TABLE interactions (
     ON UPDATE CASCADE
 
 );
+
+insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol, imgPerfil) values ('Usuario' ,'Administrador', '3115963326', 'administrador1@gmail.com', '$2y$10$bY/CtTL5MWrhHwp8QZxBUeQYl0cAix2Vw5TXyj.tAniuR07WQx1fu', 46 ,1.70, 1, now(), 2, '../view/user img/default_img.PNG')
 
 -- **************************** F U N C T I O N S A D N T R I G G E R S **********************************
 /*
