@@ -136,7 +136,7 @@ class Gyms extends conexionBD
             } elseif ($selectedSql == "detailedInfo") {
                 $sql = "SELECT * FROM infogyms WHERE id = '$id_gym'";
             } elseif ($selectedSql == "datailedMore") {
-                $sql = "SELECT * FROM registration_inscriptions WHERE id = '$id_gym'";
+                $sql = "SELECT * FROM registration_inscriptions WHERE id_gym = '$id_gym'";
             }
         }
 
