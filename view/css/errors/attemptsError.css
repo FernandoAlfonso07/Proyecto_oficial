@@ -1,0 +1,43 @@
+/* Estilo general del contenedor para centrar el contenido */
+.error-container {
+    height: 100vh;
+    background-color: #f5f8fa;
+}
+
+/* Estilo para el código de error */
+.error-code {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: #00A1FF;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el mensaje de error */
+.error-message {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+/* Estilo para el botón de reintentar */
+.btn-retry {
+    background: linear-gradient(45deg, #00A1FF, #0088cc);
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+}
+
+.btn-retry:hover {
+    background: linear-gradient(45deg, #0088cc, #00A1FF);
+    transform: translateY(-3px);
+}
+
+.btn-retry a {
+    color: #fff;
+    text-decoration: none;
+}

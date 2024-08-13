@@ -1,0 +1,32 @@
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #00A1FF;
+    padding: 10px;
+}
+
+.btn-gradient {
+    background: linear-gradient(45deg, #00A1FF, #0056b3);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(45deg, #0056b3, #00A1FF);
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.shadow-sm {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

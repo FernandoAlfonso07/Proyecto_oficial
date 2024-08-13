@@ -1,0 +1,81 @@
+body {
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.form-label {
+    color: #00A1FF;
+    font-weight: bold;
+}
+
+h1,
+h2 {
+    color: #00A1FF;
+    font-weight: bold;
+}
+
+.input-group,
+input[type="text"],
+input[type="password"],
+textarea,
+select.form-select {
+    margin-bottom: 20px;
+}
+
+.form-control:focus,
+.select.form-select:focus {
+    border-color: #00A1FF;
+    box-shadow: 0 0 5px rgba(0, 161, 255, 0.5);
+}
+
+.btn-warning {
+    background-color: #ffcc00;
+    border: none;
+    color: white;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #00A1FF;
+    border: none;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0080cc;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+
+.modal-header {
+    background-color: #00A1FF;
+    color: white;
+}
+
+.modal-footer .btn-primary {
+    background-color: #00A1FF;
+    border: none;
+    color: white;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #0080cc;
+}
