@@ -1,0 +1,146 @@
+/* Estilo para el cuerpo */
+body {
+    background-color: #f0f8ff;
+}
+
+/* Estilos para el botón de estado */
+.btn-status.status {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-status.status:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para los iconos dentro del botón de estado */
+.btn-status.status .fa-toggle-on {
+    font-size: 22px;
+    color: #28a745; /* Verde para el estado activo */
+}
+
+.btn-status.status .fa-toggle-off {
+    font-size: 22px;
+    color: #dc3545; /* Rojo para el estado inactivo */
+}
+
+/* Estilos para el icono de edición */
+.icono.edit {
+    font-size: 22px;
+    margin-left: 10px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.icono.edit:hover {
+    color: rgb(0, 89, 255);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* Estilos para el icono */
+.icono {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.icono:hover {
+    cursor: pointer;
+}
+
+/* Estilo para el conteo de gimnasios */
+.conteo {
+    box-shadow: rgba(0, 161, 255, 0.4) -5px 5px,
+        rgba(0, 161, 255, 0.3) -10px 10px,
+        rgba(0, 161, 255, 0.2) -15px 15px,
+        rgba(0, 161, 255, 0.1) -20px 20px,
+        rgba(0, 161, 255, 0.05) -25px 25px;
+
+    transition: ease 0.5s;
+    padding: 20px;
+}
+
+.conteo:hover {
+    cursor: pointer;
+    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+    transition: ease 0.5s;
+}
+
+/* Estilo para la tabla */
+.container.tabla {
+    margin-top: 20px;
+    border: 2px solid #00A1FF;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table thead th {
+    background-color: #00A1FF;
+    color: #fff;
+    text-align: center;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table tbody td {
+    text-align: center;
+}
+
+.caracteristica {
+    font-weight: bold;
+}
+
+/* Estilo para el título de tabla */
+.container.tabla h1 {
+    color: #00A1FF;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilos para enlaces */
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Estilos para las alertas */
+.text-center.alert {
+    text-align: center;
+    color: #000;
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.text-center.alert:hover {
+    color: #00A1FF;
+    transform: scale(1.1) rotate(3deg);
+    text-shadow: 2px 2px 5px rgba(0, 161, 255, 0.5);
+}
+
+.text-center.alert:hover i {
+    animation: bounce 0.5s;
+}
+
+/* Animación para los iconos */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Margen adicional para el icono */
+.fa-square-plus {
+    margin-left: 5px;
+}
+
+/* Clase de margen adicional */
+.ml-5 {
+    margin-left: 5px;
+}

@@ -1,0 +1,129 @@
+h1 {
+    color: #00A1FF;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilos para los inputs y selects */
+.form-control,
+.form-select {
+    border-radius: 0.25rem;
+    border: 1px solid #ddd;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #00A1FF;
+    box-shadow: 0 0 0 0.2rem rgba(0, 161, 255, 0.25);
+}
+
+/* Estilos para los botones */
+.btn {
+    border-radius: 0.25rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #00A1FF;
+    border: 1px solid #00A1FF;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #007BFF;
+    border-color: #007BFF;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: 1px solid #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+/* Estilos para el grupo de archivos */
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group input[type="file"] {
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    padding: 0.75rem 1.25rem;
+}
+
+/* Estilos para la tabla */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    color: #000;
+    text-align: left;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilos para el modal */
+.modal-content {
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0 0.2rem rgba(0, 161, 255, 0.25);
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+    padding: 1rem;
+}
+
+.modal-title {
+    color: #00A1FF;
+}
+
+.btn-close {
+    filter: invert(1);
+}

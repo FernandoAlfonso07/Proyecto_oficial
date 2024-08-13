@@ -1,0 +1,81 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.contenedor_titulo {
+    margin-top: 80px;
+    background-color: #00A1FF;
+    /* Color principal */
+    font-size: 24px;
+    /* Aumentado para más visibilidad */
+    padding: 30px 0px;
+    color: white;
+    /* Texto blanco para contraste */
+    font-weight: bold;
+    text-transform: uppercase;
+    /* Opcional: para texto en mayúsculas */
+}
+
+/* Estilo para las líneas horizontales */
+.linea {
+    border: 0;
+    border-top: 1px solid #00A1FF;
+    /* Color principal */
+    margin: 20px 0;
+}
+
+/* Estilo para el contenedor de cada calendario */
+.calendario_usuario {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    /* Borde redondeado */
+    background-color: #f9f9f9;
+    /* Color de fondo */
+    transition: ease 0.5s;
+}
+
+.calendario_usuario h1 {
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 20px 0px;
+    color: #00a2ff;
+    /* Color principal */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.calendario_usuario:hover {
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    transition: ease 0.5s;
+}
+
+/* Estilo para el botón de crear calendario */
+.crear_calendario_btn {
+    font-size: 5em;
+    padding: 20px 0px;
+    text-align: center;
+}
+
+.crear_calendario_btn i {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    color: #00A1FF;
+    /* Color principal */
+    transition: ease 0.2s;
+}
+
+.crear_calendario_btn i:hover {
+    font-size: 90px;
+    color: #007bb5;
+    /* Color de hover */
+    transition: ease 0.2s;
+}
+
+/* Estilo para el icono del calendario */
+.icono_calendario {
+    font-size: 5em;
+    color: #00A1FF;
+    /* Color principal */
+    padding: 12%;
+}

@@ -1,0 +1,125 @@
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 120px;
+}
+
+.card-header {
+    background-color: #00A1FF;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.gym-logo {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.text-primary {
+    color: #00A1FF !important;
+}
+
+.card-footer {
+    background-color: #ffffff;
+    padding: 20px;
+    border-top: 1px solid #dddddd;
+}
+
+/* Estilos para la tabla de horarios */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.table thead th {
+    background-color: #00A1FF;
+    /* Color de fondo para el encabezado */
+    color: #fff;
+    /* Color del texto del encabezado */
+    text-align: left;
+    padding: 12px;
+}
+
+.table tbody td {
+    border: 1px solid #ddd;
+    /* Borde de las celdas */
+    padding: 12px;
+    vertical-align: top;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+    /* Color de fondo para filas pares */
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #fff;
+    /* Color de fondo para filas impares */
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+    /* Color de fondo cuando se pasa el mouse sobre una fila */
+}
+
+.table th,
+.table td {
+    text-align: left;
+    padding: 8px;
+}
+
+.table caption {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.table th {
+    font-size: 16px;
+}
+
+.table td {
+    font-size: 14px;
+}
+
+/* Estilo para la sección de categoría */
+.category-info {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Estilo para la sección de gerente */
+.manager-info {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* Estilo para el botón de inscripción */
+.btn-register {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background: linear-gradient(45deg, #00A1FF, #0056b3);
+    /* Degradado de color */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.btn-register:hover {
+    background: linear-gradient(45deg, #0056b3, #00A1FF);
+    /* Degradado invertido en hover */
+}
