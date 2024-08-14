@@ -45,11 +45,6 @@ if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
 // Obtiene el hash de la contraseña almacenada en la base de datos para el correo proporcionado
 $storedPasswordHash = trim(usuarios::getPasswordhash($correo));
 
-echo "Contraseña ingresada: ";
-echo "<b>" . $password . "</b>";
-
-echo "Hash almacenado: ";
-echo "<b>" . $storedPasswordHash . "</b>";
 
 // Verifica si el hash de la contraseña coincide con la contraseña proporcionada
 if (!password_verify($password, $storedPasswordHash)) {
@@ -61,9 +56,9 @@ if (!password_verify($password, $storedPasswordHash)) {
     // Redirige a la página de inicio de sesión con un mensaje de error si no hay coincidencias
     if ($resultado < 1) {
         // Redirige si no hay coincidencias de correo o contraseña
-        // header('location: ../view/inicioSesion.php?error=invalidCredentials');
-        // exit();
-        echo "ni el usuario y la contraseña";
+        header('location: ../view/inicioSesion.php?error=invalidCredentials');
+        exit();
+
     }
 
     // Obtiene el ID del usuario basado en el correo y la contraseña hash
@@ -84,7 +79,6 @@ if (!password_verify($password, $storedPasswordHash)) {
 } else {
 
     // Redirige a la página de inicio de sesión con un mensaje de error si las credenciales son inválidas
-    // header('location: ../view/inicioSesion.php?error=invalidCredentials');
-    // exit();
-    echo "<br> Solo la contraseña";
+    header('location: ../view/inicioSesion.php?error=invalidCredentials');
+    exit();
 }
