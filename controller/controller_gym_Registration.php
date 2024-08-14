@@ -1,7 +1,7 @@
 <?php
 // Incluir archivos necesarios para la validación y administración
-include_once ('../model/validate.php');
-include_once ('../model/administrador.php');
+include_once('../model/validate.php');
+include_once('../model/administrador.php');
 
 // Definir una lista de campos del formulario que deben ser validados para asegurarse de que no estén vacíos
 $validateEmptyinputs = [

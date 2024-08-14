@@ -1,6 +1,6 @@
 <?php
 
-include_once ("connect.php");
+include_once("connect.php");
 
 class Administrador extends conexionBD
 {
@@ -594,7 +594,7 @@ class Administrador extends conexionBD
 
         // Crear la consulta SQL para insertar la nueva categoría
         $sql = "INSERT INTO $nameTable ($nameCamp) VALUES ('$nameCategory');";
-        
+
         // Ejecutar la consultaF
         $conexion->query($sql);
 
@@ -777,6 +777,8 @@ class Administrador extends conexionBD
         $phone, '$email', '$address', $payment_method, $id_manager, '$monthly_payment'
         )";
 
+        echo $sql;
+
         // Ejecutar la consulta SQL
         $conexion->query($sql);
 
@@ -845,10 +847,9 @@ class Administrador extends conexionBD
                     <th>" . $row[14] . "</th>
                     <th>" . $row[15] . "</th>
                     <th>" . $row[17] . "</th>
-                    <th>" . $row[18] . "</th>
-                    <th>" . $row[20] . "</th>
-                    <th>" . $row[22] . "</th>
+                    <th>" . $row[19] . "</th>
                     <th>" . $row[21] . "</th>
+                    <th>" . $row[22] . "</th>
                     <th> <img src='../" . $row[5] . "' width='80px' alt='imagen del gimnasio'></th>
                     <th>
                         <button class='btn btn-status status' data-id-gym='" . $row[0] . "'>";

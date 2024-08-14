@@ -1,8 +1,8 @@
 <?php
 !isset($_SESSION) ? session_start() : null;
-include_once ('../../model/Categories.php');
-include_once ('../../functions/alerts.php');
-include_once ("../../model/gyms.php");
+include_once('../../model/Categories.php');
+include_once('../../functions/alerts.php');
+include_once("../../model/gyms.php");
 
 if (isset($_GET['error'])) {
     if ($_GET['error'] == 'emptyFields') {
@@ -223,7 +223,7 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Teléfono</label>
-                                        <input type="text"
+                                        <input type="number" min="0" max="11"
                                             value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(21, $_SESSION['id_gym'], 'call') : null; ?>"
                                             name="managerPhone" class="form-control">
                                     </div>

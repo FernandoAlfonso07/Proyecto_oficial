@@ -1,5 +1,5 @@
 <?php
-include_once ('../functions/alerts.php');
+include_once('../functions/alerts.php');
 if (isset($_GET['error'])) {
     $errorMessages = [
         'emptyFields' => 'Datos Actualizados',

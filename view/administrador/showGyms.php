@@ -1,5 +1,5 @@
 <?php
-include_once ("../../model/administrador.php");
+include_once("../../model/administrador.php");
 ?>
 <link rel="stylesheet" href="../css/gym/showGyms.css">
 <section>
@@ -34,6 +34,8 @@ include_once ("../../model/administrador.php");
                     </tr>
                 </thead>
                 <tbody>
+                    
+
                     <?php echo Administrador::showListGyms(1); ?>
                 </tbody>
             </table>
