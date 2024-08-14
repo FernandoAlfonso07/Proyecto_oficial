@@ -777,8 +777,7 @@ class Administrador extends conexionBD
         $phone, '$email', '$address', $payment_method, $id_manager, '$monthly_payment'
         )";
 
-        echo $sql;
-
+       
         // Ejecutar la consulta SQL
         $conexion->query($sql);
 

@@ -101,14 +101,3 @@ html {
 }
 
 
-/* Estilos para los campos de entrada con errores */
-.input-error {
-    border-color: #dc3545; /* Color de borde rojo para errores */
-    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25); /* Sombra del borde para resaltar */
-}
-
-/* Opcional: estilo para mensajes de error */
-.error-message {
-    color: #dc3545; /* Color rojo para los mensajes de error */
-    display: none; /* Ocultar mensajes por defecto */
-}

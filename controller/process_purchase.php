@@ -48,7 +48,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Valida el número de registros del usuario.
-$validateCountRegister = validate::validateCountsDatas(0, $_SESSION['id'], "purchase count");
+$validateCountRegister = validate::validateCountsDatas($_SESSION['id'], "purchase count");
 if ($validateCountRegister != 0) {
     header("Location: ../view/pages/formulerPlan.php?error=havePlan&plan=1");
     exit();

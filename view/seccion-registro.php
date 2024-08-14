@@ -9,6 +9,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="./img/logosinfondo.png">
     <link rel="stylesheet" href="css/estilos-registro.css">
+    <link rel="stylesheet" href="css/errors/errorValidations.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>

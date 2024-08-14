@@ -1,5 +1,5 @@
 <?php
-include_once ("connect.php");
+include_once("connect.php");
 
 class validate extends conexionBD
 {
@@ -215,7 +215,7 @@ class validate extends conexionBD
      * 
      * @return int El número de registros encontrados en la base de datos que coinciden con el identificador dado.
      */
-    public static function validateCountsDatas($opc, $data_id, $opcQuery)
+    public static function validateCountsDatas($data_id, $opcQuery)
     {
         // Obtiene la conexión a la base de datos
         $connect = self::getConexion();
@@ -230,11 +230,16 @@ class validate extends conexionBD
                 $nameTable = "plan_registration";
                 $identifier = "id_usuario";
                 break;
+            case 'count user exist':
+                $nameTable = "usuarios";
+                $identifier = "correo";
+                break;
         }
 
         // Construye la consulta SQL para obtener el valor deseado
-        $sql = "SELECT COUNT(*) FROM $nameTable WHERE $identifier = '$data_id' ";
+        $sql = "SELECT COUNT(*) FROM $nameTable WHERE $identifier = '$data_id'";
 
+        echo $sql;
         // Ejecuta la consulta SQL
         $response = $connect->query($sql);
 

@@ -1,5 +1,5 @@
 <?php
-include_once ("../functions/alerts.php");
+include_once("../functions/alerts.php");
 if (!isset($_SESSION))
     session_start();
 
@@ -29,9 +29,10 @@ if (!isset($_SESSION['intento'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilos_inicio_sesion.css">
+    <link rel="stylesheet" href="css/errors/errorValidations.css">
     <link rel="icon" href="./img/logosinfondo.png">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -53,17 +54,15 @@ if (!isset($_SESSION['intento'])) {
                         <div class="col-md-12">
 
                             <div class="input-wrapper">
-                                <input type="email" id="correo" name="correo" placeholder=" Correo Electronico"
-                                    required>
-
+                                <input type="email" id="email" name="correo" placeholder=" Correo Electronico" required>
+                                <span id="email-error-message" class="error-message"></span>
                             </div>
 
                         </div>
                         <div class="col-md-12">
                             <div class="input-wrapper">
-                                <input type="Password" id="contraseña" name="password" placeholder="Contraseña"
-                                    required>
-
+                                <input type="Password" id="password" name="password" placeholder="Contraseña" required>
+                                <span id="password-error-message" class="error-message"></span>
                             </div>
                         </div>
                     </div>
@@ -82,7 +81,7 @@ if (!isset($_SESSION['intento'])) {
 
                     <center>
 
-                        <button type="submit" class="btn btn-outline-primary boton_ir">
+                        <button type="submit" id="buttonValidate" class="btn btn-outline-primary boton_ir">
                             <i class="fa-solid fa-person-walking-arrow-right"></i>
                         </button>
 
@@ -93,6 +92,8 @@ if (!isset($_SESSION['intento'])) {
                     </h4>
 
                     <?php
+                    /*
+                    
                     if (isset($_GET['error'])) {
                         $errorMessages = [
                             'invalidEmail' => "El correo ingresado no es <strong>válido</strong>.",
@@ -108,6 +109,7 @@ if (!isset($_SESSION['intento'])) {
                                 </div>";
                         }
                     }
+                        */
                     ?>
 
                 </div>
@@ -119,9 +121,7 @@ if (!isset($_SESSION['intento'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
-    <script src="js/event.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/validateData.js"></script>
 </body>
 
 </html>

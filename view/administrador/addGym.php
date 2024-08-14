@@ -6,11 +6,11 @@ include_once("../../model/gyms.php");
 
 if (isset($_GET['error'])) {
     if ($_GET['error'] == 'emptyFields') {
-        echo Alerts::error(2, 'Debes de llenar todos los campos', 'addGimnasio');
+        echo Alerts::error(2, 'Debes de llenar todos los campos', 'addGym');
     }
 
     if ($_GET['error'] == 'incorrectFormat') {
-        echo Alerts::error(2, 'Formato incorrecto', 'addGimnasio');
+        echo Alerts::error(2, 'Formato incorrecto', 'addGym');
     }
 }
 
@@ -223,7 +223,7 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Teléfono</label>
-                                        <input type="number" min="0" max="11"
+                                        <input type="number"
                                             value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(21, $_SESSION['id_gym'], 'call') : null; ?>"
                                             name="managerPhone" class="form-control">
                                     </div>

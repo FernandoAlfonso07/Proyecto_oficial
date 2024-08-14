@@ -14,7 +14,7 @@ $count = validate::validateCountsDatas(0, $id_usuario, "countCalendars");
 
 // Si el número de calendarios es mayor o igual a 2, redirige al usuario a la página de planes.
 // Luego se termina el script para evitar la ejecución de código adicional.
-$countpurchasedplan = validate::validateCountsDatas(0, $_SESSION['id'], "purchase count");
+$countpurchasedplan = validate::validateCountsDatas($_SESSION['id'], "purchase count");
 if ($count >= 2) {
     if ($countpurchasedplan >= 1) {
         header("Location: ../view/controlador.php?seccion=createCalender");
