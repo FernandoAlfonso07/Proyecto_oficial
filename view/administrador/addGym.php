@@ -87,7 +87,11 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                                 }
 
                                 ?>
-
+                                <div class="col-md-12">
+                                    <div class="alert alert-warning" role="alert">
+                                        <b>¡Recuerda</b>: Solo se aceptan formatos <b>JPG JPEG PNG</b>!
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <label class="form-label">Agrega fotos del gimnasio</label>
                                     <div class="input-group">

@@ -1,18 +1,12 @@
 <?php
 // Incluye el archivo usuario.php que contiene la clase usuarios
-include_once ("../model/usuario.php");
+include_once("../model/usuario.php");
 // Incluye el archivo validate.php que contiene la clase validate
-include_once ('../model/validate.php');
+include_once('../model/validate.php');
 
 // Inicia la sesión si no está ya iniciada
 if (!isset($_SESSION)) {
     session_start();
-}
-
-// Verifica si las variables POST 'correo' y 'password' están definidas
-if (!isset($_POST['correo']) || !isset($_POST['password'])) {
-    header("location: ../view/inicioSesion.php?error=missingFields");
-    exit();
 }
 
 $inputs = ['correo', 'password'];
@@ -49,10 +43,17 @@ if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Obtiene el hash de la contraseña almacenada en la base de datos para el correo proporcionado
-$storedPasswordHash = usuarios::getPasswordhash($correo);
+$storedPasswordHash = trim(usuarios::getPasswordhash($correo));
+
+echo "Contraseña ingresada: ";
+echo "<b>" . $password . "</b>";
+
+echo "Hash almacenado: ";
+echo "<b>" . $storedPasswordHash . "</b>";
 
 // Verifica si el hash de la contraseña coincide con la contraseña proporcionada
-if ($storedPasswordHash && password_verify($password, $storedPasswordHash)) {
+if (!password_verify($password, $storedPasswordHash)) {
+    echo "¡La verificación de la contraseña fue exitosa!";
 
     // Verifica si las credenciales son correctas (número de coincidencias encontradas)
     $resultado = usuarios::iniciarSesion(0, $correo, $storedPasswordHash);
@@ -60,8 +61,9 @@ if ($storedPasswordHash && password_verify($password, $storedPasswordHash)) {
     // Redirige a la página de inicio de sesión con un mensaje de error si no hay coincidencias
     if ($resultado < 1) {
         // Redirige si no hay coincidencias de correo o contraseña
-        header('location: ../view/inicioSesion.php?error=invalidCredentials');
-        exit();
+        // header('location: ../view/inicioSesion.php?error=invalidCredentials');
+        // exit();
+        echo "ni el usuario y la contraseña";
     }
 
     // Obtiene el ID del usuario basado en el correo y la contraseña hash
@@ -82,6 +84,7 @@ if ($storedPasswordHash && password_verify($password, $storedPasswordHash)) {
 } else {
 
     // Redirige a la página de inicio de sesión con un mensaje de error si las credenciales son inválidas
-    header('location: ../view/inicioSesion.php?error=invalidCredentials');
-    exit();
+    // header('location: ../view/inicioSesion.php?error=invalidCredentials');
+    // exit();
+    echo "<br> Solo la contraseña";
 }

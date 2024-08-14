@@ -2,19 +2,9 @@
 include_once('../model/usuario.php');
 include_once('../model/validate.php'); // Se incluye la clase que permite sanitizar
 
-if (!isset($_SESSION))
-    session_start();
+session_start();
 
-if (!isset($_SESSION['id'])) {
-    header("location: ../view/inicioSesion.php");
-    exit();
 
-} else {
-    if ($_SESSION['id'] == "") {
-        header("location: ../view/inicioSesion.php");
-        exit();
-    }
-}
 $inputs = ['nombres', 'apellidos', 'telefono', 'correo', 'password', 'pesoA', 'alturaA', 'genero'];
 
 if (validate::validateNotEmptyInputs($inputs)) {
@@ -88,8 +78,8 @@ if (validate::validateNotEmptyInputs($inputs)) {
 
         if ($id_usuario) {
             $_SESSION['id'] = $id_usuario;
-
-            // Redirige al usuario a la sección principal
+            echo "Se registro correctamente";
+           
             header('location: ../view/controlador.php?seccion=seccion1');
             exit();
 

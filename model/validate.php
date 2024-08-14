@@ -67,7 +67,7 @@ class validate extends conexionBD
         $file_format = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
         // Verificar si el formato de la imagen es uno de los permitidos
-        if ($file_format != 'jpg' && $file_format != 'jpeg' && $file_format != 'png' && $file_format != 'mp4' && $file_format != 'avi' && $file_format != 'mkv' && $file_format != 'gif') {
+        if ($file_format != 'jpg' && $file_format != 'jpeg' && $file_format != 'png') {
             header('location: ' . $header);
             exit();
 
@@ -239,7 +239,6 @@ class validate extends conexionBD
         // Construye la consulta SQL para obtener el valor deseado
         $sql = "SELECT COUNT(*) FROM $nameTable WHERE $identifier = '$data_id'";
 
-        echo $sql;
         // Ejecuta la consulta SQL
         $response = $connect->query($sql);
 

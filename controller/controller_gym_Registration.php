@@ -6,7 +6,6 @@ include_once('../model/administrador.php');
 
 // Definir una lista de campos del formulario que deben ser validados para asegurarse de que no estén vacíos
 $validateEmptyinputs = [
-    // 'img_gym',
     'nameGym',
     'category_gym',
     'description',

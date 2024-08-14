@@ -1,5 +1,5 @@
 <?php
-include_once ("connect.php");
+include_once("connect.php");
 
 class usuarios extends conexionBD
 {
@@ -54,7 +54,6 @@ class usuarios extends conexionBD
         // Consulta SQL para buscar el ID del usuario basado en correo y contraseña
         $sql = "SELECT id_usuario FROM usuarios WHERE correo = '$correo' AND password = '$password'";
         $resultado = $conexion->query($sql);
-
         $salida = 0;
 
         // Verifica si la consulta SQL devolvió algún resultado
@@ -94,7 +93,7 @@ class usuarios extends conexionBD
         // Consulta SQL para contar coincidencias y obtener el ID del rol del usuario
         $sql = "SELECT COUNT(*), id_rol FROM usuarios WHERE correo = '$correo' AND password = '$password'";
         $resultado = $conexion->query($sql);
-
+        echo $sql;
         $r = 0;
 
         // Verifica si la consulta SQL devolvió algún resultado
@@ -202,7 +201,7 @@ class usuarios extends conexionBD
         // Consulta SQL para insertar un nuevo usuario en la tabla 'usuarios'
         $sql = "insert into usuarios (nombre, apellido, telefono, correo, password, peso_actual, altura_actual, id_genero, fecha_registro, id_rol, imgPerfil)";
         $sql .= " values ('$nombres' ,'$apellidos', '$telefono', '$correoElectronico', '$password', $pesoActual ,$altura, $genero, now(), " . ($rol ?? 2) . ", '../view/user img/default_img.PNG') ";
-        
+
         $conexion->query($sql); // Ejecuta la consulta SQL para insertar el nuevo usuario
 
         $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de inserción
@@ -324,6 +323,7 @@ class usuarios extends conexionBD
 
         // Consulta SQL para obtener el hash de la contraseña del usuario basado en el correo
         $sql = "SELECT password FROM usuarios WHERE correo = '$mail'";
+        echo $sql;
         $resultado = $conexion->query($sql);
 
         $password = '';
