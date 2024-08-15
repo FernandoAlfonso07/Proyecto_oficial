@@ -92,8 +92,7 @@ if (!isset($_SESSION['intento'])) {
                     </h4>
 
                     <?php
-                    /*
-                    
+
                     if (isset($_GET['error'])) {
                         $errorMessages = [
                             'invalidEmail' => "El correo ingresado no es <strong>válido</strong>.",
@@ -109,7 +108,7 @@ if (!isset($_SESSION['intento'])) {
                                 </div>";
                         }
                     }
-                        */
+
                     ?>
 
                 </div>
