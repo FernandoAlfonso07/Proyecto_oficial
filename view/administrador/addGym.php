@@ -33,7 +33,7 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label class="form-label">Nombre</label>
+                                    <label class="form-label">Nombre <b class="text-danger">*</b></label>
                                     <input type="text" name="nameGym"
                                         value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(0, $_SESSION['id_gym'], 'call') : null; ?>"
                                         class="form-control">
@@ -42,7 +42,7 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="form-label">Categoría</label>
+                                            <label class="form-label">Categoría <b class="text-danger">*</b></label>
                                             <select class="form-select" name="category_gym"
                                                 aria-label="Default select example">
                                                 <option selected>Escoge la categoría</option>
@@ -58,21 +58,21 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <label class="form-label">Descripción</label>
+                                    <label class="form-label">Descripción <b class="text-danger">*</b></label>
                                     <textarea class="form-control" placeholder="Escribe aquí..." name="description"
                                         id="floatingTextarea2"
                                         style="height: 100px"><?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(1, $_SESSION['id_gym'], 'call') : null; ?></textarea>
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label class="form-label">Misión</label>
+                                    <label class="form-label">Misión <b class="text-danger">*</b></label>
                                     <textarea class="form-control" placeholder="Escribe aquí la misión del gimnasio..."
                                         name="mission" id="floatingTextarea2"
                                         style="height: 100px"><?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(2, $_SESSION['id_gym'], 'call') : null; ?></textarea>
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label class="form-label">Visión</label>
+                                    <label class="form-label">Visión <b class="text-danger">*</b></label>
                                     <textarea class="form-control" placeholder="Escribe aquí la visión del gimnasio..."
                                         name="vision" id="floatingTextarea2"
                                         style="height: 100px"><?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(3, $_SESSION['id_gym'], 'call') : null; ?></textarea>
@@ -103,10 +103,10 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                         </div>
 
                         <div class="col-md1-12"> <!-- Horarios del gimnasio -->
-                            <h1 class="text-center">Horarios</h1>
+                            <h1 class="text-center">Horario</h1>
                             <div class="row">
                                 <label class="form-label"> <!--Horario de la mañana-->
-                                    <b>Lunes a Viernes</b>
+                                    <b>Lunes a Viernes <b class="text-danger">*</b></b>
                                 </label>
                                 <div class="col-md-12">En la <b>mañana</b></div>
                                 <div class="col-md-1">De</div>
@@ -129,7 +129,7 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                                         name="afternoon_time_weekday_end" class="form-control"><br></div>
 
                                 <label class="form-label"> <!--Horario de los festivos y sábados-->
-                                    <b>Sábado y festivos</b>
+                                    <b>Sábado y festivos <b class="text-danger">*</b></b>
                                 </label>
                                 <div class="col-md-12">En la <b>mañana</b></div> <!--Horario de la mañana-->
                                 <div class="col-md-1">De</div>
@@ -157,19 +157,19 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                             <h1 class="text-center">Contacto</h1>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="form-label">Teléfono</label>
+                                    <label class="form-label">Teléfono del Gimnasio <b class="text-danger">*</b></label>
                                     <input type="text"
                                         value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(13, $_SESSION['id_gym'], 'call') : null; ?>"
                                         name="phone" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Correo</label>
+                                    <label class="form-label">Correo del Gimnasio <b class="text-danger">*</b></label>
                                     <input type="text"
                                         value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(14, $_SESSION['id_gym'], 'call') : null; ?>"
                                         name="email" class="form-control">
                                 </div>
                                 <div class="col-md-12">
-                                    <label class="form-label">Dirección</label>
+                                    <label class="form-label">Dirección <b class="text-danger">*</b></label>
                                     <input type="text"
                                         value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(15, $_SESSION['id_gym'], 'call') : null; ?>"
                                         name="address" class="form-control">
@@ -183,7 +183,8 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="form-label">Formas de pago</label>
+                                            <label class="form-label">Formas de pago <b
+                                                    class="text-danger">*</b></label>
                                             <select class="form-select" name="payment_method"
                                                 aria-label="Default select example">
                                                 <option selected>Escoge la forma de pago</option>
@@ -202,7 +203,7 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Pago De mensualidad</label>
+                                    <label class="form-label">Pago De mensualidad <b class="text-danger">*</b></label>
                                     <input type="text"
                                         value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(21, $_SESSION['id_gym'], 'detailedInfo') : null; ?>"
                                         name="monthly_payment" class="form-control">
@@ -220,13 +221,14 @@ $_SESSION['id_gym'] = $_GET['dgym'] ?? null;
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Correo electrónico</label>
+                                        <label class="form-label">Correo electrónico <b
+                                                class="text-danger">*</b></label>
                                         <input type="text"
                                             value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(20, $_SESSION['id_gym'], 'call') : null; ?>"
                                             name="managerEmail" class="form-control">
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Teléfono</label>
+                                        <label class="form-label">Teléfono <b class="text-danger">*</b></label>
                                         <input type="number"
                                             value="<?php echo isset($_GET['dgym']) ? Gyms::getInfoThisGym(21, $_SESSION['id_gym'], 'call') : null; ?>"
                                             name="managerPhone" class="form-control">
