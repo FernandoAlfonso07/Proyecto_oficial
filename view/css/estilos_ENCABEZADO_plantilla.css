@@ -1,3 +1,44 @@
+/* Estilos generales para el footer */
+.footer {
+    width: 100%;
+    background-color: #333; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Centrar el texto */
+    position: relative; /* Asegura que el footer esté posicionado en relación a su contenedor */
+    bottom: 0; /* Alinea el footer en la parte inferior */
+    margin-top: auto; /* Empuja el footer hacia el final del contenedor flex o grid */
+}
+
+/* Contenedor dentro del footer */
+.footer .container {
+    max-width: 1140px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar el contenedor */
+}
+
+/* Opciones de estilo para el contenido dentro del footer si es necesario */
+.footer p {
+    margin: 0; /* Elimina el margen del párrafo */
+    font-size: 0.875rem; /* Tamaño de fuente pequeño */
+}
+
+/* Asegura que el footer siempre se muestre en la parte inferior si el contenido es pequeño */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el grid ocupe al menos toda la altura de la ventana */
+}
+
+.container {
+    flex: 1; /* Permite que el contenedor principal ocupe el espacio disponible */
+}
+
+/* Estilos para las opciones y botones en la página */
 .opciones-dos {
     margin-top: 9em;
 }
@@ -50,7 +91,6 @@
 
 .boton_cerrar {
     padding: 15px;
-
 }
 
 .nombre_admin {
@@ -66,17 +106,14 @@
     border: 1px solid #ddd;
 }
 
-
 .separado {
     margin-right: 20px;
     font-size: 15px;
 }
 
-
 .icono_usuario {
     margin-right: 4px;
     font-size: 15px;
-
 }
 
 .mis_calendarios {
@@ -84,18 +121,4 @@
     text-align: center;
     background-color: rgb(255, 193, 7);
     color: black;
-}
-
-.grid {
-    min-height: 100dvh;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-}
-
-.footer {
-    width: 100%;
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
 }

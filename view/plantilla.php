@@ -77,7 +77,7 @@ include_once("../model/gym_membership.php");
 
                             if ($count_membership > 0) {
                                 ?> <a class="nav-link separado" href="controlador.php?seccion=myGym"><i
-                                        class="fa-solid fa-building-wheat"></i>
+                                        class="fa-solid fa-building-wheat ms-3"></i>
                                     Mi Gimnasio</a> <?php
                             } else {
                                 null;
@@ -97,20 +97,18 @@ include_once("../model/gym_membership.php");
         </header>
 
 
-        <main>
-            <?php
-            include($seccion . ".php");
-            ?>
-        </main>
 
-        <!--
+        <?php
+        include($seccion . ".php");
+        ?>
+
+
+
         <footer class="footer">
             <div class="container">
                 <p>&copy; 2024 WorldFit. Todos los derechos reservados.</p>
             </div>
-        </footer>        
--->
-
+        </footer>
     </div>
 
     <!-- Scripts -->
