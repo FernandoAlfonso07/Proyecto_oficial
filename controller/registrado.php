@@ -78,10 +78,12 @@ if (validate::validateNotEmptyInputs($inputs)) {
 
         if ($id_usuario) {
             $_SESSION['id'] = $id_usuario;
-            echo "Se registro correctamente";
-           
-            header('location: ../view/controlador.php?seccion=seccion1');
+
+            header("Location: controller_change_password.php?type=registered&usu=" . $_SESSION['id'] . "");
             exit();
+
+            // header('location: ../view/controlador.php?seccion=seccion1');
+            // exit();
 
         } else {
             // Maneja el error si no se encuentra el ID del usuario

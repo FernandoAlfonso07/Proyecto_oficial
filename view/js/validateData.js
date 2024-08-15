@@ -152,6 +152,32 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#text-area").on("keyup", function () {
+        const text = $("#text-area").val();
+        $('#buttonValidate').prop('disabled', true);
+
+        $.ajax({
+            url: "../functions/validations/validateAllFields.php",
+            type: "POST",
+            data: {
+                dataValidate: text,
+                typeValidation: "v text-area"
+            },
+            success: function (response) {
+                if (response === "dataValidated") {
+                    $("#text-area").removeClass("input-error");
+                    $("#text-area-error-message").hide();
+                    $("#buttonValidate").prop("disabled", false);
+                } else if (response === "emptyData") {
+                    $("#text-area").addClass("input-error");
+                    $("#text-area-error-message").show().text("Este campo es obligatorio");
+                    $("#buttonValidate").prop("disabled", true);
+                }
+            }
+        });
+    });
+
     $("#peso").on("keyup", function () {
         const dataPeso = $("#peso").val();
         $('#buttonValidate').prop('disabled', true);

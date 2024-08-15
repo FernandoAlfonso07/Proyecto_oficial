@@ -15,7 +15,6 @@ if (isset($_GET['error'])) {
     }
 }
 ?>
-
 <link rel="stylesheet" href="css/actualizarDatos.css">
 
 <main>
@@ -42,9 +41,10 @@ if (isset($_GET['error'])) {
                                 <Label>Nombres: </Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="name" value="<?php
+                                <input type="text" name="name" id="nombres" value="<?php
                                 echo usuarios::getPerfil(0, $_SESSION['id']);
                                 ?>" class="form-control">
+                                <span id="nombres-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -52,9 +52,10 @@ if (isset($_GET['error'])) {
                                 <Label>Apellidos</Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="lastName" value="<?php
+                                <input type="text" name="lastName" id="apellidos" value="<?php
                                 echo usuarios::getPerfil(1, $_SESSION['id']);
                                 ?>" class="form-control">
+                                <span id="apellidos-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -62,9 +63,10 @@ if (isset($_GET['error'])) {
                                 <Label>Altura actual:</Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="height" value="<?php
+                                <input type="text" id="height" name="height" value="<?php
                                 echo usuarios::getPerfil(5, $_SESSION['id']);
                                 ?>" class="form-control">
+                                <span id="height-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -72,10 +74,10 @@ if (isset($_GET['error'])) {
                                 <Label>Peso Actual:</Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="weight" value="<?php
+                                <input type="text" id="peso" name="weight" value="<?php
                                 echo usuarios::getPerfil(4, $_SESSION['id']);
-                                ?>
-                            " class="form-control">
+                                ?> " class="form-control">
+                                <span id="peso-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -118,9 +120,10 @@ if (isset($_GET['error'])) {
                                 </label>
                             </div>
                             <div class="col-md-12">
-                                <input type="email" name="mail"
+                                <input type="email" id="email" name="mail"
                                     value="<?php echo usuarios::getPerfil(2, $_SESSION['id']); ?>" class="form-control"
                                     required>
+                                <span id="email-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -130,13 +133,14 @@ if (isset($_GET['error'])) {
                                 </label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="phone" value="<?php
+                                <input type="text" id="telefono" name="phone" value="<?php
                                 echo usuarios::getPerfil(7, $_SESSION['id']);
                                 ?>" class="form-control">
+                                <span id="telefono-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-warning compartir">Actualizar
+                            <button type="submit" id="buttonValidate" class="btn btn-warning compartir">Actualizar
                                 <i class="fa-solid fa-rotate icono"></i></button>
                         </div>
 
@@ -147,5 +151,4 @@ if (isset($_GET['error'])) {
     </form>
 </main>
 
-<script src="js/event.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

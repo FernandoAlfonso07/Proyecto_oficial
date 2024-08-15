@@ -1,6 +1,6 @@
 <?php
 // Incluye la clase de conexion
-include_once ("connect.php");
+include_once("connect.php");
 
 class Gyms extends conexionBD
 {
@@ -103,7 +103,7 @@ class Gyms extends conexionBD
                 extract($gymDetails);
                 ob_start();
                 // Iniciar el buffer de salida y capturar el contenido del archivo visitGym.php
-                include_once ("../view/pages/visitGym.php");
+                include_once("../view/pages/visitGym.php");
 
                 // Obtener el contenido del buffer y almacenarlo en $gymsInfo
                 $gymsInfo = ob_get_clean();
@@ -132,7 +132,7 @@ class Gyms extends conexionBD
         $sql = "";
         if (isset($selectedSql)) {
             if ($selectedSql == "call") {
-                $sql = "CALL getInfoGyms ($id_gym) ";
+                $sql = "CALL getInfoGyms ('$id_gym') ";
             } elseif ($selectedSql == "detailedInfo") {
                 $sql = "SELECT * FROM infogyms WHERE id = '$id_gym'";
             } elseif ($selectedSql == "datailedMore") {

@@ -93,7 +93,7 @@ class usuarios extends conexionBD
         // Consulta SQL para contar coincidencias y obtener el ID del rol del usuario
         $sql = "SELECT COUNT(*), id_rol FROM usuarios WHERE correo = '$correo' AND password = '$password'";
         $resultado = $conexion->query($sql);
-        echo $sql;
+
         $r = 0;
 
         // Verifica si la consulta SQL devolvió algún resultado
@@ -142,7 +142,7 @@ class usuarios extends conexionBD
         // Construye la consulta SQL para obtener la información del perfil del usuario
 
         $sql = "select t1.nombre, t1.apellido, t1.correo, t1.password, t1.peso_actual, t1.altura_actual, t1.pr, t1.telefono, t2.genero, t1.imgPerfil, t3.rol ";
-        $sql .= "FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero JOIN roles t3 ON t1.id_rol = t3.id_rol WHERE id_usuario = $idUsuario";
+        $sql .= "FROM usuarios t1 JOIN genero t2 ON t1.id_genero = t2.id_genero JOIN roles t3 ON t1.id_rol = t3.id_rol WHERE id_usuario = '$idUsuario' ";
         $resultado = $conexion->query($sql); // Ejecuta la consulta SQL
 
         $r = ''; // Inicializa la variable $r para almacenar el resultado
@@ -247,7 +247,7 @@ class usuarios extends conexionBD
             $sql .= ", id_rol = '$rol'";
         }
         $sql .= " WHERE id_usuario = '$id' ";
-        echo $sql;
+
         $conexion->query($sql); // Ejecuta la consulta SQL para actualizar los datos del usuario
 
         $affected_rows = $conexion->affected_rows; // Obtiene el número de filas afectadas por la operación de actualización
@@ -323,7 +323,7 @@ class usuarios extends conexionBD
 
         // Consulta SQL para obtener el hash de la contraseña del usuario basado en el correo
         $sql = "SELECT password FROM usuarios WHERE correo = '$mail'";
-        echo $sql;
+
         $resultado = $conexion->query($sql);
 
         $password = '';
@@ -512,7 +512,7 @@ class usuarios extends conexionBD
 
         // Prepara la consulta SQL para insertar los datos de inscripción en la tabla `registration_inscriptions`.
         $sql = "INSERT INTO plan_registration (id_usuario, id_plan) VALUES('$id_user','$id_plan') ";
-        echo $sql;
+
         // Ejecuta la consulta SQL.
         $connect->query($sql);
 
@@ -524,5 +524,35 @@ class usuarios extends conexionBD
 
         // Devuelve el número de filas afectadas.
         return $affected_rows;
+    }
+
+    /**
+     * Actualiza la información de un calendario en la base de datos.
+     *
+     * @param string $customName El nombre personalizado del calendario.
+     * @param string $description La descripción del calendario.
+     * @param int $idCalendar El ID del calendario a actualizar.
+     *
+     * @return int El número de filas afectadas por la consulta SQL.
+     */
+    public static function updateCalendar($customName, $description, $idCalendar)
+    {
+        $connect = self::getConexion(); // Obtiene una conexión a la base de datos.
+
+        // Prepara la consulta SQL para actualizar los datos del calendario en la tabla `calendario_rutinario`.
+        $sql = "UPDATE calendario_rutinario SET nombre_personalizado = '$customName', descripcion = '$description' WHERE id_calendario = '$idCalendar' ";
+
+        // Ejecuta la consulta SQL.
+        $connect->query($sql);
+
+        // Obtiene el número de filas afectadas por la consulta.
+        $affected_rows = $connect->affected_rows;
+
+        // Cierra la conexión a la base de datos.
+        $connect->close();
+
+        // Devuelve el número de filas afectadas.
+        return $affected_rows;
+
     }
 }

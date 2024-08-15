@@ -1,5 +1,5 @@
 <?php
-include_once ('../model/calendarioRutinario.php');
+include_once('../model/calendarioRutinario.php');
 ?>
 
 <link rel="stylesheet" href="css/estilos_mis_calendarios.css">

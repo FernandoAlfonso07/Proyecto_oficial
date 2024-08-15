@@ -1,6 +1,6 @@
 <?php
 
-include_once ("connect.php");
+include_once("connect.php");
 
 
 class calendarioRutinario extends conexionBD
@@ -246,19 +246,33 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
                 $r .= '<div class="container calendario_usuario">';
                 $r .= '    <div class="row">';
                 $r .= '        <div class="col-md-12 seccion_de_cada_calendario">';
-                $r .= '            <a href="enRutinasCr.php?usu=' . $id_user . '&calendar=' . $row[0] . '&p=0">';
-                $r .= '                <div class="row">';
+                $r .= '            <div class="row">';
+                $r .= '                <a href="enRutinasCr.php?usu=' . $id_user . '&calendar=' . $row[0] . '&p=0" class="col-md-9 row">';
                 $r .= '                    <div class="col-md-6">';
                 $r .= '                        <h1>' . $row[1] . '</h1>';
                 $r .= '                        <p>' . $row[3] . '</p>';
-                $r .= '                        <h4><b>descripcion</b></h4>';
+                $r .= '                        <h4><b>Descripción</b></h4>';
                 $r .= '                        <p>' . $row[2] . '</p>';
                 $r .= '                    </div>';
-                $r .= '                    <div class="col-md-6 text-center position-relative">';
+                $r .= '                    <div class="col-md-3 text-center position-relative">';
                 $r .= '                        <i class="fa-regular fa-calendar icono_calendario"></i>';
                 $r .= '                    </div>';
+                $r .= '                </a>';
+                $r .= '                <div class="col-md-3 text-center position-relative">';
+                $r .= '                    <div class="row justify-content-center align-items-center" style="height: 100%;">';
+                $r .= '                        <div class="col-md-12">';
+                $r .= '                            <a href="../controller/deleteCalendar.php?cldr=' . $row[0] . '">';
+                $r .= '                                <i class="fa-solid fa-trash icono_eliminar"></i>';
+                $r .= '                            </a>';
+                $r .= '                        </div>';
+                $r .= '                        <div class="col-md-12">';
+                $r .= '                            <a href="controlador.php?cldr=' . $row[0] . '&seccion=createCalender">';
+                $r .= '                                <i class="fa-solid fa-file-pen icono_editar"></i>';
+                $r .= '                            </a>';
+                $r .= '                        </div>';
+                $r .= '                    </div>';
                 $r .= '                </div>';
-                $r .= '            </a>';
+                $r .= '            </div>';
                 $r .= '        </div>';
                 $r .= '    </div>';
                 $r .= '</div>';
@@ -269,7 +283,18 @@ WHERE t1.id_dia = '$dia' AND t2.id_calendario = '$id_calendar' ";
 
         // Devolver el resultado
         return $r;
+    }
 
-
+    public static function getInfo($idCalendar, $idUser, $selectedRow)
+    {
+        $connect = self::getConexion();
+        $sql = "SELECT * FROM calendario_rutinario WHERE id_calendario = '$idCalendar' AND id_usuario = '$idUser';";
+        $response = $connect->query($sql);
+        $r = "";
+        while ($row = $response->fetch_array()) {
+            $r = $row[$selectedRow] ?? null;
+        }
+        $connect->close();
+        return $r;
     }
 }

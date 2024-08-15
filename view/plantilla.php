@@ -1,6 +1,7 @@
 <?php
-include_once ("nombreSeccionH.php");
-include_once ("../model/usuario.php");
+include_once("nombreSeccionH.php");
+include_once("../model/usuario.php");
+include_once("../model/gym_membership.php");
 !isset($_SESSION) ? session_start() : null;
 ?>
 <!doctype html>
@@ -15,6 +16,8 @@ include_once ("../model/usuario.php");
     <link rel="icon" href="./img/logosinfondo.png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="css/estilos_ENCABEZADO_plantilla.css">
+    <link rel="stylesheet" href="css/errors/errorValidations.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -67,6 +70,20 @@ include_once ("../model/usuario.php");
                         <a class="nav-link separado" href="#"><i class="fa-solid fa-exclamation icono_usuario"></i>
                             Reportar problemas</a>
                         -->
+                            <?php
+
+                            $count_membership = Gym_membership::showInfor("count", $_SESSION['id'], 0);
+                            $_SESSION['id_myGym'] = Gym_membership::showInfor("showDetaild", $_SESSION['id'], 6);
+
+                            if ($count_membership > 0) {
+                                ?> <a class="nav-link separado" href="controlador.php?seccion=myGym"><i
+                                        class="fa-solid fa-building-wheat"></i>
+                                    Mi Gimnasio</a> <?php
+                            } else {
+                                null;
+                            }
+                            ?>
+
                             <a class="nav-link separado" href="controlador.php?seccion=showGyms"><i
                                     class="fa-regular fa-eye icono_usuario"></i>
                                 Ver Gimnasios</a>
@@ -82,7 +99,7 @@ include_once ("../model/usuario.php");
 
         <main>
             <?php
-            include ($seccion . ".php");
+            include($seccion . ".php");
             ?>
         </main>
 
@@ -113,6 +130,7 @@ include_once ("../model/usuario.php");
     </script>
 
     <script src="js/event.js"></script>
+    <script src="js/validateData.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <?php unset($_SESSION['intento']) ?>

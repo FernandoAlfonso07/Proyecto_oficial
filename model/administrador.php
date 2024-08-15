@@ -105,6 +105,10 @@ class Administrador extends conexionBD
                 $table = 'ejercicio_rutinas';
                 $identifier = 'id_relacion';
                 break;
+            case "calendarUser":
+                $table = 'calendario_rutinario';
+                $identifier = 'id_calendario';
+                break;
         }
 
         // Crear la consulta SQL para eliminar el dato
@@ -777,7 +781,7 @@ class Administrador extends conexionBD
         $phone, '$email', '$address', $payment_method, $id_manager, '$monthly_payment'
         )";
 
-       
+
         // Ejecutar la consulta SQL
         $conexion->query($sql);
 

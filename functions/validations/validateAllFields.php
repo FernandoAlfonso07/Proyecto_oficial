@@ -88,6 +88,11 @@ function validateField($data, $opc)
         } else {
             return "dataIsNotValid"; // No es un número válido
         }
+    } elseif ($opc == "v text-area") { // VALIDACIONES DE NÚMEROS DECIMALES SIN RANGO
+        // Verifica si el campo está vacío
+        if (empty($data)) {
+            return "emptyData"; // Campo vacío
+        }
     }
 
     // Valor por defecto si todas las validaciones pasan
