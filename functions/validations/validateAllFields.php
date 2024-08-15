@@ -93,8 +93,27 @@ function validateField($data, $opc)
         if (empty($data)) {
             return "emptyData"; // Campo vacío
         }
-    }
+    } elseif ($opc == "v int positive") { // VALIDACIONES DE ENTEROS POSITIVOS
+        if (empty($data)) {
+            return "emptyData"; // Campo vacío
+        }
 
+        if (is_numeric($data) && intval($data) > 0) {
+            return "dataValidated"; // Entero positivo
+        } else {
+            return "dataIsNotValid"; // No es un número entero positivo
+        }
+    } elseif ($opc == "v text") { // VALIDACIÓN PARA TEXTO
+        if (empty($data)) {
+            return "emptyData"; // Campo vacío
+        }
+
+        if (is_string($data) && strlen(trim($data)) > 0) {
+            return "dataValidated"; // Texto válido
+        } else {
+            return "dataIsNotValid"; // Texto no válido
+        }
+    }
     // Valor por defecto si todas las validaciones pasan
     return "dataValidated"; // Correcto todo.
 }

@@ -99,7 +99,7 @@ if (validate::validateNotEmptyInputs($inputs)) {
     if ($type === 'user') {
         // Validación para usuario normal
         if (
-            !filter_var($pr, FILTER_VALIDATE_FLOAT) || $pr <= 0 ||
+            // (isset($pr) && (!filter_var($pr, FILTER_VALIDATE_FLOAT) || $pr <= 0)) || 
             !filter_var($pesoActual, FILTER_VALIDATE_FLOAT) || $pesoActual <= 0 ||
             !filter_var($altura, FILTER_VALIDATE_FLOAT) || $altura <= 0
         ) {

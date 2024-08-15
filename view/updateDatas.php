@@ -2,7 +2,7 @@
 include_once('../functions/alerts.php');
 if (isset($_GET['error'])) {
     $errorMessages = [
-        'emptyFields' => 'Datos Actualizados',
+        'emptyFields' => 'Debes llenar todos los campos 💥',
         'incorrectFormat' => 'Formato incorrecto',
         'notNumber' => 'Los campos deben ser tipo número',
         'invalidPhone' => 'Número de teléfono inválido',
@@ -103,9 +103,10 @@ if (isset($_GET['error'])) {
                                 <Label>Pr:</Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="personaleRecord" value="<?php
+                                <input type="text" id="personalRecord" name="personaleRecord" value="<?php
                                 echo usuarios::getPerfil(6, $_SESSION['id']);
                                 ?>" class="form-control">
+                                <span id="personalRecord-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-12">
