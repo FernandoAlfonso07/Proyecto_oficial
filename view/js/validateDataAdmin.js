@@ -83,4 +83,23 @@ $(document).ready(function () {
         customValidation: "t_descanso",
         dataOutOfRange: "El tiempo de descanso debe ser mayor a 10 segundos"
     });
+
+    // Validaciones para cada campo por separado
+    validateField("#nombreRutina", "#nombreRutina-error-message", "v string", {
+        emptyData: "El nombre de la rutina es obligatorio"
+    });
+    validateField("#descripcion", "#descripcion-error-message", "v text-area", {
+        emptyData: "La descripción es obligatoria"
+    });
+    validateField("#objetivo", "#objetivo-error-message", "v text-area", {
+        emptyData: "El objetivo es obligatorio"
+    });
+    validateField("#id_category", "#id_category-error-message", "v string", {
+        emptyData: "Selecciona una categoría"
+    });
+
+    // Validaciones para los campos del formulario del modal
+    validateField("#nameCategory", "#nameCategory-error-message", "v string", {
+        emptyData: "El nombre de la categoría es obligatorio"
+    });
 });
