@@ -15,59 +15,43 @@ function validateField($data, $opc)
 {
     // Verifica el tipo de validación solicitado
     if ($opc == 'v password') { // VALIDACIONES CONTRASEÑAS
-        // Verifica si el campo está vacío
         if (empty($data)) {
             return "emptyData"; // Campo vacío
         }
-
-        // Verifica si la contraseña tiene más de 8 caracteres
         if (strlen($data) <= 8) {
             return "passwordTooShort"; // Contraseña demasiado corta
         }
 
     } elseif ($opc == 'v email') { // VALIDACIONES DE CORREOS
-        // Verifica si el campo está vacío
         if (empty($data)) {
             return "emptyData"; // Campo vacío
         }
-
-        // Verifica si la dirección de correo electrónico es válida
         if (!filter_var($data, FILTER_VALIDATE_EMAIL)) {
             return "invalidEmail"; // Correo electrónico inválido
         }
 
     } elseif ($opc == "v phone") { // VALIDACIONES DE NÚMEROS DE TELÉFONO
-        // Verifica si el campo está vacío
         if (empty($data)) {
             return "emptyData"; // Campo vacío
         }
-
-        // Verifica si el número de teléfono tiene entre 10 y 15 dígitos
         if (!preg_match("/^\d{10,15}$/", $data)) {
             return "invalidData"; // Número de teléfono inválido
         }
 
     } elseif ($opc == "v string") { // VALIDACIONES DE CAMPOS DE TEXTO
-        // Verifica si el campo está vacío
         if (empty($data)) {
             return "emptyData"; // Campo vacío
         }
-
-        // Verifica si la cadena contiene solo letras y espacios
         if (!preg_match("/^[a-zA-Z\s]+$/", $data)) {
             return "invalidCharacters"; // Caracteres no válidos
         }
-    } elseif ($opc == "v float height") { // VALIDACIONES DE NÚMEROS DECIMALES
-        // Verifica si el campo está vacío
+
+    } elseif ($opc == "v float height") { // VALIDACIONES DE NÚMEROS DECIMALES CON RANGO
         if (empty($data)) {
             return "emptyData"; // Campo vacío
         }
-
-        // Verifica si el valor es un número decimal válido
         if (is_numeric($data) && preg_match('/^\d+(\.\d{1,2})?$/', $data)) {
             $value = floatval($data);
-
-            // Verifica si el número está en el rango permitido (0.50 a 3.00)
             if ($value >= 1.50 && $value <= 3.00) {
                 return "dataValidated"; // Valor dentro del rango
             } else {
@@ -76,49 +60,59 @@ function validateField($data, $opc)
         } else {
             return "dataIsNotValid"; // No es un número decimal válido
         }
+
     } elseif ($opc == "v float weight") { // VALIDACIONES DE NÚMEROS DECIMALES SIN RANGO
-        // Verifica si el campo está vacío
         if (empty($data)) {
             return "emptyData"; // Campo vacío
         }
-
-        // Verifica si el valor es un número válido (entero o decimal)
         if (is_numeric($data) && preg_match('/^\d+(\.\d{1,2})?$/', $data)) {
             return "dataValidated"; // Valor válido
         } else {
             return "dataIsNotValid"; // No es un número válido
         }
-    } elseif ($opc == "v text-area") { // VALIDACIONES DE NÚMEROS DECIMALES SIN RANGO
-        // Verifica si el campo está vacío
+
+    } elseif ($opc == "v text-area") { // VALIDACIÓN DE ÁREA DE TEXTO
         if (empty($data)) {
             return "emptyData"; // Campo vacío
         }
+
     } elseif ($opc == "v int positive") { // VALIDACIONES DE ENTEROS POSITIVOS
         if (empty($data)) {
             return "emptyData"; // Campo vacío
         }
-
         if (is_numeric($data) && intval($data) > 0) {
+            // Validación adicional para número de series, repeticiones y tiempo de descanso
+            if (isset($_POST['customValidation'])) {
+                switch ($_POST['customValidation']) {
+                    case "series":
+                        return intval($data) >= 5 && intval($data) <= 100 ? "dataValidated" : "dataOutOfRange";
+                    case "repeticiones":
+                        return intval($data) >= 5 && intval($data) <= 50 ? "dataValidated" : "dataOutOfRange";
+                    case "t_descanso":
+                        return intval($data) >= 10 && intval($data) <= 600 ? "dataValidated" : "dataOutOfRange";
+                }
+            }
             return "dataValidated"; // Entero positivo
         } else {
             return "dataIsNotValid"; // No es un número entero positivo
         }
+
     } elseif ($opc == "v text") { // VALIDACIÓN PARA TEXTO
         if (empty($data)) {
             return "emptyData"; // Campo vacío
         }
-
         if (is_string($data) && strlen(trim($data)) > 0) {
             return "dataValidated"; // Texto válido
         } else {
             return "dataIsNotValid"; // Texto no válido
         }
     }
-    // Valor por defecto si todas las validaciones pasan
-    return "dataValidated"; // Correcto todo.
+
+    return "dataValidated"; // Valor predeterminado si todo es válido
 }
 
 // Envía el resultado de la validación
 echo validateField($data, $opc);
+
 // Termina el script
 exit();

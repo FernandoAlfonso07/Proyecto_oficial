@@ -1,9 +1,9 @@
 <?php
-include ("../../model/usuario.php");
-include_once ("../../functions/alerts.php");
+include("../../model/usuario.php");
+include_once("../../functions/alerts.php");
 if (isset($_GET['error'])) {
     $errorMessages = [
-        'emptyFields' => 'Datos Actualizados',
+        'emptyFields' => 'Debes llenar todos los campos',
         'incorrectFormat' => 'Formato incorrecto',
         'notNumber' => 'Los campos deben ser tipo número',
         'invalidPhone' => 'Número de teléfono inválido',
@@ -38,56 +38,58 @@ if (isset($_GET['error'])) {
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-12 gris">
-                                <Label>Nombres: </Label>
+                                <Label for="nombres">Nombres: </Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="name" value="<?php
+                                <input type="text" name="name" id="nombres" value="<?php
                                 echo usuarios::getPerfil(0, $_SESSION['id_admin']);
                                 ?>" class="form-control">
+                                <span id="nombres-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-12 gris">
-                                <Label>Apellidos</Label>
+                                <Label for="apellidos">Apellidos</Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="lastName" value="<?php
+                                <input type="text" name="lastName" id="apellidos" value="<?php
                                 echo usuarios::getPerfil(1, $_SESSION['id_admin']);
                                 ?>" class="form-control">
+                                <span id="apellidos-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-12 gris">
-                                <Label>Altura actual:</Label>
+                                <Label for="height">Altura actual:</Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="height" value="<?php
+                                <input type="text" id="height" name="height" value="<?php
                                 echo usuarios::getPerfil(5, $_SESSION['id_admin']);
                                 ?>" class="form-control">
+                                <span id="height-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-12 gris">
-                                <Label>Peso Actual:</Label>
+                                <Label for="peso">Peso Actual:</Label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="weight" value="<?php
+                                <input type="text" id="peso" name="weight" value="<?php
                                 echo usuarios::getPerfil(4, $_SESSION['id_admin']);
-                                ?>
-                            " class="form-control">
+                                ?>" class="form-control">
+                                <span id="peso-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-12 gris">
-                                <Label>Genero:</Label>
+                                <Label for="sexo">Género:</Label>
                             </div>
                             <div class="col-md-12 my-2">
                                 <?php
                                 $sexo = usuarios::getPerfil(8, $_SESSION['id_admin']);
                                 ?>
-
-                                <select class="form-select" name="sex" aria-label="Default select example">
-                                    <option selected disabled>Seleciona... </option>
+                                <select class="form-select" name="sex" id="sexo" aria-label="Default select example">
+                                    <option selected disabled>Selecciona... </option>
                                     <option value="2" <?php echo ($sexo == 'Femenino') ? 'selected' : ''; ?>>Femenino
                                     </option>
                                     <option value="1" <?php echo ($sexo == 'Masculino') ? 'selected' : ''; ?>>Masculino
@@ -98,14 +100,15 @@ if (isset($_GET['error'])) {
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-12 gris">
-                                <Label>Rol:</Label>
+                                <Label for="rol">Rol:</Label>
                             </div>
                             <div class="col-md-12 my-2">
                                 <?php
                                 $role = usuarios::getPerfil(10, $_SESSION['id_admin']);
                                 ?>
-                                <select class="form-select" name="roleUser" aria-label="Default select example">
-                                    <option selected disabled>Seleciona... </option>
+                                <select class="form-select" name="roleUser" id="rol"
+                                    aria-label="Default select example">
+                                    <option selected disabled>Selecciona... </option>
                                     <option value="0" <?php echo ($role == 'Invitado') ? 'selected' : ''; ?>>Invitado
                                     </option>
                                     <option value="1" <?php echo ($role == 'Administrador') ? 'selected' : ''; ?>>
@@ -123,32 +126,32 @@ if (isset($_GET['error'])) {
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-12 gris">
-                                <label>
-                                    Correo Electronico:
+                                <label for="email">
+                                    Correo Electrónico:
                                 </label>
                             </div>
                             <div class="col-md-12">
-                                <input type="email" name="mail" value="<?php
-                                echo usuarios::getPerfil(2, $_SESSION['id_admin']); ?>" class="form-control" required>
-                            </div>
+                                <input type="email" id="email" name="mail"
+                                    value="<?php echo usuarios::getPerfil(2, $_SESSION['id_admin']); ?>"
+                                    class="form-control" required>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-12 gris">
-                                <label>
-                                    Telefono
+                                <label for="telefono">
+                                    Teléfono
                                 </label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="phone" value="<?php
+                                <input type="text" id="telefono" name="phone" value="<?php
                                 echo usuarios::getPerfil(7, $_SESSION['id_admin']);
                                 ?>" class="form-control">
+                                <span id="telefono-error-message" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-12 text-center">
                             <button type="submit" class="btn btn-warning compartir">Actualizar
                                 <i class="fa-solid fa-rotate icono"></i></button>
                         </div>
-
                     </div>
                 </div>
             </div>

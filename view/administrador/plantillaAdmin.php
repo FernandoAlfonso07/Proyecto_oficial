@@ -14,6 +14,7 @@ include("../../view/nombreSeccionH.php");
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="icon" href="../../view/img/logosinfondo.png">
     <link rel="stylesheet" href="../../view/css/estilos-plantillaAdmin.css">
+    <link rel="stylesheet" href="../css/errors/errorValidations.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -147,13 +148,7 @@ include("../../view/nombreSeccionH.php");
         crossorigin="anonymous"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
+    <script src="../js/validateDataAdmin.js"></script>
 
 </body>
 
