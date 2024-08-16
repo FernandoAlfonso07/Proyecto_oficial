@@ -102,4 +102,6 @@ $(document).ready(function () {
     validateField("#nameCategory", "#nameCategory-error-message", "v string", {
         emptyData: "El nombre de la categoría es obligatorio"
     });
+
+
 });

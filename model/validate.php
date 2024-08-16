@@ -27,6 +27,7 @@ class validate extends conexionBD
         $salida = str_replace("'", "", $salida);
         $salida = str_replace('"', '', $salida);
         $salida = str_replace('<script>', '', $salida);
+        $salida = str_replace('</script>', '', $salida);
         $salida = str_replace('alert', '', $salida);
         $salida = str_replace('document', '', $salida);
         $salida = str_replace('eval', '', $salida);
@@ -35,6 +36,7 @@ class validate extends conexionBD
         $salida = str_replace('prompt', '', $salida);
         $salida = str_replace('innerHTML', '', $salida);
         $salida = str_replace('onclick', '', $salida);
+        $salida = str_replace('window', '', $salida);
 
         // Reemplazar caracteres que pueden ser utilizados en inyecciones SQL
         $salida = str_replace('like', '', $salida);

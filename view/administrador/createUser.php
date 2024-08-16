@@ -71,13 +71,6 @@ if (isset($_GET['error'])) {
                             <span id="peso-error-message" class="error-message"></span>
                         </div>
                     <?php endif; ?>
-                    <?php if (!isset($_GET['peso'])): ?>
-                        <div class="col-md-12">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" id="password" name="password" class="form-control" required>
-                            <span id="peso-error-message" class="error-message"></span>
-                        </div>
-                    <?php endif; ?>
 
                     <div class="col-md-6">
                         <label for="peso" class="form-label">Peso actual</label>

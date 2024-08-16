@@ -64,4 +64,30 @@ $(document).ready(function () {
         dataOutOfRange: "El registro personal debe estar entre 0.50 y 3.00 kg.",
         dataIsNotValid: "El valor ingresado no es válido. Debe ser un número entero positivo."
     });
+
+    // Validacion para los campos del formulario de registro de inscripcióna un gimnasio
+
+    validateField("#fullName", "#fullNameError", "v string", {
+        emptyData: "Este campo es obligatirio"
+    });
+    validateField("#address", "#addressError", "v text", {
+        emptyData: "Este campo es obligatirio"
+    });
+    validateField("#contactEmail", "#contactEmailError", "v email", {
+        emptyData: "Este campo es obligatirio",
+        invalidEmail: "El formato de correo no es válido."
+    });
+    validateField("#phone", "#phoneError", "v phone", {
+        emptyData: "Este campo es obligatirio",
+        invalidEmail: "El formato de telefono no es valido, minimo 10 y maximo 15 digitos"
+    });
+    validateField("#phone", "#phoneError", "v phone", {
+        emptyData: "Este campo es obligatirio",
+        invalidEmail: "El formato de telefono no es valido, minimo 10 y maximo 15 digitos"
+    });
+    validateField("#idNumber", "#idNumberError", "v int positive", {
+        emptyData: "Este campo es obligatirio",
+        invalidEmail: "El formato de telefono no es valido, minimo 10 y maximo 15 digitos",
+        dataOutOfRange: "El documento no es valido."
+    });
 });

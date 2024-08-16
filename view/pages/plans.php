@@ -17,41 +17,49 @@
         <h1 class="mb-4">Planes de Promoción</h1>
         <p class="text-muted">Elige el plan que mejor se adapte a tus necesidades</p>
         <div class="plans-container">
-            <!-- Plan para Usuarios -->
-            <div class="plan user-plan">
-                <h2>Plan para Usuarios <i class="fa-solid fa-user"></i></h2>
-                <p class="price">$20,000</p>
-                <ul>
-                    <li>
-                        <div class="service">Asesoramiento de rutinas</div>
-                    </li>
-                    <li>
-                        <div class="service">Creación de calendarios ilimitados</div>
-                    </li>
-                    <li>
-                        <div class="service">Inscripcion a Gimnasios</div>
-                    </li>
-                </ul>
-                <a href="formulerPlan.php?plan=1" class="btn-select">Elegir Plan</a>
+            <div class="row">
+                <!-- Plan para Usuarios -->
+                <div class="col-md-6">
+                    <div class="plan user-plan">
+                        <h2>Plan para Usuarios <i class="fa-solid fa-user"></i></h2>
+                        <p class="price">$20,000</p>
+                        <ul>
+                            <li>
+                                <div class="service">Asesoramiento de rutinas</div>
+                            </li>
+                            <li>
+                                <div class="service">Creación de calendarios ilimitados</div>
+                            </li>
+                            <li>
+                                <div class="service">Inscripcion a Gimnasios</div>
+                            </li>
+                        </ul>
+                        <a href="formulerPlan.php?plan=1" class="btn-select">Elegir Plan</a>
+                    </div>
+                </div>
+                <!-- Plan para Gerentes de Gimnasio -->
+                <div class="col-md-6">
+                    <div class="plan gym-manager-plan">
+                        <h2>Plan para Gerentes de Gimnasio <i class="fa-solid fa-building-user"></i></h2>
+                        <p class="price">$30,000</p>
+                        <ul>
+                            <li>
+                                <div class="service">Publicación de todos los datos del gimnasio detallada</div>
+                            </li>
+                            <li>
+                                <div class="service">Acceso a que los usuarios se inscriban en su gimnasio</div>
+                            </li>
+                        </ul>
+                        <a href="formulerPlan.php?plan=2" class="btn-select">Elegir Plan</a>
+                    </div>
+                </div>
             </div>
-            <!-- Plan para Gerentes de Gimnasio -->
-            <div class="plan gym-manager-plan">
-                <h2>Plan para Gerentes de Gimnasio <i class="fa-solid fa-building-user"></i></h2>
-                <p class="price">$30,000</p>
-                <ul>
-                    <li>
-                        <div class="service">Publicación de todos los datos del gimnasio detallada</div>
-                    </li>
-                    <li>
-                        <div class="service">Acceso a que los usuarios se inscriban en su gimnasio</div>
-                    </li>
-                </ul>
-                <a href="formulerPlan.php?plan=2" class="btn-select">Elegir Plan</a>
-            </div>
+
+
         </div>
 
         <a href="<?php echo isset($_SESSION['id']) ? "../controlador.php?seccion=seccion1" : "../inicio-principal.php"; ?>"
-            class="my-3">
+            class="my-5">
             <button class="btn btn-secondary">
                 Volver
             </button>

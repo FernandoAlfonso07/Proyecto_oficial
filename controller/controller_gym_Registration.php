@@ -36,7 +36,7 @@ if (!validate::validateNotEmptyInputs($validateEmptyinputs)) {
 }
 
 foreach ($validateEmptyinputs as $field) {
-    ${$field} = isset($_POST[$field]) ? validate::sanitize($_POST[$field]) : null;
+    ${$field} = isset($_POST[$field]) ? trim(validate::sanitize($_POST[$field])) : null;
 }
 
 

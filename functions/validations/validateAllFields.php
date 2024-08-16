@@ -90,6 +90,8 @@ function validateField($data, $opc)
                         return intval($data) >= 5 && intval($data) <= 50 ? "dataValidated" : "dataOutOfRange";
                     case "t_descanso":
                         return intval($data) >= 10 && intval($data) <= 600 ? "dataValidated" : "dataOutOfRange";
+                    case "document":
+                        return intval($data) >= 10 && intval($data) <= 15 ? "dataValidated" : "dataOutOfRange";
                 }
             }
             return "dataValidated"; // Entero positivo
