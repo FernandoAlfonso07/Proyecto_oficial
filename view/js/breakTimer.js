@@ -1,16 +1,1 @@
-document.addEventListener('DOMContentLoaded', () => {
-    let elementTimer = document.getElementById('timer');
-    let time = parseInt(elementTimer.getAttribute('data-seconds'), 10);
-
-    const executeTimer = () => {
-        if (time > 0) {
-            time--; // Reduce el tiempo en cada intervalo
-            elementTimer.innerHTML = "<h1>" + time + "s</h1>";
-        } else {
-            clearInterval(intervalTime);
-            elementTimer.innerHTML = '<a href="enRutinasCr.php?usu=' + encodeURIComponent(usu) + '&calendar=' + encodeURIComponent(calendarID) + '&p=' + encodeURIComponent(page) + '"><button class="btn btn-primary">Continuar Rutina</button></a>';
-        }
-    };
-
-    const intervalTime = setInterval(executeTimer, 1000);
-});
+document.addEventListener("DOMContentLoaded",(()=>{let e=document.getElementById("timer"),n=parseInt(e.getAttribute("data-seconds"),10);const t=setInterval((()=>{n>0?(n--,e.innerHTML="<h1>"+n+"s</h1>"):(clearInterval(t),e.innerHTML='<a href="enRutinasCr.php?usu='+encodeURIComponent(usu)+"&calendar="+encodeURIComponent(calendarID)+"&p="+encodeURIComponent(page)+'"><button class="btn btn-primary">Continuar Rutina</button></a>')}),1e3)}));

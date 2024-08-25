@@ -1,12 +1,1 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const salirButton = document.getElementById("salirButton");
-
-    salirButton.addEventListener("mouseenter", function () {
-        salirButton.classList.add("shake");
-
-        setTimeout(function () {
-            salirButton.classList.remove("shake");
-        }, 500);
-    });
-});
-
+document.addEventListener("DOMContentLoaded",(function(){const e=document.getElementById("salirButton");e.addEventListener("mouseenter",(function(){e.classList.add("shake"),setTimeout((function(){e.classList.remove("shake")}),500)}))}));
