@@ -117,15 +117,15 @@ $mail = new PHPMailer(true);
 try {
     // Configuración del servidor
     $mail->isSMTP();
-    $mail->Host = 'smtp.mailersend.net';
+    $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'MS_ZnDCcE@trial-pr9084zxemjlw63d.mlsender.net';
-    $mail->Password = 'zvnMo6MNoqSKZy0t';
+    $mail->Username = 'worldfitsite1@gmail.com';
+    $mail->Password = 'mrjtgmqchtehusiw';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
     // Destinatarios
-    $mail->setFrom('MS_ZnDCcE@trial-pr9084zxemjlw63d.mlsender.net', 'WorldFit');
+    $mail->setFrom('worldfitsite1@gmail.com', 'WorldFit');
     $mail->addAddress($email);
 
     // Contenido del correo
