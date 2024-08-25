@@ -19,7 +19,7 @@ if (isset($_GET['error'])) {
 <link rel="stylesheet" href="../css/actualizarDatos.css">
 <section>
     <form action="../../controller/actualizarDataUser.php?type=admin" method="POST" enctype="multipart/form-data">
-        <div class="container cuerpo">
+        <div class="container cuerpo2">
             <div class="row">
                 <div class="col-md-6 text-center">
                     <img src="../<?php echo usuarios::getPerfil(9, $_SESSION['id_admin']) ?: '../../view/user img/default_img.PNG'; ?>"
@@ -134,28 +134,28 @@ if (isset($_GET['error'])) {
                                 <input type="email" id="email" name="mail"
                                     value="<?php echo usuarios::getPerfil(2, $_SESSION['id_admin']); ?>"
                                     class="form-control" required>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="col-md-12 gris">
-                                <label for="telefono">
-                                    Teléfono
-                                </label>
                             </div>
-                            <div class="col-md-12">
-                                <input type="text" id="telefono" name="phone" value="<?php
-                                echo usuarios::getPerfil(7, $_SESSION['id_admin']);
-                                ?>" class="form-control">
-                                <span id="telefono-error-message" class="error-message"></span>
+                            <div class="col-md-6">
+                                <div class="col-md-12 gris">
+                                    <label for="telefono">
+                                        Teléfono
+                                    </label>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="text" id="telefono" name="phone" value="<?php
+                                    echo usuarios::getPerfil(7, $_SESSION['id_admin']);
+                                    ?>" class="form-control">
+                                    <span id="telefono-error-message" class="error-message"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-warning compartir">Actualizar
-                                <i class="fa-solid fa-rotate icono"></i></button>
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-warning compartir">Actualizar
+                                    <i class="fa-solid fa-rotate icono"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </form>
 </section>
 

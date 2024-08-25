@@ -668,7 +668,7 @@ class Administrador extends conexionBD
                 $r .= "<td>" . $fila[2] . "</td>"; // Muestra el objetivo de la rutina
                 $r .= "<td>" . $fila[3] . "</td>"; // Muestra la fecha de registro
                 $r .= "<td>" . $fila[4] . "</td>"; // Muestra la categoría asociada
-                $r .= "<td> <i class='fa-solid fa-eye icono moreDetails'></i>   <a href='../../controller/deleteRoutine.php?id_routine=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <a href='controladorVadmin.php?dRoutine=" . $fila[0] . "&seccionAd=addRutina'><i class='fa-solid fa-pen-to-square icono edit'></i></a>";
+                $r .= "<td> <a href='../../controller/deleteRoutine.php?id_routine=" . $fila[0] . "'><i class='fa-solid fa-trash icono delete'></i></a>    <a href='controladorVadmin.php?dRoutine=" . $fila[0] . "&seccionAd=addRutina'><i class='fa-solid fa-pen-to-square icono edit'></i></a>";
                 $r .= " </td>";
                 $r .= '</tr>';
             }

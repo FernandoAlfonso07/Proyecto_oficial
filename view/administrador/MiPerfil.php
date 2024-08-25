@@ -11,7 +11,7 @@ if (isset($_GET['success'])) {
 <link rel="stylesheet" href="../css/estilosinformacionU.css">
 
 <section>
-    <div class="container cuerpo">
+    <div class="container cuerpo2">
         <div class="row">
             <div class="col-md-6 text-center">
                 <img src="../<?php echo usuarios::getPerfil(9, $_SESSION['id_admin']); ?>"

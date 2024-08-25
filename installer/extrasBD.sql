@@ -41,13 +41,14 @@ END;
 DROP TRIGGER IF EXISTS `register_purchase_user`;
 
 CREATE TRIGGER `register_purchase_user`
-AFTER INSERT
-ON `plan_registration` FOR EACH ROW
-BEGIN
-    INSERT INTO
-        `purchase_history` (id_usuario, id_plan, date_register)
-    VALUES
-        (NEW.id_usuario, NEW.id_plan, NOW());
+AFTER
+INSERT
+    ON `plan_registration` FOR EACH ROW BEGIN
+INSERT INTO
+    `purchase_history` (id_usuario, id_plan, date_register)
+VALUES
+    (NEW.id_usuario, NEW.id_plan, NOW());
+
 END;
 
 -- Procedimiento almacenado `getInfoGyms`
@@ -112,7 +113,8 @@ CREATE PROCEDURE `Register_gym` (
     IN id_gerente INT(11),
     IN monthly_payment INT(11)
 ) BEGIN
-    INSERT INTO `infoGyms` (
+INSERT INTO
+    `infoGyms` (
         name,
         id_categoria,
         description,
@@ -135,7 +137,8 @@ CREATE PROCEDURE `Register_gym` (
         status,
         monthly_payment
     )
-    VALUES (
+VALUES
+    (
         name,
         id_categoria,
         description,
@@ -158,6 +161,7 @@ CREATE PROCEDURE `Register_gym` (
         'activo',
         monthly_payment
     );
+
 END;
 
 DROP PROCEDURE IF EXISTS `getInfoGymsAll`;
@@ -198,52 +202,51 @@ END;
 
 DROP PROCEDURE IF EXISTS `SearchGyms`;
 
-CREATE PROCEDURE `SearchGyms` (
-    IN searchTerm VARCHAR(255)
-)
-BEGIN
-    SELECT 
-        t1.id,
-        t1.name, 
-        t2.categoria, 
-        t1.description, 
-        t1.mission, 
-        t1.vision, 
-        t1.time_start_morning_DAY, 
-        t1.time_end_morning_DAY, 
-        t1.time_start_afternoon_DAY, 
-        t1.time_end_afternoon_DAY,
-        t1.time_start_morning_END, 
-        t1.time_end_morning_END, 
-        t1.time_start_afternoon_END, 
-        t1.time_end_afternoon_END, 
-        t1.phone, 
-        t1.mail, 
-        t1.direction, 
-        t3.method, 
-        t1.monthly_payment, 
-        t1.pathImage
-    FROM infogyms t1 
-    JOIN categorias_gyms t2 ON t2.id_categoria = t1.id_categoria 
+CREATE PROCEDURE `SearchGyms` (IN searchTerm VARCHAR(255)) BEGIN
+SELECT
+    t1.id,
+    t1.name,
+    t2.categoria,
+    t1.description,
+    t1.mission,
+    t1.vision,
+    t1.time_start_morning_DAY,
+    t1.time_end_morning_DAY,
+    t1.time_start_afternoon_DAY,
+    t1.time_end_afternoon_DAY,
+    t1.time_start_morning_END,
+    t1.time_end_morning_END,
+    t1.time_start_afternoon_END,
+    t1.time_end_afternoon_END,
+    t1.phone,
+    t1.mail,
+    t1.direction,
+    t3.method,
+    t1.monthly_payment,
+    t1.pathImage
+FROM
+    infogyms t1
+    JOIN categorias_gyms t2 ON t2.id_categoria = t1.id_categoria
     JOIN payment_methods_gyms t3 ON t3.id = t1.id_pay
     JOIN usuarios t4 ON t4.id_usuario = t1.id_gerente
-    WHERE
-        t1.name LIKE CONCAT('%', searchTerm, '%') OR
-        t2.categoria LIKE CONCAT('%', searchTerm, '%') OR
-        t1.description LIKE CONCAT('%', searchTerm, '%') OR
-        t1.mission LIKE CONCAT('%', searchTerm, '%') OR
-        t1.vision LIKE CONCAT('%', searchTerm, '%') OR
-        t1.time_start_morning_DAY LIKE CONCAT('%', searchTerm, '%') OR
-        t1.time_end_morning_DAY LIKE CONCAT('%', searchTerm, '%') OR
-        t1.time_start_afternoon_DAY LIKE CONCAT('%', searchTerm, '%') OR
-        t1.time_end_afternoon_DAY LIKE CONCAT('%', searchTerm, '%') OR
-        t1.time_start_morning_END LIKE CONCAT('%', searchTerm, '%') OR
-        t1.time_end_morning_END LIKE CONCAT('%', searchTerm, '%') OR
-        t1.time_start_afternoon_END LIKE CONCAT('%', searchTerm, '%') OR
-        t1.time_end_afternoon_END LIKE CONCAT('%', searchTerm, '%') OR
-        t1.phone LIKE CONCAT('%', searchTerm, '%') OR
-        t1.mail LIKE CONCAT('%', searchTerm, '%') OR
-        t1.direction LIKE CONCAT('%', searchTerm, '%') OR
-        t3.method LIKE CONCAT('%', searchTerm, '%') OR
-        t1.monthly_payment LIKE CONCAT('%', searchTerm, '%');
+WHERE
+    t1.name LIKE CONCAT('%', searchTerm, '%')
+    OR t2.categoria LIKE CONCAT('%', searchTerm, '%')
+    OR t1.description LIKE CONCAT('%', searchTerm, '%')
+    OR t1.mission LIKE CONCAT('%', searchTerm, '%')
+    OR t1.vision LIKE CONCAT('%', searchTerm, '%')
+    OR t1.time_start_morning_DAY LIKE CONCAT('%', searchTerm, '%')
+    OR t1.time_end_morning_DAY LIKE CONCAT('%', searchTerm, '%')
+    OR t1.time_start_afternoon_DAY LIKE CONCAT('%', searchTerm, '%')
+    OR t1.time_end_afternoon_DAY LIKE CONCAT('%', searchTerm, '%')
+    OR t1.time_start_morning_END LIKE CONCAT('%', searchTerm, '%')
+    OR t1.time_end_morning_END LIKE CONCAT('%', searchTerm, '%')
+    OR t1.time_start_afternoon_END LIKE CONCAT('%', searchTerm, '%')
+    OR t1.time_end_afternoon_END LIKE CONCAT('%', searchTerm, '%')
+    OR t1.phone LIKE CONCAT('%', searchTerm, '%')
+    OR t1.mail LIKE CONCAT('%', searchTerm, '%')
+    OR t1.direction LIKE CONCAT('%', searchTerm, '%')
+    OR t3.method LIKE CONCAT('%', searchTerm, '%')
+    OR t1.monthly_payment LIKE CONCAT('%', searchTerm, '%');
+
 END;
